@@ -3,19 +3,35 @@
 // =============================================================================
 
 
-// Return the option that provides more contrast for the given base color.
+// Pick the color with the best contrast for the given base.
 //
+// Credit: https://github.com/voxpelli/sass-color-helpers
+//
+// @author Pelle Wessman
 // @param {color} $base
-// @param {color} $dark-option [$color-text]
-// @param {color} $light-option [#fff]
+// @param {list} $colors
+// @param {boolean} $ignore-warning
 // @return {color}
 
-@function contrast-color($base, $dark-option: $color-text, $light-option: #fff) {
-    @if contrast-ratio($dark-option, $base) > contrast-ratio($light-option, $base) {
-        @return $dark-option;
+@function best-color-contrast($base, $colors: ($color-text, #fff), $ignore-warning: false) {
+    $best: nth($colors, 1);
+    $contrast: contrast-ratio($base, $best);
+
+    @for $i from 2 through length($colors) {
+        $current-color: nth($colors, $i);
+        $current-contrast: contrast-ratio($base, $current-color);
+
+        @if $current-contrast - $contrast > 0 {
+            $best: $current-color;
+            $contrast: $current-contrast;
+        }
     }
 
-    @return $light-option;
+    @if ($contrast < 3 and not $ignore-warning) {
+        @warn "Contrast ratio of #{$best} on #{$base} is pretty bad, just #{$contrast}";
+    }
+
+    @return $best;
 }
 
 
@@ -32,8 +48,9 @@
 @function contrast-ratio($color-1, $color-2) {
     $luminance-1: luminance($color-1) + 0.05;
     $luminance-2: luminance($color-2) + 0.05;
+    $ratio: max($luminance-1, $luminance-2) / min($luminance-1, $luminance-2);
 
-    @return max($luminance-1, $luminance-2) / min($luminance-1, $luminance-2);
+    @return round($ratio * 100) / 100;
 }
 
 
@@ -51,7 +68,7 @@
 
     @for $i from 1 through 3 {
         $value: nth($rgb, $i) / 255;
-        $new-color: if($value <= 0.03928, $value / 12.92, pow(($value + 0.055)/1.055, 2.4));
+        $new-color: if($value <= 0.03928, $value / 12.92, pow(($value + 0.055)/1.055, 2.4, 16));
 
         $rgb: set-nth($rgb, $i, $new-color);
     }
@@ -63,18 +80,6 @@
 // =============================================================================
 // Fractions
 // =============================================================================
-
-
-// Return the result of dividing the given fraction.
-//
-// @param {string} $fraction - String representation of a fraction
-// @return {number}
-
-@function divide-fraction($fraction) {
-    $list: fraction-to-list($fraction);
-
-    @return nth($list, 1) / nth($list, 2);
-}
 
 
 // Convert the given fraction for use in a class name.
@@ -99,7 +104,7 @@
 // @return {list}
 
 @function fraction-to-list($fraction) {
-    $fraction: quote($fraction);
+    $fraction: unquote-fraction($fraction);
     $bar-index: str-index($fraction, "/");
     $numerator: str-slice($fraction, 1, $bar-index - 1);
     $denominator: str-slice($fraction, $bar-index + 1);
@@ -120,6 +125,16 @@
 }
 
 
+// Remove quotes from a fraction.
+//
+// @param {string} $fraction - String representation of a fraction
+// @return {string}
+
+@function unquote-fraction($fraction) {
+    @return str-replace($fraction, "\"");
+}
+
+
 // =============================================================================
 // Icons
 // =============================================================================
@@ -129,11 +144,11 @@
 
 // Return a caret icon.
 //
-// @param {color} $color [$color-gray-darken-3]
+// @param {color} $color [$color-gray-80]
 // @param {number (unitless)} $size [24] - Size in pixels
 // @return string
 
-@function icon-caret($color: $color-gray-darken-3, $size: 24) {
+@function icon-caret($color: $color-gray-80, $size: 24) {
     @return escape-svg("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 24 24'><path fill='#{$color}' d='M12 16l-6-6h12z'/></svg>");
 }
 
@@ -174,22 +189,22 @@
 
 // Return a warning icon with a solid background.
 //
-// @param {color} $color [lighten($color-warning, 10%)]
+// @param {color} $color [$color-warning]
 // @param {number (unitless)} $size [24] - Size in pixels
 // @return string
 
-@function icon-solid-warning($color: lighten($color-warning, 10%), $size: 24) {
+@function icon-solid-warning($color: $color-warning, $size: 24) {
     @return escape-svg("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 1 24 24' fill='#{$color}'><path d='M20.58 16.51l-6.5-11.25c-.51-.87-1.26-1.38-2.08-1.38s-1.57.5-2.08 1.38l-6.5 11.25c-.5.88-.56 1.79-.15 2.49.41.71 1.22 1.11 2.23 1.11h13c1.01 0 1.83-.41 2.23-1.11.41-.7.35-1.61-.15-2.49zM12 18.15c-.64 0-1.15-.51-1.15-1.15s.51-1.15 1.15-1.15 1.15.51 1.15 1.15-.51 1.15-1.15 1.15zm1-3.65h-2l-.3-6h2.5l-.2 6z'/></svg>");
 }
 
 
 // Return an outlined warning icon.
 //
-// @param {color} $color [lighten($color-warning, 10%)]
+// @param {color} $color [$color-warning]
 // @param {number (unitless)} $size [24] - Size in pixels
 // @return string
 
-@function icon-warning($color: lighten($color-warning, 10%), $size: 24) {
+@function icon-warning($color: $color-warning, $size: 24) {
     @return escape-svg("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 24 24' fill='#{$color}'><path fill='none' stroke='#{$color}' stroke-width='2' stroke-miterlimit='10' d='M4.98 19.79c-1.54 0-2.18-1.09-1.4-2.43L10.6 5.21c.77-1.34 2.03-1.34 2.81 0l7.02 12.15c.77 1.34.14 2.43-1.4 2.43H4.98z'/><circle cx='12' cy='16.5' r='1'/><path d='M12.7 14.5h-1.4l-.3-6h2z'/></svg>");
 }
 
@@ -199,24 +214,73 @@
 // =============================================================================
 
 
-// Return the base number raised to the power of given exponent.
+// Finds the greatest common divisor of two integers.
 //
-// Credit: https://css-tricks.com/snippets/sass/power-function/
+// Credit:
+// https://github.com/voxpelli/sass-color-helpers
+// http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
 //
-// @author Hugo Giraudel
-// @param {number} $base
-// @param {number} $exponent - Must be an integer
+// @param {number} $a
+// @param {number} $b
 // @return {number}
 
-@function pow($base, $exponent) {
-    $value: 1;
+@function gcd($a, $b) {
+    @if ($b != 0) {
+        @return gcd($b, $a % $b);
+    } @else {
+        @return abs($a);
+    }
+}
 
-    @if $exponent > 0 {
-        @for $i from 1 through $exponent {
+
+// Return the n:nth root of a number.
+//
+// Credit:
+// https://github.com/voxpelli/sass-color-helpers
+// http://rosettacode.org/wiki/Nth_root#JavaScript
+//
+// @param {number} $num
+// @param {number} $n
+// @param {number} $prec
+
+@function nth-root($num, $n: 2, $prec: 12) {
+    $x: 1;
+
+    @for $i from 0 through $prec {
+        $x: 1 / $n * (($n - 1) * $x + ($num / pow($x, $n - 1)));
+    }
+
+    @return $x;
+}
+
+
+// Return the base number raised to the power of given exponent.
+//
+// Credit: https://github.com/voxpelli/sass-color-helpers
+//
+// @author Pelle Wessman
+// @param {number} $base
+// @param {number} $exponent
+// @param {number} $prec
+// @return {number}
+
+@function pow($base, $exponent, $prec: 12) {
+    @if (floor($exponent) != $exponent) {
+        $prec2: pow(10, $prec);
+        $exponent: round($exponent * $prec2);
+        $denominator: gcd($exponent, $prec2);
+
+        @return nth-root(pow($base, $exponent / $denominator), $prec2 / $denominator, $prec);
+    }
+
+    $value: $base;
+
+    @if $exponent > 1 {
+        @for $i from 2 through $exponent {
             $value: $value * $base;
         }
-    } @else if $exponent < 0 {
-        @for $i from 1 through -$exponent {
+    } @else if $exponent < 1 {
+        @for $i from 0 through -$exponent {
             $value: $value / $base;
         }
     }
@@ -514,7 +578,7 @@
 // =============================================================================
 
 
-// Check if the given value is a valid CSS length.
+// Check for a valid CSS length.
 //
 // Credit: https://github.com/thoughtbot/bourbon
 //
@@ -522,7 +586,11 @@
 // @return {boolean}
 
 @function is-length($value) {
-    @return type-of($value) != "null" and (str-slice($value + "", 1, 4) == "calc"
+    @return type-of($value) != "null" and (
+        str-slice($value + "", 1, 4) == "calc"
+        or str-slice($value + "", 1, 3) == "var"
+        or str-slice($value + "", 1, 3) == "env"
         or index(auto inherit initial 0, $value)
-        or (type-of($value) == "number" and not(unitless($value))));
+        or (type-of($value) == "number" and not(unitless($value)))
+    );
 }

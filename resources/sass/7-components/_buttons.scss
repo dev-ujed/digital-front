@@ -30,7 +30,7 @@ $button-padding-y: 0.75em !default;
  * The neutral base class for any button.
  */
 .btn {
-    @include button((border-color: $color-gray-lighten-2));
+    @include button((border-color: $color-gray-30));
     border-radius: $button-radius;
     padding: $button-padding-y $button-padding-x;
 }
@@ -44,7 +44,7 @@ $button-padding-y: 0.75em !default;
 }
 
 .btn--light {
-    @include button((background-color: $color-gray-lighten-3));
+    @include button((background-color: $color-gray-20));
 }
 
 .btn--white {
@@ -80,6 +80,7 @@ default state. They can be created with the `button-outline` mixin.
 .btn--outline-inverted {
     @include button-outline((
         background-color-hover: rgba(#fff, 0.15),
+        background-color-active: transparent,
         text-color: #fff,
         text-color-hover: #fff
     ));
