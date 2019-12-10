@@ -1,5 +1,5 @@
 """
-WSGI config for solicitudestdproject project.
+WSGI config for digitalproject project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
