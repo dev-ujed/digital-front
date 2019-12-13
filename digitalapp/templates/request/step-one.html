@@ -1,0 +1,82 @@
+<form action="" class="request__form">
+
+    <!--<div class="m-auto request--steps d-flex justify-center">
+            <span class="request--step request--step--active">
+            <span class="m-auto">1</span>
+            <small>Datos de contacto</small>
+        </span>
+                 
+        <span class="request--way"></span>
+        <span class="request--step">
+            <span class="m-auto">2</span>
+            <small>Solicitud</small>
+        </span>
+    </div> -->
+     
+    <div class="form-control">
+        <label for="email">Correo electrónico</label>
+        <input class="form-field" id="email" name="email" type="email">
+    </div>
+     
+    <div class="row">
+        <div class="form-control col sm:col-1/2">
+            <label for="ujed_id">Matrícula</label>
+            <input class="form-field" id="ujed_id" name="ujed_id" type="text">
+        </div>
+        <div class="form-control col sm:col-1/2">
+            <label for="name">Nombre</label>
+            <input class="form-field" id="name" name="name" type="text">
+        </div>
+    </div>
+     
+    <div class="row">
+        <div class="form-control col sm:col-1/2">
+            <label for="first_last_name">Apellido paterno</label>
+            <input class="form-field" id="first_last_name" name="first_last_name" type="text">
+        </div>
+        <div class="form-control col sm:col-1/2">
+        <label for="second_last_name">
+            Apellido materno 
+            <small class="color-gray-60"><i>Opcional</i></small>
+        </label>
+        <input class="form-field" id="second_last_name" name="second_last_name" type="text">
+        </div>
+    </div>
+     
+    <div class="row">
+        <div class="form-control col sm:col-7/12">
+            <label for="phone">Teléfono</label>
+            <input class="form-field" id="phone" name="phone" type="tel">
+        </div>
+        <div class="form-control col sm:col-5/12">
+            <label for="ujed_extension">Extensión (UJED)</label>
+            <input class="form-field" id="ujed_extension" name="ujed_extension" type="text">
+        </div>
+    </div>
+     
+    <div class="form-control">
+        <label for="unit">Unidad responsable</label>
+        <select class="form-field" name="unit" id="unit">
+            <option value="0">- Selecciona una opción -</option>
+            <option value="">Opción 1</option>
+            <option value="">Opción 2</option>
+            <option value="">Opción 3</option>
+        </select>
+    </div>
+     
+    <div class="form-control">
+        <label for="from">
+            ¿Quién autoriza?
+            <small class="color-gray-60"><i>Opcional</i></small>
+            </label>
+        <input class="form-field" id="from" name="from" type="text">
+    </div>
+     
+    <div class="text-center">
+        <button class="btn btn--form request--button " type="submit">
+            <span>Continuar</span>
+            {% load svg %}
+            {% svg 'arrow-right' %}
+        </button>
+    </div>
+</form>
