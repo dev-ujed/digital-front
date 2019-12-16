@@ -155,6 +155,10 @@ default state. They can be created with the `button-outline` mixin.
     padding-right: $button-padding-x * 1.75;
 }
 
-.cursor--pointer {
-    cursor: pointer;
+/* Without Style
+============================================================================= */
+
+.btn--without-style {
+    background: transparent;
+    border: none;
 }

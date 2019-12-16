@@ -5,12 +5,33 @@
         <textarea class="form-field" name="request_description" id="request_description" cols="30" rows="10"></textarea>
     </div>
 
-    <div class="form-control mb-18">
-        <label for="file" class="btn btn--sm btn--light cursor--pointer">
-            Adjuntar archivo
-        </label>
-        <input class="form-field hidden" id="file" name="file" type="file">
+    <p class="size-caption">Archivos adjuntos</p>
+    <p class="size-sm color-gray-60">Si lo deseas, puedes agregar una breve anotación a los archivos que has agregado.</p>
+
+    <div class="card mb-4">
+        <div class="card__title">
+            <p class="m-0 d-initial">
+                {% load svg %}
+                {% svg 'paperclip' %}
+                <i>Un adjunto con un nombre…</i>
+            </p>
         
+            <button class="btn--without-style color-danger p-0 card__button">
+                {% load svg %}
+                {% svg 'x' %}
+            </button>
+        </div>
+        <div class="card__body card--file">
+            <div class="card card--thumb mr-8 m-auto sm:d-block text-center">
+                {% load static %} 
+                <img src="{% static 'img/test.png' %}" alt="">
+            </div>
+            <div class="form-control m-0">
+                <label for="description size-caption">Descripción del archivo <small class="color-gray-60"><i>Opcional</i></small></label>
+                <input type="text" id="description" name="description" class="form-field">
+                <small class="color-gray-60">Máximo 80 caracteres</small>
+            </div>
+        </div>
     </div>
 
     <div class="text-center">

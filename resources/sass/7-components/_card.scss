@@ -1,0 +1,71 @@
+.card {
+    border: 1px solid $color-gray-40;
+    border-radius: 2px;
+    height: auto;
+    width: 100%;
+}
+
+.card--thumb {
+    background-color: #fff;
+    display: none;
+    max-width: 82px;
+}
+
+.card--file {
+    display: flex;
+
+    label {
+        font-size: 14px;
+    }
+
+    small {
+        font-size: 11px;
+    }
+}
+
+.card__title {
+    background-color: $color-gray-20;
+    border-bottom: 1px solid $color-gray-40;
+    color: $color-gray-70;
+    padding: 0.5em 10px;
+    position: relative;
+    
+    @include media(600) {
+        padding: 0.5em 1em;
+    }
+
+    & p svg {
+        height: 1.2em;
+        margin-right: 3px;
+    }
+
+    & button svg {
+        height: 1.3em;
+    }
+
+    & p {
+        display: initial;
+        font-size: 13px;
+    }
+}
+
+.card__body {
+    background-color: $color-gray-10;
+    padding: 10px;
+    
+    @include media(600) {
+        padding: 1em;
+    } 
+}
+
+.card__button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+}
+
+.request__form-clip-icon {
+    height: 1em;
+}
