@@ -5,19 +5,19 @@
             <span class="m-auto">1</span>
             <small>Datos de contacto</small>
         </span>
-                 
+
         <span class="request--way"></span>
         <span class="request--step">
             <span class="m-auto">2</span>
             <small>Solicitud</small>
         </span>
     </div> -->
-     
+
     <div class="form-control">
         <label for="email">Correo electrónico</label>
         <input class="form-field" id="email" name="email" type="email">
     </div>
-     
+
     <div class="row">
         <div class="form-control col sm:col-1/2">
             <label for="ujed_id">Matrícula</label>
@@ -28,7 +28,7 @@
             <input class="form-field" id="name" name="name" type="text">
         </div>
     </div>
-     
+
     <div class="row">
         <div class="form-control col sm:col-1/2">
             <label for="first_last_name">Apellido paterno</label>
@@ -36,13 +36,13 @@
         </div>
         <div class="form-control col sm:col-1/2">
         <label for="second_last_name">
-            Apellido materno 
+            Apellido materno
             <small class="color-gray-60"><i>Opcional</i></small>
         </label>
         <input class="form-field" id="second_last_name" name="second_last_name" type="text">
         </div>
     </div>
-     
+
     <div class="row">
         <div class="form-control col sm:col-7/12">
             <label for="phone">Teléfono</label>
@@ -53,17 +53,17 @@
             <input class="form-field" id="ujed_extension" name="ujed_extension" type="text">
         </div>
     </div>
-     
+
     <div class="form-control">
         <label for="unit">Unidad responsable</label>
         <select class="form-field" name="unit" id="unit">
             <option value="0">- Selecciona una opción -</option>
-            <option value="">Opción 1</option>
-            <option value="">Opción 2</option>
-            <option value="">Opción 3</option>
+            {% for ures in ureslist %}
+                <option value="{{ ures.id }}">{{ ures.ures_descrip }}</option>
+            {% endfor %}
         </select>
     </div>
-     
+
     <div class="form-control">
         <label for="from">
             ¿Quién autoriza?
@@ -71,7 +71,7 @@
             </label>
         <input class="form-field" id="from" name="from" type="text">
     </div>
-     
+
     <div class="text-center">
         <button class="btn btn--form request--button " type="submit">
             <span>Continuar</span>
