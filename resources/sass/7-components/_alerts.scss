@@ -181,3 +181,31 @@ $alert-icon-warning-strong: icon-warning($color-warning-text, 23) !default;
     &.alert--strong.alert--warning { background-image: url($alert-icon-warning-strong); }
     &.alert--strong.alert--danger  { background-image: url($alert-icon-danger-strong); }
 }
+
+/* With message
+============================================================================= */
+
+.alert__figure {
+    background-color: #f9fafa;
+    border: 2px solid #e7e9ec;
+    border-radius: 35px;
+    height: 55px;
+    display: flex;
+    text-align: center;
+    width: 55px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    & svg {
+        height: 2em !important;
+    }
+}
+
+.alert__request--success {
+    color: $color-success;
+}
+
+.alert__request--error {
+    color: $color-danger;
+}
