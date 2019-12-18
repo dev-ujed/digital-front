@@ -1,6 +1,6 @@
 <template>
     <form>
-        <div v-if="step === 1">
+        <div v-show="step === 1">
             <div class="form-control">
                 <label for="email">Correo electrónico</label>
                 <text-field
@@ -106,7 +106,7 @@
             </div>
         </div>
 
-        <div v-if="step === 2">
+        <div v-show="step === 2">
             <div class="form-control">
                 <label for="request_description">Cuéntanos en qué podemos ayudarte</label>
                 <text-area
