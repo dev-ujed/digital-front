@@ -23,7 +23,8 @@ import hammer from './vendor/hammer.js';
     const token = document.head.querySelector('meta[name="csrf-token"]');
 
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common["X-CSRFToken"] = token.content;
+
 
 
     /*
