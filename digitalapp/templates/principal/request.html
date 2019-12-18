@@ -1,7 +1,23 @@
 <div class="request__background">
 
-    <p class="h2 color-white text-center request--title mb-8 request--title"> <b>Envíanos tu solicitud</b> </p>
+    <p class="h2 color-white text-center request--title mb-8 request--title"><b>Envíanos tu solicitud</b></p>
 
-    {% include "request/step-one.html" %}
+    <step-form
+        class="request__form"
+        action=""
+        :ureslist="{{ ureslist }}"
 
+
+    >
+        <template slot="continue">
+            <span>Continuar</span>
+            {% load svg %}
+            {% svg 'arrow-right' %}
+        </template>
+        <template slot="return">
+            {% load svg %}
+            {% svg 'arrow-left' %}
+            <span class="mr-1">Regresar</span>
+        </template>
+    </step-form>
 </div>

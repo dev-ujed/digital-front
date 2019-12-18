@@ -1,6 +1,6 @@
 import '../boot.js';
 import BaseForm from './components/forms/base/BaseForm.vue';
-
+import StepForm from './components/forms/StepForm.vue';
 import GalleryCard from './components/GalleryCard.vue';
 import GalleryLink from './components/GalleryLink.vue';
 import TruncatedText from './components/TruncatedText.vue';
@@ -10,6 +10,7 @@ import TruncatedText from './components/TruncatedText.vue';
     /* Base components
     ------------------------------------------------------------------------- */
     Vue.component('base-form', BaseForm);
+    Vue.component('step-form', StepForm);
 
 
 
@@ -25,7 +26,6 @@ import TruncatedText from './components/TruncatedText.vue';
      */
     const app = new Vue({
         el: '#app',
-        components: { UserBar },
         data: {
             isLoading: true,
             path: document.body.getAttribute('data-root') || '',
