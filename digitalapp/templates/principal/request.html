@@ -4,16 +4,15 @@
 
     <step-form
         class="request__form"
-        action=""
+        action="{{ request.build_absolute_uri }}crear-solicitud"
         :ureslist="{{ ureslist }}"
-
-
     >
         <template slot="continue">
             <span>Continuar</span>
             {% load svg %}
             {% svg 'arrow-right' %}
         </template>
+
         <template slot="return">
             {% load svg %}
             {% svg 'arrow-left' %}
