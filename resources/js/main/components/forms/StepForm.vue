@@ -116,6 +116,14 @@
                 v-model="fields.description">
             </text-area>
             </div>
+
+            <request-upload-file>
+
+                <slot name="paperclip" slot="paperclip"></slot>
+            <slot name="x" slot="x"></slot>
+                
+            </request-upload-file>
+
             <div class="text-center">
                 <button class="btn btn--light request--button mb-6 sm:mr-8"
                     @click.prevent="prev()"
@@ -135,9 +143,11 @@
 
 <script>
     import BaseForm from './base/BaseForm.vue';
+    import RequestUploadFile from './RequestUploadFile.vue';
 
     export default {
         extends: BaseForm,
+        components: { RequestUploadFile },
         props: {
             ureslist: {
                 type: Array,
