@@ -4,6 +4,9 @@ import StepForm from './components/forms/StepForm.vue';
 import GalleryCard from './components/GalleryCard.vue';
 import GalleryLink from './components/GalleryLink.vue';
 import TruncatedText from './components/TruncatedText.vue';
+import RequestUploadFile from './components/forms/RequestUploadFile.vue';
+import RequestFile from './components/forms/RequestFile.vue';
+
 
 
 (function() {
@@ -11,6 +14,8 @@ import TruncatedText from './components/TruncatedText.vue';
     ------------------------------------------------------------------------- */
     Vue.component('base-form', BaseForm);
     Vue.component('step-form', StepForm);
+    Vue.component('request-upload-file', RequestUploadFile);
+    Vue.component('request-file', RequestFile);
 
 
 
