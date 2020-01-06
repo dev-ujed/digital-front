@@ -162,3 +162,7 @@ default state. They can be created with the `button-outline` mixin.
     background: transparent;
     border: none;
 }
+
+.cursor--pointer {
+    cursor: pointer;
+}
