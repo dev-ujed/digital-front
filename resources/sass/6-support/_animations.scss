@@ -12,3 +12,34 @@ Spin
 .spin {
     animation: spin 1s linear infinite;
 }
+
+@keyframes slideleft {
+    from {
+        transform: translate(-50%,0);
+
+    }
+    to {
+        transform: translate(0,0);
+    }
+}
+
+@keyframes slideright {
+
+    from {
+        transform: translate(0,0);
+
+    }
+    to {
+        transform: translate(-50%,0);
+    }
+}
+
+.slideleft {
+    animation: slideleft 1.2s;
+    transform: translate(0,0);
+}
+
+.slideright {
+    animation: slideright 1.2s;
+    transform: translate(-50%,0);
+}
