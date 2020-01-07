@@ -14,10 +14,10 @@ def save(request):
     data_request = json.loads(request.body.decode('utf-8'))
 
     data = {
-        "descripcion": data_request['request_description'],
+        "descripcion": data_request['description'],
     }
 
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+    response = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id']+'/', data=data)
 
     return HttpResponse(response)
 
@@ -35,8 +35,10 @@ def saveuser(request):
         "telefono": data_request['phone'],
         "pautoriza": data_request['from'],
     }
-
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+    if data_request['id'] == '':
+        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+    else:
+        response = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id']+'/', data=data)
 
     return HttpResponse(response)
 
