@@ -14,6 +14,17 @@ def save(request):
     data_request = json.loads(request.body.decode('utf-8'))
 
     data = {
+        "descripcion": data_request['request_description'],
+    }
+
+    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+
+    return HttpResponse(response)
+
+def saveuser(request):
+    data_request = json.loads(request.body.decode('utf-8'))
+
+    data = {
         "matricula": data_request['matricula'],
         "ures": data_request['unit'],
         "nombre": data_request['name'],
@@ -23,10 +34,6 @@ def save(request):
         "extension": data_request['extension'],
         "telefono": data_request['phone'],
         "pautoriza": data_request['from'],
-        "servicio": 2,
-        "subservicio": 1,
-        "descripcion": data_request['request_description'],
-        "descripcon_archivo": "",
     }
 
     response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
