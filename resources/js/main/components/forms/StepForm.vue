@@ -5,6 +5,7 @@
                 :action="urluser"
                 :ureslist="ureslist"
                 @successuser="SuccessUser"
+                @requestid="GetID"
             >
                 <template slot="continue">
                     <slot name="continue"></slot>
@@ -15,6 +16,8 @@
             <requeststep-form
                 :action="urlrequest"
                 @prevuser="PrevUser"
+                :requestid=requestid
+
             >
                 <template slot="return">
                     <slot name="return"></slot>
@@ -53,6 +56,11 @@
                 required: true
             },
         },
+        data() {
+            return {
+                requestid: ''
+            };
+        },
         methods:{
             SuccessUser(e) {
                 if (e) {
@@ -68,7 +76,9 @@
                     this.$refs.request_form.classList.add('slideleft')
 
                 }
-
+            },
+            GetID(e) {
+                this.requestid = e;
             },
         }
     };

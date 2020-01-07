@@ -118,9 +118,9 @@
         },
         data() {
             return {
-                step:1,
                 fields: {
-                    unit: ''
+                    unit: '',
+                    id:''
                 }
             };
         },
@@ -142,7 +142,8 @@
 
                 this.isSubmitting = false;
                 this.$emit('successuser', true);
-
+                this.fields.id = response.data.id.toString();
+                this.$emit('requestid', response.data.id.toString());
             },
         }
 

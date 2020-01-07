@@ -3,7 +3,7 @@
         <div class="form-control">
             <label for="request_description">Cuéntanos en qué podemos ayudarte</label>
             <text-area
-            name="request_description"
+            name="description"
             cols="30"
             rows="10"
             v-model="fields.description">
@@ -39,6 +39,24 @@
     export default {
         extends: BaseForm,
         components: { RequestUploadFile },
+        props: {
+            requestid: {
+                type: String,
+                required: true
+            },
+        },
+         data() {
+            return {
+                fields: {
+                    id: this.requestid,
+                }
+            };
+        },
+        watch: {
+            requestid: function() {
+              this.fields.id = this.requestid;
+            }
+        },
 
         methods:{
             prev() {
