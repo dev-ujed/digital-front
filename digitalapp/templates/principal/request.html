@@ -1,32 +1,35 @@
 <div class="request__background">
 
     <p class="h2 color-white text-center request--title mb-8 request--title"><b>Envíanos tu solicitud</b></p>
+    <div class="request-container">
+        <step-form
+            class="request__form"
+            urluser="{{ request.build_absolute_uri }}crear-usuario"
+            urlrequest="{{ request.build_absolute_uri }}crear-solicitud"
+            :ureslist="{{ ureslist }}"
+        >
+            <template slot="continue">
+                <span>Continuar</span>
+                {% load svg %}
+                {% svg 'arrow-right' %}
+            </template>
 
-    <step-form
-        class="request__form"
-        action="{{ request.build_absolute_uri }}crear-solicitud"
-        :ureslist="{{ ureslist }}"
-    >
-        <template slot="continue">
-            <span>Continuar</span>
-            {% load svg %}
-            {% svg 'arrow-right' %}
-        </template>
+            <template slot="return">
+                {% load svg %}
+                {% svg 'arrow-left' %}
+                <span class="mr-1">Regresar</span>
+            </template>
 
-        <template slot="return">
-            {% load svg %}
-            {% svg 'arrow-left' %}
-            <span class="mr-1">Regresar</span>
-        </template>
+            <template slot="paperclip">
+                {% load svg %}
+                {% svg 'paperclip' %}
+            </template>
 
-        <template slot="paperclip">
-            {% load svg %}
-            {% svg 'paperclip' %}
-        </template> 
-    
-        <template slot="x">
-            {% load svg %}
-            {% svg 'x' %}
-        </template> 
-    </step-form>
+            <template slot="x">
+                {% load svg %}
+                {% svg 'x' %}
+            </template>
+        </step-form>
+    </div>
+
 </div>

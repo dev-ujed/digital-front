@@ -1,6 +1,8 @@
 import '../boot.js';
 import BaseForm from './components/forms/base/BaseForm.vue';
 import StepForm from './components/forms/StepForm.vue';
+import UserStepForm from './components/forms/UserStepForm.vue';
+import RequestStepForm from './components/forms/RequestStepForm.vue';
 import GalleryCard from './components/GalleryCard.vue';
 import GalleryLink from './components/GalleryLink.vue';
 import TruncatedText from './components/TruncatedText.vue';
@@ -14,6 +16,8 @@ import RequestFile from './components/forms/RequestFile.vue';
     ------------------------------------------------------------------------- */
     Vue.component('base-form', BaseForm);
     Vue.component('step-form', StepForm);
+    Vue.component('userstep-form', UserStepForm);
+    Vue.component('requeststep-form', RequestStepForm);
     Vue.component('request-upload-file', RequestUploadFile);
     Vue.component('request-file', RequestFile);
 

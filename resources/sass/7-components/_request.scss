@@ -14,8 +14,7 @@ Request
         font-size: 26px;
     }
 }
-
-.request__form {
+.request-container {
     box-shadow: 3px 3px 6px #00000029;
     background: #fff;
     border-radius: 10px;
@@ -23,7 +22,18 @@ Request
     max-width: 570px;
     padding: 15px;
     padding-bottom: 40px;
+    width: calc(100% - 30px);
+    overflow: hidden;
 
+    @include media(600) {
+        margin: auto;
+        width: 100%;
+    }
+
+}
+.request__form {
+    width: 200%;
+    display: flex;
     & .form-control {
         margin-bottom: 30px;
     }
@@ -31,12 +41,11 @@ Request
     & svg {
         height: 1em;
     }
-
-    @include media(600) {
-        margin: auto;
-        padding: 30px;
-        padding-bottom: 40px;
-    } 
+}
+.request-step {
+    width: 50%;
+    padding: 15px;
+    padding-bottom: 40px;
 }
 
 .request__form--response {
@@ -63,7 +72,7 @@ a.request--link {
     text-decoration: underline;
 
     &:focus, &:hover, &:active {
-        color: $color-gray-70 !important; 
+        color: $color-gray-70 !important;
         text-decoration: none !important;
     }
 }
@@ -92,7 +101,7 @@ a.request--link {
     & small {
         color: $color-gray-60;
     }
-    
+
 }
 
 .request--step--active {
