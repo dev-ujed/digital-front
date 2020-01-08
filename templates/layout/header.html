@@ -1,17 +1,16 @@
-<header class="main-header">
-    <div class="container">
-        <div class="main-logo__dtd">
-            {% load static %} 
-            <img src="{% static 'img/header/logo-dtd.png' %}" alt="Dirección de transformación Digital">
-        </div>
-        <div class="main-logo__ujed float-right">
-            <img src="{% static 'img/header/logo-ujed.png' %}" alt="Universidad Juárez del Estado de Durango">
-        </div>
-
-        <button type="button" class="main-header__btn">
-            <span class="main-header__span"></span>
-            <span class="main-header__span"></span>
-            <span class="main-header__span"></span>
-        </button>
-    </div>
+<header>
+     <site-menu
+        :breakpoint="1000"
+        :links="{
+            'Inicio': '/',
+            'Políticas': '/',
+            'Contacto': '/',
+        }"
+    >
+        <template slot="close">
+            Cerrar
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+    </site-menu>
 </header>

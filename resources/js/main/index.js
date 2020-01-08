@@ -8,8 +8,7 @@ import GalleryLink from './components/GalleryLink.vue';
 import TruncatedText from './components/TruncatedText.vue';
 import RequestUploadFile from './components/forms/RequestUploadFile.vue';
 import RequestFile from './components/forms/RequestFile.vue';
-
-
+import Menu from './components/menu/Menu.vue';
 
 (function() {
     /* Base components
@@ -28,6 +27,7 @@ import RequestFile from './components/forms/RequestFile.vue';
     Vue.component('gallery-card', GalleryCard);
     Vue.component('gallery-link', GalleryLink);
     Vue.component('truncated-text', TruncatedText);
+    Vue.component('site-menu', Menu);
 
 
     /**
@@ -61,7 +61,4 @@ import RequestFile from './components/forms/RequestFile.vue';
             }
         }
     });
-
-
-
 })();
