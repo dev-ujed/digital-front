@@ -6,18 +6,21 @@
                 name="email"
                 type="email"
                 v-model="fields.email"
+                ref="email_field"
             >
             </text-field>
+            <field-errors name="email"></field-errors>
         </div>
 
         <div class="row">
             <div class="form-control col sm:col-1/2">
-                <label for="ujed_id">Matrícula</label>
+                <label for="matricula">Matrícula</label>
                 <text-field
                     name="matricula"
                     v-model="fields.matricula"
                 >
                 </text-field>
+                <field-errors name="matricula"></field-errors>
             </div>
             <div class="form-control col sm:col-1/2">
                 <label for="name">Nombre</label>
@@ -26,6 +29,7 @@
                     v-model="fields.name"
                 >
                 </text-field>
+                <field-errors name="name"></field-errors>
             </div>
         </div>
 
@@ -37,6 +41,7 @@
                     v-model="fields.first_last_name"
                 >
                 </text-field>
+                <field-errors name="first_last_name"></field-errors>
             </div>
             <div class="form-control col sm:col-1/2">
             <label for="second_last_name">
@@ -48,6 +53,7 @@
                     v-model="fields.second_last_name"
                 >
                 </text-field>
+                <field-errors name="second_last_name"></field-errors>
             </div>
         </div>
 
@@ -59,6 +65,7 @@
                     v-model="fields.phone"
                 >
                 </text-field>
+                <field-errors name="phone"></field-errors>
             </div>
             <div class="form-control col sm:col-5/12">
                 <label for="ujed_extension">Extensión (UJED)</label>
@@ -67,6 +74,7 @@
                     v-model="fields.extension"
                 >
                 </text-field>
+                <field-errors name="extension"></field-errors>
             </div>
         </div>
 
@@ -81,6 +89,7 @@
                 </option>
 
             </select>
+            <field-errors name="unit"></field-errors>
         </div>
 
         <div class="form-control">
@@ -93,6 +102,7 @@
                     v-model="fields.from"
                 >
                 </text-field>
+                <field-errors name="from"></field-errors>
         </div>
 
         <div class="text-center">

@@ -1,13 +1,15 @@
 <template>
     <form>
         <div class="form-control">
-            <label for="request_description">Cuéntanos en qué podemos ayudarte</label>
+            <label for="description">Cuéntanos en qué podemos ayudarte</label>
             <text-area
             name="description"
             cols="30"
             rows="10"
-            v-model="fields.description">
+            v-model="fields.description"
+            ref="description_field">
         </text-area>
+        <field-errors name="description"></field-errors>
         </div>
 
         <request-upload-file>
