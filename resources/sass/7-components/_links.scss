@@ -1,0 +1,22 @@
+/*
+================================================================================
+Links
+================================================================================
+*/
+
+.link {
+    text-decoration: underline;
+
+    &:focus, &:hover, &:active {
+        text-decoration: none !important;
+    }
+}
+
+
+.link--reverse {
+    text-decoration: none;
+
+    &:focus, &:hover, &:active {
+        text-decoration: underline !important;
+    }
+}
