@@ -5,23 +5,27 @@ Request
 */
 
 .request__background {
-    background-color: #000;
-    height: 957px;
-    max-height: 957px;
-    width: 100%;
+    background-image: url(/static/img/fondo-peticiones-sm.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 100px;
 
-    & .request--title {
-        font-size: 26px;
+    @include media(720) {
+        background-image: url(/static/img/fondo-peticiones.jpg);
     }
 }
+
 .request-container {
     box-shadow: 3px 3px 6px #00000029;
     background: #fff;
     border-radius: 10px;
     margin: 0 15px;
+    
     max-width: 570px;
     padding: 15px;
     padding-bottom: 40px;
+    position: relative;
     width: calc(100% - 30px);
     overflow: hidden;
 
@@ -67,18 +71,9 @@ Request
     }
 }
 
-a.request--link {
-    color: $color-gray-70;
-    text-decoration: underline;
-
-    &:focus, &:hover, &:active {
-        color: $color-gray-70 !important;
-        text-decoration: none !important;
-    }
-}
-
 .request--title {
     padding-top: 80px;
+    position: relative;
 }
 
 .request--step {
@@ -93,7 +88,6 @@ a.request--link {
         height: 28px;
         justify-content: center;
         letter-spacing: 0;
-        //margin: auto;
         text-align: center;
         width: 28px;
     }
