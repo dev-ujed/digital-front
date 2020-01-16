@@ -22,10 +22,6 @@ $main-menu-link-padding-y: 1.5em;
     justify-content: space-between;
 }
 
-.main-menu__container--list {
-    background-color: $color-gray-90;
-}
-
 .main-menu__logo-img {
     color: $color-text;
     width: 100px;
@@ -37,12 +33,34 @@ $main-menu-link-padding-y: 1.5em;
     margin-bottom: 20px;
     width: 100px;
     z-index: 2;
+    transform-origin: left top;
+
+    @media screen and (orientation: portrait) {
+        &--open {
+            animation: biggest-in-portrait 330ms ease-out forwards 150ms;
+        }
+    
+        &--closed {
+            animation: biggest-out-portrait 200ms ease-out forwards;
+        }
+    }
+
+    @media screen and (orientation: landscape) {
+        &--open {
+            animation: biggest-in-landscape 150ms ease-out forwards 100ms;
+        }
+    
+        &--closed {
+            animation: biggest-out-landscape 200ms ease-out forwards;
+        }
+    }
 
     @include media($menu-breakpoint) {
         margin-top: 30px;
         margin-bottom: 30px;
         width: 188px;
     }
+    
 }
 
 .main-logo__ujed {
@@ -122,27 +140,37 @@ $main-menu-link-padding-y: 1.5em;
 /* List
 ============================================================================= */
 
+.main-menu__list--container {
+    min-height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
 .main-menu__list {
-    background: transparent linear-gradient(0deg, #A24E97 0%, #E54469 50%, #BA203A 90%) 0% 0% no-repeat padding-box;
-    box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.2);
-    height: 100%;
+    display: none;
     margin-left: auto;
     margin-bottom: 0px;
     min-width: 250px;
     overflow-y: scroll;
-    padding-top: 135px;
-    @include position(fixed, 0 null null 0);
-    transform: translate(-100%, 0);
-    visibility: hidden;
+    @include position(relative, 0 null null 0);
     width: 100%;
-    z-index: 1;
+    z-index: 3;
 
-    &--closed {
-        animation: slide-in-left 200ms ease-out forwards;
+    @media screen and (orientation: portrait) { 
+        &--open {
+            display: block;
+            animation: slide-in-bottom-portrait 350ms ease-in forwards 200ms;
+        }
+        &--closed {
+            animation: slide-out-top 300ms ease-out forwards 200ms;
+        }
     }
 
-    &--open {
-        animation: slide-out-right 200ms ease-out forwards;
+    @media screen and (orientation: landscape) { 
+        &--open {
+            display: block;
+            animation: slide-in-bottom-landscape 150ms ease-in forwards 100ms;
+        }
     }
 
     @include media($main-menu-breakpoint) {
@@ -162,15 +190,8 @@ $main-menu-link-padding-y: 1.5em;
 }
 
 .main-menu__li {
-    //border-bottom: 1px solid $color-gray-20;
-    transition: background-color 150ms ease-out;
-    margin: 0;
-    
-
     &:last-child {
-        //background-color: #fff;
         border-bottom: 0;
-        //padding: 1em 1.5em;
     }
 
     @include media($main-menu-breakpoint) {
@@ -178,7 +199,6 @@ $main-menu-link-padding-y: 1.5em;
         display: inline-block;
         margin: 0 50px 0 2em;
         position: relative;
-        //margin-right: 50px;
 
         &:first-child {
             margin-left: 0;
@@ -189,6 +209,19 @@ $main-menu-link-padding-y: 1.5em;
             margin-left: 0.5em;
             margin-right: 0;
         }
+    }
+
+    @media screen and (orientation: portrait) {
+        margin: -20px 0;
+
+        &--open {
+            animation: height-in 300ms ease-out forwards 250ms;
+            
+        }
+    }
+
+    &--closed {
+        animation: height-out 150ms ease-out forwards;
     }
 
     &--logo {
@@ -202,20 +235,31 @@ $main-menu-link-padding-y: 1.5em;
     }
 }
 
+.main-menu__li.show {
+    opacity: 1;
+}
+
 .main-menu__footer {
     align-items: flex-end;
-    bottom: 0;
     color: #fff;
     display: flex;
     font-size: 10px;
     justify-content: center;
-    position: absolute;
-    margin-bottom: 30px;
+    opacity: 0;
+    //position: absolute;
+    margin-bottom: 30px !important;
     text-align: center;
     width: 100%;
+    z-index: 1;
+    margin-top: auto;
 
-    @include media($main-menu-breakpoint) {
-        display: none;
+
+    position: fixed;
+    bottom: 0;
+
+
+    &--open {
+        animation: opacity-in 250ms ease-out forwards 200ms;
     }
 }
 
@@ -223,11 +267,8 @@ $main-menu-link-padding-y: 1.5em;
 .main-menu__submenu-title {
     background-color: transparent;
     color: #fff;
-   
     padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);
     padding-left: 30px;
-    margin: 20px 0;
-    //padding-left: 0px;
     transition: background-color 150ms ease-out, padding-left 150ms ease-out;
 
     &:focus,
@@ -263,7 +304,6 @@ $main-menu-link-padding-y: 1.5em;
     &:focus,
     &:hover,
     &:active {
-        //padding-left: $main-menu-link-padding-x * 2.4;
         text-decoration: none;
     }
 
@@ -275,7 +315,6 @@ $main-menu-link-padding-y: 1.5em;
         &:hover,
         &:active {
             border-color: $color-primary;
-            //padding-left: $main-menu-link-padding-x;
         }
     }
 }
@@ -404,5 +443,44 @@ $main-menu-link-padding-y: 1.5em;
             background-color: #fff;
             padding-left: $main-menu-link-padding-x * 2;
         }
+    }
+}
+
+.main-menu__background {
+    background: linear-gradient(0deg, #a24e97 0%, #ba203a 50%);
+    border-radius: 50%;
+    display: block;
+    height: 40px;
+    opacity: 0;
+    position: absolute;
+    right: 48px;
+    top: 36px;
+    transform: translate(50%, -50%);
+    transform-origin: center center;
+    width: 40px;
+    z-index: 1;
+
+    @media screen and (orientation: landscape) {
+        &--open {
+            animation: bubble-in-landscape 250ms ease-in forwards;
+        }
+    
+        &--closed {
+            animation: bubble-out-landscape 250ms ease-out forwards;
+        }
+    }
+
+    @media screen and (orientation: portrait) {
+        &--open {
+            animation: bubble-in-portrait 250ms ease-in forwards;
+        }
+    
+        &--closed {
+            animation: bubble-out-portrait 250ms ease-out forwards;
+        }
+    }
+
+    @include media($main-menu-breakpoint) {
+        display: none;
     }
 }

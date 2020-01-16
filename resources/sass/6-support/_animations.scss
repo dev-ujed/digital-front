@@ -92,38 +92,213 @@ Slide
         visibility: visible;
     }
 
+    25% {
+        visibility: hidden;
+    }
+
     100% {
         transform: translate(100%, 0);
         visibility: hidden;
     }
 }
 
-
-@keyframes bubble {
+@keyframes slide-in-bottom-portrait {
     0% {
-        width: 10px;
-        height: 10px;
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, 70px);
+    }
+}
+
+@keyframes slide-in-bottom-landscape {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, 10px);
+    }
+}
+
+@keyframes slide-out-top {
+    0% {
+        transform: translate(0, 70px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/*
+================================================================================
+Bubble
+================================================================================
+*/
+
+@keyframes bubble-in-portrait {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        height: 220vh;
+        opacity: 1;
+        width: 220vh;
+   }
+}
+
+@keyframes bubble-in-landscape {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        height: 220vw;
+        opacity: 1;
+        width: 220vw;
+    }
+}
+
+@keyframes bubble-out-portrait {
+    0% {
+        height: 220vh;
+        opacity: 1;
+        width: 220vh;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes bubble-out-landscape {
+    0% {
+        height: 220vw;
+        opacity: 1;
+        width: 220vw;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/*
+================================================================================
+Height
+================================================================================
+*/
+
+@keyframes height-in {
+    0% {
+        margin: 0px;
+    }
+
+    100% {
+        margin: 20px 0px;
+    }
+}
+
+@keyframes height-out {
+    0% {
+        margin: 20px;
+    }
+
+    100% {
+        margin: 0px;
+    }
+}
+
+/*
+================================================================================
+Opacity
+================================================================================
+*/
+
+@keyframes opacity-in {
+    0% {
+      opacity: 0;
     }
   
     100% {
-        width: 100%;
-        height: 100%;
+      opacity: 1;
     }
-  }
+}
 
+/*
+================================================================================
+Big
+================================================================================
+*/
 
-  .element {
-    animation-duration: 1s;
-    animation-name: bubble;
-    animation-direction: alternate;
+@keyframes biggest-in-portrait {
+    0% {
 
-    background: red;
-    height: 100%;
-    width: 100%;
-    text-align: right;
-    right: 0;
-    top: 0;
-    position: absolute;
-    display: block;
-    z-index: 2;
-  }
+        transform: translate(0, 0);        
+    }
+  
+    100% {
+        transform: scale(1.5) translate(5px, 40px);
+        
+    }
+}
+
+@keyframes biggest-out-portrait {
+    0% {
+        transform: scale(1.5) translate(5px, 40px);
+    }
+  
+    100% {
+        transform: translate(0, 0); 
+    }
+}
+
+@keyframes biggest-in-landscape {
+    0% {
+
+        transform: translate(0, 0);        
+    }
+  
+    100% {
+        transform: scale(1.5) translate(0, 0);
+        
+    }
+}
+
+@keyframes biggest-out-landscape {
+    0% {
+        transform: scale(1.5) translate(0, 0);
+    }
+  
+    100% {
+        transform: translate(0, 0); 
+    }
+}

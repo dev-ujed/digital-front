@@ -1,7 +1,11 @@
 <template>
     <nav id="main-menu" class="main-menu" role="navigation">
         <div class="container main-menu__container">
-            <a class="main-logo__dtd" :href="$root.path" title="Inicio">
+            <a class="main-logo__dtd" :href="$root.path" title="Inicio"
+                :class="{
+                    'main-logo__dtd--open': menuIsOpen,
+                    'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
+                }">
                 <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
             </a>
 
@@ -24,12 +28,19 @@
                 <span v-else class="visually-hidden">Mostrar menú</span>
             </button>
         </div>
+        
+        <div class="main-menu__background"
+             :class="{
+                    'main-menu__background--open': menuIsOpen,
+                    'main-menu__background--closed': ! menuIsOpen && buttonClicked
+                }">
+        </div>
 
-        <div class="main-menu__container--list">
+        <div class="main-menu__list--container">
             <ul class="list-bare main-menu__list"
                 :class="{
                     'main-menu__list--open': menuIsOpen,
-                    'main-menu__list--closed': ! menuIsOpen && buttonClicked
+                    'main-menu__list--closed ': ! menuIsOpen && buttonClicked
                 }"
                 :aria-hidden="! menuIsVisible"
                 aria-labelledby="main-menu-btn"
@@ -37,7 +48,13 @@
             >
 
                 <template v-for="(link, title) in links">
-                    <li v-if="typeof link === 'string'" :key="title" class="main-menu__li">
+                    <li v-if="typeof link === 'string'" :key="title" class="main-menu__li"
+                        :class="{
+                            'main-menu__li--open': menuIsOpen,
+                            'main-menu__li--closed': ! menuIsOpen && buttonClicked
+                        }"
+                    
+                    >
                         <template v-for="{url, newTab, external} in [parseLink(link)]">
                             <a class="js-item main-menu__link" :href="url"
                                 :key="url"
@@ -59,7 +76,11 @@
                     </site-submenu>
                 </template>
 
-                <li class="main-menu__li">
+                <li class="main-menu__li"
+                    :class="{
+                        'main-menu__li--open': menuIsOpen,
+                        'main-menu__li--closed': ! menuIsOpen && buttonClicked
+                    }">
                     <a class="js-item main-menu__link" :href="this.$root.path + '/ingresar'"
                         @keydown.left.right.up.down.prevent="arrowNavigation"
                     >
@@ -67,11 +88,14 @@
                         Administración
                     </a>
                 </li>
-                <li class="main-menu__footer">
-                    Dirección de Transformación Digital <br> Universidad Juárez del Estado de Durango
-                </li>
             </ul>  
 
+            <p class="main-menu__footer"
+                :class="{
+                        'main-menu__footer--open': menuIsOpen
+                    }">
+                Dirección de Transformación Digital <br> Universidad Juárez del Estado de Durango
+            </p> 
             
         </div>
     </nav>
@@ -215,6 +239,9 @@
                 document.removeEventListener('keyup', this.onEscape);
 
                 this.$root.$emit('closeOverlay');
+
+                const app = document.getElementById('app');
+                app.classList.remove('overflow-hidden');
             },
 
             /*
@@ -229,6 +256,9 @@
                 document.addEventListener('keyup', this.onEscape);
 
                 this.$root.$emit('showOverlay');
+
+                const app = document.getElementById('app');
+                app.classList.add('overflow-hidden');
             },
 
             /**
