@@ -3,7 +3,6 @@
     <p class="h2 color-white text-center request--title mb-8 request--title"><b>Envíanos tu solicitud</b></p>
     <div class="request-container">
         <step-form
-            class="request__form"
             urluser="{{ request.build_absolute_uri }}crear-usuario"
             urlrequest="{{ request.build_absolute_uri }}crear-solicitud"
             :ureslist="{{ ureslist }}"
@@ -28,6 +27,10 @@
             <template slot="x">
                 {% load svg %}
                 {% svg 'x' %}
+            </template>
+            <template slot="success">
+                {% load svg %}
+                {% svg 'check' %}
             </template>
         </step-form>
     </div>
