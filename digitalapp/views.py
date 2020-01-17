@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests, json
+
 from requests.auth import HTTPBasicAuth
+
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 
 
 def index(request):
@@ -11,13 +15,16 @@ def index(request):
 
 def save(request):
     data_request = json.loads(request.body.decode('utf-8'))
-    getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
 
     data = {
         "descripcion": data_request['descripcion'],
     }
 
-    return validateUpdateRequest(data_request, data)
+    response = validateUpdateRequest(data_request, data)
+
+    sendEmail(response.json())
+
+    return response
 
 
 def saveuser(request):
@@ -67,3 +74,25 @@ def displayResponse(response):
         return JsonResponse({'errors':response.json()}, status=422)
     else:
         return JsonResponse(response.json())
+
+
+def sendEmail(response):
+    body = render_to_string('emails/request.html',
+        {
+        'name': response['nombre'],
+        'folio': response['folio'],
+        'token': 'qwnqe213jsadej213213SAdasdada12ada12354ddsaZ'
+        }
+    )
+
+    from_email = 'from@yourdjangoapp.com'
+    to = response['correo']
+
+    email = EmailMessage(
+        subject    = 'Solicitud registrada',
+        body       = body,
+        from_email = from_email,
+        to         =[to]
+        )
+    email.content_subtype = 'html'
+    email.send()
