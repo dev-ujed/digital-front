@@ -1,15 +1,15 @@
 <template>
     <form>
         <div class="form-control">
-            <label for="description">Cuéntanos en qué podemos ayudarte</label>
+            <label for="descripcion">Cuéntanos en qué podemos ayudarte</label>
             <text-area
-            name="description"
+            name="descripcion"
             cols="30"
             rows="10"
-            v-model="fields.description"
+            v-model="fields.descripcion"
             ref="description_field">
         </text-area>
-        <field-errors name="description"></field-errors>
+        <field-errors name="descripcion"></field-errors>
         </div>
 
         <request-upload-file>
@@ -63,6 +63,26 @@
         methods:{
             prev() {
               this.$emit('prevuser', true);
+            },
+
+            /**
+             * Handle redirection after receiving a successful response.
+             *
+             * @param {Object} response
+             */
+            onSuccess(response) {
+                if (this.redirectTo) {
+                    return window.location.href = this.redirectTo;
+                }
+
+                if (response.headers['redirect-to']) {
+                    return window.location.href = response.headers['redirect-to'];
+                }
+
+                this.isSubmitting = false;
+                this.$emit('requestsuccess', true);
+                this.$emit('requestfolio', response.data.folio.toString());
+                this.$emit('requestemail', response.data.correo.toString());
             },
 
         }

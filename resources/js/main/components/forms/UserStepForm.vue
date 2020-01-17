@@ -1,15 +1,15 @@
 <template>
     <form>
         <div class="form-control">
-            <label for="email">Correo electrónico</label>
+            <label for="correo">Correo electrónico</label>
             <text-field
-                name="email"
-                type="email"
-                v-model="fields.email"
+                name="correo"
+                type="correo"
+                v-model="fields.correo"
                 ref="email_field"
             >
             </text-field>
-            <field-errors name="email"></field-errors>
+            <field-errors name="correo"></field-errors>
         </div>
 
         <div class="row">
@@ -23,52 +23,52 @@
                 <field-errors name="matricula"></field-errors>
             </div>
             <div class="form-control col sm:col-1/2">
-                <label for="name">Nombre</label>
+                <label for="nombre">Nombre</label>
                 <text-field
-                    name="name"
-                    v-model="fields.name"
+                    name="nombre"
+                    v-model="fields.nombre"
                 >
                 </text-field>
-                <field-errors name="name"></field-errors>
+                <field-errors name="nombre"></field-errors>
             </div>
         </div>
 
         <div class="row">
             <div class="form-control col sm:col-1/2">
-                <label for="first_last_name">Apellido paterno</label>
+                <label for="apellido_paterno">Apellido paterno</label>
                 <text-field
-                    name="first_last_name"
-                    v-model="fields.first_last_name"
+                    name="apellido_paterno"
+                    v-model="fields.apellido_paterno"
                 >
                 </text-field>
-                <field-errors name="first_last_name"></field-errors>
+                <field-errors name="apellido_paterno"></field-errors>
             </div>
             <div class="form-control col sm:col-1/2">
-            <label for="second_last_name">
+            <label for="apellido_materno">
                 Apellido materno
                 <small class="color-gray-60"><i>Opcional</i></small>
             </label>
             <text-field
-                    name="second_last_name"
-                    v-model="fields.second_last_name"
+                    name="apellido_materno"
+                    v-model="fields.apellido_materno"
                 >
                 </text-field>
-                <field-errors name="second_last_name"></field-errors>
+                <field-errors name="apellido_materno"></field-errors>
             </div>
         </div>
 
         <div class="row">
             <div class="form-control col sm:col-7/12">
-                <label for="phone">Teléfono</label>
+                <label for="telefono">Teléfono</label>
                 <text-field
-                    name="phone"
-                    v-model="fields.phone"
+                    name="telefono"
+                    v-model="fields.telefono"
                 >
                 </text-field>
-                <field-errors name="phone"></field-errors>
+                <field-errors name="telefono"></field-errors>
             </div>
             <div class="form-control col sm:col-5/12">
-                <label for="ujed_extension">Extensión (UJED)</label>
+                <label for="extension">Extensión (UJED)</label>
                 <text-field
                     name="extension"
                     v-model="fields.extension"
@@ -79,8 +79,8 @@
         </div>
 
         <div class="form-control">
-            <label for="unit">Unidad responsable</label>
-            <select class="form-field" name="unit" id="unit" v-model="fields.unit" value="">
+            <label for="ures">Unidad responsable</label>
+            <select class="form-field" name="ures" id="ures" v-model="fields.ures" value="">
                 <option value="" selected>- Selecciona una opción -</option>
                 <option v-for="ures in ureslist"
                     :value="ures.id "
@@ -89,20 +89,20 @@
                 </option>
 
             </select>
-            <field-errors name="unit"></field-errors>
+            <field-errors name="ures"></field-errors>
         </div>
 
         <div class="form-control">
-            <label for="from">
+            <label for="pautoriza">
                 ¿Quién autoriza?
                 <small class="color-gray-60"><i>Opcional</i></small>
                 </label>
             <text-field
-                    name="from"
-                    v-model="fields.from"
+                    name="pautoriza"
+                    v-model="fields.pautoriza"
                 >
                 </text-field>
-                <field-errors name="from"></field-errors>
+                <field-errors name="pautoriza"></field-errors>
         </div>
 
         <div class="text-center">
@@ -129,7 +129,7 @@
         data() {
             return {
                 fields: {
-                    unit: '',
+                    ures: '',
                     id:''
                 }
             };
