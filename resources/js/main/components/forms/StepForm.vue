@@ -1,6 +1,6 @@
 <template>
     <div ref="request_form">
-        <div v-if="successSteps == false" ref="steprequest" class="request__form" >
+        <div v-if="successSteps == false" ref="step_request" class="request__form" >
             <div class="request-step" ref="user">
                 <userstep-form
                     :action="urluser"
@@ -39,7 +39,7 @@
                 </requeststep-form>
             </div>
         </div>
-        <div v-else class="successRequest" ref="stepsucess">
+        <div v-else class="successRequest" ref="step_success">
             <div class="text-center alert__request--success">
                 <span class="alert__figure">
                     <slot name="success"></slot>
@@ -118,14 +118,12 @@
             SuccessRequest(e) {
                 if (e) {
 
+                    this.successSteps = true;
                     this.$refs.request_form.classList.remove('slideleft');
                     this.$refs.request_form.classList.remove('slideright');
-                    this.$refs.steprequest.classList.add('fade-out');
-                    this.$refs.stepsucess.classList.add('fade-in');
 
-                     setTimeout(() => {
-                        this.successSteps = true;
-                    }, 1000);
+                    this.$refs.step_request.classList.add('fade-out');
+                    this.$refs.step_success.classList.add('fade-in');
 
 
                 }
@@ -163,7 +161,7 @@
                 let domain = email.replace(/.*@/, "");
 
                 if (domain != "ujed.mx") {
-                    otherEmail = true;
+                    this.otherEmail = true;
                 }
             },
         }
