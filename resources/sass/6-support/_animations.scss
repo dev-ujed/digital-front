@@ -149,9 +149,11 @@ Bubble
 
     75% {
         opacity: 1;
+        
     }
 
     100% {
+        border-radius: 0%;
         height: 220vh;
         opacity: 1;
         width: 220vh;
@@ -172,6 +174,7 @@ Bubble
     }
 
     100% {
+        border-radius: 0%;
         height: 220vw;
         opacity: 1;
         width: 220vw;
@@ -219,21 +222,13 @@ Height
 
 @keyframes height-in {
     0% {
-        margin: 0px;
+        opacity: 0;
+        //margin: 0px;
     }
 
     100% {
-        margin: 20px 0px;
-    }
-}
-
-@keyframes height-out {
-    0% {
-        margin: 20px;
-    }
-
-    100% {
-        margin: 0px;
+        opacity: 1;
+        //margin: 20px 0px;
     }
 }
 

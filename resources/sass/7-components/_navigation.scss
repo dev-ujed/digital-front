@@ -20,6 +20,37 @@ $main-menu-link-padding-y: 1.5em;
     display: flex;
     height: auto;
     justify-content: space-between;
+    opacity: 1;
+}
+
+.main-menu__container .main-logo__dtd {
+    opacity: 1;
+
+    @media screen and (orientation: landscape) {
+        opacity: 0;
+    }
+
+    @include media($menu-breakpoint) {
+        opacity: 1;
+    }
+}
+
+.main-menu__container--sm {
+    opacity: 0;
+    display: block;
+    z-index: 1;
+
+    @include media($menu-breakpoint) {
+        display: none;
+    }
+
+    @media screen and (orientation: portrait) {
+        opacity: 0;
+    }
+
+    @media screen and (orientation: landscape) {
+        opacity: 1;
+    }
 }
 
 .main-menu__logo-img {
@@ -31,17 +62,17 @@ $main-menu-link-padding-y: 1.5em;
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 20px;
+    transform-origin: left top;
     width: 100px;
     z-index: 2;
-    transform-origin: left top;
 
     @media screen and (orientation: portrait) {
         &--open {
-            animation: biggest-in-portrait 330ms ease-out forwards 150ms;
+            animation: biggest-in-portrait 150ms ease-out forwards 150ms;
         }
     
         &--closed {
-            animation: biggest-out-portrait 200ms ease-out forwards;
+            animation-name: biggest-out-portrait 150ms ease-out forwards;
         }
     }
 
@@ -60,8 +91,8 @@ $main-menu-link-padding-y: 1.5em;
         margin-bottom: 30px;
         width: 188px;
     }
-    
 }
+
 
 .main-logo__ujed {
     display: none;
@@ -121,7 +152,7 @@ $main-menu-link-padding-y: 1.5em;
     border: 0;
     display: inline-block;
     padding: 0.5em;
-    z-index: 2;
+    z-index: 4;
 
     &:focus {
         outline: 1px dotted $color-gray-10;
@@ -141,9 +172,19 @@ $main-menu-link-padding-y: 1.5em;
 ============================================================================= */
 
 .main-menu__list--container {
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    overflow: auto;
     position: absolute;
+    top: 0;
     width: 100%;
+
+    @include media($main-menu-breakpoint) { 
+        display: block;
+        top: auto;
+    }
 }
 
 .main-menu__list {
@@ -151,25 +192,16 @@ $main-menu-link-padding-y: 1.5em;
     margin-left: auto;
     margin-bottom: 0px;
     min-width: 250px;
-    overflow-y: scroll;
+    position: relative;
     @include position(relative, 0 null null 0);
+    top: 0;
     width: 100%;
     z-index: 3;
 
     @media screen and (orientation: portrait) { 
         &--open {
             display: block;
-            animation: slide-in-bottom-portrait 350ms ease-in forwards 200ms;
-        }
-        &--closed {
-            animation: slide-out-top 300ms ease-out forwards 200ms;
-        }
-    }
-
-    @media screen and (orientation: landscape) { 
-        &--open {
-            display: block;
-            animation: slide-in-bottom-landscape 150ms ease-in forwards 100ms;
+            margin-top: 100px;
         }
     }
 
@@ -183,22 +215,43 @@ $main-menu-link-padding-y: 1.5em;
         position: relative;
         text-align: center;
         transform: none;
+        top: 0px;
         visibility: visible;
         width: auto;
         z-index: 1;
     }
+
+    @media screen and (orientation: landscape) { 
+        &--open {
+            margin-top: 30px;
+            display: block;
+        }
+    }
 }
 
 .main-menu__li {
+    opacity: 0;
+    margin: 20px 0;
+
     &:last-child {
         border-bottom: 0;
+    }
+ 
+    @media screen and (orientation: portrait) {
+        margin: 20px 0;
+    } 
+
+    @media screen and (orientation: landscape) {
+        margin: 0;
     }
 
     @include media($main-menu-breakpoint) {
         border-bottom: 0;
         display: inline-block;
         margin: 0 50px 0 2em;
+        opacity: 1;
         position: relative;
+        
 
         &:first-child {
             margin-left: 0;
@@ -211,17 +264,13 @@ $main-menu-link-padding-y: 1.5em;
         }
     }
 
-    @media screen and (orientation: portrait) {
-        margin: -20px 0;
+   
 
-        &--open {
-            animation: height-in 300ms ease-out forwards 250ms;
+    @for $i from 1 through 7 {
+        &--open:nth-child(#{$i}) {
+            animation: height-in 300ms ease-out forwards (15ms + (50ms * ($i / 0.5)));
             
         }
-    }
-
-    &--closed {
-        animation: height-out 150ms ease-out forwards;
     }
 
     &--logo {
@@ -240,23 +289,14 @@ $main-menu-link-padding-y: 1.5em;
 }
 
 .main-menu__footer {
-    align-items: flex-end;
     color: #fff;
-    display: flex;
     font-size: 10px;
-    justify-content: center;
-    opacity: 0;
-    //position: absolute;
     margin-bottom: 30px !important;
+    margin-top: auto;
+    opacity: 0;
     text-align: center;
     width: 100%;
     z-index: 1;
-    margin-top: auto;
-
-
-    position: fixed;
-    bottom: 0;
-
 
     &--open {
         animation: opacity-in 250ms ease-out forwards 200ms;
@@ -267,6 +307,7 @@ $main-menu-link-padding-y: 1.5em;
 .main-menu__submenu-title {
     background-color: transparent;
     color: #fff;
+    font-size: 16px !important;
     padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);
     padding-left: 30px;
     transition: background-color 150ms ease-out, padding-left 150ms ease-out;
@@ -291,8 +332,6 @@ $main-menu-link-padding-y: 1.5em;
             background-color: transparent;
             color: #fff;
             padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);    
-
-            
         }
     }
 }
@@ -327,7 +366,6 @@ $main-menu-link-padding-y: 1.5em;
     display: block;
     text-align: center;
 
-
     @include media($main-menu-breakpoint) {
         @include button((background-color: $color-gray-30));
     }
@@ -343,7 +381,6 @@ $main-menu-link-padding-y: 1.5em;
     @include position(relative, -2px null null null);
     vertical-align: middle;
     width: 1em;
-
 }
 
 .main-menu__submenu-title {

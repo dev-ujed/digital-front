@@ -1,7 +1,7 @@
 <template>
     <nav id="main-menu" class="main-menu" role="navigation">
         <div class="container main-menu__container">
-            <a class="main-logo__dtd" :href="$root.path" title="Inicio"
+           <a class="main-logo__dtd" :href="$root.path" title="Inicio"
                 :class="{
                     'main-logo__dtd--open': menuIsOpen,
                     'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
@@ -37,6 +37,17 @@
         </div>
 
         <div class="main-menu__list--container">
+
+            <div class="container main-menu__container--sm">
+                <a class="main-logo__dtd" :href="$root.path" title="Inicio"
+                    :class="{
+                        'main-logo__dtd--open': menuIsOpen,
+                        'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
+                    }">
+                    <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
+                </a>
+            </div>
+            
             <ul class="list-bare main-menu__list"
                 :class="{
                     'main-menu__list--open': menuIsOpen,
@@ -195,6 +206,8 @@
             setMatchMedia() {
                 const mq = window.matchMedia(`screen and (min-width:${this.breakpoint}px)`);
 
+                console.log(this.breakpoint);
+                
                 mq.addListener(this.reset);
 
                 this.reset(mq);
