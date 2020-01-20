@@ -16,20 +16,21 @@ def index(request):
 def save(request):
     data_request = json.loads(request.body.decode('utf-8'))
 
-    data = {
-        "descripcion": data_request['descripcion'],
-    }
+    if data_request['descripcion'] == '':
+        return JsonResponse({'errors': {'descripcion': ['Este campo no puede estar en blanco.']}}, status=422)
+    else:
+        data = {
+            "descripcion": data_request['descripcion'],
+        }
 
-    response = validateUpdateRequest(data_request, data)
+        response = validateUpdateRequest(data_request, data)
+        sendEmail(response.json())
 
-    sendEmail(response.json())
-
-    return response
+    return displayResponse(response)
 
 
 def saveuser(request):
     data_request = json.loads(request.body.decode('utf-8'))
-    getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
 
     data = {
         "matricula": data_request['matricula'],
@@ -46,7 +47,7 @@ def saveuser(request):
     if data_request['id'] == '':
         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
     else:
-        return validateUpdateRequest(data_request, data)
+        response = validateUpdateRequest(data_request, data)
 
     return displayResponse(response)
 
@@ -62,16 +63,16 @@ def validateUpdateRequest(data_request, data):
                 data = data
             )
         else:
-            return HttpResponse({'errors': 'No se puede modificar una solicitud ya enviada.'}, status=422)
+            return {'solicitud': 'No se puede modificar una solicitud ya enviada.'},
     else:
-        return HttpResponse({'errors': 'no se encontró registro.'}, status=422)
+        return {'solicitud': 'no se encontró registro.'}
 
-    return displayResponse(responseUpdate)
+    return responseUpdate
 
 
 def displayResponse(response):
     if response.status_code == 422:
-        return JsonResponse({'errors':response.json()}, status=422)
+        return JsonResponse({'errors':response.json()}, status= 422)
     else:
         return JsonResponse(response.json())
 
@@ -84,7 +85,6 @@ def sendEmail(response):
         'token': 'qwnqe213jsadej213213SAdasdada12ada12354ddsaZ'
         }
     )
-
     from_email = 'from@yourdjangoapp.com'
     to = response['correo']
 
