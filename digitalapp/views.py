@@ -52,6 +52,24 @@ def saveuser(request):
     return displayResponse(response)
 
 
+def uploadfile(request):
+
+    headers = {
+        'Content-type': 'multipart/form-data'
+    }
+
+    files = {
+        "file": request.FILES['file'],
+    }
+
+    data = {
+        "solicitud": request.POST['request']
+    }
+    
+    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['request']+'/upload/', files=files, data=data)
+
+    return HttpResponse(response)
+    
 
 def validateUpdateRequest(data_request, data):
     getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])

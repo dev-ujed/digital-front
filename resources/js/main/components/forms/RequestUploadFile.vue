@@ -4,8 +4,10 @@
         <p class="size-sm color-gray-60" v-if="files.length > 0">Si lo deseas, puedes agregar una breve anotación a los archivos que has agregado.</p>
 
         <request-file
+            :requestid="requestid"
             :files="files"
             v-if="files.length > 0"
+            
         >
 
             <slot name="paperclip" slot="paperclip"></slot>
@@ -29,21 +31,40 @@
     export default {
 
         components: { RequestFile },
+        props: {
+            requestid: {
+                type: String,
+                required: true
+            },
+        },
         data() {
             return {
                 files: [],
+                fileId: 0
             };
         },
         methods: {
             addFile() {
 
                 this.hasFiles = true;
-                  
-                this.files.push(event.target.files[0]);     
-            }
+                 
+                var formData = new FormData();
+                formData.append("request", this.requestid);
+                formData.append("file", event.target.files[0]);
+                
+                window.axios
+                    .post('subir-archivo', formData)
+                    .then(response => {
+                        this.fileId = response.data.id;
+                        this.files.push(response.data); 
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
         },
         mounted() {
-            
+            //console.log(this.requestid);
         }
     }
 </script>

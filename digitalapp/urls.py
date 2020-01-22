@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('crear-solicitud', views.save, name='save'),
     path('crear-usuario', views.saveuser, name='saveuser'),
+    path('subir-archivo', views.uploadfile, name='uploadfile'),
 ]
