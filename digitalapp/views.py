@@ -70,6 +70,14 @@ def uploadfile(request):
 
     return HttpResponse(response)
     
+    
+def deletefile(request):
+
+    response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['file']+'/delete/')
+
+    return HttpResponse(response)
+
+
 
 def validateUpdateRequest(data_request, data):
     getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])

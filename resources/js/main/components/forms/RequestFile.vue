@@ -10,7 +10,7 @@
                     <i> {{ file.name }} </i>
                 </p>
             
-                <button class="btn--without-style color-danger p-0 card__button">
+                <button type="button" class="btn--without-style color-danger p-0 card__button" @click="remove(file.id)">
                     <slot name="x"></slot>
                 </button>
             </div>
@@ -30,15 +30,41 @@
 
 <script>
     export default {
+        
         props: {
             files: {
                 type: Array,
                 required: true
             },
+            requestid: {
+                type: String,
+                required: true
+            }
         },
+        methods: {
+            remove(el) {
+                 
+                var formData = new FormData();
+                formData.append("file", el);
+                
+                window.axios
+                    .post('eliminar-archivo', formData)
+                    .then(response => {
 
+                        console.log('Eliminado');
+
+                        const key = this.files.findIndex(x => x.id === el);
+                        this.files.splice(key, 1);
+
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+        },
         mounted() {
 
+            
         }
     }
 </script>
