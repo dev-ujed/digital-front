@@ -12,11 +12,11 @@
         <field-errors name="descripcion"></field-errors>
         </div>
 
-        <request-upload-file>
-
+        <request-upload-file
+            :requestid="requestid"
+            >
             <slot name="paperclip" slot="paperclip"></slot>
-        <slot name="x" slot="x"></slot>
-
+            <slot name="x" slot="x"></slot>
         </request-upload-file>
 
         <div class="text-center">
