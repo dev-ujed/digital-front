@@ -5,6 +5,7 @@
         <step-form
             urluser="{{ request.build_absolute_uri }}crear-usuario"
             urlrequest="{{ request.build_absolute_uri }}crear-solicitud"
+            urldelete="{{ request.build_absolute_uri }}cancelar-solicitud"
             :ureslist="{{ ureslist }}"
         >
             <template slot="continue">
