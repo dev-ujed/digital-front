@@ -134,6 +134,11 @@
                 }
             };
         },
+
+        mounted() {
+            this.$parent.$on('deleterequest', this.reset);
+        },
+
         methods:{
 
             /**
@@ -154,6 +159,22 @@
                 this.$emit('successuser', true);
                 this.fields.id = response.data.id.toString();
                 this.$emit('requestid', response.data.id.toString());
+            },
+
+
+            reset() {
+                this.fields = {
+                    apellido_materno:'',
+                    apellido_paterno:'',
+                    correo:'',
+                    extension:'',
+                    id:'',
+                    matricula:'',
+                    nombre:'',
+                    pautoriza:'',
+                    telefono:'',
+                    ures:'',
+                };
             },
         }
 

@@ -19,8 +19,10 @@
                     :action="urlrequest"
                     @prevuser="PrevUser"
                     @requestsuccess="SuccessRequest"
+                    @deleterequest="deleteRequest"
                     @requestfolio="GetFolio"
                     @requestemail="GetEmail"
+                    :urldelete=urldelete
                     :requestid=requestid
                     ref="requeststep"
                 >
@@ -86,6 +88,10 @@
                 type: String,
                 required: true
             },
+            urldelete: {
+                type: String,
+                required: true
+            },
         },
         data() {
             return {
@@ -97,6 +103,7 @@
             };
         },
         methods:{
+
             SuccessUser(e) {
                 if (e) {
 
@@ -115,8 +122,7 @@
                 }
             },
 
-            SuccessRequest(e) {
-                if (e) {
+            SuccessRequest() {
 
                     this.successSteps = true;
                     this.$refs.request_form.classList.remove('slideleft');
@@ -124,13 +130,9 @@
 
                     this.$refs.step_request.classList.add('fade-out');
                     this.$refs.step_success.classList.add('fade-in');
-
-
-                }
             },
 
-            PrevUser(e) {
-                if (e) {
+            PrevUser() {
 
                     this.$refs.request_form.classList.remove('slideright');
                     this.$refs.request_form.classList.add('slideleft');
@@ -144,7 +146,6 @@
                     setTimeout(() => {
                         this.$refs.userstep.$refs.email_field.$el.focus();
                     }, 1300);
-                }
             },
 
             GetID(e) {
@@ -163,6 +164,16 @@
                 if (domain != "ujed.mx") {
                     this.otherEmail = true;
                 }
+            },
+
+            reset () {
+                this.requestid = '';
+            },
+
+            deleteRequest() {
+                this.$emit('deleterequest', true);
+                this.reset();
+                this.PrevUser();
             },
         }
     };
