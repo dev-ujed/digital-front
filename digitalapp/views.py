@@ -68,19 +68,23 @@ def uploadfile(request):
     
     response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['request']+'/upload/', files=files, data=data)
 
-    return HttpResponse(response)
-    
+    if response.status_code == 400:
+        return JsonResponse({'errors':response.json()}, status = 422)
+    else:
+        return JsonResponse(response.json())
+        
     
 def deletefile(request):
 
     response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['file']+'/delete/')
 
-    return HttpResponse(response)
+    return displayResponse(response)
 
 
 
 def validateUpdateRequest(data_request, data):
     getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+
 
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
@@ -98,7 +102,7 @@ def validateUpdateRequest(data_request, data):
 
 def displayResponse(response):
     if response.status_code == 422:
-        return JsonResponse({'errors':response.json()}, status= 422)
+        return JsonResponse({'errors':response.json()}, status = 422)
     else:
         return JsonResponse(response.json())
 
