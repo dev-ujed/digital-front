@@ -1,70 +1,71 @@
 <template>
     <div>
-        <p class="size-caption" v-if="files.length > 0">Archivos adjuntos</p>
-        <p class="size-sm color-gray-60" v-if="files.length > 0">Si lo deseas, puedes agregar una breve anotación a los archivos que has agregado.</p>
+        <label for="file" class="btn btn--sm btn--light cursor--pointer">
+            Adjuntar archivo
+        </label>
 
-        <request-file
-            :requestid="requestid"
-            :files="files"
-            v-if="files.length > 0"
-            
+        <input class="form-field hidden" id="file" name="file" type="file"
+            @change="addFile"
+            :aria-describedBy="errors.length > 0 ? 'file-errors' : ''"
+            :aria-invalid="errors.length > 0 ? 'true' : null"
         >
 
-            <slot name="paperclip" slot="paperclip"></slot>
-            <slot name="x" slot="x"></slot>
-           
-        </request-file>
-
-        <div class="form-control mb-18">
-            <label for="file" class="btn btn--sm btn--light cursor--pointer">
-                Adjuntar archivo
-            </label>
-            <input class="form-field hidden" id="file" name="file" type="file" @change="addFile">
-        </div>
-
+        <ul v-if="errors.length > 0" id="file-errors" class="error">
+            <li v-for="(error, i) in errors" :key="i" v-text="error"></li>
+        </ul>     
     </div>
 </template>
 
 <script>
-    import RequestFile from './RequestFile.vue';
 
     export default {
 
-        components: { RequestFile },
         props: {
             requestid: {
                 type: String,
                 required: true
-            },
+            }
         },
+
         data() {
             return {
-                files: [],
-                fileId: 0
+                errors: []
             };
         },
+
         methods: {
             addFile() {
-
-                this.hasFiles = true;
                  
+                const file = event.target.files[0];
+                
                 var formData = new FormData();
                 formData.append("request", this.requestid);
-                formData.append("file", event.target.files[0]);
+                formData.append("file", file);
                 
                 window.axios
                     .post('subir-archivo', formData)
                     .then(response => {
-                        this.fileId = response.data.id;
-                        this.files.push(response.data); 
+
+                        if(response.data.id) {
+
+                            this.errors = [];
+
+                            const id  = response.data.id;
+                            const key = "description_"+id;
+                            
+                            this.$set(this.$parent.fields.files, key, '');
+                            this.$set(this.$parent.thumbs, key, response.data.file);
+                            this.$set(this.$parent.names, key, file.name);
+                            
+                        }
+
                     })
                     .catch(error => {
-                        console.log(error)
+                        this.errors = error.response.data.errors.file;
                     })
             },
         },
         mounted() {
-            //console.log(this.requestid);
         }
     }
 </script>

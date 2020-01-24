@@ -3,21 +3,42 @@
         <div class="form-control">
             <label for="descripcion">Cuéntanos en qué podemos ayudarte</label>
             <text-area
-            name="descripcion"
-            cols="30"
-            rows="10"
-            v-model="fields.descripcion"
-            ref="description_field">
-        </text-area>
-        <field-errors name="descripcion"></field-errors>
+                name="descripcion"
+                cols="30"
+                rows="10"
+                v-model="fields.descripcion"
+                ref="description_field">
+            </text-area>
+            <field-errors name="descripcion"></field-errors>
         </div>
 
-        <request-upload-file
-            :requestid="requestid"
+        <p class="size-caption" v-if="Object.keys(fields.files).length > 0">Archivos adjuntos</p>
+        <p class="size-sm color-gray-60" v-if="Object.keys(fields.files).length > 0">Si lo deseas, puedes agregar una breve anotación a los archivos que has agregado.</p>
+
+        <div v-for="(file, key) in fields.files" 
+            :key="key" 
+            :value="file"
+            :name="key">
+
+            <request-file
+                :requestid="requestid"
+                :value="file"
+                :name="key"
+                :errors="[]"
             >
-            <slot name="paperclip" slot="paperclip"></slot>
-            <slot name="x" slot="x"></slot>
-        </request-upload-file>
+                <slot name="paperclip" slot="paperclip"></slot>
+                <slot name="x" slot="x"></slot>
+            </request-file>
+        </div>
+    
+
+        <div class="form-control mb-18">
+            <request-upload-file
+                :requestid="requestid"
+            >
+            </request-upload-file>
+        </div>
+        
 
         <div class="text-center">
             <button class="btn btn--light request--button mb-6 sm:mr-8"
@@ -28,19 +49,20 @@
             <button class="btn btn--form mb-6 request--button" type="submit">
                 <span class="mr-1">Enviar</span>
             </button>
-
             <br>
             <a href="#" class="request--link size-sm">Cancelar solicitud</a>
         </div>
     </form>
 </template>
 <script>
+
     import BaseForm from './base/BaseForm.vue';
     import RequestUploadFile from './RequestUploadFile.vue';
+    import RequestFile from './RequestFile.vue';
 
     export default {
         extends: BaseForm,
-        components: { RequestUploadFile },
+        components: { RequestUploadFile, RequestFile },
         props: {
             requestid: {
                 type: String,
@@ -51,7 +73,10 @@
             return {
                 fields: {
                     id: this.requestid,
-                }
+                    files: {},
+                },
+                thumbs: [],
+                names: [],
             };
         },
         watch: {
@@ -59,7 +84,6 @@
               this.fields.id = this.requestid;
             }
         },
-
         methods:{
             prev() {
               this.$emit('prevuser', true);
@@ -84,8 +108,9 @@
                 this.$emit('requestfolio', response.data.folio.toString());
                 this.$emit('requestemail', response.data.correo.toString());
             },
+        },
+        mounted() {
 
         }
-
     };
 </script>
