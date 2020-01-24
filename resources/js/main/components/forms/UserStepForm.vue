@@ -106,11 +106,11 @@
         </div>
 
         <div class="text-center">
-            <button
+            <form-button
                 class="btn btn--form request--button"
             >
                 <slot name="continue"></slot>
-            </button>
+            </form-button>
 
         </div>
     </form>
@@ -147,14 +147,6 @@
              * @param {Object} response
              */
             onSuccess(response) {
-                if (this.redirectTo) {
-                    return window.location.href = this.redirectTo;
-                }
-
-                if (response.headers['redirect-to']) {
-                    return window.location.href = response.headers['redirect-to'];
-                }
-
                 this.isSubmitting = false;
                 this.$emit('successuser', true);
                 this.fields.id = response.data.id.toString();
