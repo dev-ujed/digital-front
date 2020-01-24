@@ -51,6 +51,11 @@ def saveuser(request):
 
     return displayResponse(response)
 
+def deleteRequest(request):
+    data_request = json.loads(request.body.decode('utf-8'))
+    response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+    return HttpResponse(response)
+
 
 def uploadfile(request):
 
@@ -65,7 +70,7 @@ def uploadfile(request):
     data = {
         "solicitud": request.POST['request']
     }
-    
+
     response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['request']+'/upload/', files=files, data=data)
 
     if response.status_code == 400:

@@ -50,7 +50,7 @@
                 <span class="mr-1">Enviar</span>
             </button>
             <br>
-            <a href="#" class="request--link size-sm">Cancelar solicitud</a>
+            <a href="#" class="request--link size-sm" @click.prevent="CancelRequest()">Cancelar solicitud</a>
         </div>
     </form>
 </template>
@@ -65,6 +65,10 @@
         components: { RequestUploadFile, RequestFile },
         props: {
             requestid: {
+                type: String,
+                required: true
+            },
+            urldelete: {
                 type: String,
                 required: true
             },
@@ -85,8 +89,9 @@
             }
         },
         methods:{
+
             prev() {
-              this.$emit('prevuser', true);
+                this.$emit('prevuser', true);
             },
 
             /**
@@ -108,9 +113,22 @@
                 this.$emit('requestfolio', response.data.folio.toString());
                 this.$emit('requestemail', response.data.correo.toString());
             },
+            CancelRequest() {
+                window.axios.post(this.urldelete, {
+                    id: this.requestid,
+                });
+                this.reset()
+                this.$emit('deleterequest', true);
+            },
+            reset() {
+                this.fields = {
+                    descripcion:'',
+                    id:'',
+                };
+            }
         },
         mounted() {
-
+            
         }
     };
 </script>
