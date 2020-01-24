@@ -135,6 +135,10 @@
             },
 
             SuccessRequest() {
+
+                this.$refs.request_form.classList.remove('slideleft');
+                this.$refs.request_form.classList.remove('slideright');
+
                 const documentOffset = getScrollTop();
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
