@@ -32,3 +32,10 @@ def deletefile(request):
     response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['file']+'/delete/')
 
     return displayResponse(response)
+
+
+def displayResponse(response):
+    if response.status_code == 422:
+        return JsonResponse({'errors':response.json()}, status = 422)
+    else:
+        return JsonResponse(response.json())
