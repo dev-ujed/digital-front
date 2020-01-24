@@ -1,6 +1,6 @@
 <template>
     <div ref="request_form">
-        <transition name="fade">
+        <transition name="fade" mode="in-out">
             <div v-if="successSteps" class="successRequest" ref="step_success">
                 <div class="text-center alert__request--success">
                     <span class="alert__figure">
@@ -135,9 +135,24 @@
             },
 
             SuccessRequest() {
-                this.$refs.request_form.classList.remove('slideleft');
-                this.$refs.request_form.classList.remove('slideright');
-                this.successSteps = true;
+                const documentOffset = getScrollTop();
+                const titleOffset = getScrollTop(this.title);
+                let duration = 600;
+
+                if (documentOffset === titleOffset) {
+                    this.successSteps = true;
+                    return;
+                }
+
+                if (Math.abs(titleOffset - documentOffset) < 200) {
+                    duration = 400;
+                }
+
+                scrollTo(this.title, 0, duration);
+
+                setTimeout(() => {
+                    this.successSteps = true;
+                }, duration);
             },
 
             PrevUser() {
@@ -190,7 +205,24 @@
             },
 
             newRequest() {
-                this.successSteps = false;
+                const documentOffset = getScrollTop();
+                const titleOffset = getScrollTop(this.title);
+                let duration = 600;
+
+                if (documentOffset === titleOffset) {
+                    this.successSteps = false;
+                    return;
+                }
+
+                if (Math.abs(titleOffset - documentOffset) < 200) {
+                    duration = 400;
+                }
+
+                scrollTo(this.title, 0, duration);
+
+                setTimeout(() => {
+                    this.successSteps = false;
+                }, duration);
             },
 
             moveRight() {

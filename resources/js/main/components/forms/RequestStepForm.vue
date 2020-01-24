@@ -15,8 +15,8 @@
         <p class="size-caption" v-if="Object.keys(fields.files).length > 0">Archivos adjuntos</p>
         <p class="size-sm color-gray-60" v-if="Object.keys(fields.files).length > 0">Si lo deseas, puedes agregar una breve anotación a los archivos que has agregado.</p>
 
-        <div v-for="(file, key) in fields.files" 
-            :key="key" 
+        <div v-for="(file, key) in fields.files"
+            :key="key"
             :value="file"
             :name="key">
 
@@ -30,7 +30,7 @@
                 <slot name="x" slot="x"></slot>
             </request-file>
         </div>
-    
+
 
         <div class="form-control mb-18">
             <request-upload-file
@@ -38,7 +38,7 @@
             >
             </request-upload-file>
         </div>
-        
+
 
         <div class="text-center">
             <button class="btn btn--light request--button mb-6 sm:mr-8"
@@ -77,6 +77,7 @@
             return {
                 fields: {
                     id: this.requestid,
+                    descripcion:'',
                     files: {},
                 },
                 thumbs: [],
@@ -117,18 +118,20 @@
                 window.axios.post(this.urldelete, {
                     id: this.requestid,
                 });
-                this.reset()
+                this.reset();
                 this.$emit('deleterequest', true);
             },
+
             reset() {
                 this.fields = {
                     descripcion:'',
                     id:'',
+                    files: {},
                 };
             }
         },
         mounted() {
-            
+
         }
     };
 </script>
