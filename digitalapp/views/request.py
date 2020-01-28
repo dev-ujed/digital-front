@@ -26,23 +26,26 @@ def save(request):
 
 def saveuser(request):
     data_request = json.loads(request.body.decode('utf-8'))
-
-    data = {
+    datanull     = ['apellido_materno', 'telefono', 'extension', 'telefono', 'pautoriza']
+    datainitial  = {
         "matricula": data_request['matricula'],
         "ures": data_request['ures'],
         "nombre": data_request['nombre'],
         "apellido_paterno": data_request['apellido_paterno'],
-        "apellido_materno": data_request['apellido_materno'],
         "correo": data_request['correo'],
-        "extension": data_request['extension'],
-        "telefono": data_request['telefono'],
-        "pautoriza": data_request['pautoriza'],
     }
+
+    data = validatenulls(data_request, datainitial, datanull)
 
     if data_request['id'] == '':
         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
     else:
         response = validateUpdateRequest(data_request, data)
+
+    if data_request['telefono'] == '' and data_request['extension'] == '':
+        errors = {}
+        errors.update({'telefono': ['El Telefono o la Extensión no pueden ir vacios'],'extension': ['']})
+        return displayResponse(response, errors)
 
     return displayResponse(response)
 
@@ -68,10 +71,17 @@ def validateUpdateRequest(data_request, data):
 
     return responseUpdate
 
+def validatenulls(data_request, datainitial, datanull):
+    for i in datanull:
+        if data_request[i] != '':
+            datainitial.update({i: data_request[i]})
+    return datainitial
 
-def displayResponse(response):
+def displayResponse(response, errors={}):
     if response.status_code == 422:
-        return JsonResponse({'errors':response.json()}, status = 422)
+        errors.update(response.json())
+
+        return JsonResponse({'errors':errors}, status = 422)
     else:
         return JsonResponse(response.json())
 
