@@ -7,7 +7,7 @@
                 <slot name="doro"></slot>
             </template>
         </steps>
-        
+
         <div ref="request_form">
             <transition name="fade" mode="out-in">
                 <div v-if="successSteps" class="successRequest" key="1" ref="step_success">
@@ -85,7 +85,7 @@
 
 
 <script>
-    import Steps from './Steps.vue';    
+    import Steps from './Steps.vue';
     import RequestUploadFile from './RequestUploadFile.vue';
     import scrollTo from '../../../helpers/scrollTo.js';
     import getScrollTop from '../../../helpers/getScrollTop.js';
@@ -222,9 +222,12 @@
                 }
             },
 
-            reset () {
+            reset() {
                 this.requestid = '';
+                this.otherEmail= false;
+                this.requestfolio= '';
             },
+
 
             deleteRequest() {
                 this.step = 0;
@@ -242,6 +245,7 @@
                 this.isRight = true;
 
                 if (documentOffset === titleOffset) {
+                    this.reset();
                     this.successSteps = false;
                     return;
                 }
@@ -253,6 +257,7 @@
                 scrollTo(this.title, 0, duration);
 
                 setTimeout(() => {
+                    this.reset();
                     this.successSteps = false;
                 }, duration);
             },
