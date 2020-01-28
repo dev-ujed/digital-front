@@ -94,7 +94,7 @@
         components: { RequestUploadFile, Steps },
         props: {
             ureslist: {
-                type: Array,
+                type: Object,
                 required: true
             },
             urluser: {

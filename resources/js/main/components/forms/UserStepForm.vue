@@ -80,15 +80,14 @@
 
         <div class="form-control">
             <label for="ures">Unidad responsable</label>
-            <select class="form-field" name="ures" id="ures" v-model="fields.ures" value="">
-                <option value="" selected>- Selecciona una opción -</option>
-                <option v-for="ures in ureslist"
-                    :value="ures.id "
-                >
-                    {{ ures.ures_descrip }}
-                </option>
-
-            </select>
+            <select-field
+                class="form-field"
+                name="ures"
+                id="ures"
+                v-model="fields.ures"
+                :options="ureslist"
+            >
+            </select-field>
             <field-errors name="ures"></field-errors>
         </div>
 
@@ -122,7 +121,7 @@
         extends: BaseForm,
         props: {
             ureslist: {
-                type: Array,
+                type: Object,
                 required: true
             },
         },

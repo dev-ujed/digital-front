@@ -44,7 +44,7 @@ def saveuser(request):
 
     if data_request['telefono'] == '' and data_request['extension'] == '':
         errors = {}
-        errors.update({'telefono': ['El Telefono o la Extensión no pueden ir vacios'],'extension': ['']})
+        errors.update({'telefono': ['Ingresa un teléfono o una extension valida'],'extension': ['']})
         return displayResponse(response, errors)
 
     return displayResponse(response)
@@ -77,10 +77,17 @@ def validatenulls(data_request, datainitial, datanull):
             datainitial.update({i: data_request[i]})
     return datainitial
 
+def validateUres(errors):
+    if 'ures' in errors:
+        errors.update({'ures': ['Selecciona una opción.']})
+    return errors
+
+
 def displayResponse(response, errors={}):
     if response.status_code == 422:
         errors.update(response.json())
 
+        errors = validateUres(errors)
         return JsonResponse({'errors':errors}, status = 422)
     else:
         return JsonResponse(response.json())
