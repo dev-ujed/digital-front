@@ -15,7 +15,7 @@
             </span>
             
             <span class="request__progress"></span>
-            <span class="request__progress visually-hidden"
+            <span class="request__progress opacity-0"
                 :class="{
                     'request__progress--active': step === 1 && isRight,
                     'request__progress--active__reverse': step === 1 && !isRight

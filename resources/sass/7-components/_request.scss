@@ -90,7 +90,7 @@ Request
     filter: invert(1);
     transform: translate(1px, 3px) scale(0.2);
 
-    animation: successIcon ease-in 2000ms forwards;
+    animation: successIcon ease-in 200ms forwards;
     
 }
 
@@ -133,7 +133,7 @@ Request
 
 .request__step--active {
    & span {
-        animation: activeDoro 5000ms forwards;
+        animation: activeDoro 500ms forwards;
     }
 
     & small {
@@ -144,7 +144,7 @@ Request
 .request__step--active__reverse {
     & span {
          
-         animation: activeDoro 5000ms forwards reverse;
+         animation: activeDoro 500ms forwards reverse;
      }
  
      & small {
@@ -155,7 +155,7 @@ Request
 .request__step--success {
 
     & span {
-        animation: successDoro 5000ms forwards;
+        animation: successDoro 500ms forwards;
     }
 
     & small {
@@ -166,7 +166,7 @@ Request
 .request__step--success__reverse {
 
     & span {
-        animation: successDoro 5000ms forwards reverse 5000ms;
+        animation: successDoro 500ms forwards reverse 500ms;
     }
 
     & small {
@@ -186,12 +186,16 @@ Request
 
 .request__progress--active {
     border-color: $color-success;
-    animation: activeProgress 5000ms forwards;
+    animation: activeProgress 500ms forwards;
 }
 
 .request__progress--active__reverse {
     border-color: initial;
-    animation: activeProgress 5000ms forwards reverse;
+    animation: activeProgress 500ms forwards reverse;
+}
+
+.opacity-0 {
+    opacity: 0;
 }
 
 
@@ -242,4 +246,9 @@ Request
         opacity: 1;
         transform: scale(0.6);
     }
+}
+
+
+.successRequest {
+    padding: 15px;
 }

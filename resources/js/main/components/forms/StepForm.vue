@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <steps v-if="!successSteps"
             :step="step"
             :isRight="isRight">
@@ -8,10 +7,10 @@
                 <slot name="doro"></slot>
             </template>
         </steps>
-
+        
         <div ref="request_form">
-            <transition name="fade" mode="in-out">
-                <div v-if="successSteps" class="successRequest" ref="step_success">
+            <transition name="fade" mode="out-in">
+                <div v-if="successSteps" class="successRequest" key="1" ref="step_success">
                     <div class="text-center alert__request--success">
                         <span class="alert__figure">
                             <slot name="success"></slot>
@@ -37,8 +36,7 @@
                         </button>
                     </div>
                 </div>
-                
-                <div v-else ref="step_request" class="request__form">
+                <div v-else ref="step_request"  key="2" class="request__form" >
                     <div class="request-step" ref="user">
                         <userstep-form
                             :action="urluser"
@@ -81,9 +79,10 @@
                 </div>
             </transition>
         </div>
-
     </div>
 </template>
+
+
 
 <script>
     import Steps from './Steps.vue';    

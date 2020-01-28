@@ -46,9 +46,9 @@
             >
                 <slot name="return"></slot>
             </button>
-            <button class="btn btn--form mb-6 request--button" type="submit">
+            <form-button class="btn btn--form mb-6 request--button" type="submit">
                 <span class="mr-1">Enviar</span>
-            </button>
+            </form-button>
             <br>
             <a href="#" class="request--link size-sm" @click.prevent="CancelRequest()">Cancelar solicitud</a>
         </div>
