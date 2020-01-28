@@ -16,28 +16,29 @@ Request
     }
 }
 
-.request-container {
-    box-shadow: 3px 3px 6px #00000029;
+.request__container {
     background: #fff;
     border-radius: 10px;
+    box-shadow: 3px 3px 6px #00000029;
     margin: 0 15px;
-    
     max-width: 570px;
+    overflow: hidden;
     padding: 15px;
     padding-bottom: 40px;
+    padding-top: 30px;
     position: relative;
     width: calc(100% - 30px);
-    overflow: hidden;
 
     @include media(600) {
         margin: auto;
         width: 100%;
     }
-
 }
+
 .request__form {
-    width: 200%;
     display: flex;
+    width: 200%;
+
     & .form-control {
         margin-bottom: 30px;
     }
@@ -47,13 +48,13 @@ Request
     }
 }
 .request-step {
-    width: 50%;
+    margin-top: 45px;
     padding: 15px;
     padding-bottom: 40px;
+    width: 50%; 
 }
 
 .request__form--response {
-
     & h4 {
         font-size: 20px;
     }
@@ -76,14 +77,33 @@ Request
     position: relative;
 }
 
-.request--step {
+.request__step .content-1:before {
+    content: '1';
+}
+
+.request__step .content-2:before {
+    content: '2';
+}
+
+.request__step .content-check:before {
+    content: url(../img/icons/check.svg);
+    filter: invert(1);
+    transform: translate(1px, 3px) scale(0.2);
+
+    animation: successIcon ease-in 2000ms forwards;
+    
+}
+
+.request__step:first-child {
+    margin-right: 40px;
+}
+
+.request__step {
 
     & span {
         align-items: center;
-        background-color: $color-gray-40;
-        border-radius: 15px;
-        color: #fff;
-        display: flex;
+        color: $color-gray-40;
+        display: block;
         font: Bold 13px/10px Open Sans;
         height: 28px;
         justify-content: center;
@@ -92,15 +112,28 @@ Request
         width: 28px;
     }
 
+    & span:before {
+        color: #fff;
+        display: block;
+        font-size: 11px;
+        height: 28px;
+        position: absolute;
+        transform: translate(-1px, 8px);
+        width: 28px;
+    }
+
     & small {
         color: $color-gray-60;
     }
 
+    & svg {
+        height: auto;
+    }
 }
 
-.request--step--active {
-    & span {
-        background-color: #CE4779;
+.request__step--active {
+   & span {
+        animation: activeDoro 5000ms forwards;
     }
 
     & small {
@@ -108,10 +141,105 @@ Request
     }
 }
 
-.request--way {
-    border: 1.5px solid $color-gray-40;
+.request__step--active__reverse {
+    & span {
+         
+         animation: activeDoro 5000ms forwards reverse;
+     }
+ 
+     & small {
+         color: $color-gray-40;
+     }
+ }
+
+.request__step--success {
+
+    & span {
+        animation: successDoro 5000ms forwards;
+    }
+
+    & small {
+        color: $color-gray-60;
+    }
+}
+
+.request__step--success__reverse {
+
+    & span {
+        animation: successDoro 5000ms forwards reverse 5000ms;
+    }
+
+    & small {
+        color: #CE4779;
+    }
+}
+
+.request__progress {
+    border: 1px solid $color-gray-40;
     height: 0px;
-    margin: 13px;
+    margin: 12px 0;
+    margin-left: 15px;
     position: absolute;
-    width: 67px;
+    width: 85px;
+    
+}
+
+.request__progress--active {
+    border-color: $color-success;
+    animation: activeProgress 5000ms forwards;
+}
+
+.request__progress--active__reverse {
+    border-color: initial;
+    animation: activeProgress 5000ms forwards reverse;
+}
+
+
+@keyframes activeProgress {
+    0% {
+        opacity: 0;
+        width: 0px;
+    }
+
+    100% {
+        opacity: 1;
+        width: 85px;
+    }
+}
+
+@keyframes successDoro {
+    0% {
+        color: #CE4779;
+    }
+
+    100% {
+        color: $color-success;
+    }
+}
+
+@keyframes activeDoro {
+    0% {
+        color: $color-gray-40;
+    }
+
+    100% {
+        color: #CE4779;
+    }
+}
+
+@keyframes successIcon {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(0.6);
+    }
 }

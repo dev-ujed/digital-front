@@ -1,84 +1,98 @@
 <template>
-    <div ref="request_form">
-        <transition name="fade" mode="in-out">
-            <div v-if="successSteps" class="successRequest" ref="step_success">
-                <div class="text-center alert__request--success">
-                    <span class="alert__figure">
-                        <slot name="success"></slot>
-                    </span>
-                    <p class="text-center size-normal mb-8 mt-4">Tu solicitud ha sido creada</p>
+    <div>
+
+        <steps v-if="!successSteps"
+            :step="step"
+            :isRight="isRight">
+            <template slot="doro">
+                <slot name="doro"></slot>
+            </template>
+        </steps>
+
+        <div ref="request_form">
+            <transition name="fade" mode="in-out">
+                <div v-if="successSteps" class="successRequest" ref="step_success">
+                    <div class="text-center alert__request--success">
+                        <span class="alert__figure">
+                            <slot name="success"></slot>
+                        </span>
+                        <p class="text-center size-normal mb-8 mt-4">Tu solicitud ha sido creada</p>
+                    </div>
+
+                    <h4 class="text-center mb-6 color-gray-70">El folio de la solicitud es: <b>{{ requestfolio }}</b></h4>
+
+                    <p>Te hemos enviado un correo de confirmación con un enlace para que puedas revisar el estado y avance de tu solicitud en cualquier momento.</p>
+
+                    <p>Igualmente puedes consultar dicho avance ingresando el folio anterior en el apartado para <a href="#" class="request--link">consultar el estado</a> de esta misma página.</p>
+
+                    <p>Cuando la solicitud sea concluida recibirás un correo de notificación.</p>
+
+                    <p v-if="otherEmail== true" class="alert alert--info alert--has-icon mt-8 size-sm">
+                        Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacernos una nueva solicitud para tramitarlo.
+                    </p>
+
+                    <div class="text-center mt-12">
+                        <button @click.prevent="newRequest()" class="btn btn--form" type="submit">
+                            <span class="mr-1">Crear nueva solicitud</span>
+                        </button>
+                    </div>
                 </div>
+                
+                <div v-else ref="step_request" class="request__form">
+                    <div class="request-step" ref="user">
+                        <userstep-form
+                            :action="urluser"
+                            :ureslist="ureslist"
+                            @successuser="SuccessUser"
+                            @requestid="GetID"
+                            ref="userstep"
+                        >
+                            <template slot="continue">
+                                <slot name="continue"></slot>
+                            </template>
+                        </userstep-form>
+                    </div>
+                    <div class="request-step invisible" ref="request">
+                        <requeststep-form
+                            :action="urlrequest"
+                            @prevuser="PrevUser"
+                            @requestsuccess="SuccessRequest"
+                            @deleterequest="deleteRequest"
+                            @requestfolio="GetFolio"
+                            @requestemail="GetEmail"
+                            :urldelete=urldelete
+                            :requestid=requestid
+                            ref="requeststep"
+                        >
+                            <template slot="return">
+                                <slot name="return"></slot>
+                            </template>
 
-                <h4 class="text-center mb-6 color-gray-70">El folio de la solicitud es: <b>{{ requestfolio }}</b></h4>
+                            <template slot="paperclip">
+                                <slot name="paperclip"></slot>
+                            </template>
 
-                <p>Te hemos enviado un correo de confirmación con un enlace para que puedas revisar el estado y avance de tu solicitud en cualquier momento.</p>
+                            <template slot="x">
+                                <slot name="x"></slot>
+                            </template>
 
-                <p>Igualmente puedes consultar dicho avance ingresando el folio anterior en el apartado para <a href="#" class="request--link">consultar el estado</a> de esta misma página.</p>
-
-                <p>Cuando la solicitud sea concluida recibirás un correo de notificación.</p>
-
-                <p v-if="otherEmail== true" class="alert alert--info alert--has-icon mt-8 size-sm">
-                    Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacernos una nueva solicitud para tramitarlo.
-                </p>
-
-                <div class="text-center mt-12">
-                    <button @click.prevent="newRequest()" class="btn btn--form" type="submit">
-                        <span class="mr-1">Crear nueva solicitud</span>
-                    </button>
+                        </requeststep-form>
+                    </div>
                 </div>
-            </div>
-            <div v-else ref="step_request" class="request__form" >
-                <div class="request-step" ref="user">
-                    <userstep-form
-                        :action="urluser"
-                        :ureslist="ureslist"
-                        @successuser="SuccessUser"
-                        @requestid="GetID"
-                        ref="userstep"
-                    >
-                        <template slot="continue">
-                            <slot name="continue"></slot>
-                        </template>
-                    </userstep-form>
-                </div>
-                <div class="request-step invisible" ref="request">
-                    <requeststep-form
-                        :action="urlrequest"
-                        @prevuser="PrevUser"
-                        @requestsuccess="SuccessRequest"
-                        @deleterequest="deleteRequest"
-                        @requestfolio="GetFolio"
-                        @requestemail="GetEmail"
-                        :urldelete=urldelete
-                        :requestid=requestid
-                        ref="requeststep"
-                    >
-                        <template slot="return">
-                            <slot name="return"></slot>
-                        </template>
+            </transition>
+        </div>
 
-                        <template slot="paperclip">
-                            <slot name="paperclip"></slot>
-                        </template>
-
-                        <template slot="x">
-                            <slot name="x"></slot>
-                        </template>
-
-                    </requeststep-form>
-                </div>
-            </div>
-        </transition>
     </div>
 </template>
 
 <script>
+    import Steps from './Steps.vue';    
     import RequestUploadFile from './RequestUploadFile.vue';
     import scrollTo from '../../../helpers/scrollTo.js';
     import getScrollTop from '../../../helpers/getScrollTop.js';
 
     export default {
-        components: { RequestUploadFile },
+        components: { RequestUploadFile, Steps },
         props: {
             ureslist: {
                 type: Array,
@@ -104,7 +118,9 @@
                 requestemail: '',
                 successSteps : false,
                 otherEmail : false,
-                title: null
+                title: null,
+                step: 0,
+                isRight: true
             };
         },
 
@@ -117,6 +133,9 @@
                 const documentOffset = getScrollTop();
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
+
+                this.step = 1;
+                this.isRight = true;
 
                 if (documentOffset === titleOffset) {
                     this.moveRight();
@@ -143,6 +162,9 @@
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
 
+                this.step = 2;
+                this.isRight = true;
+
                 if (documentOffset === titleOffset) {
                     this.successSteps = true;
                     return;
@@ -163,6 +185,9 @@
                 const documentOffset = getScrollTop();
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
+
+                this.step = 0;
+                this.isRight = false;
 
                 if (documentOffset === titleOffset) {
                     this.moveLeft();
@@ -203,6 +228,8 @@
             },
 
             deleteRequest() {
+                this.step = 0;
+                this.isRight = false;
                 this.$emit('deleterequest', true);
                 this.reset();
                 this.PrevUser();
@@ -212,6 +239,8 @@
                 const documentOffset = getScrollTop();
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
+                this.step = 0;
+                this.isRight = true;
 
                 if (documentOffset === titleOffset) {
                     this.successSteps = false;

@@ -3,13 +3,18 @@
     <p class="h2 color-white text-center request--title mb-8 request--title" >
         <b id="title-request">Envíanos tu solicitud</b>
     </p>
-    <div class="request-container">
+    <div class="request__container">
         <step-form
             urluser="{{ request.build_absolute_uri }}crear-usuario"
             urlrequest="{{ request.build_absolute_uri }}crear-solicitud"
             urldelete="{{ request.build_absolute_uri }}cancelar-solicitud"
             :ureslist="{{ ureslist }}"
         >
+            <template slot="doro">
+                {% load svg %}
+                {% svg 'doro' %}
+            </template>
+
             <template slot="continue">
                 <span>Continuar</span>
                 {% load svg %}
