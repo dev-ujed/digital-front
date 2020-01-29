@@ -13,13 +13,13 @@ def save(request):
 
     if data_request['descripcion'] == '':
         return JsonResponse({'errors': {'descripcion': ['Este campo no puede estar en blanco.']}}, status=422)
-    else:
-        data = {
-            "descripcion": data_request['descripcion'],
-        }
 
-        response = validateUpdateRequest(data_request, data)
-        sendEmail(response.json())
+    data = {
+        "descripcion": data_request['descripcion'],
+    }
+
+    response = validateUpdateRequest(data_request, data)
+    sendEmail(response.json())
 
     return displayResponse(response)
 
@@ -34,6 +34,11 @@ def saveuser(request):
         "apellido_paterno": data_request['apellido_paterno'],
         "correo": data_request['correo'],
     }
+    customMessage = {
+        'telefono': 'Ingresa un teléfono o una extension valida',
+        'extension': '',
+        'ures': 'Selecciona una opción.'
+    }
 
     data = validatenulls(data_request, datainitial, datanull)
 
@@ -42,21 +47,17 @@ def saveuser(request):
     else:
         response = validateUpdateRequest(data_request, data)
 
-    if data_request['telefono'] == '' and data_request['extension'] == '':
-        errors = {}
-        errors.update({'telefono': ['Ingresa un teléfono o una extension valida'],'extension': ['']})
-        return displayResponse(response, errors)
+    return displayResponse(response, customMessage)
 
-    return displayResponse(response)
 
 def deleteRequest(request):
     data_request = json.loads(request.body.decode('utf-8'))
     response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
     return HttpResponse(response)
 
+
 def validateUpdateRequest(data_request, data):
     getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
-
 
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
@@ -71,23 +72,25 @@ def validateUpdateRequest(data_request, data):
 
     return responseUpdate
 
+
 def validatenulls(data_request, datainitial, datanull):
     for i in datanull:
         if data_request[i] != '':
             datainitial.update({i: data_request[i]})
     return datainitial
 
-def validateUres(errors):
-    if 'ures' in errors:
-        errors.update({'ures': ['Selecciona una opción.']})
+
+def ChangeMessage(customMessage, errors):
+    for key, value in customMessage.items():
+        errors.update({key: [value]})
     return errors
 
 
-def displayResponse(response, errors={}):
+def displayResponse(response, customMessage={}):
+    errors = {}
     if response.status_code == 422:
         errors.update(response.json())
-
-        errors = validateUres(errors)
+        errors = ChangeMessage(customMessage, errors)
         return JsonResponse({'errors':errors}, status = 422)
     else:
         return JsonResponse(response.json())
@@ -101,7 +104,7 @@ def sendEmail(response):
         'token': 'qwnqe213jsadej213213SAdasdada12ada12354ddsaZ'
         }
     )
-    from_email = 'from@yourdjangoapp.com'
+    from_email = 'no-reply@ujed.mx'
     to = response['correo']
 
     email = EmailMessage(
