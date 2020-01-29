@@ -14,12 +14,21 @@ def save(request):
     if data_request['descripcion'] == '':
         return JsonResponse({'errors': {'descripcion': ['Este campo no puede estar en blanco.']}}, status=422)
 
-    data = {
-        "descripcion": data_request['descripcion'],
-    }
+        for i in data_request['files']:
 
-    response = validateUpdateRequest(data_request, data)
-    sendEmail(response.json())
+            index = i.split("_")[1];
+
+            dataFile = { "descripcion": data_request['files'][i] }
+
+            responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
+
+            if responseFiles.status_code == 422:
+                errors={}
+                errors.update({i: 'Asegúrese de que este campo no tenga más de 80 caracteres.' })
+                return JsonResponse({'errors':errors}, status = 422)
+
+        response = validateUpdateRequest(data_request, data)
+        sendEmail(response.json())
 
     return displayResponse(response)
 
@@ -73,7 +82,7 @@ def validateUpdateRequest(data_request, data):
         else:
             return {'solicitud': 'No se puede modificar una solicitud ya enviada.'},
     else:
-        return {'solicitud': 'no se encontró registro.'}
+        return {'solicitud': 'No se encontró el registro.'}
 
     return responseUpdate
 
