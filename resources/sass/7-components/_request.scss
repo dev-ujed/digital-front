@@ -47,6 +47,7 @@ Request
         height: 1em;
     }
 }
+
 .request-step {
     margin-top: 45px;
     padding: 15px;
@@ -78,6 +79,7 @@ Request
 }
 
 .request__step .content-1:before {
+    animation: opacity-in 500ms forwards;
     content: '1';
 }
 
@@ -86,12 +88,10 @@ Request
 }
 
 .request__step .content-check:before {
+    animation: successCheck ease-in 500ms forwards;
     content: url(../img/icons/check.svg);
     filter: invert(1);
     transform: translate(1px, 3px) scale(0.2);
-
-    animation: successIcon ease-in 200ms forwards;
-    
 }
 
 .request__step:first-child {
@@ -99,7 +99,6 @@ Request
 }
 
 .request__step {
-
     & span {
         align-items: center;
         color: $color-gray-40;
@@ -109,6 +108,7 @@ Request
         justify-content: center;
         letter-spacing: 0;
         text-align: center;
+        transition: color 3s ease-out;
         width: 28px;
     }
 
@@ -133,7 +133,7 @@ Request
 
 .request__step--active {
    & span {
-        animation: activeDoro 500ms forwards;
+        color: #CE4779;    
     }
 
     & small {
@@ -141,21 +141,9 @@ Request
     }
 }
 
-.request__step--active__reverse {
-    & span {
-         
-         animation: activeDoro 500ms forwards reverse;
-     }
- 
-     & small {
-         color: $color-gray-40;
-     }
- }
-
 .request__step--success {
-
     & span {
-        animation: successDoro 500ms forwards;
+        animation: successStep ease-in 500ms forwards;
     }
 
     & small {
@@ -163,10 +151,9 @@ Request
     }
 }
 
-.request__step--success__reverse {
-
+.request__step--success-reverse {
     & span {
-        animation: successDoro 500ms forwards reverse 500ms;
+        animation: successStep ease-in 500ms forwards reverse 500ms;
     }
 
     & small {
@@ -181,37 +168,52 @@ Request
     margin-left: 15px;
     position: absolute;
     width: 85px;
-    
 }
 
-.request__progress--active {
-    border-color: $color-success;
-    animation: activeProgress 500ms forwards;
+.progress__success {
+    background-color: $color-success;
+    height: 2px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: -1px;
+    width: 0;
 }
 
-.request__progress--active__reverse {
-    border-color: initial;
-    animation: activeProgress 500ms forwards reverse;
+.request__progress--full {
+    width: 85px;
 }
 
-.opacity-0 {
-    opacity: 0;
+.request__progress--success {
+    animation: successProgress 500ms ease-in forwards;
 }
 
+.request__progress--success-reverse {
+    animation: successProgress 500ms ease-out reverse;
+}
 
-@keyframes activeProgress {
+.successRequest {
+    padding: 15px;
+}
+
+/*
+================================================================================
+Request animations
+================================================================================
+*/
+
+
+@keyframes successProgress {
     0% {
-        opacity: 0;
-        width: 0px;
+        width: 0;
     }
 
     100% {
-        opacity: 1;
         width: 85px;
     }
 }
 
-@keyframes successDoro {
+@keyframes successStep {
     0% {
         color: #CE4779;
     }
@@ -221,17 +223,7 @@ Request
     }
 }
 
-@keyframes activeDoro {
-    0% {
-        color: $color-gray-40;
-    }
-
-    100% {
-        color: #CE4779;
-    }
-}
-
-@keyframes successIcon {
+@keyframes successCheck {
     0% {
         opacity: 0;
         transform: scale(0.2);
@@ -246,9 +238,4 @@ Request
         opacity: 1;
         transform: scale(0.6);
     }
-}
-
-
-.successRequest {
-    padding: 15px;
 }
