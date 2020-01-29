@@ -18,6 +18,19 @@ def save(request):
             "descripcion": data_request['descripcion'],
         }
 
+        for i in data_request['files']:
+
+            index = i.split("_")[1];
+
+            dataFile = { "descripcion": data_request['files'][i] }
+
+            responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
+
+            if responseFiles.status_code == 422:
+                errors={}
+                errors.update({i: 'Asegúrese de que este campo no tenga más de 80 caracteres.' })
+                return JsonResponse({'errors':errors}, status = 422)
+
         response = validateUpdateRequest(data_request, data)
         sendEmail(response.json())
 
@@ -57,7 +70,6 @@ def deleteRequest(request):
 def validateUpdateRequest(data_request, data):
     getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
 
-
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
             responseUpdate = requests.put(
@@ -67,7 +79,7 @@ def validateUpdateRequest(data_request, data):
         else:
             return {'solicitud': 'No se puede modificar una solicitud ya enviada.'},
     else:
-        return {'solicitud': 'no se encontró registro.'}
+        return {'solicitud': 'No se encontró el registro.'}
 
     return responseUpdate
 
