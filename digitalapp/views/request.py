@@ -9,9 +9,13 @@ from django.template.loader import render_to_string
 
 
 def save(request):
-    data_request = json.loads(request.body.decode('utf-8'))
+    data_request  = json.loads(request.body.decode('utf-8'))
+    data = {
+        'descripcion' = data_request['descripcion']
+    }
 
     if data_request['descripcion'] == '':
+
         return JsonResponse({'errors': {'descripcion': ['Este campo no puede estar en blanco.']}}, status=422)
 
         for i in data_request['files']:
