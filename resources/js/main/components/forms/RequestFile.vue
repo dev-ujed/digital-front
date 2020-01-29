@@ -22,17 +22,17 @@
                     
                     <input :id="id" :name="name"
                         class="form-field"
-                        :class="{ 'form-field--invalid' : hasErrors }"
+                        :class="{ 'form-field--invalid' : hasErrors}"
                         :type="type"
-                        :maxlength="maxlength"
                         :value="value"
                         :aria-invalid="hasErrors ? 'true' : null"
                         :aria-describedBy="describedBy || null"
+                        v-model="$parent.fields.files[name]"
                         @input="$emit('input', $event.target.value)"
                     >
 
                     <ul v-if="hasErrors" :id="id" class="error">
-                        <li v-for="(error, i) in errors" :key="i" v-text="error"></li>
+                        <li v-for="(error, i) in $parent.errors" :key="i" v-text="error"></li>
                     </ul>
 
                     <small class="color-gray-60">Máximo 80 caracteres</small>
@@ -73,10 +73,11 @@
              * @return {boolean}
              */
             hasErrors() {
+                
                 // Remove the "[]" ending from multiplevalue fields, like "images[]".
                 const fieldName = this.name.replace(/\[]$/, '');
 
-                return !! this.errors.length;
+                return !! Object.keys(this.$parent.errors).length && this.name in this.$parent.errors;
             }
         },
         methods: {
@@ -95,6 +96,7 @@
                         
                     })
                     .catch(error => {
+                        
                         console.log(error)
                     })
             }
