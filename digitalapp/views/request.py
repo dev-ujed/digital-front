@@ -34,11 +34,16 @@ def saveuser(request):
         "apellido_paterno": data_request['apellido_paterno'],
         "correo": data_request['correo'],
     }
-    customMessage = {
-        'telefono': 'Ingresa un teléfono o una extension valida',
-        'extension': '',
-        'ures': 'Selecciona una opción.'
-    }
+    customMessage = {}
+
+    if data_request['ures'] == '':
+        customMessage.update({'ures': 'Selecciona una opción.'})
+
+    if data_request['telefono'] == '' and data_request['extension'] == '':
+        customMessage.update({
+            'telefono': 'Ingresa un teléfono o una extension valida',
+            'extension': '',
+        })
 
     data = validatenulls(data_request, datainitial, datanull)
 
