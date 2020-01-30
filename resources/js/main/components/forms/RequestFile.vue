@@ -5,7 +5,7 @@
                 <slot paperclip="paperclip" name="paperclip" ></slot>
                     <i> {{ $parent.names[name] }}    </i>
                 </p>
-            
+
                 <button type="button" class="btn--without-style color-danger p-0 card__button" @click="remove(name)">
                     <slot name="x"></slot>
                 </button>
@@ -16,10 +16,10 @@
                 </div>
                 <div class="form-control m-0">
                     <label :for="name" class="size-caption">
-                        Descripción del archivo 
+                        Descripción del archivo
                         <small class="color-gray-60"><i>Opcional</i></small>
                     </label>
-                    
+
                     <input :id="id" :name="name"
                         class="form-field"
                         :class="{ 'form-field--invalid' : hasErrors}"
@@ -29,10 +29,11 @@
                         :aria-describedBy="describedBy || null"
                         v-model="$parent.fields.files[name]"
                         @input="$emit('input', $event.target.value)"
+                        :maxlength="80"
                     >
 
                     <ul v-if="hasErrors" :id="id" class="error">
-                        <li v-for="(error, i) in $parent.errors" :key="i" v-text="error"></li>
+                        <li v-for="(error, i) in $parent.errors[name]" :key="i" v-text="error"></li>
                     </ul>
 
                     <small class="color-gray-60">Máximo 80 caracteres</small>
@@ -73,7 +74,7 @@
              * @return {boolean}
              */
             hasErrors() {
-                
+
                 // Remove the "[]" ending from multiplevalue fields, like "images[]".
                 const fieldName = this.name.replace(/\[]$/, '');
 
@@ -82,26 +83,26 @@
         },
         methods: {
             remove(el) {
-                 
+
                 var formData = new FormData();
                 formData.append("file", el.split('_')[1]);
-                
+
                 window.axios
                     .post('eliminar-archivo', formData)
                     .then(response => {
-                        
+
                         this.$delete(this.$parent.fields.files, el);
                         this.$delete(this.$parent.thumbs, el);
                         this.$delete(this.$parent.names, el);
-                        
+
                     })
                     .catch(error => {
-                        
+
                         console.log(error)
                     })
             }
         },
-        mounted() {        
+        mounted() {
             console.log(this.$parent.thumbs);
         }
     }
