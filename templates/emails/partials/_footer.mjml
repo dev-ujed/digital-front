@@ -1,0 +1,25 @@
+<mj-section padding-bottom="30px" padding-top="30px">
+    <mj-column width="66%">
+        <mj-text font-size="14px" color="#3A4148" padding-right="0px" padding-left="0px" padding-top="0px" >
+            <p class="paragraph color-gray-60 font-size-12 footer-p-align" font-family="helvetica">
+                <b>Dirección de Transformación Digital UJED </b> <br>
+                Bulevar Guadiana Km 5.5. s/n C.P. 34120. Durango, Dgo. México. <br>
+                Tel: (618) 123 45 67. E-mail: <a href="#" class="p-0 link--email" font-family="helvetica">digital@ujed.mx</a>. 
+                Sitio web: <a href="#" class="p-0 link--email" font-family="helvetica">digital.ujed.mx</a>
+            </p>
+        </mj-text>
+    </mj-column>
+
+    <mj-column width="33%">
+        <mj-image src="/static/img/email/logo-correo.png"
+            fluid-on-mobile="false"
+            alt="Dirección de Transformación Digital"
+            padding-bottom="0"
+            padding-top="0"
+            padding-right="0"
+            width="100px"
+            align="center"
+            css-class="footer-img-align"               
+        />
+    </mj-column>
+</mj-section>
