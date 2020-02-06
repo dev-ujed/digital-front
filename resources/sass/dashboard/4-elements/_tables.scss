@@ -1,0 +1,41 @@
+/*
+===============================================================================
+Tables
+===============================================================================
+*/
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: $spacer * 2;
+    margin-top: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+td, th {
+    text-align: left;
+}
+
+td {
+    padding: 0.75em;
+    vertical-align: top;
+}
+
+th {
+    font-weight: $font-weight-bold;
+    padding: 0.5em 0.75em;
+    vertical-align: middle;
+}
+
+tfoot {
+    color: rgba($color-text, 0.6);
+}
+
+tr {
+    border-bottom: 1px solid $color-border;
+
+    thead & {
+        border-bottom: 2px solid $color-gray-darker-3;
+    }
+}

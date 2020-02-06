@@ -1,0 +1,95 @@
+/*
+===============================================================================
+Aspect ratio
+===============================================================================
+*/
+
+.ratio-1-1 {
+    @include ratio-container(1, 1);
+}
+
+.ratio-4-3 {
+    @include ratio-container(4, 3);
+}
+
+.ratio-16-9 {
+    @include ratio-container(16, 9);
+}
+
+
+/*
+===============================================================================
+Box
+===============================================================================
+*/
+
+.box {
+    @include box;
+    background-color: #fff;
+}
+
+
+/*
+===============================================================================
+Container
+===============================================================================
+*/
+
+.container,
+.container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    @include responsive(padding-left, ($gutter / 2), $gutter, 320px, bp(md));
+    @include responsive(padding-right, ($gutter / 2), $gutter, 320px, bp(md));
+    width: 100%;
+}
+
+.container {
+    max-width: $content-max-width;
+}
+
+
+/*
+===============================================================================
+Main
+===============================================================================
+*/
+
+.main {
+    background-color: $color-gray-lighter-5;
+    height: calc(100vh - 60px);
+    overflow: auto;
+    transition: padding-left 200ms linear;
+    width: 100%;
+
+    @include media(1100) {
+        &--has-menu {
+            padding-left: 300px;
+        }
+    }
+}
+
+
+/*
+===============================================================================
+Section
+===============================================================================
+*/
+
+.section {
+    padding-bottom: $spacer * 4;
+    padding-top: $spacer * 4;
+
+    &--bordered {
+        border-bottom: 1px solid $color-border;
+        border-top: 1px solid $color-border;
+    }
+
+    &--light {
+        background-color: $color-gray-lighter-4;
+    }
+
+    &--lighter {
+        background-color: $color-gray-lighter-5;
+    }
+}
