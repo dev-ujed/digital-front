@@ -1,3 +1,6 @@
-<header>
-Header
-</header>
+<dashboard-menu v-cloak
+    :is-loading="isLoading"
+    :menu-is-visible="menuIsVisible"
+    @toggle-menu="toggleMenu"
+>
+</dashboard-menu>
