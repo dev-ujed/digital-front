@@ -1,0 +1,87 @@
+/*
+===============================================================================
+Margin
+===============================================================================
+*/
+
+@each $prefix, $min-width in breakpoints-by-prefix() {
+    @include media($min-width) {
+
+        @for $i from 0 through 4 {
+            $size: if($i == 0, 0, $spacer * $i);
+
+            #{$prefix}m-#{$i}  { margin: $size !important; }
+            #{$prefix}mb-#{$i} { margin-bottom: $size !important; }
+            #{$prefix}ml-#{$i} { margin-left: $size !important; }
+            #{$prefix}mr-#{$i} { margin-right: $size !important; }
+            #{$prefix}mt-#{$i} { margin-top: $size !important; }
+
+            #{$prefix}mx-#{$i} {
+                margin-left: $size !important;
+                margin-right: $size !important;
+            }
+
+            #{$prefix}my-#{$i} {
+                margin-bottom: $size !important;
+                margin-top: $size !important;
+            }
+        }
+
+        #{$prefix}ml-auto {
+            margin-left: auto !important;
+        }
+
+        #{$prefix}mx-auto {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        #{$prefix}my-auto {
+            margin-bottom: auto !important;
+            margin-top: auto !important;
+        }
+    }
+}
+
+
+/*
+===============================================================================
+Padding
+===============================================================================
+*/
+
+@each $prefix, $min-width in breakpoints-by-prefix() {
+    @include media($min-width) {
+
+        @each $i in interval(0, 2, 0.5) {
+            $size: if($i == 0, 0, $spacer * $i);
+            $width: escape-decimal($i);
+
+            #{$prefix}p-#{$width}  { padding: $size !important; }
+            #{$prefix}pb-#{$width} { padding-bottom: $size !important; }
+            #{$prefix}pl-#{$width} { padding-left: $size !important; }
+            #{$prefix}pr-#{$width} { padding-right: $size !important; }
+            #{$prefix}pt-#{$width} { padding-top: $size !important; }
+
+            #{$prefix}px-#{$width} {
+                padding-left: $size !important;
+                padding-right: $size !important;
+            }
+
+            #{$prefix}py-#{$width} {
+                padding-bottom: $size !important;
+                padding-top: $size !important;
+            }
+        }
+
+        #{$prefix}px-auto {
+            padding-left: auto !important;
+            padding-right: auto !important;
+        }
+
+        #{$prefix}py-auto {
+            padding-bottom: auto !important;
+            padding-top: auto !important;
+        }
+    }
+}

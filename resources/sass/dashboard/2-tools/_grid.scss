@@ -1,0 +1,14 @@
+/*
+===============================================================================
+Grid
+===============================================================================
+*/
+
+/*
+ * Calculate the margin to offset columns.
+ * Basically the offset calculation from Lost Grid (http://lostgrid.org)
+ * without the !important rule.
+ */
+@mixin grid-offset($fraction) {
+    margin-left: calc(99.9% * (-#{$fraction} * -1) - (#{$gutter} - #{$gutter} * (-#{$fraction} * -1)) + #{$gutter});
+}

@@ -1,0 +1,89 @@
+/*
+===============================================================================
+Border
+===============================================================================
+*/
+
+@each $prefix, $min-width in breakpoints-by-prefix() {
+    @include media($min-width) {
+
+        #{$prefix}b-0  { border: 0 !important; }
+        #{$prefix}bb-0 { border-bottom: 0 !important; }
+        #{$prefix}bl-0 { border-left: 0 !important; }
+        #{$prefix}br-0 { border-right: 0 !important; }
+        #{$prefix}bt-0 { border-top: 0 !important; }
+
+        #{$prefix}b-1  { border: 1px solid $color-border !important; }
+        #{$prefix}bb-1 { border-bottom: 1px solid $color-border !important; }
+        #{$prefix}bl-1 { border-left: 1px solid $color-border !important; }
+        #{$prefix}br-1 { border-right: 1px solid $color-border !important; }
+        #{$prefix}bt-1 { border-top: 1px solid $color-border !important; }
+
+    }
+}
+
+
+/*
+===============================================================================
+Radius
+===============================================================================
+*/
+
+/* Rounded
+============================================================================ */
+
+.rounded {
+    border-radius: $border-radius;
+}
+
+.rounded-bottom {
+    border-bottom-left-radius: $border-radius !important;
+    border-bottom-right-radius: $border-radius !important;
+}
+
+.rounded-left {
+    border-bottom-left-radius: $border-radius !important;
+    border-top-left-radius: $border-radius !important;
+}
+
+.rounded-right {
+    border-bottom-right-radius: $border-radius !important;
+    border-top-right-radius: $border-radius !important;
+}
+
+.rounded-top {
+    border-top-left-radius: $border-radius !important;
+    border-top-right-radius: $border-radius !important;
+}
+
+.rounded-full {
+    border-radius: 9999px !important;
+}
+
+
+/* Squared
+============================================================================ */
+
+.squared {
+    border-radius: 0 !important;
+}
+
+.squared-bottom {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.squared-left {
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.squared-right {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.squared-top {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}

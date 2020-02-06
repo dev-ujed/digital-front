@@ -1,0 +1,49 @@
+/*
+===============================================================================
+Display
+===============================================================================
+*/
+
+@each $prefix, $min-width in breakpoints-by-prefix() {
+    @include media($min-width) {
+
+        #{$prefix}block        { display: block !important; }
+        #{$prefix}hidden       { display: none !important; }
+        #{$prefix}inline       { display: inline !important; }
+        #{$prefix}inline-block { display: inline-block !important; }
+        #{$prefix}flex         { display: flex !important; }
+        #{$prefix}inline-flex  { display: inline-flex !important; }
+        #{$prefix}table        { display: table !important; }
+
+    }
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+.table-fixed {
+    table-layout: fixed;
+}
+
+
+/* Print
+============================================================================ */
+
+/*
+ * Visible for printers.
+ */
+.print\:block {
+    @media print {
+        display: block !important;
+    }
+}
+
+/*
+ * Hidden from printers.
+ */
+.print\:hidden {
+    @media print {
+        display: none !important;
+    }
+}

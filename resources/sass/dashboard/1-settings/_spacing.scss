@@ -1,0 +1,19 @@
+/*
+===============================================================================
+Spacing
+===============================================================================
+*/
+
+/*
+ * The maximum width of a .container element.
+ * A default of 1170 px is provided, which is the sum
+ * of 12 columns of 70 px each with a gutter of 30 px.
+ */
+$content-max-width: 1170px;
+
+/*
+ * Size of the "spacer" unit, which controls margins
+ * and spacing across the framework.
+ * A default value equal to the font size is provided.
+ */
+$spacer: $font-size / $rem-size * 1rem !default;

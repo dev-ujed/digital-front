@@ -22,121 +22,121 @@
 // Settings
 // =============================================================================
 
-@import "1-settings/_spacing";
-@import "1-settings/_breakpoints";
-@import "1-settings/_class-names";
-@import "1-settings/_colors";
-@import "1-settings/_grid";
-@import "1-settings/_radius";
-@import "1-settings/_typography";
-@import "1-settings/_utilities";
+@import "main/1-settings/_spacing";
+@import "main/1-settings/_breakpoints";
+@import "main/1-settings/_class-names";
+@import "main/1-settings/_colors";
+@import "main/1-settings/_grid";
+@import "main/1-settings/_radius";
+@import "main/1-settings/_typography";
+@import "main/1-settings/_utilities";
 
 
 
 // Tools
 // =============================================================================
 
-@import "2-tools/_functions";
-@import "2-tools/_aspect-ratio";
-@import "2-tools/_button";
-@import "2-tools/_clearfix";
-@import "2-tools/_disabled";
-@import "2-tools/_fluid";
-@import "2-tools/_grid";
-@import "2-tools/_hamburguer";
-@import "2-tools/_media";
-@import "2-tools/_position";
-@import "2-tools/_table-responsive";
-@import "2-tools/_table-striped";
-@import "2-tools/_truncate";
-@import "2-tools/_visually-hidden";
+@import "main/2-tools/_functions";
+@import "main/2-tools/_aspect-ratio";
+@import "main/2-tools/_button";
+@import "main/2-tools/_clearfix";
+@import "main/2-tools/_disabled";
+@import "main/2-tools/_fluid";
+@import "main/2-tools/_grid";
+@import "main/2-tools/_hamburguer";
+@import "main/2-tools/_media";
+@import "main/2-tools/_position";
+@import "main/2-tools/_table-responsive";
+@import "main/2-tools/_table-striped";
+@import "main/2-tools/_truncate";
+@import "main/2-tools/_visually-hidden";
 
 
 
 // Generic
 // =============================================================================
 
-@import "3-generic/_box-sizing";
-@import "3-generic/_normalize";
-@import "3-generic/_base";
+@import "main/3-generic/_box-sizing";
+@import "main/3-generic/_normalize";
+@import "main/3-generic/_base";
 
 
 
 // Elements
 // =============================================================================
 
-@import "4-elements/_page";
-@import "4-elements/_buttons";
-@import "4-elements/_forms";
-@import "4-elements/_lists";
-@import "4-elements/_text";
+@import "main/4-elements/_page";
+@import "main/4-elements/_buttons";
+@import "main/4-elements/_forms";
+@import "main/4-elements/_lists";
+@import "main/4-elements/_text";
 
 
 
 // Objects
 // =============================================================================
 
-@import "5-objects/_box";
-@import "5-objects/_container";
-@import "5-objects/_form-control";
-@import "5-objects/_grid";
-@import "5-objects/_list-bare";
-@import "5-objects/_list-inline";
-@import "5-objects/_list-spaced";
-@import "5-objects/_ratio";
-@import "5-objects/_table-scrollable";
+@import "main/5-objects/_box";
+@import "main/5-objects/_container";
+@import "main/5-objects/_form-control";
+@import "main/5-objects/_grid";
+@import "main/5-objects/_list-bare";
+@import "main/5-objects/_list-inline";
+@import "main/5-objects/_list-spaced";
+@import "main/5-objects/_ratio";
+@import "main/5-objects/_table-scrollable";
 
 
 
 // Support
 // =============================================================================
 
-@import "6-support/_animations";
-@import "6-support/_text";
-@import "6-support/_validation-icons";
+@import "main/6-support/_animations";
+@import "main/6-support/_text";
+@import "main/6-support/_validation-icons";
 
 
 
 // Components
 // =============================================================================
 
-@import "7-components/_alerts";
-@import "7-components/_buttons";
-@import "7-components/_card";
-@import "7-components/_checkbox";
-@import "7-components/_footer";
-@import "7-components/_form-field";
-@import "7-components/_form-file";
-@import "7-components/_forms";
-@import "7-components/_navigation";
-@import "7-components/_links";
-@import "7-components/_messages";
-@import "7-components/_radio";
-@import "7-components/_request";
-@import "7-components/_section";
-@import "7-components/_tables";
-@import "7-components/_wrappers";
+@import "main/7-components/_alerts";
+@import "main/7-components/_buttons";
+@import "main/7-components/_card";
+@import "main/7-components/_checkbox";
+@import "main/7-components/_footer";
+@import "main/7-components/_form-field";
+@import "main/7-components/_form-file";
+@import "main/7-components/_forms";
+@import "main/7-components/_navigation";
+@import "main/7-components/_links";
+@import "main/7-components/_messages";
+@import "main/7-components/_radio";
+@import "main/7-components/_request";
+@import "main/7-components/_section";
+@import "main/7-components/_tables";
+@import "main/7-components/_wrappers";
 
 
 
 // Utilities
 // =============================================================================
 
-@import "8-utilities/_print";
-@import "8-utilities/_background";
-@import "8-utilities/_border";
-@import "8-utilities/_display";
-@import "8-utilities/_flex";
-@import "8-utilities/_float";
-@import "8-utilities/_margin";
-@import "8-utilities/_max-width";
-@import "8-utilities/_overflow";
-@import "8-utilities/_padding";
-@import "8-utilities/_position";
-@import "8-utilities/_shadow";
-@import "8-utilities/_svg";
-@import "8-utilities/_table-layout";
-@import "8-utilities/_width";
-@import "8-utilities/_text";
-@import "8-utilities/_vertical-alignment";
-@import "8-utilities/_visibility";
+@import "main/8-utilities/_print";
+@import "main/8-utilities/_background";
+@import "main/8-utilities/_border";
+@import "main/8-utilities/_display";
+@import "main/8-utilities/_flex";
+@import "main/8-utilities/_float";
+@import "main/8-utilities/_margin";
+@import "main/8-utilities/_max-width";
+@import "main/8-utilities/_overflow";
+@import "main/8-utilities/_padding";
+@import "main/8-utilities/_position";
+@import "main/8-utilities/_shadow";
+@import "main/8-utilities/_svg";
+@import "main/8-utilities/_table-layout";
+@import "main/8-utilities/_width";
+@import "main/8-utilities/_text";
+@import "main/8-utilities/_vertical-alignment";
+@import "main/8-utilities/_visibility";

@@ -1,0 +1,109 @@
+/*
+===============================================================================
+Borders
+===============================================================================
+*/
+
+.table-bordered {
+    td,
+    th {
+        border: 1px solid $color-border;
+    }
+
+    tr {
+        border: 0;
+    }
+}
+
+.table-borderless {
+    tbody tr {
+        border: 0;
+    }
+}
+
+
+/*
+===============================================================================
+Colors
+===============================================================================
+*/
+
+.has-dark-header,
+.has-light-header,
+.has-primary-header {
+    thead tr {
+        border-bottom: 0;
+    }
+
+    thead th {
+        font-weight: $font-weight-normal;
+    }
+
+    &:not(.table-tight) thead th {
+        padding-bottom: 0.75em;
+        padding-top: 0.75em;
+    }
+}
+
+.has-dark-header {
+    thead {
+        background-color: $color-gray-darker-5;
+        color: #fff;
+    }
+}
+
+.has-light-header {
+    thead {
+        background-color: $color-gray-lighter-4;
+    }
+}
+
+.has-primary-header {
+    thead {
+        background-color: $color;
+        color: get-contrasting-text($color);
+    }
+}
+
+.table-hoverable {
+    tbody tr {
+        transition: background-color 150ms ease-out;
+
+        &:hover {
+            background-color: $color-blue-lighter-5;
+        }
+    }
+}
+
+.table-stripped {
+    tbody > :nth-child(even) {
+        background-color: $color-gray-lighter-5;
+    }
+}
+
+
+/*
+===============================================================================
+Responsive
+===============================================================================
+*/
+
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    overflow-x: auto;
+}
+
+
+/*
+===============================================================================
+Spacing
+===============================================================================
+*/
+
+.table-tight {
+    td,
+    th {
+        padding: 0.4em;
+    }
+}
