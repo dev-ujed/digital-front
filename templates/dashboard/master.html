@@ -12,15 +12,26 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css" />
 </head>
 <body>
-    <div id="dashboard">
-        {% include "dashboard/header.html" %}
 
-        {% block content %}
-        {% endblock %}
+    <div id="dashboard" v-cloak>
+        {% include "dashboard/user-bar.html" %}
+    
+        <div class="flex">
+            {% include "dashboard/header.html" %}
+    
+            <main id="main" class="main" :class="{ 'main--has-menu' : menuIsVisible }" role="main">
+    
+                {% block content %}
 
+
+                {% endblock %}
+
+            </main>
+        </div>
     </div>
-        <!-- Scripts -->
-        <script src="{% static 'js/vendor.js' %}"></script>
-        <script src="{% static 'js/admin.js' %}"></script>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/vendor.js' %}"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
 </body>
 </html>
