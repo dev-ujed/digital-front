@@ -9,33 +9,31 @@ from django.template.loader import render_to_string
 
 
 def save(request):
-    data_request  = json.loads(request.body.decode('utf-8'))
+    data_request = json.loads(request.body.decode('utf-8'))
+    errors = {}
     data = {
-        'descripcion' = data_request['descripcion']
+        'descripcion' : data_request['descripcion']
     }
 
     if data_request['descripcion'] == '':
+        errors.update({'descripcion' : ['Este campo no puede estar en blanco.']})
 
-        return JsonResponse({'errors': {'descripcion': ['Este campo no puede estar en blanco.']}}, status=422)
+    for i in data_request['files']:
+        index = i.split("_")[1];
+        dataFile = { "descripcion": data_request['files'][i] }
 
-        for i in data_request['files']:
+        responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
 
-            index = i.split("_")[1];
+        if responseFiles.status_code == 422:
+            errors.update({i: ['Asegúrese de que este campo no tenga más de 80 caracteres.'] })
 
-            dataFile = { "descripcion": data_request['files'][i] }
+    if bool(errors):
+        return JsonResponse({'errors':errors}, status = 422)
 
-            responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
-
-            if responseFiles.status_code == 422:
-                errors={}
-                errors.update({i: 'Asegúrese de que este campo no tenga más de 80 caracteres.' })
-                return JsonResponse({'errors':errors}, status = 422)
-
-        response = validateUpdateRequest(data_request, data)
-        sendEmail(response.json())
+    response = validateUpdateRequest(data_request, data)
+    sendEmail(response.json())
 
     return displayResponse(response)
-
 
 def saveuser(request):
     data_request = json.loads(request.body.decode('utf-8'))

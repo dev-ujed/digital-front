@@ -80,6 +80,7 @@
                     descripcion:'',
                     files: {},
                 },
+                errors : {},
                 thumbs: [],
                 names: [],
             };
@@ -127,7 +128,8 @@
                     descripcion:'',
                     id:'',
                     files: {},
-                };
+                },
+                this.errors = {}
             }
         },
         mounted() {
