@@ -1,0 +1,27 @@
+<mj-section padding-bottom="30px" padding-top="70px">
+    <mj-group>
+        <mj-column width="66%" >
+            <mj-image src="/static/img/email/logo-correo.png"
+                fluid-on-mobile="false"
+                alt="Dirección de Transformación Digital"
+                padding-bottom="0"
+                padding-top="0"
+                width="166px"
+                align="left"
+            />
+        </mj-column>
+
+        <mj-column width="33%">
+            <mj-table padding="0px" padding-right="25px" width="80px" align="right">
+                <tr align="right">
+                    <td align="right"> <a href="https://twitter.com/RecastAI">
+                        <img width="22px" style="margin-top: 20px;" src="/static/img/email/mail.png" />
+                    </a></td>
+                    <td align="right"><a href="https://www.facebook.com/recastAI">
+                        <img width="22px" style="margin-top: 20px; margin-left: 5px;" src="/static/img/email/twitter.png" />
+                    </a></td>
+                </tr>
+            </mj-table>
+        </mj-column>
+    </mj-group>
+</mj-section>

@@ -1,0 +1,83 @@
+{% load mjml %}
+<mjml>
+    <mj-head>
+        <mj-title>Tu solicitud se ha registrado</mj-title>
+        <mj-include path="./partials/_styles.mjml" />
+        <mj-breakpoint width="600px"/>
+    </mj-head>
+
+    <mj-body width="600px" background-color="#F0F2F3" >
+        <mj-include path="./partials/_header.mjml" />
+
+        <mj-wrapper css-class="box" padding="0px">
+            
+            <mj-section background-color="#E6446D" padding-top="8px" padding-bottom="0px" border-radius="5px">
+                <mj-column background-color="#fff" padding-bottom="20px">
+
+                    <mj-image src="/static/img/email/icon-mail-ticket.png"
+                        fluid-on-mobile="false"
+                        padding-bottom="0"
+                        padding-top="40px"
+                        width="75px"
+                        align="center"     
+                    />
+
+                    <mj-text font-size="14px" color="#3A4148">
+                        <p class="title" font-family="helvetica">Tu solicitud se ha registrado</p>
+
+                        <p class="paragraph" font-family="helvetica">¡Hola, {{ name }}! Te informamos que tu solicitud ha sido creada con éxito y se le ha asignado el siguiente folio:</p>
+
+                        <p class="folio" font-family="helvetica">{{ folio }}</p>
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="0" background-color="#fff">
+                <mj-column>
+
+                    <mj-text font-size="14px" color="#3A4148" padding-bottom="0" padding-top="0" >
+                        <p class="paragraph" font-family="helvetica">Si fuera necesario, nos comunicaremos contigo vía telefónica o por correo electrónico para solicitar más información.</p>
+                        <p class="paragraph" font-family="helvetica">Puedes revisar el estado y avance de tu solicitud en cualquier momento utilizando el siguiente botón:</p>
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+
+            <mj-section  background-color="#fff">
+                <mj-column>
+
+                    <mj-button width="208px" background-color="#3399CC" font-size="15px" inner-padding="14px 26px" href="">
+                        Consulta el estado
+                    </mj-button>
+
+                    <mj-text font-size="14px" color="#3A4148" align="center">
+                        
+                        <p class="paragraph color-gray-60" font-family="helvetica">O accediendo a este enlace: <br>
+                            <a href="https://digital.ujed.mx/consultar-solicitud/xou2ubhci1jjnixpceowumfszbxl1vmz" class="link" font-family="helvetica">https://digital.ujed.mx/consultar-solicitud/xou2ubhci1jjnixpceowumfszbxl1vmz</a>
+                        </p> 
+                        
+                    </mj-text>
+
+
+                </mj-column>
+            </mj-section>
+            
+            <mj-section padding-top="0" padding-bottom="15px" background-color="#fff" border-radius="0px 0px 5px 5px">
+                <mj-column >
+
+                    <mj-text font-size="14px" color="#3A4148">
+                        <p class="paragraph" font-family="helvetica">Cuando hayamos concluido tu solicitud te enviaremos un correo electrónico para notificarte. 
+                        Si tienes alguna duda puedes contactarnos a través de <a href="#" class="p-0 link" font-family="helvetica">nuestro sitio web</a> 
+                        o al teléfono que aparece al final de este correo.</p>
+
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-include path="./partials/_footer.mjml" />
+    </mj-body>
+</mjml>
+{% endmjml %}
