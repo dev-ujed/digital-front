@@ -1,0 +1,91 @@
+/*
+===============================================================================
+Control
+===============================================================================
+*/
+
+.form-control {
+    margin-bottom: $spacer * 1.5;
+    position: relative;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+/*
+===============================================================================
+Field
+===============================================================================
+*/
+
+.form-field {
+    border-radius: $border-radius;
+    padding: 0.6em;
+    position: relative;
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+    width: 100%;
+
+    &:focus {
+        border-color: $color-blue-lighter-2;
+        box-shadow: 0 0 3px $color-blue-lighter-3;
+    }
+}
+
+select.form-field {
+    appearance: none;
+
+    &:not([size]):not([multiple]) {
+        background-image: url(icon-caret());
+        background-position: right 0.5em center;
+        background-repeat: no-repeat;
+    }
+}
+
+
+/*
+===============================================================================
+Validation icons
+===============================================================================
+*/
+
+.has-check,
+.has-warning {
+    background-position: right 0.5em top;
+    background-repeat: no-repeat;
+    padding-right: 2.2em;
+
+    &.form-field {
+        background-position-y: 0.45em;
+    }
+
+    &[type="file"] {
+        background-position-y: 0.6em;
+    }
+}
+
+.has-check {
+    background-image: url(icon-check());
+}
+
+.has-warning {
+    background-image: url(icon-warning());
+}
+
+
+select:not([size]):not([multiple]) {
+    &.has-check,
+    &.has-warning {
+        background-position: right 0.5em center, right 2em center;
+        padding-right: 4em;
+    }
+
+    &.has-check {
+        background-image: url(icon-caret()), url(icon-check());
+    }
+
+    &.has-warning {
+        background-image: url(icon-caret()), url(icon-warning());
+    }
+}

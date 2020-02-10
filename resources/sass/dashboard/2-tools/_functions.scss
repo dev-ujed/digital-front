@@ -1,0 +1,272 @@
+/*
+===============================================================================
+Color
+===============================================================================
+*/
+
+/*
+ * Return the level of brightness of a color.
+ * Algorithm from https://www.w3.org/TR/AERT#color-contrast
+ */
+@function get-brightness($color) {
+    @return ((red($color) * 299) + (green($color) * 587) + (blue($color) * 114)) / 1000;
+}
+
+/*
+ * Return the color that provides more contrast for the given background.
+ */
+@function get-contrasting-text($background, $dark-text: $color-text, $light-text: #fff) {
+    @return if(get-brightness($background) > 125, $dark-text, $light-text);
+}
+
+/*
+ * Escape the number sign (#) from an hexadecimal color code.
+ * Used for background svg images.
+ */
+@function escape-hex($color) {
+    $color-string: $color + "";
+    $already-escaped: str-slice($color-string, 1, 3) == "%23";
+
+    @if $already-escaped {
+        @return $color;
+    }
+    @else if str-index($color-string, "#") == 1 {
+        @return "%23" + str-slice($color-string, 2);
+    }
+    @else {
+        @return "%23" + $color-string;
+    }
+}
+
+
+/*
+===============================================================================
+Icons
+===============================================================================
+*/
+
+@function icon-arrow($size: 20, $width: 10, $color: $color-gray-lighter-5) {
+    @return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 100 100'><path fill='none' stroke='#{escape-hex($color)}' stroke-width='#{$width}' stroke-linejoin='round' d='M78.3 36L50 64 21.8 36'/></svg>";
+}
+
+@function icon-caret($size: 20, $color: $color-gray-darker-3) {
+    @return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 100 100'><path fill='#{escape-hex($color)}' d='M78.3 36L50 64 21.8 36'/></svg>";
+}
+
+@function icon-check($size: 20, $color: $color-success) {
+    @return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 100 100'><path fill='none' stroke='#{escape-hex($color)}' stroke-width='13' stroke-miterlimit='10' d='M15.3 53.6L36 74.3l48.7-48.6'/></svg>";
+}
+
+@function icon-search($size: 20, $color: $color-gray) {
+    @return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 24 24' fill='none' stroke='#{escape-hex($color)}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'><circle cx='11' cy='11' r='8'></circle><line x1='21' y1='21' x2='16.65' y2='16.65'></line></svg>";
+}
+
+@function icon-warning($size: 20, $color: lighten($color-warning, 10%)) {
+    @return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='#{$size}' height='#{$size}' viewBox='0 0 100 100'><path fill='#{escape-hex($color)}' d='M89.54 84.27c-.02.03-.04.05 0 0zm.7-9.53l-32.4-56.1c-.9-1.56-1.72-3.16-3.26-4.2-3.72-2.5-8.8-1.58-11.27 2.2-.6.95-29.12 50.23-33.75 58.5-2.06 3.68-.83 8.8 3 10.82 1.74 1 3.58 1.04 5.5 1.04h65.2c2.43 0 4.7-.9 6.3-2.73 2.38-2.73 2.48-6.48.72-9.53zm-36.54.38c-.88.88-2.12 1.32-3.7 1.32-1.62 0-2.87-.43-3.76-1.3-.9-.85-1.33-2.06-1.33-3.62 0-1.62.46-2.85 1.3-3.68.9-.83 2.16-1.24 3.8-1.24 1.6 0 2.86.42 3.74 1.27.88.85 1.32 2.07 1.32 3.65 0 1.52-.45 2.72-1.34 3.6zm-.14-13.5H46.5l-1.47-28.26h10l-1.47 28.27zm35.98 22.65'/></svg>";
+}
+
+
+/*
+===============================================================================
+Interval
+===============================================================================
+*/
+
+/*
+ * Return a list of numbers within the specified range
+ * where each value is incremented by the given value.
+ */
+@function interval($start, $end, $increment-by: 1) {
+    $list: ();
+
+    @while $start <= $end {
+        $list: append($list, $start);
+        $start: $start + $increment-by;
+    }
+
+    @return $list;
+}
+
+
+/*
+===============================================================================
+Responsive
+===============================================================================
+*/
+
+/*
+ * Return the size value for a registered breakpoint.
+ * The value is returned in 'em' by default. 'px' and 'unitless' options are available.
+ */
+@function bp($name, $unit: em) {
+    @if not map-has-key($breakpoints, $name) {
+        @error "The breakpoint \"#{$name}\" is not registered."
+    }
+
+    $value: map-get($breakpoints, $name);
+
+    @if ($unit == unitless) {
+        @return $value;
+    }
+
+    @if ($unit == px) {
+        @return #{$value}px;
+    }
+
+    @if ($unit == em) {
+        @return em($value);
+    }
+
+    @error "The unit \"#{$unit}\" is not supported in \"bp()\" function.";
+}
+
+/*
+ * Return a list of the registered breakpoints with the appropriate prefix
+ * to build responsive classes.
+ */
+@function breakpoints-by-prefix {
+    $prefix-list: ();
+
+    @each $breakpoint, $min-width in join(null, $breakpoints) {
+        $prefix: if($breakpoint == null, ".", ".#{$breakpoint}\\:");
+        $prefix-list: join($prefix-list, ($prefix: $min-width));
+    }
+
+    @return $prefix-list;
+}
+
+
+/*
+ * Computes a CSS calc function that betweens a value from
+ * A to B over viewport-width A to viewport-width B.
+ * Requires a media query to cap the value at B.
+ * https://css-tricks.com/between-the-lines/
+ */
+@function value-between($from, $to, $from-width, $to-width) {
+    $slope: strip-units($to - $from) / strip-units($to-width - $from-width);
+    $base: $from - $slope * strip-units($from-width);
+
+    @return calc(#{$base} + #{100vw * $slope});
+}
+
+
+/*
+===============================================================================
+Strings
+===============================================================================
+*/
+
+/*
+ * Return a valid class name for a number with decimals.
+ * Example: "1.5" => "1\.5".
+ */
+@function escape-decimal($number) {
+    $number: $number + "";
+    $index: str-index($number, ".");
+
+    @if ($index == null) {
+        @return $number;
+    }
+
+    $first: str-slice($number, 1, $index - 1);
+    $second: str-slice($number, $index + 1);
+
+    @return #{$first}\.#{$second};
+}
+
+/*
+ * Return a valid class name for a fraction.
+ * Example: "1/12" => "1\/12".
+ */
+@function escape-fraction($fraction) {
+    $fraction: $fraction + "";
+    $index: str-index($fraction, "/");
+    $first: str-slice($fraction, 1, $index - 1);
+    $second: str-slice($fraction, $index + 1);
+
+    @return #{$first}\/#{$second};
+}
+
+/*
+ * Create a list from the values of a fraction.
+ * Example: "1/12" => 1, 12.
+ */
+@function fraction-to-list($fraction) {
+    $fraction: $fraction + "";
+    $index: str-index($fraction, "/");
+    $first: str-slice($fraction, 1, $index - 1);
+    $second: str-slice($fraction, $index + 1);
+
+    @return string-to-number($first), string-to-number($second);
+}
+
+/*
+ * Return the result from a fraction as percentage.
+ * Example: "1/2" => 50%.
+ */
+@function fraction-to-percentage($fraction) {
+    $list: fraction-to-list($fraction);
+
+    @return nth($list, 1) / nth($list, 2) * 100%;
+}
+
+/*
+ * Convert a sass string representation of an integer to a number.
+ * https://hugogiraudel.com/2014/01/15/sass-string-to-number/
+ */
+@function string-to-number($string) {
+    $strings: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+    $numbers:  0   1   2   3   4   5   6   7   8   9;
+    $result: 0;
+
+    @for $i from 1 through str-length($string) {
+        $character: str-slice($string, $i, $i);
+        $index: index($strings, $character);
+
+        @if not $index {
+            @return false;
+        }
+
+        $number: nth($numbers, $index);
+        $result: $result * 10 + $number;
+    }
+
+    @return $result;
+}
+
+
+/*
+===============================================================================
+Unit conversion
+===============================================================================
+*/
+
+/*
+ * Pixels to em conversion.
+ * For media queries only.
+ */
+@function em($value) {
+    @return strip-units($value) / strip-units($rem-size) * 1em;
+}
+
+/*
+ * Em to pixels conversion.
+ * For media queries only.
+ */
+@function px($value) {
+    @return strip-units($value) * $rem-size;
+}
+
+/*
+ * Pixels to rem conversion.
+ */
+@function rem($value) {
+    @return strip-units($value) / strip-units($rem-size) * 1rem;
+}
+
+/*
+ * Return a unitless value.
+ */
+@function strip-units($value) {
+    @return $value / ($value * 0 + 1);
+}

@@ -1,0 +1,32 @@
+/*
+===============================================================================
+Visibility
+===============================================================================
+*/
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+.invisible {
+    visibility: hidden !important;
+}
+
+.visible {
+    visibility: visible !important;
+}
+
+.visually-hidden {
+    @include visually-hidden;
+
+    &--focusable:active,
+    &--focusable:focus {
+        clip: auto;
+        clip-path: none;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        white-space: inherit;
+        width: auto;
+    }
+}

@@ -1,0 +1,22 @@
+/*
+===============================================================================
+Activity
+===============================================================================
+*/
+
+.activity {
+    background: $color-gray-lighter-5;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    margin-bottom: $spacer;
+    padding: $spacer;
+}
+
+.activity__type {
+    color: $color-blue-lighter-1;
+    display: inline-block;
+    font-size: rem(11);
+    letter-spacing: 1px;
+    margin-bottom: 0.3em;
+    text-transform: uppercase;
+}

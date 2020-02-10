@@ -1,0 +1,82 @@
+/*
+===============================================================================
+Button
+===============================================================================
+*/
+
+/*
+ * Button styles.
+ */
+@mixin button($background-color, $text-color: null, $background-over: null) {
+    $default-background-over: get-contrasting-text($background-color, darken($background-color, 5%), lighten($background-color, 5%));
+    $default-text-color: get-contrasting-text($background-color, rgba(0, 0, 0, 0.7), #fff);
+
+    background-color: $background-color;
+    border-color: transparent;
+    color: if($text-color != null, $text-color, $default-text-color);
+    transition: background-color 150ms ease-out;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: if($background-over != null, $background-over, $default-background-over);
+    }
+
+    &:active:not(:disabled) {
+        transform: translate(0, 1px);
+    }
+
+    &:disabled:active,
+    &:disabled:focus,
+    &:disabled:hover {
+        background-color: $background-color;
+    }
+
+    &.btn--loading::after {
+        border-right-color: if($text-color != null, $text-color, $default-text-color);
+        border-top-color: if($text-color != null, $text-color, $default-text-color);
+    }
+}
+
+
+/*
+ * Styles for an "outlined" button.
+ */
+@mixin button-outline($color, $background-over: transparent, $text-over: null) {
+    $color-over: if(get-contrasting-text($color), darken($color, 20%), lighten($color, 20%));
+
+    background-color: transparent;
+    border-color: $color;
+    color: $color;
+    transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $background-over;
+        border-color: if($background-over != transparent, $background-over, $color-over);
+        color: if($text-over != null, $text-over, $color-over);
+    }
+
+    &:active:not(:disabled) {
+        transform: translate(0, 1px);
+    }
+
+
+    &:disabled:active,
+    &:disabled:focus,
+    &:disabled:hover {
+        background-color: transparent;
+        border-color: $color;
+        color: $color;
+    }
+
+    &.btn--loading {
+        background-color: transparent;
+
+        &::after {
+            border-right-color: $color;
+            border-top-color: $color;
+        }
+    }
+}

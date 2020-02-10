@@ -1,0 +1,42 @@
+/*
+===============================================================================
+Typography
+===============================================================================
+*/
+
+$rem-size:               16px !default;
+
+/*
+ * Font family
+ */
+$font-family-sans-serif: "Lato", sans-serif !default;
+$font-family-serif:      serif !default;
+$font-family-monospace:  monospace !default;
+$font-family:            $font-family-sans-serif !default;
+$font-family-headings:   $font-family-sans-serif !default;
+
+/*
+ * Font size
+ */
+$font-size:              15px !default;
+$h1-font-size:           $font-size * 1.6 !default;
+$h2-font-size:           $font-size * 1.4 !default;
+$h3-font-size:           $font-size * 1.55 !default;
+$h4-font-size:           $font-size * 1.25 !default;
+$h5-font-size:           $font-size !default;
+$h6-font-size:           $font-size * 0.8 !default;
+
+/*
+ * Font weight
+ */
+$font-weight-light:      300 !default;
+$font-weight-normal:     400 !default;
+$font-weight-bold:       700 !default;
+$font-weight:            $font-weight-normal;
+
+/*
+ * Line height
+ */
+$line-height:            1.5 !default;
+$line-height-headings:   1.2 !default;
+$baseline:               ($font-size / $rem-size * 1rem) * $line-height !default;

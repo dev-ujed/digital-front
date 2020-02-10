@@ -1,0 +1,109 @@
+/*
+===============================================================================
+Background
+===============================================================================
+*/
+
+.bg-link            { background-color: $color-link; }
+.bg-primary         { background-color: $color; }
+.bg-white           { background-color: #fff; }
+
+// Gray
+.bg-gray            { background-color: $color-gray; }
+.bg-gray-lighter-1  { background-color: $color-gray-lighter-1; }
+.bg-gray-lighter-2  { background-color: $color-gray-lighter-2; }
+.bg-gray-lighter-3  { background-color: $color-gray-lighter-3; }
+.bg-gray-lighter-4  { background-color: $color-gray-lighter-4; }
+.bg-gray-lighter-5  { background-color: $color-gray-lighter-5; }
+.bg-gray-darker-1   { background-color: $color-gray-darker-1; }
+.bg-gray-darker-2   { background-color: $color-gray-darker-2; }
+.bg-gray-darker-3   { background-color: $color-gray-darker-3; }
+.bg-gray-darker-4   { background-color: $color-gray-darker-4; }
+.bg-gray-darker-5   { background-color: $color-gray-darker-5; }
+
+// Blue
+.bg-blue            { background-color: $color-blue; }
+.bg-blue-lighter-1  { background-color: $color-blue-lighter-1; }
+.bg-blue-lighter-2  { background-color: $color-blue-lighter-2; }
+.bg-blue-lighter-3  { background-color: $color-blue-lighter-3; }
+.bg-blue-lighter-4  { background-color: $color-blue-lighter-4; }
+.bg-blue-lighter-5  { background-color: $color-blue-lighter-5; }
+.bg-blue-darker-1   { background-color: $color-blue-darker-1; }
+.bg-blue-darker-2   { background-color: $color-blue-darker-2; }
+.bg-blue-darker-3   { background-color: $color-blue-darker-3; }
+.bg-blue-darker-4   { background-color: $color-blue-darker-4; }
+.bg-blue-darker-5   { background-color: $color-blue-darker-5; }
+
+
+// States
+.bg-info            { background-color: $color-info; }
+.bg-info-lighter    { background-color: $color-info-lighter; }
+.bg-info-darker     { background-color: $color-info-darker; }
+
+.bg-success         { background-color: $color-success; }
+.bg-success-lighter { background-color: $color-success-lighter; }
+.bg-success-darker  { background-color: $color-success-darker; }
+
+.bg-danger          { background-color: $color-danger; }
+.bg-danger-lighter  { background-color: $color-danger-lighter; }
+.bg-danger-darker   { background-color: $color-danger-darker; }
+
+.bg-warning         { background-color: $color-warning; }
+.bg-warning-lighter { background-color: $color-warning-lighter; }
+.bg-warning-darker  { background-color: $color-warning-darker; }
+
+
+/*
+===============================================================================
+Text
+===============================================================================
+*/
+
+.color-default         { color: $color-text; }
+.color-link            { color: $color-link; }
+.color-primary         { color: $color; }
+.color-white           { color: #fff; }
+
+// Gray
+.color-gray            { color: $color-gray; }
+.color-gray-lighter-1  { color: $color-gray-lighter-1; }
+.color-gray-lighter-2  { color: $color-gray-lighter-2; }
+.color-gray-lighter-3  { color: $color-gray-lighter-3; }
+.color-gray-lighter-4  { color: $color-gray-lighter-4; }
+.color-gray-lighter-5  { color: $color-gray-lighter-5; }
+.color-gray-darker-1   { color: $color-gray-darker-1; }
+.color-gray-darker-2   { color: $color-gray-darker-2; }
+.color-gray-darker-3   { color: $color-gray-darker-3; }
+.color-gray-darker-4   { color: $color-gray-darker-4; }
+.color-gray-darker-5   { color: $color-gray-darker-5; }
+
+// Blue
+.color-blue            { color: $color-blue; }
+.color-blue-lighter-1  { color: $color-blue-lighter-1; }
+.color-blue-lighter-2  { color: $color-blue-lighter-2; }
+.color-blue-lighter-3  { color: $color-blue-lighter-3; }
+.color-blue-lighter-4  { color: $color-blue-lighter-4; }
+.color-blue-lighter-5  { color: $color-blue-lighter-5; }
+.color-blue-darker-1   { color: $color-blue-darker-1; }
+.color-blue-darker-2   { color: $color-blue-darker-2; }
+.color-blue-darker-3   { color: $color-blue-darker-3; }
+.color-blue-darker-4   { color: $color-blue-darker-4; }
+.color-blue-darker-5   { color: $color-blue-darker-5; }
+
+
+// States
+.color-info            { color: $color-info; }
+.color-info-lighter    { color: $color-info-lighter; }
+.color-info-darker     { color: $color-info-darker; }
+
+.color-success         { color: $color-success; }
+.color-success-lighter { color: $color-success-lighter; }
+.color-success-darker  { color: $color-success-darker; }
+
+.color-danger          { color: $color-danger; }
+.color-danger-lighter  { color: $color-danger-lighter; }
+.color-danger-darker   { color: $color-danger-darker; }
+
+.color-warning         { color: $color-warning; }
+.color-warning-lighter { color: $color-warning-lighter; }
+.color-warning-darker  { color: $color-warning-darker; }
