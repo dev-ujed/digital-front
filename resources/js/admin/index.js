@@ -1,5 +1,7 @@
 import DashboardMenu from './components/DashboardMenu.vue';
 import UserBar from '../main/components/UserBar.vue';
+import Tabs from './components/tabs/Tabs.vue';
+
 
 (function() {
     /* Base components
@@ -10,8 +12,7 @@ import UserBar from '../main/components/UserBar.vue';
     Vue.component('select-field', require('../main/components/forms/base/SelectField.vue'));
     Vue.component('text-field', require('../main/components/forms/base/TextField.vue'));
     Vue.component('text-area', require('../main/components/forms/base/TextArea.vue'));
-
-
+    Vue.component('tabs-component', Tabs);
     /*
     |------------------------------------------------------------------------
     | Vm
