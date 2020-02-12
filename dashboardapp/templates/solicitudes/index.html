@@ -1,0 +1,134 @@
+{% extends 'dashboard/master.html' %}
+{% load svg %}
+{% block content %}
+    <section class="section mb-16">
+        <div class="fluid-container">
+            <tabs-component class="tabs--sm"
+                :breakpoint="1160"
+                :tabs="{{ statuses }}"
+                :options="{{ statuses }}"
+                :accepts-html="true"
+            >
+                <template slot="panel-received">
+                    <div class="lg:row">
+                        <div class="lg:col-1/3">
+                            <div class="db-panel">
+                                <p class=db-panel__folio>
+                                    #278
+                                </p>
+                                <p class="db-panel__date">
+                                    16 Ene 2020, 14:43 p.m.
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="db-panel__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="db-panel__dd-user">Ahmed Said René Ramos Pulido</span>
+                                        <br><span class="db-panel__dd-ures">Escuelas incorporadas</span>
+                                    </dd>
+
+                                    <dt class="db-panel__dt-title">
+                                        Descripción
+                                    </dt>
+                                    <dd class="db-panel__dd-description">
+                                        Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                    </dd>
+
+                                    <div class="db-panel__attach">
+                                        <span class="db-panel__attach-icon">{% svg 'paperclip' %}</span>
+                                        <span class="db-panel__attach-number">2</span>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="lg:col-1/3">
+                            <div class="db-panel">
+                                <p class=db-panel__folio>
+                                    #278
+                                </p>
+                                <p class="db-panel__title">
+                                    Actualizar sitio FTS
+                                </p>
+                                <p class="db-panel__date">
+                                    16 Ene 2020, 14:43 p.m.
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="db-panel__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="db-panel__dd-user">Ahmed Said René Ramos Pulido</span>
+                                        <br><span class="db-panel__dd-ures">Escuelas incorporadas</span>
+                                    </dd>
+
+                                    <dt class="db-panel__dt-title">
+                                        Descripción
+                                    </dt>
+                                    <dd class="db-panel__dd-description">
+                                        Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="lg:col-1/3">
+                            <div class="db-panel">
+                                <p class=db-panel__folio>
+                                    #278
+                                </p>
+                                <p class="db-panel__date">
+                                    16 Ene 2020, 14:43 p.m.
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="db-panel__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="db-panel__dd-user">Ahmed Said René Ramos Pulido</span>
+                                        <br><span class="db-panel__dd-ures">Escuelas incorporadas</span>
+                                    </dd>
+
+                                    <dt class="db-panel__dt-title">
+                                        Descripción
+                                    </dt>
+                                    <dd class="db-panel__dd-description">
+                                        Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="lg:col-1/3">
+                            <div class="db-panel">
+                                <p class=db-panel__folio>
+                                    #278
+                                </p>
+                                <p class="db-panel__date">
+                                    16 Ene 2020, 14:43 p.m.
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="db-panel__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="db-panel__dd-user">Ahmed Said René Ramos Pulido</span>
+                                        <br><span class="db-panel__dd-ures">Escuelas incorporadas</span>
+                                    </dd>
+
+                                    <dt class="db-panel__dt-title">
+                                        Descripción
+                                    </dt>
+                                    <dd class="db-panel__dd-description">
+                                        Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+
+                </template>
+            </tabs-component>
+        </div>
+    </section>
+
+
+{% endblock %}
