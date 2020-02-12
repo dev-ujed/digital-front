@@ -1,12 +1,12 @@
 <template>
     <transition
-        :enter-active-class="isLoading ? '' : 'dashboard-menu--enter'"
-        :leave-active-class="isLoading ? '' : 'dashboard-menu--leave'"
+        :enter-active-class="isLoading && !mq ? '' : 'dashboard-menu--enter'"
+        :leave-active-class="isLoading  && !mq ? '' : 'dashboard-menu--leave'"
     >
         <nav id="dashboard-menu"
             class="dashboard-menu"
-            :class="{ 'dashboard-menu--visible' : menuIsVisible }"
-            v-show="menuIsVisible"
+            :class="{ 'dashboard-menu--visible' : menuIsVisible && !mq }"
+            v-show="menuIsVisible && !mq"
         >
             <div class="dashboard-menu__overlay" @click="$emit('toggle-menu')"></div>
 
@@ -14,14 +14,15 @@
                 <li class="dashboard-menu__section"
                     :class="{'dashboard-menu__section--active' : activeSection === section.slug }"
                     v-for="section in menu"
-                    @click="activeSection = section.slug"
+                    @click="openSubmenus(section.slug)"
                 >
                     <img class="dashboard-menu__tile" :src="$root.path + '/storage/dashboard/tiles/' + section.tile" alt="">
                     {{ section.name }}
                 </li>
             </ul>
 
-            <div class="dashboard-menu__col-submenus">
+            <div class="dashboard-menu__col-submenus"
+                ref="dashboardSubmenus">
 
                 <dashboard-column v-for="section in menu" :key="section.id"
                     :section="section"
@@ -48,7 +49,8 @@
         data() {
             return {
                 App: window.App,
-                activeSection: ''
+                activeSection: '',
+                mq: false
             };
         },
 
@@ -62,6 +64,7 @@
              * Set active section when module loads.
              */
             setActiveSection() {
+
                 if (this.menu.isArray) {
                     return this.activeSection = this.menu.filter(section => section.active)[0].slug;
                 }
@@ -71,6 +74,34 @@
                         this.activeSection = this.menu[key].slug;
                     }
                 }
+            },
+            openSubmenus(el) {
+                this.activeSection = el;
+
+                if(!this.menuIsVisible) {
+
+                    this.$parent.menuIsVisible = true;
+
+                    this.$refs.dashboardSubmenus.classList.add('dashboard-menu__col-submenus--visible');
+                }
+            }
+        },
+        watch: {
+            menuIsVisible: function() {
+
+                this.mq = this.$parent.mq.matches;
+
+                if (this.menuIsVisible ) {
+
+                    this.$refs.dashboardSubmenus.classList.add('dashboard-menu__col-submenus--show');
+
+                } else if (!this.menuIsVisible ){
+                    this.$refs.dashboardSubmenus.classList.remove('dashboard-menu__col-submenus--show');
+                    this.$refs.dashboardSubmenus.classList.remove('dashboard-menu__col-submenus--visible');
+                }
+            },
+            mq: function() {
+                return this.$parent.mq.matches;
             }
         }
     };
