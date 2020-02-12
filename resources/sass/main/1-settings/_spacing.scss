@@ -7,3 +7,11 @@
 // and general spacing across the framework.
 
 $spacer: 1rem !default;
+
+
+/*
+ * The maximum width of a .container element.
+ * A default of 1170 px is provided, which is the sum
+ * of 12 columns of 70 px each with a gutter of 30 px.
+ */
+ $content-max-width: 1170px;

@@ -7,7 +7,7 @@ Triangle
 /**
  * Create a triangle shape in generated content.
  */
-@mixin triangle($direction: bottom, $color: $color-text, $size: 6px) {
+ @mixin triangle($direction: bottom, $color: $color-text, $size: 6px) {
     $triangle-direction: (
         bottom: top,
         left:   right,

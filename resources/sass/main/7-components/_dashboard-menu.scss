@@ -3,26 +3,30 @@
 Dashboard menu
 ===============================================================================
 */
-
 $db-icon-size: 18px;
 $db-tile-size: 40px;
 
 .dashboard-menu {
     display: flex;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 0px);
     overflow: hidden;
-    @include position(absolute, 60px null null 0);
+    @include position(absolute, 0px null null 0);
     transform: translate(-300px, 0);
     width: 100%;
     z-index: 2;
 
     &--enter { animation: db-menu-enter 200ms linear; }
     &--leave { animation: db-menu-enter 200ms linear reverse; }
+    &--visible {transform: translate(0, 0); }
 
-    &--visible { transform: translate(0, 0); }
+    @include media(1100) {
+        display: flex !important;
+        transform: translate(0, 0);
+    }
 
     @include media(1100) {
         width: auto;
+        @include position(absolute, 60px null null 0);
     }
 }
 
@@ -68,9 +72,13 @@ $db-tile-size: 40px;
     text-align: center;
     transition: background-color 150ms ease-out, opacity 150ms ease-out;
 
-    &:hover,
     &--active {
         background-color: $color;
+        opacity: 1;
+    }
+
+    &:hover {
+        background-color: #37424D;
         opacity: 1;
     }
 }
@@ -87,10 +95,22 @@ $db-tile-size: 40px;
 ============================================================================ */
 
 .dashboard-menu__col-submenus {
-    background-color: $color-submenu;
+    background-color: #37424D;
     width: 220px;
+    transform: translate(-220px, 0);
     z-index: 1;
+
+    &--visible {
+        transition: transform 200ms ease-out;
+        transform: translate(0, 0);
+    }
+
+    &--show {
+        transform: translate(0, 0);
+    }
 }
+
+
 
 .dashboard-menu__submenu {
     padding-bottom: 30px;
@@ -117,7 +137,7 @@ $db-tile-size: 40px;
     font-size: rem(18);
     height: 20px;
     @include position(absolute, 50% 0 null null);
-    transform: translate(0, -50%) rotate(90deg);
+    transform: translate(0, -50%) rotate(270deg);
     transition: transform 150ms ease-out;
     width: 20px;
 
@@ -141,7 +161,7 @@ $db-tile-size: 40px;
     display: block;
     font-size: rem(13);
     line-height: 1.4;
-    margin: 0 12px;
+    margin: 0 12px 0 0;
     opacity: 0.8;
     overflow: hidden;
     padding: 0.6em 2em 0.6em 1em;
@@ -152,7 +172,6 @@ $db-tile-size: 40px;
     &:focus,
     &:hover,
     &--active {
-        background-color: darken($color-submenu, 4%);
         color: #fff;
         opacity: 1;
     }
@@ -161,7 +180,6 @@ $db-tile-size: 40px;
     &--current:active,
     &--current:focus,
     &--current:hover {
-        background-color: $color;
         color: #fff;
         opacity: 1;
     }
@@ -179,12 +197,13 @@ $db-tile-size: 40px;
 }
 
 .dashboard-menu__link {
-    color: #778890;
+    color: #ADB5BD;
+    background-color: #2D363E;
     display: block;
     font-size: rem(12);
     line-height: 1.2;
     overflow: hidden;
-    padding: 0.75em 15px 0.75em 45px;
+    padding: 11px 15px 11px 35px;
     position: relative;
     text-decoration: none;
     transition: color 150ms ease-out, padding 150ms ease-out;
@@ -197,8 +216,6 @@ $db-tile-size: 40px;
     }
 
     &::before {
-        border-left: 1px solid darken($color-submenu, 5%);
-        border-right: 1px solid lighten($color-submenu, 4%);
         content: "";
         display: block;
         height: 100%;
@@ -223,12 +240,11 @@ $db-tile-size: 40px;
     &:focus,
     &:hover {
         color: #fff;
-        padding: 0.75em 10px 0.75em 50px;
+        padding: 11px 15px 11px 35px;
         text-decoration: none;
     }
 
     &--active {
-        color: $color;
         text-decoration: none;
 
         &::after {
@@ -252,9 +268,9 @@ $db-tile-size: 40px;
 
 .dashboard-menu__filter {
     background-color: #2a2a2d;
-    border: 1px solid #555;
+    border: 1px solid #3A4148;
     border-radius: 3px;
-    color: #888;
+    color: #8A96A1;
     display: block;
     font-size: rem(14);
     margin: 0 auto 10px;
@@ -264,9 +280,9 @@ $db-tile-size: 40px;
     width: 90%;
 
     &::placeholder {
-        color: #888;
-        font-size: rem(12);
-        font-style: italic;
+        color: #8A96A1;
+        font-size: rem(13);
+        font-style: normal;
         font-weight: $font-weight-normal;
     }
 
@@ -308,4 +324,13 @@ $db-tile-size: 40px;
 @keyframes db-menu-enter {
     0%   { transform: translate(-300px, 0); }
     100% { transform: translate(0, 0); }
+}
+
+@keyframes db-submenus-enter {
+    0%   {
+        transform: translate(-220px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }

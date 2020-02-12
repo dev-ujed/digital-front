@@ -1,69 +1,17 @@
-// Settings
-@import "dashboard/1-settings/_borders";
-@import "dashboard/1-settings/_colors";
-@import "dashboard/1-settings/_grid";
-@import "dashboard/1-settings/_typography";
-@import "dashboard/1-settings/_spacing";
+$font-family: "Lato", sans-serif;
+
+// Main
+// ============================================================================
+
+@import "main";
 
 // Tools
-@import "dashboard/2-tools/_functions";
-@import "dashboard/2-tools/_box";
-@import "dashboard/2-tools/_button";
-@import "dashboard/2-tools/_clearfix";
-@import "dashboard/2-tools/_grid";
-@import "dashboard/2-tools/_hamburger";
-@import "dashboard/2-tools/_position";
-@import "dashboard/2-tools/_ratio-container";
-@import "dashboard/2-tools/_responsive";
-@import "dashboard/2-tools/_triangle";
-@import "dashboard/2-tools/_typography";
-@import "dashboard/2-tools/_visibility";
+// =============================================================================
 
-// Generic
-@import "dashboard/3-generic/_box-sizing";
-@import "dashboard/3-generic/_normalize";
-@import "dashboard/3-generic/_global";
-@import "dashboard/3-generic/_print";
-
-// Elements
-@import "dashboard/4-elements/_page";
-@import "dashboard/4-elements/_buttons";
-@import "dashboard/4-elements/_forms";
-@import "dashboard/4-elements/_lists";
-@import "dashboard/4-elements/_tables";
-@import "dashboard/4-elements/_typography";
-
-// Objects
-@import "dashboard/5-objects/_buttons";
-@import "dashboard/5-objects/_forms";
-@import "dashboard/5-objects/_grid";
-@import "dashboard/5-objects/_lists";
-@import "dashboard/5-objects/_tables";
-@import "dashboard/5-objects/_typography";
-@import "main/7-components/_user-bar";
-@import "dashboard/5-objects/_wrappers";
+@import "main/2-tools/_triangle";
 
 // Components
-@import "dashboard/6-components/_activity";
-@import "dashboard/6-components/_alerts";
-@import "dashboard/6-components/_dashboard-menu";
-@import "dashboard/6-components/_file-field";
-@import "dashboard/6-components/_messages";
-@import "dashboard/6-components/_panel";
-@import "dashboard/6-components/_recent-update";
-@import "dashboard/6-components/_tables";
-@import "dashboard/6-components/_typography";
+// =============================================================================
 
-// Utilities
-@import "dashboard/7-utilities/_animations";
-@import "dashboard/7-utilities/_border";
-@import "dashboard/7-utilities/_color";
-@import "dashboard/7-utilities/_display";
-@import "dashboard/7-utilities/_flex";
-@import "dashboard/7-utilities/_overflow";
-@import "dashboard/7-utilities/_position";
-@import "dashboard/7-utilities/_shadow";
-@import "dashboard/7-utilities/_size";
-@import "dashboard/7-utilities/_spacing";
-@import "dashboard/7-utilities/_typography";
-@import "dashboard/7-utilities/_visibility";
+@import "main/7-components/_dashboard-menu";
+@import "main/7-components/_user-bar";

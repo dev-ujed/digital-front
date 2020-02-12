@@ -1,0 +1,23 @@
+
+/*
+===============================================================================
+Main
+===============================================================================
+*/
+
+.main {
+    background-color: $color-gray-lighter-5;
+    height: calc(100vh - 60px);
+    overflow: auto;
+    transition: padding-left 200ms linear;
+    width: 100%;
+
+    @include media(1100) {
+        padding-left: 80px;
+
+        &--has-menu {
+            padding-left: 300px;
+        }
+    }
+}
+
