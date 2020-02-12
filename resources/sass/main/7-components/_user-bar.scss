@@ -4,9 +4,13 @@ User bar
 ===============================================================================
 */
 
+
 .user-bar {
+    font: Regular 13px/16px Lato;
+
     align-items: center;
     background-color: $color-gray-darker-5;
+    box-shadow: 0px 0px 3px #00000066;
     display: flex;
     height: 60px;
     justify-content: space-between;
@@ -14,7 +18,8 @@ User bar
 }
 
 .user-bar__dashboard-link {
-    color: $color-gray-lighter-1;
+    color: #ADB5BD;
+    font-size: 13px;
     font-weight: 300;
     padding: 0 20px;
     transition: color 150ms ease-out;
@@ -44,6 +49,10 @@ User bar
     &:focus,
     &:hover {
         color: #fff;
+    }
+
+    &-text {
+        font-family: $font-family;
     }
 }
 
@@ -121,9 +130,10 @@ User bar
 ============================================================================ */
 
 .user-bar__profile-menu {
-    background-color: $color-gray-darker-4;
-    border-radius: 3px;
+    background-color: #37424D;
+    border-radius: 4px;
     box-shadow: 0 5px 5px rgba(#000, 0.2);
+    font-size: 13px;
     list-style: none;
     margin: 0;
     max-width: 300px;
@@ -133,7 +143,7 @@ User bar
 
 
     &::before {
-        @include triangle(top, $color-gray-darker-4, 8px);
+        @include triangle(top, #37424D, 8px);
         @include position(absolute, -7px 6px null null);
         z-index: 2;
 
@@ -157,14 +167,42 @@ User bar
 .user-bar__profile-menu-item {
     border-top: 1px solid $color-gray-darker-3;
 
+    & .name {
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 0px;
+        padding-top: 10px;
+    }
+
+    & .rol {
+        color:#8A96A1;
+        text-align: center;
+        padding-bottom: 18px;
+    }
+
+    & .user-bar__avatar-container {
+        display: block;
+        margin: auto;
+        margin-top: 15px;
+        height: 82px;
+        width: 82px;
+    }
+
     &:first-child {
         border-top: 0;
     }
 }
 
+.user--info {
+    background: #2D363E;
+    border-radius: 4px 4px 0px 0px;
+    padding-top: 15px;
+}
+
 .user-bar__profile-menu-link {
     border-radius: 3px;
-    color: #aaa;
+    color: #ADB5BD;
     display: block;
     font-size: rem(13);
     font-weight: 400;
@@ -182,10 +220,9 @@ User bar
     }
 
     &--logout {
-        background-color: #133;
+        background-color: #2D363E;
         font-size: rem(12);
         position: relative;
-        text-transform: uppercase;
 
         &:active,
         &:focus,
@@ -205,7 +242,7 @@ User bar
 .user-bar__logout-icon {
     line-height: 1;
     margin-right: 0.4em;
-    stroke: $color-gray-darker-2;
+    stroke: #ADB5BD;
     @include position(relative, 0.1em null null null); /* 1 */
     transition: stroke 150ms ease-out;
     vertical-align: top;
