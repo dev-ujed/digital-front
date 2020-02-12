@@ -11,7 +11,7 @@ def index_login(request):
         return render(request, "principal/login.html")
     else:
         domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/admin')
+        return redirect(domain+'/administracion')
 
 
 def user_login(request):
@@ -32,7 +32,7 @@ def user_login(request):
         if user != {}:
             request.session['user1'] = user
             response = HttpResponse('')
-            response["Redirect-To"] = domain+'/admin'
+            response["Redirect-To"] = domain+'/administracion'
             return response
         else:
             return JsonResponse({'errors':{'email': ['El usuario no está registrado']}}, status = 422)
