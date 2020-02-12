@@ -8,7 +8,7 @@ $db-tile-size: 40px;
 
 .dashboard-menu {
     display: flex;
-    height: calc(100vh - 0px);
+    height: calc(100vh - 60px);
     overflow: hidden;
     @include position(absolute, 0px null null 0);
     transform: translate(-300px, 0);
