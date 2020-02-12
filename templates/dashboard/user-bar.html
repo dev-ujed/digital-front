@@ -28,7 +28,7 @@
 
             <div class="user-bar__profile" @mouseenter="profileMenuVisible = true" @mouseleave="profileMenuVisible = false">
                 <div class="user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="" alt="">
+                    <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
                 </div>
 
                 <p class="user-bar__user-name">
@@ -40,6 +40,20 @@
                     leave-active-class="user-bar__profile-menu--hide"
                 >
                     <ul class="user-bar__profile-menu" v-show="profileMenuVisible">
+                        <li class="user-bar__profile-menu-item user--info center-text">
+
+                            <div class="user-bar__avatar-container">
+                                <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
+                            </div>
+
+                            <p class="name">David huerta Lozano</p>
+                            <p class="rol">Front End</p>
+                        </li>
+                        <li class="user-bar__profile-menu-item">
+                            <a class="user-bar__profile-menu-link" href="#">
+                                Modificar perfil
+                            </a>
+                        </li>
                         <li class="user-bar__profile-menu-item">
                             <a class="user-bar__profile-menu-link" href="#">
                                 Cambiar contraseña

@@ -8,19 +8,19 @@
 
     <title>Dirección de Transformación Digital</title>
     <meta name="csrf-token" content="{{ csrf_token }}">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css" />
 </head>
-<body>
+<body class="dashboard">
 
     <div id="dashboard" v-cloak>
         {% include "dashboard/user-bar.html" %}
-    
+
         <div class="flex">
             {% include "dashboard/header.html" %}
-    
+
             <main id="main" class="main" :class="{ 'main--has-menu' : menuIsVisible }" role="main">
-    
+
                 {% block content %}
 
 
