@@ -2,11 +2,19 @@
 {% load svg %}
 {% block content %}
     <div class="db-heading">
-
         <div class="breadcrums db-breadcrums">
-            <a href="#" class="breadcrums__link">Dashboard > Solicitudes > Bandeja</a>
+            <a href="#" class="breadcrums__link">Dashboard</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a href="#" class="breadcrums__link">Solicitudes</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a class="breadcrums__link breadcrums__link--active">Bandeja</a>
        </div>
-
         <h1 class="db-heading__title">
             Bandeja de solicitudes
         </h1>
