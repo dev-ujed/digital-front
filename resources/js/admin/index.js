@@ -1,5 +1,5 @@
 import DashboardMenu from './components/DashboardMenu.vue';
-import UserBar from './components/UserBar.vue';
+import UserBar from '../main/components/UserBar.vue';
 
 (function() {
     /* Base components
