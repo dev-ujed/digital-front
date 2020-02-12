@@ -1,0 +1,38 @@
+.breadcrums {
+    font-size: 12px;
+
+}
+
+.db-breadcrums {
+    padding-left: 30px;
+    padding-bottom: 5px;
+}
+
+.breadcrums__link {
+    color: $color-gray-60;
+
+    &:hover {
+        text-decoration: none;
+        color: $color-gray-70;
+    }
+
+    &--active {
+        color: $color-gray-70;
+        font-weight: 600;
+    }
+}
+
+.breadcrums__link--active {
+    &:hover {
+        cursor: initial;
+        text-decoration: none;
+    }
+}
+
+.breadcrums__chevron {
+    color: $color-gray-60;
+
+    & svg {
+        height: 15px;
+    }
+}
