@@ -30,6 +30,8 @@
 </template>
 
 <script>
+    import { slideToggle } from "../../helpers/animation/slide.js";
+
     export default {
         props: {
             submenu: Object
@@ -42,11 +44,12 @@
         },
 
         methods: {
+            
             /**
              * Show or hide the list of links with an animation.
              */
             toggle() {
-                App.slideToggle(this.$refs.list);
+                slideToggle(this.$refs.list);
                 this.open = ! this.open;
             }
         }
