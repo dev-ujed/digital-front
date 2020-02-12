@@ -1,0 +1,11 @@
+.badge {
+    background: initial;
+    border-radius: 4px;
+    padding: 4px 11px;
+    font-size: 12px;
+}
+
+.badge--blue {
+    background: $color-blue-20;
+    color: $color-blue-80;
+}

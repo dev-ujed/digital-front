@@ -1,0 +1,7 @@
+.blockquote-simple {
+    padding-left: 2em;
+
+    &::before {
+        display: none;
+    }
+}

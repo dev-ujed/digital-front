@@ -1,0 +1,23 @@
+$font-family-primary: "Lato", sans-serif;
+$font-family-headings: "Lato", sans-serif;
+
+// Main
+// ============================================================================
+
+@import "main";
+
+// Tools
+// =============================================================================
+
+@import "main/2-tools/_triangle";
+
+// Components
+// =============================================================================
+
+@import "main/7-components/_card-request";
+@import "main/7-components/_dashboard-heading";
+@import "main/7-components/_dashboard-menu";
+@import "main/7-components/_dashboard-panel";
+@import "main/7-components/_dashboard-process-card";
+@import "main/7-components/_tabs";
+@import "main/7-components/_user-bar";

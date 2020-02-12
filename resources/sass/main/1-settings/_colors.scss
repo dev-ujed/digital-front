@@ -1,3 +1,21 @@
+/*
+===============================================================================
+Menu
+===============================================================================
+*/
+
+$color-gray:#adb5bd !default;
+$color-green: #5a8 !default;
+$color-orange:#e75a5d !default;
+$color: $color-green !default;
+
+$color-submenu:   #393c43;
+$color-section:   darken($color-submenu, 5%);
+$color-link:      #39c;
+$color-link-over: darken($color-link, 15%);
+$color-btn:       $color;
+$color-btn-over:  lighten($color-btn, 8%);
+
 // =============================================================================
 // Brand
 // =============================================================================
@@ -52,6 +70,7 @@ $color-blue-70: #246b8e !default;
 $color-blue-80: #154258 !default;
 $color-blue-90: #0f2e3d !default;
 
+$color-db-panel-title: #8A96A1;
 
 // =============================================================================
 // Borders
@@ -121,3 +140,11 @@ $color-warning:        #ffca34 !default;
 $color-warning-light:  scale-color($color-warning, $lightness: 75%) !default;
 $color-warning-text:   scale-color($color-warning, $lightness: -60%) !default;
 $color-warning-border: scale-color($color-warning, $lightness: 35%) !default;
+
+$color-gray-darker-5:  darken($color-gray, 57%) !default;
+$color-gray-lighter-1: lighten($color-gray, 12%) !default;
+$color-gray-darker-3:  darken($color-gray, 36%) !default;
+$color-gray-darker-4:  darken($color-gray, 48%) !default;
+$color-gray-lighter-5: lighten($color-gray, 27%) !default;
+$color-gray-lighter-4: lighten($color-gray, 24%) !default;
+

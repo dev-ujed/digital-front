@@ -1,0 +1,143 @@
+{% extends 'dashboard/master.html' %}
+{% load svg %}
+{% block content %}
+    <div class="db-heading">
+        <div class="breadcrums db-breadcrums">
+            <a href="#" class="breadcrums__link">Dashboard</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a href="#" class="breadcrums__link">Solicitudes</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a class="breadcrums__link breadcrums__link--active">Bandeja</a>
+       </div>
+        <h1 class="db-heading__title">
+            Bandeja de solicitudes
+        </h1>
+    </div>
+    <section class="section mb-16">
+        <div class="fluid-container">
+            <tabs-component class="tabs--sm"
+                :breakpoint="1160"
+                :tabs="{{ statuses }}"
+                :options="{{ statuses }}"
+                :accepts-html="true"
+            >
+                <template slot="panel-received">
+                    <div class="row">
+                        <div class="card-request">
+                            <p class=card-request__folio>
+                                #278
+                            </p>
+                            <p class="card-request__date">
+                                16 Ene 2020, 14:43 p.m.
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                    <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                                </dd>
+
+                                <dt class="card-request__dt-title">
+                                    Descripción
+                                </dt>
+                                <dd class="card-request__dd-description">
+                                    Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                </dd>
+
+                                <div class="card-request__attach">
+                                    <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                    <span class="card-request__attach-number">2</span>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="card-request">
+                            <p class=card-request__folio>
+                                #278
+                            </p>
+                            <p class="card-request__title">
+                                Actualizar sitio FTS
+                            </p>
+                            <p class="card-request__date">
+                                16 Ene 2020, 14:43 p.m.
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                    <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                                </dd>
+
+                                <dt class="card-request__dt-title">
+                                    Descripción
+                                </dt>
+                                <dd class="card-request__dd-description">
+                                    Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="card-request">
+                            <p class=card-request__folio>
+                                #278
+                            </p>
+                            <p class="card-request__date">
+                                16 Ene 2020, 14:43 p.m.
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                    <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                                </dd>
+
+                                <dt class="card-request__dt-title">
+                                    Descripción
+                                </dt>
+                                <dd class="card-request__dd-description">
+                                    Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="card-request">
+                            <p class=card-request__folio>
+                                #278
+                            </p>
+                            <p class="card-request__date">
+                                16 Ene 2020, 14:43 p.m.
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                    <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                                </dd>
+
+                                <dt class="card-request__dt-title">
+                                    Descripción
+                                </dt>
+                                <dd class="card-request__dd-description">
+                                    Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </template>
+            </tabs-component>
+        </div>
+    </section>
+
+
+{% endblock %}

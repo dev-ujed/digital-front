@@ -1,4 +1,4 @@
-import '../boot.js';
+import './boot.js';
 import BaseForm from './components/forms/base/BaseForm.vue';
 import StepForm from './components/forms/StepForm.vue';
 import UserStepForm from './components/forms/UserStepForm.vue';

@@ -1,5 +1,5 @@
-import slugify from './helpers/slugify.js';
-import hammer from './vendor/hammer.js';
+import slugify from '../helpers/slugify.js';
+import hammer from '../vendor/hammer.js';
 
 
 (function() {
