@@ -1,12 +1,17 @@
 $font-family: "Lato", sans-serif;
 
+// Main
+// ============================================================================
 
 @import "main";
 
-
-
+// Tools
+// =============================================================================
 
 @import "main/2-tools/_triangle";
+
+// Components
+// =============================================================================
 
 @import "main/7-components/_dashboard-menu";
 @import "main/7-components/_user-bar";
