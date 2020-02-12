@@ -1,0 +1,87 @@
+/*
+================================================================================
+Dashboard panel
+================================================================================
+*/
+
+.db-panel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #5F6B78;
+    font-size: rem(14);
+    margin-bottom: $gutter;
+    overflow: auto;
+    padding: $gutter/2;
+}
+
+.db-panel__folio {
+    border-bottom: 1px solid #E7E9EC;
+    color: $color-db-panel-title;
+    font-size: rem(12);
+    line-height: 1.2;
+    margin: -1em 0 ($spacer * 1.5) #{-$gutter};
+    padding: 1em $gutter 1.6em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.db-panel__title {
+    color: #202428;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.db-panel__date {
+    color: $color-db-panel-title;
+    font-size: rem(12);
+    margin-bottom:35px;
+}
+
+.db-panel__dd-user {
+    color: #202428;
+    font-size: rem(16);
+    font-weight: bold;
+}
+
+.db-panel__dd-ures {
+    font-size: rem(14);
+}
+
+.db-panel__dt-title {
+    color:$color-green;
+    font-size: rem(11);
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.db-panel__dd-description {
+    font-size: rem(13);
+}
+
+.db-panel__title-link {
+    display: inline-block;
+    font-weight: 400;
+    margin-left: 0.3em;
+    text-transform: none;
+}
+
+.db-panel__attach {
+    margin-top: 30px;
+}
+
+.db-panel__attach-icon {
+    color: #50AB87;
+    display: inline-block;
+    font-size: rem(12);
+    vertical-align: middle;
+    width: 12px;
+}
+
+.db-panel__attach-number {
+    color: #8A96A1;
+    display: inline-block;
+    font-size: rem(12);
+    vertical-align: bottom;
+
+}
