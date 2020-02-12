@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import requests
 
-def solicitudes(request):
+def inbox(request):
     dataUrl = {
         0 : {
             "id" : 1,
-            "name" : "ACL",
-            "tile" : "acl.png",
+            "name" : "solicitudes",
+            "tile" : "request.png",
             "order" : 1,
             "created_at" : "2019-05-06 11:52:57",
             "updated_at" : "2019-05-06 11:52:57",
@@ -23,12 +23,12 @@ def solicitudes(request):
                     "created_at" : "2019-05-06 11:52:57",
                     "updated_at" : "2019-05-06 11:52:57",
                     "active" : 1,
-                    "searchable_name" : "usuarios",
+                    "searchable_name" : "solicitudes",
                     "links": {
                         0 : {
                             "id" : 1,
                             "name" : "Bandeja",
-                            "route" : "usuarios/crear",
+                            "route" : "solicitudes/bandeja",
                             "permission" : "create.users",
                             "order" : 1,
                             "submenu_id" : 1,
@@ -39,7 +39,7 @@ def solicitudes(request):
                         1 : {
                             "id" : 2,
                             "name" : "En proceso",
-                            "route" : "usuarios",
+                            "route" : "solicitudes/proceso",
                             "permission" : "update.users",
                             "order" : 2,
                             "submenu_id" : 1,
