@@ -160,24 +160,6 @@ def inbox(request):
                 }
             }
         }
-<<<<<<< HEAD
-    }
-    status   = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
-    statuses = {}
-
-    for state in status.json():
-        statuses.update({ state['key_name']: state['Descripcion']})
-
-    # response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/all/')
-    # solicitudes = response.json()
-
-    # return HttpResponse(solicitudes)
-
-    return render(request, "solicitudes/index.html", {
-        'statuses': statuses,
-        'dataUrl': dataUrl
-    })
-=======
         status   = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
         statuses = {}
 
@@ -193,4 +175,3 @@ def inbox(request):
             'statuses': statuses,
             'dataUrl': dataUrl
         })
->>>>>>> 3c60fe419719de0863efea9a2b53bb777c82f235

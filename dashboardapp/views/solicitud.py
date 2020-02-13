@@ -162,17 +162,8 @@ def solicitud(request):
                 }
             }
         }
-<<<<<<< HEAD
-    }
-
-
-    return render(request, "solicitudes/show.html", {
-        'dataUrl': dataUrl
-    })
-=======
 
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl
         })
->>>>>>> 3c60fe419719de0863efea9a2b53bb777c82f235

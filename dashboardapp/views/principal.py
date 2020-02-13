@@ -161,10 +161,4 @@ def index(request):
                 }
             }
         }
-<<<<<<< HEAD
-    }
-
-    return render(request, "index.html", { 'dataUrl': dataUrl })
-=======
         return render(request, "index.html", { 'dataUrl': dataUrl })
->>>>>>> 3c60fe419719de0863efea9a2b53bb777c82f235
