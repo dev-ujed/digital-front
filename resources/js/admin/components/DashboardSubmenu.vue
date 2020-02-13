@@ -18,7 +18,7 @@
                 <li v-for="link in submenu.links">
                     <a class="dashboard-menu__link"
                         :class="{ 'dashboard-menu__link--active' : link.active }"
-                        :href="$root.path + '/admin/' + link.route"
+                        :href="link.route"
                     >
                         {{ link.name }}
                     </a>
@@ -44,7 +44,7 @@
         },
 
         methods: {
-            
+
             /**
              * Show or hide the list of links with an animation.
              */
