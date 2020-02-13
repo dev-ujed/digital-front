@@ -172,7 +172,7 @@ $main-menu-link-padding-y: 1.5em;
 ============================================================================= */
 
 .main-menu__list--container {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     left: 0;
@@ -185,6 +185,10 @@ $main-menu-link-padding-y: 1.5em;
         height: auto;
         display: block;
         top: auto;
+    }
+
+    &--open {
+        height: 100vh;
     }
 }
 

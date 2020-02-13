@@ -36,7 +36,10 @@
                 }">
         </div>
 
-        <div class="main-menu__list--container">
+        <div class="main-menu__list--container"
+            :class="{
+                    'main-menu__list--container--open': menuIsOpen,
+                }">
 
             <div class="container main-menu__container--sm">
                 <a class="main-logo__dtd" :href="$root.path" title="Inicio"
