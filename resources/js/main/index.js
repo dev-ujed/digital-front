@@ -9,6 +9,7 @@ import TruncatedText from './components/TruncatedText.vue';
 import RequestUploadFile from './components/forms/RequestUploadFile.vue';
 import RequestFile from './components/forms/RequestFile.vue';
 import Menu from './components/menu/Menu.vue';
+import LoginForm from './components/forms/LoginForm.vue';
 
 (function() {
     /* Base components
@@ -19,6 +20,7 @@ import Menu from './components/menu/Menu.vue';
     Vue.component('requeststep-form', RequestStepForm);
     Vue.component('request-upload-file', RequestUploadFile);
     Vue.component('request-file', RequestFile);
+    Vue.component('login-form', LoginForm);
 
 
 

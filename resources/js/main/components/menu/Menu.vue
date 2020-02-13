@@ -28,7 +28,7 @@
                 <span v-else class="visually-hidden">Mostrar menú</span>
             </button>
         </div>
-        
+
         <div class="main-menu__background"
              :class="{
                     'main-menu__background--open': menuIsOpen,
@@ -47,7 +47,7 @@
                     <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
                 </a>
             </div>
-            
+
             <ul class="list-bare main-menu__list"
                 :class="{
                     'main-menu__list--open': menuIsOpen,
@@ -64,7 +64,7 @@
                             'main-menu__li--open': menuIsOpen,
                             'main-menu__li--closed': ! menuIsOpen && buttonClicked
                         }"
-                    
+
                     >
                         <template v-for="{url, newTab, external} in [parseLink(link)]">
                             <a class="js-item main-menu__link" :href="url"
@@ -92,22 +92,22 @@
                         'main-menu__li--open': menuIsOpen,
                         'main-menu__li--closed': ! menuIsOpen && buttonClicked
                     }">
-                    <a class="js-item main-menu__link" :href="this.$root.path + '/ingresar'"
+                    <a class="js-item main-menu__link" :href="this.$root.path + 'ingresar'"
                         @keydown.left.right.up.down.prevent="arrowNavigation"
                     >
                         <span class="main-menu__login-icon" aria-hidden="true"></span>
                         Administración
                     </a>
                 </li>
-            </ul>  
+            </ul>
 
             <p class="main-menu__footer"
                 :class="{
                         'main-menu__footer--open': menuIsOpen
                     }">
                 Dirección de Transformación Digital <br> Universidad Juárez del Estado de Durango
-            </p> 
-            
+            </p>
+
         </div>
     </nav>
 </template>
@@ -156,7 +156,7 @@
         },
 
         mounted() {
-            
+
             this.menuItems = this.$el.querySelectorAll('.js-item');
 
             this.setMatchMedia();
@@ -207,7 +207,7 @@
                 const mq = window.matchMedia(`screen and (min-width:${this.breakpoint}px)`);
 
                 console.log(this.breakpoint);
-                
+
                 mq.addListener(this.reset);
 
                 this.reset(mq);
