@@ -39,16 +39,12 @@ Card request
 }
 
 .card-request__link {
-    color: $color-db-panel-title;
-    text-decoration: none;
-
     &:focus,
     &:hover,
     &:active {
-        color: #7b7f82;
+        color: #5F6B78;
         text-decoration: none;
     }
-
 }
 
 .card-request__title {

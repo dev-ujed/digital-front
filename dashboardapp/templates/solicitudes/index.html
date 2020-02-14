@@ -29,35 +29,37 @@
             >
                 <template slot="panel-received">
                     <div class="row">
-                        <div class="card-request">
-                            <p class=card-request__folio>
-                                <a  class="card-request__link" href="http://{{ request.get_host }}/administracion/solicitud">#278</a>
-                            </p>
-                            <p class="card-request__date">
-                                16 Ene 2020, 14:43 p.m.
-                            </p>
-                            <dl class="list-inline list-inline--md">
-                                <dt class="card-request__dt-title">
-                                    Enviada por
-                                </dt>
-                                <dd>
-                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
-                                    <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
-                                </dd>
+                        <a  class="card-request card-request__link" href="http://{{ request.get_host }}/administracion/solicitud">
+                            <div class="">
+                                <p class=card-request__folio>
+                                    #278
+                                </p>
+                                <p class="card-request__date">
+                                    16 Ene 2020, 14:43 p.m.
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="card-request__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                        <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                                    </dd>
 
-                                <dt class="card-request__dt-title">
-                                    Descripción
-                                </dt>
-                                <dd class="card-request__dd-description">
-                                    Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
-                                </dd>
+                                    <dt class="card-request__dt-title">
+                                        Descripción
+                                    </dt>
+                                    <dd class="card-request__dd-description">
+                                        Buenas tardes, envío la información del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor se puede actualizar…
+                                    </dd>
 
-                                <div class="card-request__attach">
-                                    <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                    <span class="card-request__attach-number">2</span>
-                                </div>
-                            </dl>
-                        </div>
+                                    <div class="card-request__attach">
+                                        <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                        <span class="card-request__attach-number">2</span>
+                                    </div>
+                                </dl>
+                            </div>
+                        </a>
                         <div class="card-request">
                             <p class=card-request__folio>
                                 #278
