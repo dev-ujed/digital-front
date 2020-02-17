@@ -27,15 +27,21 @@ Card request
     }
 }
 
-.card-request__folio {
+.card-request__title {
     border-bottom: 1px solid #E7E9EC;
-    color: $color-db-panel-title;
+    color: $color-gray-60;
+    font-weight: bold;
     font-size: rem(12);
     line-height: 1.2;
     margin: -1em 0 ($spacer * 1.5) #{-$gutter};
     padding: 1em $gutter 1em;
     text-align: left;
     text-transform: uppercase;
+
+    &--folio {
+        color: $color-db-panel-title;
+        font-weight: normal;
+    }
 }
 
 .card-request__link {
@@ -48,14 +54,49 @@ Card request
         color: #7b7f82;
         text-decoration: none;
     }
-
 }
 
-.card-request__title {
-    color: #202428;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
+.card-request__download {
+    color: $color-blue-50;
+    cursor: pointer;
+    float: right;
+    font-size: 13px;
+    font-weight: 400;
+
+    &:focus,
+    &:hover,
+    &:active {
+        text-decoration: underline;
+    }
+}
+
+.card-request__file {
+    border-radius: 3px;
+    background: $color-blue-10;
+    color: $color-gray-80;
+    border: $color-blue-20;
+    height: 100%;
+    padding: 10px;
+    margin-top: 20px;
+
+    &-description {
+        font-size: 13px;
+    }
+}
+
+.card-request__file-thumb {
+    border-radius: 3px;
+    border: 1px solid $color-gray-40;
+    height: 40px;
+    width: 40px;
+
+    &-img {
+        background-color: #fff;
+    }
+
+    &-pdf {
+        background-color: $color-gray-70;
+    }
 }
 
 .card-request__date {
@@ -67,6 +108,7 @@ Card request
 .card-request__dd-user {
     color: #202428;
     font-size: rem(16);
+    font-weight: bold;
 }
 
 .card-request__dd-ures {
@@ -82,13 +124,6 @@ Card request
 
 .card-request__dd-description {
     font-size: rem(13);
-}
-
-.card-request__title-link {
-    display: inline-block;
-    font-weight: 400;
-    margin-left: 0.3em;
-    text-transform: none;
 }
 
 .card-request__attach {

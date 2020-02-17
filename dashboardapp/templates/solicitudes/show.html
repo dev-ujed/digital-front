@@ -26,7 +26,7 @@
         <div class="row fluid-container">
             <div class="lg:col-7/12">
                 <div class="db-panel">
-                    <p class=card-request__folio>
+                    <p class="card-request__title">
                         CONTENIDO
                     </p>
 
@@ -49,7 +49,7 @@
                             Descripción
                         </dt>
                         <dd class="card-request__dd-description">
-                            <blockquote class="blockquote-simple  m-0">
+                            <blockquote class="blockquote-simple size-lg m-0">
                                 <p>
                                     Buenas tardes, envio la informacion del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor
                                     se puede actualizar la información que está publicada.
@@ -67,12 +67,58 @@
                             </blockquote>
                         </dd>
 
-                        <dt class="card-request__dt-title">
-                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                            2 ARCHIVOS ADJUNTOS
+                        <dt>
+                            <span class="card-request__dt-title">
+                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                2 ARCHIVOS ADJUNTOS
+                            </span>
+
+                            <span class="card-request__download">
+                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                Descargar todo
+                            </span>
                         </dt>
-                        <dd>
-                        </dd>
+
+                        <div class="row">
+                            <div class="card-request__file col-1/2">
+
+                                <div class="card-request__file-thumb d-inline-block align-bottom">
+                                    {% load static %}
+                                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                                </div>
+
+                                <p class="size-caption m-0 d-inline-block ml-2">
+                                    Información EXANI III 2020.pdf <br>
+                                    <small class="color-gray-60">221 KB</small>
+                                </p>
+
+
+                                <p class="size-sm mt-4">En la segunda hoja del documento se especifican las fechas en que estará activo el banner.</p>
+                            </div>
+
+                            <div class="card-request__file col-1/2">
+                                <div class="card-request__file-thumb d-inline-block align-bottom">
+                                    {% load static %}
+                                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                                </div>
+
+                                <p class="size-caption m-0 d-inline-block ml-2">
+                                    Información EXANI III 2020.pdf <br>
+                                    <small class="color-gray-60">221 KB</small>
+                                </p>
+                            </div>
+                            <div class="card-request__file col-1/2">
+                                <div class="card-request__file-thumb d-inline-block align-bottom">
+                                    {% load static %}
+                                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                                </div>
+
+                                <p class="size-caption m-0 d-inline-block ml-2">
+                                    Información EXANI III 2020.pdf <br>
+                                    <small class="color-gray-60">221 KB</small>
+                                </p>
+                            </div>
+                        </div>
 
                     </dl>
                 </div>
@@ -81,7 +127,7 @@
             <div class="lg:col-5/12">
 
                 <div class="db-panel">
-                    <p class=card-request__folio>
+                    <p class="card-request__title">
                         CONTACTO
                     </p>
 
@@ -92,7 +138,7 @@
                                     ENVIADA POR
                                 </dt>
                                 <dd>
-                                    <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                                    <span class="card-request__dd-user"> Ahmed Said René Ramos Pulido </span>
                                     <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
                                 </dd>
                             </dl>
@@ -129,7 +175,7 @@
                 </div>
 
                 <div class="db-panel">
-                    <p class=card-request__folio>
+                    <p class="card-request__title">
                         PROCESOS
                     </p>
 
@@ -143,20 +189,28 @@
                                 <span class="badge badge--blue">To Do</span>
 
                                 <div class="db-process-card__users">
-                                    <div class="user-bar__avatar-container user-bar__avatar-container--spacing">
+                                    <div class="user-bar__avatar-container">
                                         <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
                                     </div>
 
-                                    <div class="user-bar__avatar-container user-bar__avatar-container--spacing">
+                                    <div class="user-bar__avatar-container">
                                         <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
                                     </div>
 
-                                    <div class="user-bar__avatar-container user-bar__avatar-container--spacing">
+                                    <div class="user-bar__avatar-container">
                                         <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
                                     </div>
 
-                                    <div class="user-bar__avatar-container user-bar__avatar-container--spacing">
+                                    <div class="user-bar__avatar-container">
                                         <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                                    </div>
+
+                                    <div class="user-bar__avatar-container">
+                                        <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                                    </div>
+
+                                    <div class="user-bar__avatar-container user-bar__avatar-container--count">
+                                        <span class="user-bar__count">+3</span>
                                     </div>
                                 </div>
                             </div>
