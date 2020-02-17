@@ -1,0 +1,85 @@
+    <dl class="list-inline list-inline--md">
+        <dt class="card-request__dt-title">
+            FECHA DE RECEPCIÓN
+        </dt>
+        <dd>
+            <span class="card-request__dd-ures">16 de enero 2020, 14:43 p.m.</span>
+        </dd>
+
+        <dt class="card-request__dt-title">
+            Descripción
+        </dt>
+        <dd class="card-request__dd-description">
+            <blockquote class="blockquote-simple size-lg m-0">
+                <p>
+                    Buenas tardes, envio la informacion del los exámenes de ceneval, lo que es EGEL, EGAL, EXANI III. para ver si por favor
+                    se puede actualizar la información que está publicada.
+                </p>
+
+                <p>
+                    Muchas gracias por tus atenciones. saludos
+                </p>
+
+                <p>
+                    M.E. Ahmed Sahid Rene Ramos Pulido<br>
+                    Coordinador de Escuelas Incorporadas a la Universidad Juárez del Estado de Durango<br>
+                    Tel: 618-827-12-56 Ext 3929
+                </p>
+            </blockquote>
+        </dd>
+
+        <dt>
+            <span class="card-request__dt-title">
+                {% load svg %}
+                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                2 ARCHIVOS ADJUNTOS
+            </span>
+
+            <span class="card-request__download">
+                {% load svg %}
+                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                Descargar todo
+            </span>
+        </dt>
+
+        <div class="row">
+            <div class="card-request__file col-1/2">
+
+                <div class="card-request__file-thumb d-inline-block align-bottom">
+                    {% load static %}
+                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                </div>
+
+                <p class="size-caption m-0 d-inline-block ml-2">
+                    Información EXANI III 2020.pdf <br>
+                    <small class="color-gray-60">221 KB</small>
+                </p>
+
+
+                <p class="size-sm mt-4">En la segunda hoja del documento se especifican las fechas en que estará activo el banner.</p>
+            </div>
+
+            <div class="card-request__file col-1/2">
+                <div class="card-request__file-thumb d-inline-block align-bottom">
+                    {% load static %}
+                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                </div>
+
+                <p class="size-caption m-0 d-inline-block ml-2">
+                    Información EXANI III 2020.pdf <br>
+                    <small class="color-gray-60">221 KB</small>
+                </p>
+            </div>
+            <div class="card-request__file col-1/2">
+                <div class="card-request__file-thumb d-inline-block align-bottom">
+                    {% load static %}
+                    <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                </div>
+
+                <p class="size-caption m-0 d-inline-block ml-2">
+                    Información EXANI III 2020.pdf <br>
+                    <small class="color-gray-60">221 KB</small>
+                </p>
+            </div>
+        </div>
+    </dl>
