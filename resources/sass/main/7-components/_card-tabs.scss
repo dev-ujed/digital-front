@@ -1,0 +1,33 @@
+.tabs--responsive {
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+
+    & .tabs__menu {
+        background-color: $color-gray-10;
+        font-size: 11px;
+        text-align: center;
+        justify-content: space-evenly;
+        border-radius: 4px 4px 0 0;
+        display: flex;
+    }
+
+    & .tabs__menu .tabs__li {
+        padding-top: 2em;
+        padding-bottom: 1em;
+    }
+
+    & .tabs__menu .tabs__li::before {
+        content: 'icono';
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    & .tabs__panel {
+        padding: 0 1em 3em 1em;
+    }
+
+    & .icon-pencil svg {
+        height: 12px;
+    }
+}
