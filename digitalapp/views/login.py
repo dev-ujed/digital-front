@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 import requests, json
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import logout
 
@@ -16,7 +16,6 @@ def index_login(request):
 
 def user_login(request):
     if request.method == 'POST':
-
         data_request = json.loads(request.body.decode('utf-8'))
         errors       = formRequestLogin(data_request)
 
@@ -36,16 +35,15 @@ def user_login(request):
             user_id = user['id']
             active  =  user['active']
 
+            if check_password(data_request['password'], user['password']):
+                pass
+            else:
+                return JsonResponse({'errors':{'password': ['La contraseña es incorrecta']}}, status = 422)
+
             if active:
                 pass
             else:
                 return JsonResponse({'errors':{'email': ['El usuario no está activo']}}, status = 422)
-
-            # if check_password(user['password'], data_request['password']):
-            #     pass
-            # else:
-            #     return JsonResponse({'errors':{'password': ['La contraseña es incorrecta']}}, status = 422)
-
 
             request.session[user_id] = user
             response = HttpResponse('')
