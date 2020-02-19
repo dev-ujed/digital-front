@@ -30,38 +30,37 @@
                 {{ request.archivos|length }} ARCHIVOS ADJUNTOS
             </span>
 
-            <span class="card-request__download">
+            <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
                 {% load svg %}
                 <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
                 Descargar todo
-            </span>
+            </a>
         </dt>
 
         <div class="row">
 
             {% for value in files %}
-                    <div class="card-request__file col md:col-1/2">
+                <a href="#" class="card-request__file">
 
-                        <div class="card-request__file-thumb d-inline-block align-bottom">
-                            {% load static %}
-                            <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
-                        </div>
+                    <div class="card-request__file-thumb d-inline-block align-bottom">
+                        {% load static %}
+                        <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                    </div>
 
-                        <p class="size-caption m-0 d-inline-block ml-2">
-                            {{ value.nombre_archivo }} <br>
+                    <p class="size-caption m-0 d-inline-block ml-2">
+                        {{ value.nombre_archivo }} <br>
+                        <small class="color-gray-60">{{ value.file|filesizeformat }}</small>
+                    </p>
 
-                            <small class="color-gray-60">{{ value.file|filesizeformat }}</small>
+                    {% if value.descripcion != None %}
+
+                        <p class="size-sm mt-4">
+                            {{ value.descripcion }}
                         </p>
 
-                        {% if value.descripcion != None %}
+                    {% endif %}
 
-                            <p class="size-sm mt-4">
-                                {{ value.descripcion }}
-                            </p>
-
-                        {% endif %}
-
-                    </div>
+                    </a>
             {% endfor %}
         </div>
     </dl>
