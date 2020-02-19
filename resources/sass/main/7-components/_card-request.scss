@@ -71,16 +71,26 @@ Card request
 }
 
 .card-request__file {
+    @include column;
     border-radius: 3px;
     background: $color-blue-10;
     color: $color-gray-80;
-    border: $color-blue-20;
+    cursor: pointer;
+    border: 1px solid $color-blue-20;
     height: 100%;
     padding: 10px;
     margin-top: 20px;
 
     &-description {
         font-size: 13px;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    @include media(md) {
+        @include column(1/2);
     }
 }
 
