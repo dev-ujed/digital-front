@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 import requests
+import locale
+from datetime import datetime
+import json
 
-def solicitud(request):
+def solicitud(request, folio):
 
     if request.session.is_empty():
         domain = request.build_absolute_uri('/')[:-1]
@@ -163,7 +166,25 @@ def solicitud(request):
             }
         }
 
+        procesos = {}
+
+        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
+        solicitud  = response.json()
+
+        responseFile = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+str(solicitud[0]['id'])+'/detalle/')
+        files  = responseFile.json()
+
+        locale.setlocale(locale.LC_TIME, '')
+        date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
+        solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
+
+        for proceso in solicitud[0]['servicios']:
+            proceso = eval(proceso)
+            procesos.update({ proceso['id'] : proceso })
 
         return render(request, "solicitudes/show.html", {
-            'dataUrl': dataUrl
+            'dataUrl': dataUrl,
+            'request': solicitud[0],
+            'files': files,
+            'procesos': procesos
         })
