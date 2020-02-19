@@ -45,7 +45,7 @@ def user_login(request):
             else:
                 return JsonResponse({'errors':{'email': ['El usuario no está activo']}}, status = 422)
 
-            request.session[user_id] = user
+            request.session['user'] = user
             response = HttpResponse('')
             response["Redirect-To"] = domain+'/administracion'
             return response
