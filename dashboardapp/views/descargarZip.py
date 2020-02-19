@@ -18,6 +18,6 @@ def descargarZip(request, folio):
 
     for attr, value in files.items():
         zip_file.write(value)
-        response['Content-Disposition'] = 'attachment; filename={}'.format('Solicitud_'str(folio)+".zip")
+        response['Content-Disposition'] = 'attachment; filename={}'.format('Solicitud_'+str(folio)+".zip")
 
     return response
