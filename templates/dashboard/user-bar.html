@@ -32,7 +32,7 @@
                 </div>
 
                 <p class="user-bar__user-name">
-                    Nombre
+                    {{ userAuth.name }}
                 </p>
 
                 <transition
@@ -46,7 +46,7 @@
                                 <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
                             </div>
 
-                            <p class="name">David huerta Lozano</p>
+                            <p class="name">{{ userAuth.name }} {{ userAuth.last_name }}</p>
                             <p class="rol">Front End</p>
                         </li>
                         <li class="user-bar__profile-menu-item">
