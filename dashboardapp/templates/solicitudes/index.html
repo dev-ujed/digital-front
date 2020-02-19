@@ -33,9 +33,15 @@
                             {% for element in requests %}
                                 <a  class="card-request card-request__link" href="http://{{ request.get_host }}/administracion/solicitud">
                                     <div class="">
-                                        <p class=card-request__folio>
-                                            {{ element.folio }}
-                                        </p>
+                                        <div class=card-request__folio>
+                                            <span>{{ element.folio }}</span>
+                                            <div class="card-request__service-container">
+                                                {% for servicio in element.servicios %}
+                                                    <span class="card-request__service card-request__service--{{ servicio.descripcion |slugify }}"></span>
+                                                {% endfor %}
+                                            </div>
+
+                                        </div>
                                         <p class="card-request__date">
                                             {{ element.formated_date }}.
                                         </p>
