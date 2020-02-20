@@ -4,8 +4,8 @@
 
         <tabs-component class="tabs--responsive"
             :breakpoint="0"
-            :tabs="{'details': 'DETALLES', 'contact': 'CONTACTO', 'process': 'PROCESOS'}"
-            :options="{'details': 'DETALLES', 'contact': 'CONTACTO', 'process': 'PROCESOS'}"
+            :tabs="{'details': 'DETALLES', 'contact': 'CONTACTO', 'services': 'SERVICIOS'}"
+            :options="{'details': 'DETALLES', 'contact': 'CONTACTO', 'services': 'SERVICIOS'}"
             :accepts-html="true"
         >
             <template slot="panel-details">
@@ -13,7 +13,7 @@
                 <p class="size-xl mb-8">
                     <b>Exámenes CENEVAL</b>
                     <span class="icon-pencil">
-                        {% svg 'paperclip' %}
+                        {% svg 'edit' %}
                     </span>
                 </p>
 
@@ -22,8 +22,8 @@
             <template slot="panel-contact">
                 {% include "solicitudes/partials/contact.html" %}
             </template>
-            <template slot="panel-process">
-                {% include "solicitudes/partials/process.html" %}
+            <template slot="panel-services">
+                {% include "solicitudes/partials/services.html" %}
             </template>
         </tabs-component>
     </div>
