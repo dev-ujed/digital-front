@@ -5,7 +5,6 @@ Card request
 */
 
 .card-request {
-
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #5F6B78;
@@ -29,7 +28,7 @@ Card request
 
 .card-request__title {
     border-bottom: 1px solid #E7E9EC;
-    color: $color-gray-60;
+    color: #686D7A;
     font-weight: bold;
     font-size: rem(12);
     line-height: 1.2;
@@ -63,6 +62,13 @@ Card request
     font-size: 13px;
     font-weight: 400;
 
+    & svg {
+        color: $color-gray-80;
+        height: 12px;
+        width: 12px;
+        vertical-align: middle;
+    }
+
     &:focus,
     &:hover,
     &:active {
@@ -86,6 +92,8 @@ Card request
     }
 
     &:hover {
+        border: 1px solid $color-blue-30;
+        color: $color-gray-80;
         text-decoration: none;
     }
 
@@ -113,6 +121,18 @@ Card request
     color: $color-db-panel-title;
     font-size: rem(12);
     margin-bottom:35px;
+}
+
+.card-request__dd{
+    color: $color-gray-70;
+    font-size: rem(14);
+    line-height: 1.2;
+}
+
+.card-request__dd-content {
+    color: $color-gray-90;
+    font-weight: bold;
+    font-size: rem(16);
 }
 
 .card-request__dd-user {
@@ -144,7 +164,7 @@ Card request
     color: #50AB87;
     display: inline-block;
     font-size: rem(12);
-    vertical-align: middle;
+    vertical-align: text-bottom;
     width: 12px;
 }
 
@@ -153,4 +173,14 @@ Card request
     display: inline-block;
     font-size: rem(12);
     vertical-align: bottom;
+}
+
+.icon-plus-circle {
+    color: #50AB87;
+    margin-right: 3px;
+
+    & svg {
+        height: 18px;
+        width: 18px;
+    }
 }
