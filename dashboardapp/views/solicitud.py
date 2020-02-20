@@ -166,7 +166,7 @@ def solicitud(request, folio):
             }
         }
 
-        procesos = {}
+        services = {}
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
         solicitud  = response.json()
@@ -178,13 +178,20 @@ def solicitud(request, folio):
         date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
         solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
 
-        for proceso in solicitud[0]['servicios']:
-            proceso = eval(proceso)
-            procesos.update({ proceso['id'] : proceso })
+        for service in solicitud[0]['servicios']:
+
+            service = eval(service)
+
+            for subservice in service['subservicios']:
+
+                date = datetime.strptime(subservice['fecha_sub'], "%d/%m/%Y %H:%M")
+                subservice['fecha_sub'] = date.strftime("%d %h %Y, %I:%M %p")
+
+            services.update({ service['id'] : service })
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
             'request': solicitud[0],
             'files': files,
-            'procesos': procesos
+            'services': services
         })
