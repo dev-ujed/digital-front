@@ -3,12 +3,12 @@
 {% block content %}
     <div class="db-heading">
         <div class="breadcrums db-breadcrums">
-            <a href="#" class="breadcrums__link">Dashboard</a>
+            <a href="/administracion" class="breadcrums__link">Dashboard</a>
             <span class="breadcrums__chevron">
                 {% load svg %}
                 {% svg 'chevron-right' %}
             </span>
-            <a href="#" class="breadcrums__link">Solicitudes</a>
+            <a href="/administracion" class="breadcrums__link">Solicitudes</a>
             <span class="breadcrums__chevron">
                 {% load svg %}
                 {% svg 'chevron-right' %}
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="card-request">
                             <p class=card-request__folio>
-                                #278
+                                <a  class="card-request__link" href="http://{{ request.get_host }}/administracion/solicitud">#278</a>
                             </p>
                             <p class="card-request__date">
                                 16 Ene 2020, 14:43 p.m.

@@ -38,6 +38,19 @@ Card request
     text-transform: uppercase;
 }
 
+.card-request__link {
+    color: $color-db-panel-title;
+    text-decoration: none;
+
+    &:focus,
+    &:hover,
+    &:active {
+        color: #7b7f82;
+        text-decoration: none;
+    }
+
+}
+
 .card-request__title {
     color: #202428;
     font-size: 20px;

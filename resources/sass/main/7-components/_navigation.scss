@@ -70,7 +70,7 @@ $main-menu-link-padding-y: 1.5em;
         &--open {
             animation: biggest-in-portrait 150ms ease-out forwards 150ms;
         }
-    
+
         &--closed {
             animation-name: biggest-out-portrait 150ms ease-out forwards;
         }
@@ -80,7 +80,7 @@ $main-menu-link-padding-y: 1.5em;
         &--open {
             animation: biggest-in-landscape 150ms ease-out forwards 100ms;
         }
-    
+
         &--closed {
             animation: biggest-out-landscape 200ms ease-out forwards;
         }
@@ -172,7 +172,7 @@ $main-menu-link-padding-y: 1.5em;
 ============================================================================= */
 
 .main-menu__list--container {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     left: 0;
@@ -181,9 +181,14 @@ $main-menu-link-padding-y: 1.5em;
     top: 0;
     width: 100%;
 
-    @include media($main-menu-breakpoint) { 
+    @include media($main-menu-breakpoint) {
+        height: auto;
         display: block;
         top: auto;
+    }
+
+    &--open {
+        height: 100vh;
     }
 }
 
@@ -198,7 +203,7 @@ $main-menu-link-padding-y: 1.5em;
     width: 100%;
     z-index: 3;
 
-    @media screen and (orientation: portrait) { 
+    @media screen and (orientation: portrait) {
         &--open {
             display: block;
             margin-top: 100px;
@@ -221,7 +226,7 @@ $main-menu-link-padding-y: 1.5em;
         z-index: 1;
     }
 
-    @media screen and (orientation: landscape) { 
+    @media screen and (orientation: landscape) {
         &--open {
             margin-top: 30px;
             display: block;
@@ -236,10 +241,10 @@ $main-menu-link-padding-y: 1.5em;
     &:last-child {
         border-bottom: 0;
     }
- 
+
     @media screen and (orientation: portrait) {
         margin: 20px 0;
-    } 
+    }
 
     @media screen and (orientation: landscape) {
         margin: 0;
@@ -251,7 +256,7 @@ $main-menu-link-padding-y: 1.5em;
         margin: 0 50px 0 2em;
         opacity: 1;
         position: relative;
-        
+
 
         &:first-child {
             margin-left: 0;
@@ -264,12 +269,12 @@ $main-menu-link-padding-y: 1.5em;
         }
     }
 
-   
+
 
     @for $i from 1 through 7 {
         &--open:nth-child(#{$i}) {
             animation: height-in 300ms ease-out forwards (15ms + (50ms * ($i / 0.5)));
-            
+
         }
     }
 
@@ -324,14 +329,14 @@ $main-menu-link-padding-y: 1.5em;
         background-color: transparent;
         transition: none;
         margin: 0;
-        padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);    
+        padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);
 
         &:focus,
         &:hover,
         &:active {
             background-color: transparent;
             color: #fff;
-            padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);    
+            padding: ($main-menu-link-padding-y * 0.6) ($main-menu-link-padding-x * 2);
         }
     }
 }
@@ -501,7 +506,7 @@ $main-menu-link-padding-y: 1.5em;
         &--open {
             animation: bubble-in-landscape 250ms ease-in forwards;
         }
-    
+
         &--closed {
             animation: bubble-out-landscape 250ms ease-out forwards;
         }
@@ -511,7 +516,7 @@ $main-menu-link-padding-y: 1.5em;
         &--open {
             animation: bubble-in-portrait 250ms ease-in forwards;
         }
-    
+
         &--closed {
             animation: bubble-out-portrait 250ms ease-out forwards;
         }

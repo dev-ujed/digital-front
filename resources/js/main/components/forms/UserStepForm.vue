@@ -4,9 +4,10 @@
             <label for="correo">Correo electrónico</label>
             <text-field
                 name="correo"
-                type="correo"
+                type="email"
                 v-model="fields.correo"
                 ref="email_field"
+                maxlength="80"
             >
             </text-field>
             <field-errors name="correo"></field-errors>
@@ -18,6 +19,8 @@
                 <text-field
                     name="matricula"
                     v-model="fields.matricula"
+                    maxlength="6"
+                    minlength="5"
                 >
                 </text-field>
                 <field-errors name="matricula"></field-errors>
@@ -27,6 +30,7 @@
                 <text-field
                     name="nombre"
                     v-model="fields.nombre"
+                    maxlength="120"
                 >
                 </text-field>
                 <field-errors name="nombre"></field-errors>
@@ -39,6 +43,7 @@
                 <text-field
                     name="apellido_paterno"
                     v-model="fields.apellido_paterno"
+                    maxlength="60"
                 >
                 </text-field>
                 <field-errors name="apellido_paterno"></field-errors>
@@ -51,6 +56,7 @@
             <text-field
                     name="apellido_materno"
                     v-model="fields.apellido_materno"
+                    maxlength="60"
                 >
                 </text-field>
                 <field-errors name="apellido_materno"></field-errors>
@@ -63,6 +69,7 @@
                 <text-field
                     name="telefono"
                     v-model="fields.telefono"
+                    maxlength="11"
                 >
                 </text-field>
                 <field-errors name="telefono"></field-errors>
@@ -72,6 +79,8 @@
                 <text-field
                     name="extension"
                     v-model="fields.extension"
+                    maxlength="6"
+                    minlength="4"
                 >
                 </text-field>
                 <field-errors name="extension"></field-errors>
@@ -99,6 +108,7 @@
             <text-field
                     name="pautoriza"
                     v-model="fields.pautoriza"
+                    maxlength="200"
                 >
                 </text-field>
                 <field-errors name="pautoriza"></field-errors>

@@ -10,7 +10,7 @@ def inbox(request):
         dataUrl = {
             0 : {
                 "id" : 1,
-                "name" : "solicitudes",
+                "name" : "Solicitudes",
                 "tile" : "request.png",
                 "order" : 1,
                 "created_at" : "2019-05-06 11:52:57",
