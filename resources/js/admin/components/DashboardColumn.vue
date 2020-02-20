@@ -23,6 +23,7 @@
 </template>
 
 <script>
+    import { remove as removeDiacritics } from 'diacritics';
     import DashboardSubmenu from './DashboardSubmenu';
 
     export default {
@@ -41,8 +42,7 @@
 
         watch: {
             filter: function() {
-                const query = App.replaceDiacritics(this.filter).toLowerCase().trim();
-
+                const query = removeDiacritics(this.filter).toLowerCase().trim();
                 this.submenus = this.section.submenus.filter(submenu => {
                     return submenu.searchable_name.includes(query);
                 });
