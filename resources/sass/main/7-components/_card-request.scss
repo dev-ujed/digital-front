@@ -161,7 +161,7 @@ Card request
 }
 
 .card-request__attach-icon {
-    color: #50AB87;
+    color: $color-dashboard-green;
     display: inline-block;
     font-size: rem(12);
     vertical-align: text-bottom;
@@ -176,7 +176,7 @@ Card request
 }
 
 .icon-plus-circle {
-    color: #50AB87;
+    color: $color-dashboard-green;
     margin-right: 3px;
 
     & svg {
