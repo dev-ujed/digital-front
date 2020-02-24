@@ -26,4 +26,10 @@
     {% include "solicitudes/partials/show-desktop.html" %}
     {% include "solicitudes/partials/show-movil.html" %}
 
+    <service-modal>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+    </service-modal>
 {% endblock %}

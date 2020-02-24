@@ -1,0 +1,79 @@
+/*
+================================================================================
+Modal services
+================================================================================
+*/
+
+.modal__services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 3em auto 1em;
+    max-width: 260px;
+    text-align: center;
+    width: 100%;
+
+    &-item {
+        color: $color-gray-70;
+        font-size: 13px;
+        height: 100%;
+        margin-bottom: 2em;
+        max-width: 125px;
+        line-height: 1.4;
+        width: 100%;
+    }
+
+    @media (min-width: 450px) {
+        justify-content: space-between;
+        max-width: 420px;
+
+        &-item {
+            max-width: 90px;
+        }
+    }
+
+
+    &-item:hover{
+        cursor: pointer;
+    }
+
+    &-item:hover > .modal__services-item-icon{
+        border: 1px solid $color-gray-50;
+    }
+
+    &-item--active > .modal__services-item-icon--desarrollo {
+        border: 2px solid #DE1818;
+    }
+
+    &-item-icon {
+        background-color: #F0F2F3;
+        border-radius: 4px;
+        color: #5f6b78;
+        display: flex;
+        height: 60px;
+        margin: auto;
+        margin-bottom: 5px;
+        width: 60px;
+    }
+
+    &-item-icon::before {
+        margin: auto;
+        filter: invert(44%) sepia(5%) saturate(1360%) hue-rotate(171deg) brightness(90%) contrast(87%);
+    }
+
+    &-item-icon--desarrollo::before {
+        content: url('/static/img/icons/code.svg');
+    }
+
+    &-item-icon--infraestructura::before {
+        content: url('/static/img/icons/server.svg');
+    }
+
+    &-item-icon--cuentas-de-acceso::before {
+        content: url('/static/img/icons/lock.svg');
+    }
+
+    &-item-icon--instalacion::before {
+        content: url('/static/img/icons/laptop.svg');
+    }
+}
