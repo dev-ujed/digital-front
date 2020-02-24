@@ -26,7 +26,7 @@
             <span class="card-request__dt-title">
                 {% load svg %}
                 <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                {{ request.archivos|length }} ARCHIVOS ADJUNTOS
+                {{ files|length }} ARCHIVOS ADJUNTOS
             </span>
 
             <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
