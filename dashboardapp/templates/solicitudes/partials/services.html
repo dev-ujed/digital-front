@@ -1,6 +1,14 @@
 <div class="row">
 
-    {% for keyService, service in services.items %}
+    <cards-services>
+        <template slot="plus-circle">
+            {% load svg %}
+            {% svg 'plus-circle' %}
+        </template>
+
+    </cards-services>
+
+    <!-- {% for keyService, service in services.items %}
 
         {% for process in service.subservicios %}
 
@@ -37,13 +45,6 @@
                 </div>
             </div>
         {% endfor %}
-    {% endfor %}
+    {% endfor %} -->
 </div>
 
-<div class="text-center mt-6">
-    <button class="btn btn--light w-full">
-        {% load svg %}
-        <span class="icon-plus-circle">{% svg 'plus-circle' %}</span>
-        Crear servicio
-    </button>
-</div>
