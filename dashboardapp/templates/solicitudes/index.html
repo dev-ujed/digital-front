@@ -36,8 +36,8 @@
                                         <div class=card-request__folio>
                                             <span>{{ element.folio }}</span>
                                             <div class="card-request__service-container">
-                                                {% for servicio in element.servicios %}
-                                                    <span class="card-request__service card-request__service--{{ servicio.descripcion |slugify }}"></span>
+                                                {% for subservicio in element.subservices %}
+                                                    <span class="card-request__service card-request__service--{{ subservicio.servicio |slugify }}"></span>
                                                 {% endfor %}
                                             </div>
 
@@ -64,11 +64,11 @@
                                             <dd class="card-request__dd-description">
                                                 {{ element.descripcion }}
                                             </dd>
-                                            {% if element.archivos != 0 %}
+                                            {% if element.count_archivos != 0 %}
                                                 <div class="card-request__attach">
                                                     <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
                                                     <span class="card-request__attach-number">
-                                                        {{ element.archivos }}
+                                                        {{ element.count_archivos }}
                                                     </span>
                                                 </div>
                                             {% endif %}
