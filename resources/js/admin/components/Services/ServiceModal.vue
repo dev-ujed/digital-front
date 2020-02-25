@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="isActive"  @click="closeModal">
+    <div class="modal" v-if="isActive">
         <div class="modal__card">
 
             <button class="modal__close-btn" @click="closeModal">
@@ -11,34 +11,69 @@
             <form>
                 <div class="container">
                     <div class="modal__services">
-
-                        <label class="modal__services-item modal__services-item--active">
+                        <label  class="modal__services-item"
+                                :class="{
+                                    'modal__services-item--active': service === 'desarrollo'
+                                }">
                             <span class="modal__services-item-icon modal__services-item-icon--desarrollo"></span>
-                            <input type="radio" name="services" id="desarrollo" class="visually-hidden">
+                            <input
+                                type="radio"
+                                name="services"
+                                value="desarrollo"
+                                id="desarrollo"
+                                class="visually-hidden"
+                                @change="changeService">
                             Desarrollo
                         </label>
 
-                        <label class="modal__services-item">
+                        <label  class="modal__services-item"
+                                :class="{
+                                    'modal__services-item--active': service === 'infraestructura'
+                                }">
                             <span class="modal__services-item-icon modal__services-item-icon--infraestructura"></span>
-                            <input type="radio" name="services" id="" class="visually-hidden">
+                            <input
+                                type="radio"
+                                name="services"
+                                value="infraestructura"
+                                id="services"
+                                class="visually-hidden"
+                                @change="changeService">
                             Infraestructura
                         </label>
 
-                        <label class="modal__services-item">
+                        <label  class="modal__services-item"
+                                :class="{
+                                    'modal__services-item--active': service === 'cuentas-de-acceso'
+                                }">
                             <span class="modal__services-item-icon modal__services-item-icon--cuentas-de-acceso"></span>
-                            <input type="radio" name="services" id="" class="visually-hidden">
+                            <input
+                                type="radio"
+                                name="services"
+                                value="cuentas-de-acceso"
+                                id="cuentas-de-acceso"
+                                class="visually-hidden"
+                                @change="changeService">
                             Cuentas de acceso
                         </label>
 
-                        <label class="modal__services-item">
+                        <label  class="modal__services-item"
+                                :class="{
+                                    'modal__services-item--active': service === 'instalacion'
+                                }">
                             <span class="modal__services-item-icon modal__services-item-icon--instalacion"></span>
-                            <input type="radio" name="services" id="" class="visually-hidden">
+                            <input
+                                type="radio"
+                                name="services"
+                                value="instalacion"
+                                id="instalacion"
+                                class="visually-hidden"
+                                @change="changeService">
                             Instalación
                         </label>
 
                     </div>
 
-                    <div class="form-control">
+                    <div class="form-control" v-if="hasService">
                         <label for="">Servicio</label>
                         <select class="form-field">
                             <option value="0">- Selecciona una opción -</option>
@@ -68,8 +103,18 @@
 
     export default {
         extends: Modal,
-        mounted() {
-            console.log('CreateServiceModal');
+        data() {
+            return {
+                hasService: false,
+                service: ''
+            };
         },
+        methods: {
+            changeService(e) {
+
+                this.hasService = true;
+                this.service    = e.currentTarget.value;
+            }
+        }
     };
 </script>

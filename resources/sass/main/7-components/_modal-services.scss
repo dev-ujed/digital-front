@@ -33,16 +33,32 @@ Modal services
     }
 
 
-    &-item:hover{
+    &-item:hover {
         cursor: pointer;
     }
 
-    &-item:hover > .modal__services-item-icon{
+    &-item:hover > .modal__services-item-icon {
         border: 1px solid $color-gray-50;
     }
 
-    &-item--active > .modal__services-item-icon--desarrollo {
+    &-item--active > .modal__services-item-icon--desarrollo,
+    &-item--active:hover > .modal__services-item-icon--desarrollo {
+        border: 2px solid #2D86B3;
+    }
+
+    &-item--active > .modal__services-item-icon--infraestructura,
+    &-item--active:hover > .modal__services-item-icon--infraestructura {
         border: 2px solid #DE1818;
+    }
+
+    &-item--active > .modal__services-item-icon--cuentas-de-acceso,
+    &-item--active:hover > .modal__services-item-icon--cuentas-de-acceso  {
+        border: 2px solid #FFCA34;
+    }
+
+    &-item--active > .modal__services-item-icon--instalacion,
+    &-item--active:hover > .modal__services-item-icon--instalacion {
+        border: 2px solid #20C372;
     }
 
     &-item-icon {
