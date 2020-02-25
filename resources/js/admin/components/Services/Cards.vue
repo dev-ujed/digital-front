@@ -12,17 +12,11 @@
 </template>
 <script>
 
-    import ServiceModal from './ServiceModal';
-
     export default {
-        components: { ServiceModal },
         methods: {
             showModal() {
                 this.$root.$emit('showModal');
             },
-        },
-        mounted() {
-            console.log('Servicios');
-        },
+        }
     };
 </script>
