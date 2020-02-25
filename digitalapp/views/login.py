@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 import requests, json
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import logout
 
@@ -15,7 +15,6 @@ def index_login(request):
 
 
 def user_login(request):
-
     if request.method == 'POST':
         data_request = json.loads(request.body.decode('utf-8'))
         errors       = formRequestLogin(data_request)
@@ -24,13 +23,29 @@ def user_login(request):
             return JsonResponse({'errors':errors}, status = 422)
 
         domain = request.build_absolute_uri('/')[:-1]
-        user   = {
+        data   = {
             'email' : data_request['email'],
-            'password': make_password(data_request['password'])
         }
 
-        if user != {}:
-            request.session['user1'] = user
+        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/login/', data=data)
+        data     = response.json()
+
+        if 'data' in data:
+            user    = data['data']
+            user_id = user['id']
+            active  =  user['active']
+
+            if check_password(data_request['password'], user['password']):
+                pass
+            else:
+                return JsonResponse({'errors':{'password': ['La contraseña es incorrecta']}}, status = 422)
+
+            if active:
+                pass
+            else:
+                return JsonResponse({'errors':{'email': ['El usuario no está activo']}}, status = 422)
+
+            request.session['user'] = user
             response = HttpResponse('')
             response["Redirect-To"] = domain+'/administracion'
             return response
