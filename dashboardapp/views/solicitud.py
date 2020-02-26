@@ -166,7 +166,8 @@ def solicitud(request, folio):
             }
         }
 
-        services = {}
+        responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')
+        services  = responseServices.json()
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
         solicitud  = response.json()
@@ -188,5 +189,6 @@ def solicitud(request, folio):
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
-            'request': solicitud[0]
+            'request': solicitud[0],
+            'services': services
         })
