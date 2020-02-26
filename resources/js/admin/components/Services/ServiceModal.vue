@@ -13,64 +13,20 @@
                     <div class="modal__services">
                         <label  class="modal__services-item"
                                 :class="{
-                                    'modal__services-item--active': $parent.service === 'desarrollo'
-                                }">
-                            <span class="modal__services-item-icon modal__services-item-icon--desarrollo"></span>
+                                    'modal__services-item--active': $parent.service === item.slug
+                                }"
+                                v-for="item in $parent.services"
+                                >
+                            <span :class="'modal__services-item-icon modal__services-item-icon--'+(item.slug)"></span>
                             <input
                                 type="radio"
                                 name="services"
-                                value="desarrollo"
-                                id="desarrollo"
+                                :value="item.slug"
+                                :id="item.slug"
                                 class="visually-hidden"
                                 @change="$parent.changeService">
-                            Desarrollo
+                            {{ item.descripcion }}
                         </label>
-
-                        <label  class="modal__services-item"
-                                :class="{
-                                    'modal__services-item--active': $parent.service === 'infraestructura'
-                                }">
-                            <span class="modal__services-item-icon modal__services-item-icon--infraestructura"></span>
-                            <input
-                                type="radio"
-                                name="services"
-                                value="infraestructura"
-                                id="services"
-                                class="visually-hidden"
-                                @change="$parent.changeService">
-                            Infraestructura
-                        </label>
-
-                        <label  class="modal__services-item"
-                                :class="{
-                                    'modal__services-item--active': $parent.service === 'cuentas-de-acceso'
-                                }">
-                            <span class="modal__services-item-icon modal__services-item-icon--cuentas-de-acceso"></span>
-                            <input
-                                type="radio"
-                                name="services"
-                                value="cuentas-de-acceso"
-                                id="cuentas-de-acceso"
-                                class="visually-hidden"
-                                @change="$parent.changeService">
-                            Cuentas de acceso
-                        </label>
-
-                        <label  class="modal__services-item"
-                                :class="{
-                                    'modal__services-item--active': $parent.service === 'instalacion'
-                                }">
-                            <span class="modal__services-item-icon modal__services-item-icon--instalacion"></span>
-                            <input
-                                type="radio"
-                                name="services"
-                                value="instalacion"
-                                id="instalacion"
-                                class="visually-hidden"
-                                @change="$parent.changeService">
-                            Instalación
-                        </label>
-
                     </div>
 
                     <div class="form-control" v-if="$parent.service">
@@ -124,8 +80,8 @@
                 type: String,
                 required: true
             },
-            procesess: {
-                type: Object,
+            services: {
+                type: Array,
                 required: true
             }
         },
@@ -133,6 +89,7 @@
             return {
                 service: '',
                 focusTrap: null,
+                procesess: []
             };
         },
         watch: {
@@ -149,6 +106,12 @@
         methods: {
             changeService(e) {
                 this.service = e.currentTarget.value;
+
+                const current = this.services.filter(process => {
+                    return process.slug ==  this.service
+                });
+
+                this.procesess = Object.assign({}, current[0].subservicios);
             },
             /*
             |------------------------------------------------------------------------
@@ -179,6 +142,8 @@
                 this.focusTrap = null;
                 this.$root.$emit('closeOverlay');
             }
+        },
+        mounted() {
         }
     };
 </script>

@@ -41,8 +41,8 @@ Modal services
         border: 1px solid $color-gray-50;
     }
 
-    &-item--active > .modal__services-item-icon--desarrollo,
-    &-item--active:hover > .modal__services-item-icon--desarrollo {
+    &-item--active > .modal__services-item-icon--desarrollo-de-software,
+    &-item--active:hover > .modal__services-item-icon--desarrollo-de-software {
         border: 2px solid #2D86B3;
     }
 
@@ -56,8 +56,8 @@ Modal services
         border: 2px solid #FFCA34;
     }
 
-    &-item--active > .modal__services-item-icon--instalacion,
-    &-item--active:hover > .modal__services-item-icon--instalacion {
+    &-item--active > .modal__services-item-icon--instalacion-de-software,
+    &-item--active:hover > .modal__services-item-icon--instalacion-de-software {
         border: 2px solid #20C372;
     }
 
@@ -77,7 +77,7 @@ Modal services
         filter: invert(44%) sepia(5%) saturate(1360%) hue-rotate(171deg) brightness(90%) contrast(87%);
     }
 
-    &-item-icon--desarrollo::before {
+    &-item-icon--desarrollo-de-software::before {
         content: url('/static/img/icons/code.svg');
     }
 
@@ -89,7 +89,7 @@ Modal services
         content: url('/static/img/icons/lock.svg');
     }
 
-    &-item-icon--instalacion::before {
+    &-item-icon--instalacion-de-software::before {
         content: url('/static/img/icons/laptop.svg');
     }
 }
