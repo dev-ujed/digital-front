@@ -1,0 +1,28 @@
+{% extends 'dashboard/master.html' %}
+
+{% block content %}
+
+    <div class="db-heading">
+
+        <div class="breadcrums db-breadcrums">
+            <a href="/administracion" class="breadcrums__link">Dashboard</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a href="/administracion/solicitudes/bandeja" class="breadcrums__link">Solicitudes</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a class="breadcrums__link breadcrums__link--active"> En proceso</a>
+       </div>
+
+        <h1 class="db-heading__title">
+            Solicitudes en proceso
+        </h1>
+    </div>
+
+
+
+{% endblock %}
