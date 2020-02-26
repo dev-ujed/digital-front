@@ -181,11 +181,10 @@ def solicitud(request, folio):
             date = datetime.strptime(file['subido'], "%d/%m/%Y %H:%M")
             file['subido'] = date.strftime("%d %h %Y, %I:%M %p")
 
+        for service in solicitud[0]['subservices']:
 
-        #for service in solicitud[0]['subservices']:
-
-            #date = datetime.strptime(subservice['fecha_sub'], "%d/%m/%Y %H:%M")
-            #subservice['fecha_sub'] = date.strftime("%d %h %Y, %I:%M %p")
+            date = datetime.strptime(service['fec_subservicio'], "%d/%m/%Y %H:%M")
+            service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M %p")
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,

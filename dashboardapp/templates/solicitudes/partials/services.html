@@ -1,11 +1,11 @@
 <div class="row">
     {% for service in request.subservices %}
 
-        <div class="db-process-card db-process-card--{{ service.descripcion|slugify }} ">
-            <p class="db-process-card__title">{{ service.descripcion }}</p>
-            <p class="db-process-card__date"> {{ service.fecha_sub }}</p>
+        <div class="db-process-card db-process-card--{{ service.servicio|slugify }} ">
+            <p class="db-process-card__title">{{ service.subservicio }}</p>
+            <p class="db-process-card__date"> {{ service.fec_subservicio }}</p>
 
-            <span class="badge badge--blue"> {{ service.estatus_descrip }} </span>
+            <span class="badge badge--blue"> {{ service.estatus }} </span>
 
             <div class="db-process-card__users">
                 <div class="user-bar__avatar-container">
