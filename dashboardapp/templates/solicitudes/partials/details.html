@@ -26,7 +26,7 @@
             <span class="card-request__dt-title">
                 {% load svg %}
                 <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                {{ request.archivos|length }} ARCHIVOS ADJUNTOS
+                {{ request.archivos_solicitud|length }} ARCHIVOS ADJUNTOS
             </span>
 
             <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
@@ -38,7 +38,7 @@
 
         <div class="row">
 
-            {% for value in files %}
+            {% for value in request.archivos_solicitud %}
                 <a href="#" class="card-request__file">
 
                     <div class="card-request__file-thumb d-inline-block align-bottom">

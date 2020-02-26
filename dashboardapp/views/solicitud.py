@@ -171,27 +171,22 @@ def solicitud(request, folio):
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
         solicitud  = response.json()
 
-        responseFile = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+str(solicitud[0]['id'])+'/detalle/')
-        files  = responseFile.json()
-
         locale.setlocale(locale.LC_TIME, '')
         date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
         solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
 
-        for service in solicitud[0]['servicios']:
+        for file in solicitud[0]['archivos_solicitud']:
 
-            service = eval(service)
+            date = datetime.strptime(file['subido'], "%d/%m/%Y %H:%M")
+            file['subido'] = date.strftime("%d %h %Y, %I:%M %p")
 
-            for subservice in service['subservicios']:
 
-                date = datetime.strptime(subservice['fecha_sub'], "%d/%m/%Y %H:%M")
-                subservice['fecha_sub'] = date.strftime("%d %h %Y, %I:%M %p")
+        #for service in solicitud[0]['subservices']:
 
-            services.update({ service['id'] : service })
+            #date = datetime.strptime(subservice['fecha_sub'], "%d/%m/%Y %H:%M")
+            #subservice['fecha_sub'] = date.strftime("%d %h %Y, %I:%M %p")
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
-            'request': solicitud[0],
-            'files': files,
-            'services': services
+            'request': solicitud[0]
         })
