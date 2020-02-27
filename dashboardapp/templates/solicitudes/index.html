@@ -33,7 +33,7 @@
                             {% for element in requests %}
                                 <a  class="card-request card-request__link" href="http://{{ request.get_host }}/administracion/solicitud">
                                     <div class="">
-                                        <div class=card-request__folio>
+                                        <div class="card-request__header card-request__header--folio">
                                             <span>{{ element.folio }}</span>
                                             <div class="card-request__service-container">
                                                 {% for subservicio in element.subservices %}
