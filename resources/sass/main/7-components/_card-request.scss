@@ -235,3 +235,24 @@ Card request
         width: 18px;
     }
 }
+
+.card-request__footer {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    padding: 15px;
+}
+
+.card-request__progress {
+    height: 4px;
+    background-color: #E7E9EC;
+    border-radius: 8px;
+    margin-top: 15px;
+
+    &--active {
+        background-color: #50AB87;
+        display: block;
+        width: 30%;
+    }
+}
