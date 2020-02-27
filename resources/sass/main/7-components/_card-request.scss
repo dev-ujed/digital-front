@@ -32,7 +32,7 @@ Card request
     font-weight: bold;
     font-size: rem(12);
     line-height: 1.2;
-    margin: -1em 0 ($spacer * 1.5) #{-$gutter};
+    margin: -1em -15px 1.5rem -30px;
     padding: 1em $gutter 1em;
     text-align: left;
     text-transform: uppercase;
@@ -44,13 +44,10 @@ Card request
 }
 
 .card-request__link {
-    color: $color-db-panel-title;
-    text-decoration: none;
-
     &:focus,
     &:hover,
     &:active {
-        color: #7b7f82;
+        color: #5F6B78;
         text-decoration: none;
     }
 }
@@ -115,6 +112,58 @@ Card request
     &-pdf {
         background-color: $color-gray-70;
     }
+.card-request__service-container{
+    float: right;
+    margin-right: -19px;
+}
+
+.card-request__service {
+    border-radius: 6px;
+    border: 2px solid;
+    float: right;
+    height: 11px;
+    margin: 0 5px;
+    width: 11px;
+
+    &--infraestructura {
+        border-color:$color-infraestructura;
+        &-active{
+            background-color:$color-infraestructura;
+            border-color:$color-infraestructura;
+        }
+    }
+
+    &--desarrollo-de-software {
+        border-color:$color-desarrollo-de-software;
+        &-active {
+            background-color:$color-desarrollo-de-software;
+            border-color:$color-desarrollo-de-software;
+        }
+    }
+
+    &--cuentas-de-acceso {
+        border-color:$color-cuentas-de-acceso;
+        &-active {
+            background-color:$color-cuentas-de-acceso;
+            border-color:$color-cuentas-de-acceso;
+        }
+    }
+
+    &--instalacion-de-sofware {
+        border-color:$color-instalacion-de-software;
+        &-active {
+            background-color:$color-instalacion-de-software;
+            border-color:$color-instalacion-de-software;
+        }
+    }
+}
+
+
+.card-request__title {
+    color: #202428;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .card-request__date {

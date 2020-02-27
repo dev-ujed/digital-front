@@ -15,7 +15,7 @@ def solicitud(request, folio):
         dataUrl = {
             0 : {
                 "id" : 1,
-                "name" : "Solicitudes",
+                "name" : "ACL",
                 "tile" : "acl.png",
                 "order" : 1,
                 "created_at" : "2019-05-06 11:52:57",
@@ -37,7 +37,7 @@ def solicitud(request, folio):
                             0 : {
                                 "id" : 1,
                                 "name" : "Bandeja",
-                                "route" : "solicitudes/bandeja",
+                                "route" : "bandeja",
                                 "permission" : "create.users",
                                 "order" : 1,
                                 "submenu_id" : 1,
@@ -72,7 +72,7 @@ def solicitud(request, folio):
                             0 : {
                                 "id" : 3,
                                 "name" : "Agregar",
-                                "route" : "roles/crear",
+                                "route" : "",
                                 "permission" : "create.roles",
                                 "order" : 1,
                                 "submenu_id" : 2,
