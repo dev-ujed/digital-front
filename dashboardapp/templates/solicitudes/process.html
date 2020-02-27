@@ -23,190 +23,213 @@
         </h1>
     </div>
 
-    <div class="requests-process">
+    <div class="fluid-container mt-12">
 
-        <div class="requests-process__services">
+        <div class="d-inline-flex">
             <p class="requests-process__head requests-process__head--services">
                 SOLICITUDES
             </p>
+            <p class="requests-process__head requests-process__col">
+                TO DO
+            </p>
+            <p class="requests-process__head requests-process__col">
+                INICIADO
+            </p>
+            <p class="requests-process__head requests-process__col">
+                EN ESPERA
+            </p>
+            <p class="requests-process__head requests-process__col">
+                CONCLUIDO
+            </p>
+        </div>
+
+        <div class="requests-process__row">
 
             <div class="requests-process__body requests-process__body--services">
 
-                <div class="requests-process__services-column">
-                    <div class="card-request w-full mb-0">
-                        <p class=card-request__folio>
-                            <a  class="card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">#278</a>
-                        </p>
-                        <p class="card-request__date">
-                            16 Ene 2020
-                        </p>
-                        <dl class="list-inline list-inline--md">
-                            <dt class="card-request__dt-title">
-                                Enviada por
-                            </dt>
-                            <dd>
-                                <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
-                                <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
-                            </dd>
+                <div class="card-request w-full mb-0">
+                    <p class=card-request__folio>
+                        <a  class="card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">#278</a>
+                    </p>
+                    <p class="card-request__date">
+                        16 Ene 2020
+                    </p>
+                    <dl class="list-inline list-inline--md">
+                        <dt class="card-request__dt-title">
+                            Enviada por
+                        </dt>
+                        <dd>
+                            <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                            <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                        </dd>
 
-                            <div class="card-request__attach">
-                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                <span class="card-request__attach-number">2</span>
-                            </div>
-                        </dl>
+                        <div class="card-request__attach">
+                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                            <span class="card-request__attach-number">2</span>
+                        </div>
+                    </dl>
+                </div>
+
+            </div>
+
+            <div class="requests-process__body requests-process__col">
+
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
                     </div>
                 </div>
 
-                <div class="requests-process__services-column">
-                    <div class="card-request w-full">
-                        <p class=card-request__folio>
-                            <a  class="card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">#278</a>
-                        </p>
-                        <p class="card-request__date">
-                            16 Ene 2020
-                        </p>
-                        <dl class="list-inline list-inline--md">
-                            <dt class="card-request__dt-title">
-                                Enviada por
-                            </dt>
-                            <dd>
-                                <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
-                                <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
-                            </dd>
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
 
-                            <div class="card-request__attach">
-                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                <span class="card-request__attach-number">2</span>
-                            </div>
-                        </dl>
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
                     </div>
                 </div>
 
-                <div class="requests-process__services-column">
-                    <div class="card-request w-full">
-                        <p class=card-request__folio>
-                            <a  class="card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">#278</a>
-                        </p>
-                        <p class="card-request__date">
-                            16 Ene 2020
-                        </p>
-                        <dl class="list-inline list-inline--md">
-                            <dt class="card-request__dt-title">
-                                Enviada por
-                            </dt>
-                            <dd>
-                                <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
-                                <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
-                            </dd>
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
 
-                            <div class="card-request__attach">
-                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                <span class="card-request__attach-number">2</span>
-                            </div>
-                        </dl>
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
                     </div>
                 </div>
 
+            </div>
+
+            <div class="requests-process__body requests-process__col">
+            </div>
+
+            <div class="requests-process__body requests-process__col">
+
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="requests-process__body requests-process__col">
             </div>
         </div>
 
-        <div class="requests-process__procesess">
+        <div class="requests-process__row">
 
-            <div class="d-flex">
-                <p class="requests-process__head requests-process__head--procesess">
-                    TO DO
-                </p>
+            <div class="requests-process__body requests-process__body--services">
 
-                <p class="requests-process__head requests-process__head--procesess">
-                    INICIADO
-                </p>
+                <div class="card-request w-full mb-0">
+                    <p class=card-request__folio>
+                        <a  class="card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">#278</a>
+                    </p>
+                    <p class="card-request__date">
+                        16 Ene 2020
+                    </p>
+                    <dl class="list-inline list-inline--md">
+                        <dt class="card-request__dt-title">
+                            Enviada por
+                        </dt>
+                        <dd>
+                            <span class="card-request__dd-user">Ahmed Said René Ramos Pulido</span>
+                            <br><span class="card-request__dd-ures">Escuelas incorporadas</span>
+                        </dd>
 
-                <p class="requests-process__head requests-process__head--procesess">
-                    EN ESPERA
-                </p>
-                <p class="requests-process__head requests-process__head--procesess">
-                    CONCLUIDO
-                </p>
-            </div>
-
-            <div class="requests-process__procesess">
-
-                <div class="requests-process__procesess-row">
-                    <div class="requests-process__procesess-column">
-                        <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                            <p class="db-process-card__title">Desarrollo de sitios web</p>
-                            <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                            <div class="db-process-card__users mt-0">
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
-
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
-                            </div>
+                        <div class="card-request__attach">
+                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                            <span class="card-request__attach-number">2</span>
                         </div>
-
-                        <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                            <p class="db-process-card__title">Desarrollo de sitios web</p>
-                            <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                            <div class="db-process-card__users mt-0">
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
-
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="requests-process__procesess-column"></div>
-
-                    <div class="requests-process__procesess-column">
-
-                            <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                                    <div class="db-process-card__users mt-0">
-                                        <div class="user-bar__avatar-container">
-                                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                        </div>
-
-                                        <div class="user-bar__avatar-container">
-                                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                        </div>
-                                    </div>
-                                </div>
-
-                    </div>
-
+                    </dl>
                 </div>
 
-                <div class="requests-process__procesess-row">
-                    <div class="requests-process__procesess-column">
-                        <div class="db-process-card mr-0 db-process-card--cuentas-de-acceso">
-                            <p class="db-process-card__title">Desarrollo de sitios web</p>
-                            <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+            </div>
 
-                            <div class="db-process-card__users mt-0">
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
+            <div class="requests-process__body requests-process__col">
+            </div>
 
-                                <div class="user-bar__avatar-container">
-                                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                                </div>
-                            </div>
+            <div class="requests-process__body requests-process__col">
+
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="requests-process__body requests-process__col">
+            </div>
+
+            <div class="requests-process__body requests-process__col">
+
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+                    </div>
+                </div>
+                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
+                    <p class="db-process-card__title">Desarrollo de sitios web</p>
+                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
+
+                    <div class="db-process-card__users mt-0">
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+
+                        <div class="user-bar__avatar-container">
+                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
