@@ -8,7 +8,7 @@
                 </span>
             </button >
 
-            <base-form :action="action" inline-template>
+            <service-modal-form :action="action" inline-template>
                 <form class="container">
                     <div class="modal__services">
                         <label  class="modal__services-item"
@@ -30,51 +30,51 @@
                     </div>
 
                     <div class="form-control" v-if="$parent.service">
-                        <label for="proceso">Proceso</label>
+                        <label for="subservice_id">Proceso</label>
                         <select-field
                             class="form-field"
-                            name="proceso"
-                            id="proceso"
-                            v-model="fields.proceso"
+                            name="subservice_id"
+                            id="subservice_id"
+                            v-model="fields.subservice_id"
                             :options="$parent.procesess"
                         >
                         </select-field>
-                        <field-errors name="proceso"></field-errors>
+                        <field-errors name="subservice_id"></field-errors>
                     </div>
 
                     <div class="form-control">
-                        <label for="comment">
+                        <label for="comentario">
                             Comentario
                             <small class="color-gray-60">Opcional</small>
                         </label>
                         <text-area
-                            name="comment"
+                            name="comentario"
                             cols="30"
                             rows="5"
-                            v-model="fields.comment">
+                            v-model="fields.comentario">
                         </text-area>
                         <small class="color-gray-60">Máximo 150 caracteres.</small>
-                        <field-errors name="comment"></field-errors>
+                        <field-errors name="comentario"></field-errors>
                     </div>
 
                     <div class="w-full d-inline-block text-center mb-12">
-                        <button class="btn btn--wide modal__success-btn">
-                            Crear
-                        </button>
+                        <form-button class="btn btn--wide modal__success-btn" type="submit">
+                            <span class="mr-1">Crear</span>
+                        </form-button>
                     </div>
                 </form>
-            </base-form>
+            </service-modal-form>
         </div>
     </div>
 </template>
 
 <script>
-    import BaseForm from '../../../main/components/forms/base/BaseForm.vue';
+    import ServiceModalForm from './ServiceModalForm.vue';
     import Modal from '../../../main/components/Modal.vue';
 
     export default {
         extends: Modal,
-        components: { BaseForm },
+        components: { ServiceModalForm },
         props: {
             action: {
                 type: String,
@@ -101,7 +101,8 @@
                 else {
                     this.destroyFocusTrap;
                 }
-            }
+            },
+
         },
         methods: {
             changeService(e) {
@@ -111,7 +112,7 @@
                     return process.slug ==  this.service
                 });
 
-                this.procesess = Object.assign({}, current[0].subservicios);
+                this.procesess = current[0].subservicios;
             },
             /*
             |------------------------------------------------------------------------
@@ -142,8 +143,6 @@
                 this.focusTrap = null;
                 this.$root.$emit('closeOverlay');
             }
-        },
-        mounted() {
         }
     };
 </script>
