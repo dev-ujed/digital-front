@@ -1,11 +1,8 @@
-<div class="row">
-    <cards-services
-        :array="{{ subservices }}">
-        <template slot="plus-circle">
-            {% load svg %}
-            {% svg 'plus-circle' %}
-        </template>
-    </cards-services>
 
-</div>
-
+<cards-services
+    :array="{{ subservices }}">
+    <template slot="plus-circle">
+        {% load svg %}
+        {% svg 'plus-circle' %}
+    </template>
+</cards-services>
