@@ -1,0 +1,127 @@
+{% extends 'dashboard/master.html' %}
+
+{% block content %}
+
+    <div class="db-heading">
+
+        <div class="breadcrums db-breadcrums">
+            <a href="/administracion" class="breadcrums__link">Dashboard</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a href="/administracion/solicitudes/bandeja" class="breadcrums__link">Solicitudes</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a class="breadcrums__link breadcrums__link--active"> En proceso</a>
+       </div>
+
+        <h1 class="db-heading__title">
+            Solicitudes en proceso
+        </h1>
+    </div>
+
+
+    <div class="fluid-container mt-12 overflow-x-auto">
+
+        <div class="d-inline-flex">
+            <p class="requests-process__head requests-process__head--services">
+                SOLICITUDES
+            </p>
+            <p class="requests-process__head requests-process__col">
+                TO DO
+            </p>
+            <p class="requests-process__head requests-process__col">
+                INICIADO
+            </p>
+            <p class="requests-process__head requests-process__col">
+                EN ESPERA
+            </p>
+            <p class="requests-process__head requests-process__col">
+                CONCLUIDO
+            </p>
+        </div>
+        {% for request in solicitudes %}
+            <div class="requests-process__row">
+                <div class="requests-process__body requests-process__body--services">
+                    <div class="row relative">
+                        <a class="card-request mb-0 w-full card-request__link" href="#">
+                            <div class="card-request__header card-request__header--folio">
+                                <span>#{{ request.folio }}</span>
+                                <div class="card-request__service-container">
+                                    {% for key, subservices_group in request.subservices.items %}
+                                        {% if request.countsubservices != 0 %}
+                                            {% for subservice in subservices_group %}
+                                                <span class="card-request__service card-request__service--{{ subservice.servicio |slugify }}"></span>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <p class="card-request__date">
+                                {{ request.formated_date }}
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno}}
+                                                {% if request.apellido_materno != None %}
+                                                    {{ request.apellido_materno }}
+                                                {% endif %}
+                                    </span>
+                                    <br><span class="card-request__dd-ures">{{ request.ures }}</span>
+                                </dd>
+                                <div class="card-request__footer">
+                                    {% if request.count_archivos != 0 %}
+                                        <div class="card-request__attach">
+                                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                            <span class="card-request__attach-number">
+                                                {{ request.count_archivos }}
+                                            </span>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="card-request__progress">
+                                        {% if request.countsubservices != 0 %}
+                                            <span class="card-request__progress card-request__progress--active"
+                                                style="width:{{ request.porcentajeCompleted }}%"
+
+                                            ></span>
+                                        {% endif%}
+                                    </div>
+                                </div>
+                            </dl>
+                        </a>
+                    </div>
+                </div>
+                {% for key, subservices_group in request.subservices.items %}
+                    <div class="requests-process__body requests-process__col">
+                        {% if request.countsubservices != 0 %}
+                            {% for subservice in subservices_group %}
+                                <div class="db-process-card mr-0 db-process-card--{{ subservice.servicio |slugify }}">
+                                    <p class="db-process-card__title">
+                                        {{ subservice.subservicio_name }}
+                                    </p>
+                                    <p class="db-process-card__date mb-1"> {{ subservice.formated_date }}</p>
+                                    <div class="db-process-card__users mt-0">
+                                        {% for participante in subservice.sub_servicioParticipantes %}
+                                            <div class="user-bar__avatar-container">
+                                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="{{ participante.participante_name }} {{ participante.participante_last_name }}" class="user-bar__avatar">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor%}
+    </div>
+
+{% endblock %}

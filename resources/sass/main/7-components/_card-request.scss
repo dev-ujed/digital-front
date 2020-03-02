@@ -59,6 +59,7 @@ Card request
     font-size: 13px;
     font-weight: 400;
 
+<<<<<<< HEAD
     & svg {
         color: $color-gray-80;
         height: 12px;
@@ -174,6 +175,8 @@ Card request
     font-size: 20px;
     font-weight: bold;
     margin: 0;
+=======
+>>>>>>> solicitudes-en-proceso
     & svg {
         color: $color-gray-80;
         height: 12px;
@@ -227,6 +230,64 @@ Card request
     &-pdf {
         background-color: $color-gray-70;
     }
+<<<<<<< HEAD
+=======
+}
+
+.card-request__service-container{
+    float: right;
+    margin-right: -19px;
+    width: 85%;
+}
+
+.card-request__service {
+    border-radius: 6px;
+    border: 2px solid;
+    float: right;
+    height: 11px;
+    margin: 0 5px;
+    width: 11px;
+
+    &--infraestructura {
+        border-color:$color-infraestructura;
+        &-active{
+            background-color:$color-infraestructura;
+            border-color:$color-infraestructura;
+        }
+    }
+
+    &--desarrollo-de-software {
+        border-color:$color-desarrollo-de-software;
+        &-active {
+            background-color:$color-desarrollo-de-software;
+            border-color:$color-desarrollo-de-software;
+        }
+    }
+
+    &--cuentas-de-acceso {
+        border-color:$color-cuentas-de-acceso;
+        &-active {
+            background-color:$color-cuentas-de-acceso;
+            border-color:$color-cuentas-de-acceso;
+        }
+    }
+
+    &--instalacion-de-sofware {
+        border-color:$color-instalacion-de-software;
+        &-active {
+            background-color:$color-instalacion-de-software;
+            border-color:$color-instalacion-de-software;
+        }
+    }
+}
+
+
+.card-request__title {
+    color: #202428;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+>>>>>>> solicitudes-en-proceso
 }
 
 .card-request__date {
@@ -294,5 +355,26 @@ Card request
     & svg {
         height: 18px;
         width: 18px;
+    }
+}
+
+.card-request__footer {
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    padding: 15px;
+}
+
+.card-request__progress {
+    height: 4px;
+    background-color: #E7E9EC;
+    border-radius: 8px;
+    margin-top: 15px;
+
+    &--active {
+        background-color: #50AB87;
+        display: block;
+        width: 30%;
     }
 }
