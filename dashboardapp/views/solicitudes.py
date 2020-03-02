@@ -12,7 +12,6 @@ def inbox(request):
         return redirect(domain+'/digitalapp/ingresar')
 
     else:
-
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
         statuses = {}
         requestByStatus = {}
