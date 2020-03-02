@@ -21,6 +21,12 @@ def solicitudesProceso(request):
             formatedDate = date.strftime("%d %h %Y")
             solicitud.update({'formated_date' : formatedDate})
 
+            if int(solicitud['countsubservices']) != 0 and int(solicitud['count_concluido']) != 0:
+                division = int(solicitud['countsubservices']) / int(solicitud['count_concluido'])
+            else:
+                division = 0
+            solicitud.update({ 'porcentajeCompleted' : division })
+
             for key, subservices in solicitud['subservices'].items():
                 for subservice in subservices:
 

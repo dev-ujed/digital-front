@@ -88,11 +88,9 @@
                                     <div class="card-request__progress">
                                         {% if request.countsubservices != 0 %}
                                             <span class="card-request__progress card-request__progress--active"
-                                                style="width:1%"
+                                                style="width:{{ request.porcentajeCompleted }}%"
+
                                             ></span>
-
-
-                                            {{ request.countsubservices / request.count_concluido }}
                                         {% endif%}
                                     </div>
                                 </div>
