@@ -4,6 +4,7 @@ import requests
 import locale
 from datetime import datetime
 import json
+from django.utils.text import slugify
 
 def solicitud(request, folio):
 
@@ -185,6 +186,7 @@ def solicitud(request, folio):
 
             date = datetime.strptime(service['fec_subservicio'], "%d/%m/%Y %H:%M")
             service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M %p")
+            service['slug'] = slugify(service['servicio'])
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
