@@ -10,6 +10,7 @@ import RequestUploadFile from './components/forms/RequestUploadFile.vue';
 import RequestFile from './components/forms/RequestFile.vue';
 import Menu from './components/menu/Menu.vue';
 import LoginForm from './components/forms/LoginForm.vue';
+import SiteOverlay from './components/SiteOverlay.vue';
 
 (function() {
     /* Base components
@@ -30,6 +31,7 @@ import LoginForm from './components/forms/LoginForm.vue';
     Vue.component('gallery-link', GalleryLink);
     Vue.component('truncated-text', TruncatedText);
     Vue.component('site-menu', Menu);
+    Vue.component('site-overlay', SiteOverlay);
 
 
     /**

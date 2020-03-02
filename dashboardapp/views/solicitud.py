@@ -189,5 +189,6 @@ def solicitud(request, folio):
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
             'request': solicitud[0],
+            'subservices': json.dumps(solicitud[0]['subservices']),
             'services': services
         })

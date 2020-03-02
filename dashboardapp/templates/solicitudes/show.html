@@ -15,15 +15,24 @@
                 {% load svg %}
                 {% svg 'chevron-right' %}
             </span>
-            <a class="breadcrums__link breadcrums__link--active"> {{ request.id }} </a>
+            <a class="breadcrums__link breadcrums__link--active"> {{ request.folio }} </a>
        </div>
 
         <h1 class="db-heading__title">
-            Solicitud #{{ request.id }}
+            Solicitud #{{ request.folio }}
         </h1>
     </div>
 
     {% include "solicitudes/partials/show-desktop.html" %}
     {% include "solicitudes/partials/show-movil.html" %}
 
+    <service-modal
+        action="{% url 'proceso-servicio' request.folio %}"
+        :services="{{ services }}"
+    >
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+    </service-modal>
 {% endblock %}
