@@ -39,7 +39,7 @@
         <div class="row">
 
             {% for value in request.archivos_solicitud %}
-                <a href="#" class="card-request__file">
+                <a href="{{ value.file }}" target="_blank" class="card-request__file">
 
                     <div class="card-request__file-thumb d-inline-block align-bottom">
                         {% load static %}
