@@ -3,8 +3,7 @@
             FECHA DE RECEPCIÓN
         </dt>
         <dd>
-
-            <span class="card-request__dd-ures">
+            <span class="size-sm color-gray-70">
                 {{ request.fecha_sol }}
             </span>
         </dd>
@@ -27,20 +26,20 @@
             <span class="card-request__dt-title">
                 {% load svg %}
                 <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                {{ request.archivos|length }} ARCHIVOS ADJUNTOS
+                {{ request.archivos_solicitud|length }} ARCHIVOS ADJUNTOS
             </span>
 
             <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
-                {% load svg %}
-                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                    {% load svg %}
+                    {% svg 'download' %}
                 Descargar todo
             </a>
         </dt>
 
         <div class="row">
 
-            {% for value in files %}
-                <a href="#" class="card-request__file">
+            {% for value in request.archivos_solicitud %}
+                <a href="{{ value.file }}" target="_blank" class="card-request__file">
 
                     <div class="card-request__file-thumb d-inline-block align-bottom">
                         {% load static %}
@@ -48,7 +47,7 @@
                     </div>
 
                     <p class="size-caption m-0 d-inline-block ml-2">
-                        {{ value.nombre_archivo }} <br>
+                        {{ value.nombre_archivo }}<br>
                         <small class="color-gray-60">{{ value.file|filesizeformat }}</small>
                     </p>
 
@@ -59,8 +58,7 @@
                         </p>
 
                     {% endif %}
-
-                    </a>
+                </a>
             {% endfor %}
         </div>
     </dl>

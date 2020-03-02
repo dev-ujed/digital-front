@@ -134,17 +134,18 @@ $db-tile-size: 40px;
 
 .dashboard-menu__links-arrow {
     background: url("../img/icons/chevron-up.svg") no-repeat center center;
+    background-size: 100%;
     color: #fff;
     filter: invert(1);
     font-size: rem(18);
-    height: 20px;
+    height: 16px;
     @include position(absolute, 50% 0 null null);
-    transform: translate(0, -50%) rotate(270deg);
+    transform: translate(0, -50%) rotate(180deg);
     transition: transform 150ms ease-out;
-    width: 8px;
+    width: 16px;
 
     .dashboard-menu__links-title--active & {
-        transform: translate(0, -50%);
+        transform: translate(0, -50%) rotate(90deg);
     }
 }
 

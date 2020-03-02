@@ -1,6 +1,10 @@
 import DashboardMenu from './components/DashboardMenu.vue';
 import UserBar from '../main/components/UserBar.vue';
 import Tabs from './components/tabs/Tabs.vue';
+import SiteOverlay from '../main/components/SiteOverlay.vue';
+import Modal from '../main/components/Modal.vue';
+import CardsServices from './components/Services/Cards.vue';
+import ServiceModal from './components/Services/ServiceModal.vue';
 
 
 (function() {
@@ -13,6 +17,14 @@ import Tabs from './components/tabs/Tabs.vue';
     Vue.component('text-field', require('../main/components/forms/base/TextField.vue'));
     Vue.component('text-area', require('../main/components/forms/base/TextArea.vue'));
     Vue.component('tabs-component', Tabs);
+
+    /* App components
+    ------------------------------------------------------------------------- */
+    Vue.component('site-overlay', SiteOverlay);
+    Vue.component('modal', Modal);
+    Vue.component('cards-services', CardsServices);
+    Vue.component('service-modal', ServiceModal);
+
     /*
     |------------------------------------------------------------------------
     | Vm

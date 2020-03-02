@@ -5,22 +5,42 @@
 
     & .tabs__menu {
         background-color: $color-gray-10;
+        border-radius: 4px 4px 0 0;
+        display: flex;
         font-size: 11px;
         text-align: center;
         justify-content: space-evenly;
-        border-radius: 4px 4px 0 0;
-        display: flex;
     }
 
     & .tabs__menu .tabs__li {
-        padding-top: 2em;
-        padding-bottom: 1em;
+        color: $color-gray-50;
+        padding-bottom: 3em;
     }
 
     & .tabs__menu .tabs__li::before {
-        content: 'icono';
+        background-position: center;
+        background-repeat: no-repeat;
+        color: transparent;
+        content: '.';
         display: block;
-        margin-bottom: 6px;
+        filter: invert(78%) sepia(13%) saturate(180%) hue-rotate(169deg) brightness(93%) contrast(86%);
+        height: 100%;
+    }
+
+    & .tabs__menu .tabs__li--active::before {
+        filter: invert(50%) sepia(20%) saturate(5801%) hue-rotate(129deg) brightness(107%) contrast(55%);
+    }
+
+    & .tabs__menu .tabs__li:first-child::before  {
+        background-image: url('/static/img/icons/list.svg');
+    }
+
+    & .tabs__menu .tabs__li:nth-child(2)::before {
+        background-image: url('/static/img/icons/user.svg');
+    }
+
+    & .tabs__menu .tabs__li:nth-child(3)::before {
+        background-image: url('/static/img/icons/processes.svg');
     }
 
     & .tabs__panel {
@@ -28,6 +48,7 @@
     }
 
     & .icon-pencil svg {
+        color: $color-gray-50;
         height: 12px;
     }
 }

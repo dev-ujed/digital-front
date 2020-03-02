@@ -4,6 +4,7 @@ import requests
 import locale
 from datetime import datetime
 import json
+from django.utils.text import slugify
 
 def solicitud(request, folio):
 
@@ -166,25 +167,30 @@ def solicitud(request, folio):
             }
         }
 
-        procesos = {}
+        responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')
+        services  = responseServices.json()
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
         solicitud  = response.json()
-
-        responseFile = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+str(solicitud[0]['id'])+'/detalle/')
-        files  = responseFile.json()
 
         locale.setlocale(locale.LC_TIME, '')
         date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
         solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
 
-        for proceso in solicitud[0]['servicios']:
-            proceso = eval(proceso)
-            procesos.update({ proceso['id'] : proceso })
+        for file in solicitud[0]['archivos_solicitud']:
+
+            date = datetime.strptime(file['subido'], "%d/%m/%Y %H:%M")
+            file['subido'] = date.strftime("%d %h %Y, %I:%M %p")
+
+        for service in solicitud[0]['subservices']:
+
+            date = datetime.strptime(service['fec_subservicio'], "%d/%m/%Y %H:%M")
+            service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M %p")
+            service['slug'] = slugify(service['servicio'])
 
         return render(request, "solicitudes/show.html", {
             'dataUrl': dataUrl,
             'request': solicitud[0],
-            'files': files,
-            'procesos': procesos
+            'subservices': json.dumps(solicitud[0]['subservices']),
+            'services': services
         })
