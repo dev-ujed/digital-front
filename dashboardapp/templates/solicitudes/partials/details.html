@@ -1,0 +1,66 @@
+    <dl class="list-inline list-inline--md">
+        <dt class="card-request__dt-title">
+            FECHA DE RECEPCIÓN
+        </dt>
+        <dd>
+
+            <span class="card-request__dd-ures">
+                {{ request.fecha_sol }}
+            </span>
+        </dd>
+
+        <dt class="card-request__dt-title">
+            Descripción
+        </dt>
+
+        <dd class="card-request__dd-description">
+            <blockquote class="blockquote-simple size-lg m-0">
+
+                <p>{{ request.descripcion }}</p>
+
+                <p></p>
+
+            </blockquote>
+        </dd>
+
+        <dt class="mt-16">
+            <span class="card-request__dt-title">
+                {% load svg %}
+                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                {{ request.archivos|length }} ARCHIVOS ADJUNTOS
+            </span>
+
+            <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
+                {% load svg %}
+                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                Descargar todo
+            </a>
+        </dt>
+
+        <div class="row">
+
+            {% for value in files %}
+                <a href="#" class="card-request__file">
+
+                    <div class="card-request__file-thumb d-inline-block align-bottom">
+                        {% load static %}
+                        <img src="{% static 'img/email/icon-mail-ticket.png' %}" class="card-request__file-thumb-pdf" alt="">
+                    </div>
+
+                    <p class="size-caption m-0 d-inline-block ml-2">
+                        {{ value.nombre_archivo }} <br>
+                        <small class="color-gray-60">{{ value.file|filesizeformat }}</small>
+                    </p>
+
+                    {% if value.descripcion != None %}
+
+                        <p class="size-sm mt-4">
+                            {{ value.descripcion }}
+                        </p>
+
+                    {% endif %}
+
+                    </a>
+            {% endfor %}
+        </div>
+    </dl>

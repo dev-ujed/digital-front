@@ -93,6 +93,14 @@ Card request
         color: $color-gray-80;
         text-decoration: none;
     }
+}
+
+.card-request__download {
+    color: $color-blue-50;
+    cursor: pointer;
+    float: right;
+    font-size: 13px;
+    font-weight: 400;
 
     @include media(md) {
         @include column(1/2);
@@ -166,6 +174,40 @@ Card request
     font-size: 20px;
     font-weight: bold;
     margin: 0;
+    &:focus,
+    &:hover,
+    &:active {
+        text-decoration: underline;
+    }
+}
+
+.card-request__file {
+    border-radius: 3px;
+    background: $color-blue-10;
+    color: $color-gray-80;
+    border: $color-blue-20;
+    height: 100%;
+    padding: 10px;
+    margin-top: 20px;
+
+    &-description {
+        font-size: 13px;
+    }
+}
+
+.card-request__file-thumb {
+    border-radius: 3px;
+    border: 1px solid $color-gray-40;
+    height: 40px;
+    width: 40px;
+
+    &-img {
+        background-color: #fff;
+    }
+
+    &-pdf {
+        background-color: $color-gray-70;
+    }
 }
 
 .card-request__date {

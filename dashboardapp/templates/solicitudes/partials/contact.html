@@ -1,0 +1,46 @@
+<div class="row">
+        <div class="lg:col-1/2">
+            <dl class="list-inline list-inline--md">
+                <dt class="card-request__dt-title">
+                    ENVIADA POR
+                </dt>
+                <dd>
+                    <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno }} {{ request.apellido_materno }} </span>
+                    <br><span class="card-request__dd-ures">{{ request.ures_descrip }}</span>
+                </dd>
+            </dl>
+
+            <dl class="list-inline list-inline--md">
+                <dt class="card-request__dt-title">
+                    MATRÍCULA
+                </dt>
+                <dd>
+                    <span class="card-request__dd-user">{{ request.matricula }}</span>
+                </dd>
+            </dl>
+        </div>
+        <div class="lg:col-1/2">
+            <dl class="list-inline list-inline--md">
+                <dt class="card-request__dt-title">
+                    CONTACTO
+                </dt>
+                <dd>
+                    <span class="card-request__dd-user">{{ request.correo }} <br> Tel: {{ request.telefono }}. Ext: {{ request.extension }}.</span>
+                </dd>
+            </dl>
+
+            {% if value.descripcion != None %}
+
+                <dl class="list-inline list-inline--md">
+                    <dt class="card-request__dt-title">
+                        AUTORIZA
+                    </dt>
+                    <dd>
+                        <span class="card-request__dd-user"> {{ request.pautoriza }} </span>
+                    </dd>
+                </dl>
+            {% endif %}
+
+
+        </div>
+    </div>

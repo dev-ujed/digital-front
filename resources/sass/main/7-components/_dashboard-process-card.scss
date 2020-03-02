@@ -3,6 +3,8 @@
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 15px;
+    max-width: 275px;
+    width: 100%;
 }
 
 .db-process-card--red {
@@ -29,6 +31,11 @@
 .db-process-card__users {
     margin-top: 2em;
     text-align: right;
+
+    & .user-bar__avatar-container {
+        margin-left: 5px;
+    }
+
 }
 
 .db-process-card__footer {

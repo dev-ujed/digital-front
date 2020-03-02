@@ -1,0 +1,39 @@
+<section class="section mb-16 hidden lg:d-block">
+
+        <div class="row fluid-container">
+            <div class="lg:col-7/12">
+                <div class="db-panel">
+                    <p class="card-request__title">
+                        CONTENIDO
+                    </p>
+
+                    <div class="form-control">
+                        <label for="name">
+                            <span class="color-gray-90 size-lg">Título</span>
+                             <small class="color-gray-60">Opcional</small></label>
+                        <input class="form-field" id="name" name="name" type="text">
+                    </div>
+
+                    {% include "solicitudes/partials/details.html" %}
+                </div>
+            </div>
+            <div class="lg:col-5/12">
+
+                <div class="db-panel">
+                    <p class="card-request__title">
+                        CONTACTO
+                    </p>
+
+                    {% include "solicitudes/partials/contact.html" %}
+                </div>
+
+                <div class="db-panel">
+                    <p class="card-request__title">
+                        PROCESOS
+                    </p>
+
+                    {% include "solicitudes/partials/process.html" %}
+                </div>
+            </div>
+        </div>
+</section>
