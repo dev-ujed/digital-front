@@ -381,11 +381,11 @@ $main-menu-link-padding-y: 1.5em;
     color: #fff;
     display: inline-block;
     filter: invert(1);
-    height: 1em;
+    height: 25px;
     margin-right: 0.25em;
     @include position(relative, -2px null null null);
     vertical-align: middle;
-    width: 1em;
+    width: 25px;
 }
 
 .main-menu__submenu-title {
