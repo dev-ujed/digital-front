@@ -43,219 +43,87 @@
                 CONCLUIDO
             </p>
         </div>
-
-        <div class="requests-process__row">
-
-            <div class="requests-process__body requests-process__body--services">
-                <div class="row relative">
-                    <a class="card-request mb-0 w-full card-request__link" href="#">
-                        <div class="card-request__header card-request__header--folio">
-                            <span>#279</span>
-                            <div class="card-request__service-container">
-                                <span class="card-request__service card-request__service--desarrollo-de-software"></span>
+        {% for request in solicitudes %}
+            <div class="requests-process__row">
+                <div class="requests-process__body requests-process__body--services">
+                    <div class="row relative">
+                        <a class="card-request mb-0 w-full card-request__link" href="#">
+                            <div class="card-request__header card-request__header--folio">
+                                <span>#{{ request.folio }}</span>
+                                <div class="card-request__service-container">
+                                    {% for key, subservices_group in request.subservices.items %}
+                                        {% if request.countsubservices != 0 %}
+                                            {% for subservice in subservices_group %}
+                                                <span class="card-request__service card-request__service--{{ subservice.servicio |slugify }}"></span>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
-                        <p class="card-request__date">
-                            10 Ene 2020
-                        </p>
-                        <dl class="list-inline list-inline--md">
-                            <dt class="card-request__dt-title">
-                                Enviada por
-                            </dt>
-                            <dd>
-                                <span class="card-request__dd-user"> Martina Patricia Flores Saucedo
-                                </span>
-                                <br><span class="card-request__dd-ures">Dirección de Servicios Educativos</span>
-                            </dd>
-                            <div class="card-request__footer">
-                                    <div class="card-request__attach">
-                                        <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                        <span class="card-request__attach-number">
-                                            2
-                                        </span>
-                                    </div>
+                            <p class="card-request__date">
+                                {{ request.formated_date }}
+                            </p>
+                            <dl class="list-inline list-inline--md">
+                                <dt class="card-request__dt-title">
+                                    Enviada por
+                                </dt>
+                                <dd>
+                                    <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno}}
+                                                {% if request.apellido_materno != None %}
+                                                    {{ request.apellido_materno }}
+                                                {% endif %}
+                                    </span>
+                                    <br><span class="card-request__dd-ures">{{ request.ures }}</span>
+                                </dd>
+                                <div class="card-request__footer">
+                                    {% if request.count_archivos != 0 %}
+                                        <div class="card-request__attach">
+                                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                            <span class="card-request__attach-number">
+                                                {{ request.count_archivos }}
+                                            </span>
+                                        </div>
+                                    {% endif %}
 
                                     <div class="card-request__progress">
-                                        <span class="card-request__progress card-request__progress--active"></span>
+                                        {% if request.countsubservices != 0 %}
+                                            <span class="card-request__progress card-request__progress--active"
+                                                style="width:1%"
+                                            ></span>
+
+
+                                            {{ request.countsubservices / request.count_concluido }}
+                                        {% endif%}
                                     </div>
                                 </div>
-                        </dl>
-                    </a>
-                </div>
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
+                            </dl>
+                        </a>
                     </div>
                 </div>
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-            </div>
-        </div>
-
-        <div class="requests-process__row">
-
-            <div class="requests-process__body requests-process__body--services">
-
-                <div class="row relative">
-                    <a class="card-request mb-0 w-full card-request__link" href="#">
-                        <div class="card-request__header card-request__header--folio">
-                            <span>#279</span>
-                            <div class="card-request__service-container">
-                                <span class="card-request__service card-request__service--desarrollo-de-software"></span>
-                            </div>
-                        </div>
-                        <p class="card-request__date">
-                            10 Ene 2020
-                        </p>
-                        <dl class="list-inline list-inline--md">
-                            <dt class="card-request__dt-title">
-                                Enviada por
-                            </dt>
-                            <dd>
-                                <span class="card-request__dd-user"> Martina Patricia Flores Saucedo
-                                </span>
-                                <br><span class="card-request__dd-ures">Dirección de Servicios Educativos</span>
-                            </dd>
-
-                            <div class="card-request__footer">
-                                <div class="card-request__attach">
-                                    <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                    <span class="card-request__attach-number">
-                                        2
-                                    </span>
+                {% for key, subservices_group in request.subservices.items %}
+                    <div class="requests-process__body requests-process__col">
+                        {% if request.countsubservices != 0 %}
+                            {% for subservice in subservices_group %}
+                                <div class="db-process-card mr-0 db-process-card--{{ subservice.servicio |slugify }}">
+                                    <p class="db-process-card__title">
+                                        {{ subservice.subservicio_name }}
+                                    </p>
+                                    <p class="db-process-card__date mb-1"> {{ subservice.formated_date }}</p>
+                                    <div class="db-process-card__users mt-0">
+                                        {% for participante in subservice.sub_servicioParticipantes %}
+                                            <div class="user-bar__avatar-container">
+                                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="{{ participante.participante_name }} {{ participante.participante_last_name }}" class="user-bar__avatar">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
+                            {% endfor %}
+                        {% endif %}
 
-                                <div class="card-request__progress">
-                                    <span class="card-request__progress card-request__progress--active"></span>
-                                </div>
-                            </div>
-                        </dl>
-                    </a>
-                </div>
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-
-            <div class="requests-process__body requests-process__col">
-            </div>
-
-            <div class="requests-process__body requests-process__col">
-
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-                    </div>
-                </div>
-                <div class="db-process-card mr-0 db-process-card--desarrollo-de-software">
-                    <p class="db-process-card__title">Desarrollo de sitios web</p>
-                    <p class="db-process-card__date mb-1"> 10 Ene 2020 9:15 a.m.</p>
-
-                    <div class="db-process-card__users mt-0">
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-
-                        <div class="user-bar__avatar-container">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="" class="user-bar__avatar">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor%}
     </div>
 
 {% endblock %}
