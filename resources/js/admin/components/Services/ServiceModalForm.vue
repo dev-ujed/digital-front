@@ -15,8 +15,9 @@
 
         methods: {
             submitSucceeded(response) {
-                this.$root.$on('cards', this.response.data);
-            }
+                this.$root.$emit('cardServices', response.data);
+                this.$parent.closeModal();
+            },
         }
     };
 </script>
