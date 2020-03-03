@@ -9,5 +9,6 @@ urlpatterns = [
     path('descargar-zip/<slug:folio>/', views.descargarZip, name='download-zip'),
     path('proceso-servicio/<slug:folio>/', views.guardarServicio, name='proceso-servicio'),
     path('solicitudes/proceso', views.solicitudesProceso, name='request-in-process'),
+    path('actualizar-titulo/<slug:folio>/', views.actualizarTitulo, name='actualizar-titulo'),
 ]
 
