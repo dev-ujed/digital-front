@@ -10,8 +10,9 @@ def guardarServicio(request, folio):
 
     data = {
         "folio": folio,
-        "subservice_id": data_request['subservice_id'],
-        "comentario": data_request['comentario']
+        "subservice_id": data_request['subservicio'],
+        "comentario": data_request['comentario'],
+        "user" : request.session['user']['id']
     }
 
     response = requests.post('http://192.168.10.46:8000/solicitudes/sol/guardar-subservicio/', data=data)

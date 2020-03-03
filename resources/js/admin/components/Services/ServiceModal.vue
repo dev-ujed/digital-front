@@ -30,16 +30,16 @@
                     </div>
 
                     <div class="form-control" v-if="$parent.service">
-                        <label for="subservice_id">Proceso</label>
+                        <label for="subservicio">Proceso</label>
                         <select-field
                             class="form-field"
-                            name="subservice_id"
-                            id="subservice_id"
-                            v-model="fields.subservice_id"
+                            name="subservicio"
+                            id="subservicio"
+                            v-model="fields.subservicio"
                             :options="$parent.procesess"
                         >
                         </select-field>
-                        <field-errors name="subservice_id"></field-errors>
+                        <field-errors name="subservicio"></field-errors>
                     </div>
 
                     <div class="form-control">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="w-full d-inline-block text-center mb-12">
-                        <form-button class="btn btn--wide modal__success-btn" type="submit">
+                        <form-button class="btn btn--wide modal__success-btn" type="submit" :disabled="$parent.service ? false : true">
                             <span class="mr-1">Crear</span>
                         </form-button>
                     </div>
