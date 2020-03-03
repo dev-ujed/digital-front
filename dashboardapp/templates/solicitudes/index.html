@@ -31,7 +31,7 @@
                     <template slot="panel-{{ key }}">
                         <div class="row">
                             {% for element in requests %}
-                                <a  class="card-request card-request__link" href="{% url 'solicitud' 'NUP7FJ' %}">
+                                <a  class="card-request card-request__link" href="{% url 'solicitud' element.folio %}">
                                     <div class="">
                                         <div class="card-request__header card-request__header--folio">
                                             <span>{{ element.folio }}</span>
