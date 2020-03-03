@@ -16,7 +16,7 @@ def solicitud(request, folio):
         responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')
         services  = responseServices.json()
 
-        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio+'/yo@gmail.com/')
+        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio)
         solicitud  = response.json()
 
         locale.setlocale(locale.LC_TIME, '')
