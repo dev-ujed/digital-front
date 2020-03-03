@@ -18,7 +18,7 @@
                 <li v-for="link in submenu.links">
                     <a class="dashboard-menu__link"
                         :class="{ 'dashboard-menu__link--active' : link.active }"
-                        :href="link.route"
+                        :href="$root.path + '/administracion/' + link.route"
                     >
                         {{ link.name }}
                     </a>
