@@ -5,6 +5,7 @@ import SiteOverlay from '../main/components/SiteOverlay.vue';
 import Modal from '../main/components/Modal.vue';
 import CardsServices from './components/Services/Cards.vue';
 import ServiceModal from './components/Services/ServiceModal.vue';
+import TitleRequest from './components/TitleRequest.vue';
 
 
 (function() {
@@ -24,6 +25,7 @@ import ServiceModal from './components/Services/ServiceModal.vue';
     Vue.component('modal', Modal);
     Vue.component('cards-services', CardsServices);
     Vue.component('service-modal', ServiceModal);
+    Vue.component('title-request', TitleRequest);
 
     /*
     |------------------------------------------------------------------------
