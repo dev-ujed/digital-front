@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'dashboardapp.context_processors.menu_processor',
                 'dashboardapp.context_processors.user_processor',
+                'dashboardapp.context_processors.root_url',
             ],
         },
     },

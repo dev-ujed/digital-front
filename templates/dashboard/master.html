@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" type="text/css" />
 </head>
-<body class="dashboard" data-root="{{ request.scheme }}://{{ request.get_host }}">
+<body class="dashboard" data-root="{{ SITE_URL }}">
 
     <div id="dashboard" v-cloak>
         {% include "dashboard/user-bar.html" %}

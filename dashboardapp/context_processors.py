@@ -14,3 +14,10 @@ def user_processor(request):
     else:
         userAuth = request.session['user']
         return {'userAuth' : userAuth }
+
+
+def root_url(request):
+    """
+    Pass your root_url from the settings.py
+    """
+    return { 'SITE_URL': request.scheme+'://'+request.get_host() }
