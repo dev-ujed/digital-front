@@ -8,33 +8,40 @@
             </span>
         </dd>
 
-        <dt class="card-request__dt-title">
-            Descripción
-        </dt>
+        {% if request.descripcion != None %}
 
-        <dd class="card-request__dd-description">
-            <blockquote class="blockquote-simple size-lg m-0">
+            <dt class="card-request__dt-title">
+                Descripción
+            </dt>
 
-                <p>{{ request.descripcion }}</p>
+            <dd class="card-request__dd-description">
+                <blockquote class="blockquote-simple size-lg m-0">
 
-                <p></p>
+                    <p>{{ request.descripcion }}</p>
 
-            </blockquote>
-        </dd>
+                    <p></p>
 
-        <dt class="mt-16">
-            <span class="card-request__dt-title">
-                {% load svg %}
-                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                {{ request.archivos_solicitud|length }} ARCHIVOS ADJUNTOS
-            </span>
+                </blockquote>
+            </dd>
 
-            <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
+        {% endif %}
+
+
+        {% if request.count_archivos > 0 %}
+            <dt class="mt-16">
+                <span class="card-request__dt-title">
                     {% load svg %}
-                    {% svg 'download' %}
-                Descargar todo
-            </a>
-        </dt>
+                    <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                    {{ request.count_archivos }} ARCHIVOS ADJUNTOS
+                </span>
+
+                <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
+                        {% load svg %}
+                        {% svg 'download' %}
+                    Descargar todo
+                </a>
+            </dt>
+        {% endif %}
 
         <div class="row">
 
