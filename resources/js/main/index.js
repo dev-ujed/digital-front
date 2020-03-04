@@ -48,6 +48,7 @@ import SiteOverlay from './components/SiteOverlay.vue';
             model: {}
         },
         mounted() {
+
             this.mq = window.matchMedia('(min-width:1100px)');
             this.menuIsVisible = this.mq.matches;
 
