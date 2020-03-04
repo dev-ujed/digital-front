@@ -118,13 +118,29 @@ User bar
         border: 1px solid #ccc;
         box-shadow: none;
     }
+
+    &--add {
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
 }
 
 .user-bar__count {
     color: $color-gray-60;
+    display: block;
     font-size: 12px;
     line-height: 2.1;
+}
+
+.user-bar__plus {
+    background-color: $color-gray-10;
+    color: $color-gray-60;
     display: block;
+    font-size: 12px;
+    height: 100%;
+    line-height: 2.1;
 }
 
 .user-bar__user-name {
