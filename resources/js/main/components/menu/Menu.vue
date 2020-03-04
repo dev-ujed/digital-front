@@ -1,7 +1,7 @@
 <template>
     <nav id="main-menu" class="main-menu" role="navigation">
         <div class="container main-menu__container">
-           <a class="main-logo__dtd" :href="$root.path" title="Inicio"
+           <a class="main-logo__dtd" :href="$root.path+'/digitalapp/'" title="Inicio"
                 :class="{
                     'main-logo__dtd--open': menuIsOpen,
                     'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
@@ -95,7 +95,7 @@
                         'main-menu__li--open': menuIsOpen,
                         'main-menu__li--closed': ! menuIsOpen && buttonClicked
                     }">
-                    <a class="js-item main-menu__link" :href="this.$root.path + 'ingresar'"
+                    <a class="js-item main-menu__link" :href="$root.path + '/administracion/'"
                         @keydown.left.right.up.down.prevent="arrowNavigation"
                     >
                         <span class="main-menu__login-icon" aria-hidden="true"></span>
@@ -159,7 +159,6 @@
         },
 
         mounted() {
-
             this.menuItems = this.$el.querySelectorAll('.js-item');
 
             this.setMatchMedia();
