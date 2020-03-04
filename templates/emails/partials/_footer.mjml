@@ -11,9 +11,9 @@
     </mj-column>
 
     <mj-column width="33%">
-        <mj-image src="/static/img/email/logo-correo.png"
+        <mj-image src="/static/img/email/logo-ujed.png"
             fluid-on-mobile="false"
-            alt="Dirección de Transformación Digital"
+            alt="Universidad Juárez del Estado de Durango"
             padding-bottom="0"
             padding-top="0"
             padding-right="0"

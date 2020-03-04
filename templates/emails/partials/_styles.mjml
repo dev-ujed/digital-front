@@ -54,6 +54,11 @@
     .font-size-12 {
         font-size: 12px;
     }
+
+    tablerequest {
+        max-width:300px;
+        margin:0 auto;
+    }
 </mj-style>
 
 <mj-style>

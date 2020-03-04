@@ -1,0 +1,79 @@
+{% load mjml %}
+<mjml>
+    <mj-head>
+        <mj-title>Hemos atendido un servicio</mj-title>
+        <mj-include path="./partials/_styles.mjml" />
+        <mj-breakpoint width="600px"/>
+        <mj-font name="Open Sans" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" />
+    </mj-head>
+
+    <mj-body width="600px" background-color="#F0F2F3" >
+        <mj-include path="./partials/_header.mjml" />
+
+        <mj-wrapper css-class="box" padding="0px">
+
+            <mj-section background-color="#E6446D" padding-top="8px" padding-bottom="0px" border-radius="5px">
+                <mj-column background-color="#fff" >
+
+                    <mj-image src="/static/img/email/icon-mail-completed.png"
+                        fluid-on-mobile="false"
+                        padding-bottom="0"
+                        padding-top="40px"
+                        width="75px"
+                        align="center"
+                    />
+
+                    <mj-text font-size="14px" color="#3A4148">
+                        <p class="title" font-family="Open Sans">Hemos atendido un servicio</p>
+
+                        <p class="paragraph" font-family="Open Sans">¡Hola, {{ name }}! Te hacemos saber que hemos concluido el servicio <strong>{{ subservice }}</strong>, que forma parte de la solicitud <strong>{{ folio }}</strong></p>
+
+                        <p class="paragraph" font-family="Open Sans">
+                            El estado actual de los servicios que estamos realizando para atender tu solicitud es el siguiente
+                        </p>
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="0" background-color="#fff">
+                <mj-column width="70%" padding-bottom="30px">
+                    <mj-table>
+                        <tr style="border-bottom: 2px solid #3A4148;text-align: left; color: #3A4148;">
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
+                            <td style="padding: 11px 0;">Infraestructura: Subdominio</td>
+                            <td style="padding: 11px 0;">Concluido</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
+                            <td style="padding: 11px 0;">Desarrollo: Sitio</td>
+                            <td style="padding: 11px 0;">En proceso</td>
+                        </tr>
+                    </mj-table>
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding-top="0" padding-bottom="15px" background-color="#fff">
+                <mj-column>
+                    <mj-text font-size="14px" color="#3A4148">
+                        <p class="paragraph" font-family="Open Sans">
+                            Te pedimos que por favor nos ayudes calificando este servicio en especifico, lo cual nos ayudará a mejorar nuestra atención y cumplir con los requerimientos del Sistema Integral de Gestión de Calidad.
+                        </p>
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+            <mj-section padding-top="0" padding-bottom="15px" background-color="#fff">
+                <mj-column padding-bottom="30px">
+                    <mj-button font-family="Open Sans" href="#" inner-padding='15px 30px' font-size="15px" background-color="#3399CC" color="white" border-radius='5px'>
+                        Calificar servicio
+                    </mj-button>
+                </mj-column>
+            </mj-section>
+        </mj-wrapper>
+
+        <mj-include path="./partials/_footer.mjml"/>
+    </mj-body>
+</mjml>
+{% endmjml %}
