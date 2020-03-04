@@ -84,12 +84,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digitalproject.wsgi.application'
 
-LOGIN_URL = 'ingresar'
-LOGIN_REDIRECT_URL = '/admin'
-
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = (os.path.join(BASE_DIR, 'sessions_storage'))
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
