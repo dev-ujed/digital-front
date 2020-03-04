@@ -2,6 +2,7 @@
     <mj-group>
         <mj-column width="66%" >
             <mj-image src="/static/img/email/logo-correo.png"
+                href="http://digital.ujed.mx/"
                 fluid-on-mobile="false"
                 alt="Dirección de Transformación Digital"
                 padding-bottom="0"
@@ -14,10 +15,10 @@
         <mj-column width="33%">
             <mj-table padding="0px" padding-right="25px" width="80px" align="right">
                 <tr align="right">
-                    <td align="right"> <a href="https://twitter.com/RecastAI">
+                    <td align="right"> <a href="mailto:digital@ujed.mx">
                         <img width="22px" style="margin-top: 20px;" src="/static/img/email/mail.png" />
                     </a></td>
-                    <td align="right"><a href="https://www.facebook.com/recastAI">
+                    <td align="right"><a href="https://www.facebook.com/ujeddigital">
                         <img width="22px" style="margin-top: 20px; margin-left: 5px;" src="/static/img/email/twitter.png" />
                     </a></td>
                 </tr>
