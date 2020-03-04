@@ -27,8 +27,11 @@
     <div class="fluid-container mt-12 overflow-x-auto">
 
         <div class="d-inline-flex">
+            <p class="requests-process__head requests-process__head--services">
+                SOLICITUDES
+            </p>
             {% for status in statuses%}
-                <p class="requests-process__head requests-process__head--services">
+                <p class="requests-process__head requests-process__col">
                     {{ status.estatus_descrip|upper }}
                 </p>
             {% endfor %}
@@ -37,7 +40,7 @@
             <div class="requests-process__row">
                 <div class="requests-process__body requests-process__body--services">
                     <div class="row relative">
-                        <a class="card-request mb-0 w-full card-request__link" href="{% url 'solicitud' request.folio %}">
+                        <a class="card-request mb-0 w-full card-request__link" href="{% url 'dashboard:solicitud' request.folio %}">
                             <div class="card-request__header card-request__header--folio">
                                 <span>#{{ request.folio }}</span>
                                 <div class="card-request__service-container">
