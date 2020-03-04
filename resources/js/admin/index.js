@@ -6,6 +6,8 @@ import Modal from '../main/components/Modal.vue';
 import CardsServices from './components/Services/Cards.vue';
 import ServiceModal from './components/Services/ServiceModal.vue';
 import TitleRequest from './components/TitleRequest.vue';
+import Items from './components/procesess/Items.vue';
+import ProcessModal from './components/procesess/ProcessModal.vue';
 
 
 (function() {
@@ -26,6 +28,8 @@ import TitleRequest from './components/TitleRequest.vue';
     Vue.component('cards-services', CardsServices);
     Vue.component('service-modal', ServiceModal);
     Vue.component('title-request', TitleRequest);
+    Vue.component('item-process', Items);
+    Vue.component('process-modal', ProcessModal);
 
     /*
     |------------------------------------------------------------------------
