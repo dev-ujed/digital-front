@@ -27,21 +27,11 @@
     <div class="fluid-container mt-12 overflow-x-auto">
 
         <div class="d-inline-flex">
-            <p class="requests-process__head requests-process__head--services">
-                SOLICITUDES
-            </p>
-            <p class="requests-process__head requests-process__col">
-                TO DO
-            </p>
-            <p class="requests-process__head requests-process__col">
-                INICIADO
-            </p>
-            <p class="requests-process__head requests-process__col">
-                EN ESPERA
-            </p>
-            <p class="requests-process__head requests-process__col">
-                CONCLUIDO
-            </p>
+            {% for status in statuses%}
+                <p class="requests-process__head requests-process__head--services">
+                    {{ status.estatus_descrip|upper }}
+                </p>
+            {% endfor %}
         </div>
         {% for request in solicitudes %}
             <div class="requests-process__row">

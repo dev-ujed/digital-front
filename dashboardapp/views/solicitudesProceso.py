@@ -13,9 +13,14 @@ def solicitudesProceso(request):
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
     else:
+        statusSubservices = []
+        statusResponse = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
+        for status in statusResponse.json():
+            if status['desc_tipo_estatus'] == 'SUBSERVICIOS':
+                statusSubservices.append(status)
 
-        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')
 
+        response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')
         solicitudes = response.json()
 
         for solicitud in solicitudes:
@@ -36,4 +41,4 @@ def solicitudesProceso(request):
                     formatedDate = date.strftime("%d %h %Y, %I:%M %p")
                     subservice.update({'formated_date' : formatedDate})
 
-        return render(request, "solicitudes/process.html", { 'solicitudes': solicitudes})
+        return render(request, "solicitudes/process.html", { 'solicitudes': solicitudes, 'statuses': statusSubservices })
