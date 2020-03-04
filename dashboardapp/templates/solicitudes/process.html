@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
     <div class="db-heading">
 
         <div class="breadcrums db-breadcrums">
@@ -22,6 +23,9 @@
             Solicitudes en proceso
         </h1>
     </div>
+
+
+    <item-process></item-process>
 
 
     <div class="fluid-container mt-12 overflow-x-auto">
@@ -128,5 +132,12 @@
             </div>
         {% endfor%}
     </div>
+
+    <process-modal>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+    </process-modal>
 
 {% endblock %}
