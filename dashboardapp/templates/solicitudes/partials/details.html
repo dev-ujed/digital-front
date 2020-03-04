@@ -35,7 +35,7 @@
                     {{ request.count_archivos }} ARCHIVOS ADJUNTOS
                 </span>
 
-                <a href="{% url 'download-zip' request.folio %}" class="card-request__download">
+                <a href="{% url 'dashboard:download-zip' request.folio %}" class="card-request__download">
                         {% load svg %}
                         {% svg 'download' %}
                     Descargar todo
