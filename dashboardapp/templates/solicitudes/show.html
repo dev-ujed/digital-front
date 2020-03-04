@@ -27,7 +27,7 @@
     {% include "solicitudes/partials/show-movil.html" %}
 
     <service-modal
-        action="{% url 'proceso-servicio' request.folio %}"
+        action="{% url 'dashboard:proceso-servicio' request.folio %}"
         :services="{{ services }}"
     >
         <template slot="close">
