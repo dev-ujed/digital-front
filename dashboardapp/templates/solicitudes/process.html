@@ -60,6 +60,11 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                            {% if request.titulo != None %}
+                                <p class="card-request__title">
+                                    {{ request.titulo }}
+                                </p>
+                            {% endif %}
                             <p class="card-request__date">
                                 {{ request.formated_date }}
                             </p>
