@@ -4,12 +4,14 @@ import requests
 from datetime import datetime
 from django.utils.dateparse import parse_date
 import locale
+from django.urls import reverse_lazy
+
 
 def solicitudesProceso(request):
     locale.setlocale(locale.LC_TIME, '')
+
     if request.session.is_empty():
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/digitalapp/ingresar')
+        return redirect(reverse_lazy('public:ingresar'))
     else:
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')

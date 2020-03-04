@@ -4,12 +4,15 @@ import requests
 from datetime import datetime
 from django.utils.dateparse import parse_date
 import locale
+from django.urls import reverse_lazy
+
+from django.contrib.auth.hashers import make_password
 
 def inbox(request):
     locale.setlocale(locale.LC_TIME, '')
+
     if request.session.is_empty():
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/digitalapp/ingresar')
+        return redirect(reverse_lazy('public:ingresar'))
 
     else:
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
@@ -40,3 +43,130 @@ def inbox(request):
             'statuses': statuses,
             'requestByStatus': requestByStatus
         })
+
+# def createUsers(request):
+#     Users = [
+#         {
+#             'name' : 'Jaime Uriel',
+#             'last_name' : 'García Navarro',
+#             'email': 'jaime.garcia@ujed.mx',
+#         },
+#         {
+#             'name' : 'José Luis',
+#             'last_name' : 'Bautista Cabrera',
+#             'email': 'joseluis.bautista@ujed.mx',
+#         },
+#         {
+#             'name' : 'Jesús Álvaro',
+#             'last_name' : 'Martínez Hinojosa',
+#             'email': 'alvaro.martinez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ernesto',
+#             'last_name' : 'Cisneros Almeida',
+#             'email': 'ernesto.cisneros@ujed.mx',
+#         },
+#         {
+#             'name' : 'Adalberto Rafael',
+#             'last_name' : 'Sánchez Salazar',
+#             'email': 'rafael.sanchez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Sergio',
+#             'last_name' : 'Noris Peinado',
+#             'email': 'sergio.noris@ujed.mx',
+#         },
+#         {
+#             'name' : 'Felipe de Jesús',
+#             'last_name' : 'Fernández Aguirre',
+#             'email': 'felipe.fernandez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Gerardo Alberto',
+#             'last_name' : 'Rodríguez Figueroa',
+#             'email': 'gerardo.rodriguez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Manuel Rodrigo',
+#             'last_name' : 'Calderón Pérez',
+#             'email': 'manuel.calderon@ujed.mx',
+#         },
+#         {
+#             'name' : 'Adrián',
+#             'last_name' : 'Pérez Mascorro',
+#             'email': 'adrian.perez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Gloria Adriana',
+#             'last_name' : 'García Aquino',
+#             'email': 'gloria.garcia@ujed.mx',
+#         },
+#         {
+#             'name' : 'Oscar Hiram',
+#             'last_name' : 'Gutiérrez Gómez',
+#             'email': 'oscar.gutierrez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ariana',
+#             'last_name' : 'Fernández Aguirre',
+#             'email': 'ariana.fernandez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Edith Natalia',
+#             'last_name' : 'Cisneros Mireles',
+#             'email': 'natalia.cisneros@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ramón Arturo',
+#             'last_name' : 'Morales Sánchez',
+#             'email': 'arturo.morales@ujed.mx',
+#         },
+#         {
+#             'name' : 'Juan Carlos',
+#             'last_name' : 'Melero Hernández',
+#             'email': 'juancarlos.melero@ujed.mx',
+#         },
+#         {
+#             'name' : 'Jesús',
+#             'last_name' : 'Heredia Castañeda',
+#             'email': 'jesus.heredia@ujed.mx',
+#         },
+#         {
+#             'name' : 'Maria del Carmen',
+#             'last_name' : 'Romero Villaseñor',
+#             'email': 'carmen.romero@ujed.mx',
+#         },
+#         {
+#             'name' : 'Xochitl',
+#             'last_name' : 'Escamilla Arango',
+#             'email': 'xochitl.escamilla@ujed.mx',
+#         },
+#         {
+#             'name' : 'Hiram',
+#             'last_name' : 'Weyman Vela',
+#             'email': 'hiram.weyman@ujed.mx',
+#         },
+#         {
+#             'name' : 'Alejandro',
+#             'last_name' : 'Candelas Tirado',
+#             'email': 'alex.candelas@ujed.mx',
+#         },
+#         {
+#             'name' : 'Antonio Alberto',
+#             'last_name' : 'Lardizabal Silvaín',
+#             'email': 'antonio.lardizaval@ujed.mx',
+#         },
+#     ]
+#     for user in Users:
+#         data = {
+#             'name' : user['name'],
+#             'last_name': user['last_name'],
+#             'email' : user['email'],
+#             'active': 1,
+#             'password': make_password('testing1234'),
+#             'avatar' : 'foto.png',
+#             'token' : 1,
+#             'role': 1
+#         }
+#         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/usuarios/', data=data)
+#     return HttpResponse('success')

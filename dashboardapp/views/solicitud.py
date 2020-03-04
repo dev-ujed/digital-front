@@ -4,12 +4,12 @@ import requests
 import locale
 from datetime import datetime
 import json
+from django.urls import reverse_lazy
 
 def solicitud(request, folio):
 
     if request.session.is_empty():
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/digitalapp/ingresar')
+        return redirect(reverse_lazy('public:ingresar'))
     else:
 
         responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')

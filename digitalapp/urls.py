@@ -12,8 +12,8 @@ urlpatterns = [
     path('subir-archivo', views.uploadfile, name='uploadfile'),
     path('eliminar-archivo', views.deletefile, name='deletefile'),
 
-    path('ingresar', views.index_login, name="index_login"),
+    path('ingresar', views.index_login, name="ingresar"),
     path('iniciar-sesion', views.user_login, name="user_login"),
-    path('salir', views.user_logout, name="logout"),
+    path('salir', views.user_logout, name="salir"),
 ]
 

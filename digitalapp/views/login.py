@@ -4,14 +4,14 @@ import requests, json
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import logout
+from django.urls import reverse_lazy
 
 
 def index_login(request):
     if request.session.is_empty():
         return render(request, "principal/login.html")
     else:
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/administracion')
+        return redirect(reverse_lazy('dashboard:index'))
 
 
 def user_login(request):
@@ -46,18 +46,20 @@ def user_login(request):
                 return JsonResponse({'errors':{'email': ['El usuario no está activo']}}, status = 422)
 
             request.session['user'] = user
+            request.session.set_expiry(86400)
+            request.session.clear_expired()
             response = HttpResponse('')
             response["Redirect-To"] = domain+'/administracion'
             return response
         else:
             return JsonResponse({'errors':{'email': ['El usuario no está registrado']}}, status = 422)
     else:
-        return redirect(index_login)
+        return redirect(reverse_lazy('public:ingresar'))
 
 
 def user_logout(request):
     logout(request)
-    return redirect(index_login)
+    return redirect(reverse_lazy('public:ingresar'))
 
 
 def formRequestLogin(data_request):
