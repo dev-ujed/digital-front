@@ -1,0 +1,15 @@
+.subtitle {
+    color:$color-green;
+    font-size: rem(11);
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.process-modal__participants {
+
+    & .user-bar__avatar-container {
+        height: 40px;
+        margin-left: 10px;
+        width: 40px;
+    }
+}
