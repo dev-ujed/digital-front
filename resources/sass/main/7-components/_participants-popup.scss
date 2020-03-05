@@ -1,0 +1,59 @@
+.participants-popup {
+    border: 1px solid $color-gray-40;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #00000029;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1;
+    padding: 10px 11px 35px 15px;
+    width: 270px;
+    margin-top: 10px;
+}
+
+.participants-popup__search {
+    border: 1px solid $color-gray-40;
+    background-color: $color-gray-10;
+    font-size: 14px;
+}
+
+.participants-popup__team {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.participants-popup__user {
+    height: 40px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 40px;
+    position: relative;
+
+
+    & .user-bar__avatar {
+        border-radius: 50%;
+    }
+
+}
+
+.participants-popup__user-in {
+    background-color: #20c372;
+    color: #fff;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+
+    & svg {
+        height: 12px;
+        position: absolute;
+        text-align: center;
+    }
+}
+
+.participants-popup__close {
+    padding: 0px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}

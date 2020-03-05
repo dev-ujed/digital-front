@@ -120,10 +120,13 @@ User bar
     }
 
     &--add {
-        text-align: center;
+        background-color: #f9fafa;
         border-radius: 50%;
         border: 1px solid #ccc;
         box-shadow: none;
+        text-align: center;
+        overflow: hidden;
+        vertical-align: top;
 
         &:hover {
             border: 1px solid #8a96a1;
