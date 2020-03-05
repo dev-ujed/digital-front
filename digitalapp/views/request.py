@@ -56,7 +56,8 @@ def saveuser(request):
         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
     else:
         if not bool(customMessage):
-            response = validateUpdateRequest(data_request, data)
+           response = requests.put('http://192.168.10.46:8000/solicitudes/sol/update-sol/'+data_request['id'], data=data)
+           return HttpResponse(response)
 
     return displayResponse(response, customMessage)
 
@@ -73,7 +74,7 @@ def validateUpdateRequest(data_request, data):
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
             responseUpdate = requests.put(
-                'http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'],
+                'http://192.168.10.46:8000/solicitudes/sol/descripcion/'+data_request['id'],
                 data = data
             )
         else:
