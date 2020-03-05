@@ -17,6 +17,14 @@
     </div>
 
     <process-modal>
+        <template slot="check">
+            {% load svg %}
+            {% svg 'check' %}
+        </template>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
         <template slot="plus">
             {% load svg %}
             {% svg 'plus' %}
