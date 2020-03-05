@@ -1,137 +1,107 @@
 <template>
     <div class="modal" v-if="isActive" @click.self="closeModal">
-        <div class="modal__card" ref="modal">
-            <tabs-component class="icon-tabs icon-tabs--process"
-                :breakpoint="0"
-                :tabs="{'details': 'DETALLES', 'bitacora': 'BITÁCORA'}"
-                :options="{'details': 'DETALLES', 'bitacora': 'BITÁCORA'}"
-                :accepts-html="true"
-            >
-                <template slot="panel-details">
-                    <div class="container">
+        <div class="modal__card" ref="modal"
+                :style="{
+                    'min-height': `${minHeight}px`
+                }">
 
-                        <span class="size-xs color-gray-50">
-                            DESARROLLO
-                        </span>
+                <tabs-component class="icon-tabs icon-tabs--process"
+                    :breakpoint="0"
+                    :tabs="{'details': 'DETALLES', 'bitacora': 'BITÁCORA'}"
+                    :options="{'details': 'DETALLES', 'bitacora': 'BITÁCORA'}"
+                    :accepts-html="true"
+                >
 
-                        <p class="size-xl color-gray-90">
-                            <b>Creación de sitios web</b>
-                        </p>
+                    <template slot="panel-details">
+                        <div class="container">
 
-                        <span class="size-sm color-gray-70">
-                            16 de enero 2020, 14:43 p.m.
-                        </span>
+                            <span class="size-xs color-gray-50 d-flex items-center">
+                                <span class="panel-details__service panel-details__service--desarrollo-de-software"></span>
+                                DESARROLLO
+                            </span>
 
-                        <p class="mt-6 mb-12 color-gray-80">
-                            Los servicios pueden tener una anotación corta para describir la tarea.
-                            Ésta es opcional y tienen un máximo de 150 caracteres.
-                        </p>
+                            <p class="size-xl color-gray-90">
+                                <b>Creación de sitios web</b>
+                            </p>
 
-                        <div class="form-control">
-                            <label for="ures">Estado</label>
-                            <select
-                                class="form-field"
-                                name="ures"
-                                id="ures"
-                            >
+                            <span class="size-sm color-gray-70">
+                                16 de enero 2020, 14:43 p.m.
+                            </span>
 
-                                <option>- Selecciona una opción -</option>
-                            </select>
+                            <p class="mt-6 mb-12 color-gray-80">
+                                Los servicios pueden tener una anotación corta para describir la tarea.
+                                Ésta es opcional y tienen un máximo de 150 caracteres.
+                            </p>
+
+                            <change-status-form action='/ok/' inline-template>
+                                <form>
+                                    <div class="form-control">
+                                        <label for="ures">Proceso</label>
+                                        <select-field
+                                            class="form-field"
+                                            name="ures"
+                                            id="ures"
+                                            v-model="fields.ures"
+                                            :options=" {} "
+                                        >
+                                        </select-field>
+                                    </div>
+                                </form>
+                            </change-status-form>
+
+                            <p class="subtitle">
+                                PARTICIPANTES
+                            </p>
+
+                            <participants>
+                                <slot name="plus" slot="plus"></slot>
+                            </participants>
+
+                            <hr class="my-12">
+
+                            <p class="subtitle">
+                                COMENTARIOS
+                            </p>
+                            <comments></comments>
+
                         </div>
 
-                        <p class="subtitle">
-                            PARTICIPANTES
-                        </p>
-
-                        <div class="process-modal__participants">
-                            <div class="user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
-                            </div>
-
-                            <div class="user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
-                            </div>
-
-                            <div class="user-bar__avatar-container user-bar__avatar-container--add">
-                                <span class="user-bar__plus">+</span>
-                            </div>
-
-                        </div>
-
-                        <hr class="my-12">
-
-                        <p class="subtitle">
-                            COMENTARIOS
-                        </p>
-                        <comments></comments>
-
-                    </div>
-
-                </template>
-                <template slot="panel-bitacora">
-
-                    <div class="container">
-
-                        <div class="media">
-                            <div class="media__figure user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
-                            </div>
-                            <div class="media__body">
-                                <p class="mb-0">
-                                    <b>Miriam Rivera</b> cambió el estado a <b>En espera</b> y comentó:
-                                </p>
-                                 <blockquote class="blockquote-simple size-sm ml-0 my-2">
-                                    <p>Se requiere que nos compartan las fotografías del header para terminar con la interfaz del home.</p>
-                                </blockquote>
-                                <p class="size-sm color-gray-60">
-                                    Lunes 3 Ene 2020, 2:20 p.m.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="media">
-                            <div class="media__figure user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
-                            </div>
-                            <div class="media__body">
-                                <p class="mb-0">
-                                    <b>Miriam Rivera</b> cambió el estado a <b>En proceso</b> y comentó:
-                                </p>
-                                <p class="size-sm color-gray-60">
-                                    Lunes 3 Ene 2020, 2:20 p.m.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </template>
-            </tabs-component>
-
+                    </template>
+                    <template slot="panel-bitacora">
+                        <binnacle></binnacle>
+                    </template>
+                </tabs-component>
         </div>
     </div>
 </template>
 
 <script>
+    import Participants from './Participants.vue';
+    import Binnacle from './Binnacle.vue';
     import Comments from './Comments.vue';
-    import ProcessModalForm from './ProcessModalForm.vue';
+    import ChangeStatusForm from './ChangeStatusForm.vue';
     import Modal from '../../../main/components/Modal.vue';
 
     export default {
         extends: Modal,
-        components: { Comments, ProcessModalForm },
+        components: { Comments, ChangeStatusForm, Binnacle, Participants },
         data() {
             return {
                 service: '',
                 focusTrap: null,
-                procesess: []
+                service: '',
+                procesess: [],
+                minHeight: 0
             };
         },
         watch: {
             isActive: function(value) {
 
                if (value) {
-                    setTimeout(this.setFocusTrap, 100);
+                    setTimeout(() => {
+                        this.setFocusTrap();
+                        this.getMinHeight();
+                    }, 100);
                 }
                 else {
                     this.destroyFocusTrap;
@@ -149,6 +119,13 @@
 
                 this.procesess = current[0].subservicios;
             },
+
+            getMinHeight() {
+                this.minHeight = 0;
+
+                Vue.nextTick(() => this.minHeight = this.$refs.modal.clientHeight);
+            },
+
             /*
             |------------------------------------------------------------------------
             | Focus
@@ -163,6 +140,7 @@
                     escapeDeactivates: false,
                     clickOutsideDeactivates: true
                 });
+
 
                 this.focusTrap.activate();
             },
