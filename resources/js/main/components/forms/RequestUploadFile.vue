@@ -12,7 +12,7 @@
 
         <ul v-if="errors.length > 0" id="file-errors" class="error">
             <li v-for="(error, i) in errors" :key="i" v-text="error"></li>
-        </ul>     
+        </ul>
     </div>
 </template>
 
@@ -35,13 +35,13 @@
 
         methods: {
             addFile() {
-                 
+
                 const file = event.target.files[0];
-                
+
                 var formData = new FormData();
                 formData.append("request", this.requestid);
                 formData.append("file", file);
-                
+
                 window.axios
                     .post('subir-archivo', formData)
                     .then(response => {
@@ -52,11 +52,11 @@
 
                             const id  = response.data.id;
                             const key = "description_"+id;
-                            
+
                             this.$set(this.$parent.fields.files, key, '');
-                            this.$set(this.$parent.thumbs, key, response.data.file);
+                            this.$set(this.$parent.thumbs, key, response.data.urlfile);
                             this.$set(this.$parent.names, key, file.name);
-                            
+
                         }
 
                     })
