@@ -13,3 +13,26 @@
         width: 40px;
     }
 }
+
+.panel-details__service {
+    border-radius: 6px;
+    height: 8px;
+    margin-right: 5px;
+    width: 8px;
+
+    &--desarrollo-de-software {
+        background-color: $color-desarrollo-de-software;
+    }
+
+    &--infraestructura {
+        background-color: $color-infraestructura;
+    }
+
+    &--cuentas-de-acceso {
+        background-color: $color-cuentas-de-acceso;
+    }
+
+    &--instalacion-de-sofware {
+        background-color: $color-instalacion-de-software;
+    }
+}

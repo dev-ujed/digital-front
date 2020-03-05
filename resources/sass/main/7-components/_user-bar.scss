@@ -124,6 +124,10 @@ User bar
         border-radius: 50%;
         border: 1px solid #ccc;
         box-shadow: none;
+
+        &:hover {
+            border: 1px solid #8a96a1;
+        }
     }
 }
 
@@ -135,12 +139,19 @@ User bar
 }
 
 .user-bar__plus {
-    background-color: $color-gray-10;
-    color: $color-gray-60;
-    display: block;
+    background-color: #f9fafa;
+    color: #8a96a1;
+    display: flex;
     font-size: 12px;
     height: 100%;
     line-height: 2.1;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        color: $color-dashboard-green;
+        cursor: pointer;
+    }
 }
 
 .user-bar__user-name {
