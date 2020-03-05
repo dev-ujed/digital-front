@@ -54,6 +54,8 @@
                             </p>
 
                             <participants>
+                                <slot name="check" slot="check"></slot>
+                                <slot name="close" slot="close"></slot>
                                 <slot name="plus" slot="plus"></slot>
                             </participants>
 
