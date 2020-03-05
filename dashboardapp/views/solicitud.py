@@ -17,10 +17,10 @@ def solicitud(request, folio):
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio)
         solicitud  = response.json()
-
-        locale.setlocale(locale.LC_TIME, '')
-        date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
-        solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
+        if solicitud[0]['fecha_sol'] != None:
+            locale.setlocale(locale.LC_TIME, '')
+            date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
+            solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
 
         for file in solicitud[0]['archivos_solicitud']:
 
