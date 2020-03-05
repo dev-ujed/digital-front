@@ -152,19 +152,19 @@ Card request
         }
     }
 
+    &--instalacion-de-software {
+        border-color:$color-instalacion-de-software !important;
+        &-active {
+            background-color:$color-instalacion-de-software !important;
+            border-color:$color-instalacion-de-software !important;
+        }
+    }
+
     &--cuentas-de-acceso {
         border-color:$color-cuentas-de-acceso;
         &-active {
             background-color:$color-cuentas-de-acceso;
             border-color:$color-cuentas-de-acceso;
-        }
-    }
-
-    &--instalacion-de-sofware {
-        border-color:$color-instalacion-de-software;
-        &-active {
-            background-color:$color-instalacion-de-software;
-            border-color:$color-instalacion-de-software;
         }
     }
 }

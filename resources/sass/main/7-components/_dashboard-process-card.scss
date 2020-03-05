@@ -23,19 +23,19 @@
 }
 
 .db-process-card--desarrollo-de-software {
-    border-top: 4px solid #2D86B3;
+    border-top: 4px solid $color-desarrollo-de-software;
 }
 
 .db-process-card--infraestructura {
-    border-top: 4px solid #DE1818;
+    border-top: 4px solid $color-infraestructura;
 }
 
 .db-process-card--cuentas-de-acceso {
-    border-top: 4px solid #FFCA34;
+    border-top: 4px solid $color-cuentas-de-acceso;
 }
 
-.db-process-card--instalaciones-de-software {
-    border-top: 4px solid #20C372;
+.db-process-card--instalacion-de-software {
+    border-top: 4px solid $color-instalacion-de-software;
 }
 
 .db-process-card__title {
