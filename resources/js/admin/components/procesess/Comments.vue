@@ -4,6 +4,8 @@
         :tabs="{'team': 'Equipo', 'public': 'Públicos'}"
         :options="{'team': 'Equipo', 'public': 'Públicos'}"
         :accepts-html="true"
+        :emit-change-event="true"
+        @tabchange="tabChanged"
     >
         <template slot="panel-team">
 
@@ -14,7 +16,7 @@
             <div class="media__body">
                 <p class="mb-0">
                     <b>Miriam Rivera</b>
-                    <small class="ml-2 size-sm color-gray-60">
+                    <small class="ml-2 color-gray-60">
                         Hoy, 2:20 p.m.
                     </small>
                 </p>
@@ -29,7 +31,7 @@
             <div class="media__body">
                 <p class="mb-0">
                     <b>Miriam Rivera</b>
-                    <small class="ml-2 size-sm color-gray-60">
+                    <small class="ml-2 color-gray-60">
                         Hoy, 2:20 p.m.
                     </small>
                 </p>
@@ -63,7 +65,12 @@
 
         mounted() {
             console.log('comments');
-        }
+        },
 
+        methods: {
+            tabChanged() {
+                    this.$parent.$parent.$parent.getMinHeight();
+            }
+        }
     };
 </script>
