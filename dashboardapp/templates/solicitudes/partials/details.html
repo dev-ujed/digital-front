@@ -48,7 +48,7 @@
             {% for value in request.archivos_solicitud %}
 
                 {% if value.nombre_archivo != None %}
-                    <a href="{{ value.file }}" target="_blank" class="card-request__file">
+                    <a href="{{ value.urlfile }}" target="_blank" class="card-request__file">
 
                         <div class="card-request__file-thumb d-inline-block align-bottom">
                             {% load static %}
@@ -57,7 +57,7 @@
 
                         <p class="size-caption m-0 d-inline-block ml-2">
                             {{ value.nombre_archivo }}<br>
-                            <small class="color-gray-60">{{ value.file|filesizeformat }}</small>
+                            <small class="color-gray-60">{{ value.sizefile |filesizeformat }}</small>
                         </p>
 
                         {% if value.descripcion != None %}
