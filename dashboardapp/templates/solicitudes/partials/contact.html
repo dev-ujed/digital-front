@@ -13,7 +13,7 @@
                             {{ request.apellido_materno }}
                         {% endif %}
                     </span>
-                    <br><span> {{ request.ures_descrip }}</span>
+                    <br><span> {{ request.ures_desc }}</span>
                 </dd>
             </dl>
 
@@ -46,14 +46,14 @@
                 </dd>
             </dl>
 
-            {% if value.descripcion != None %}
+            {% if request.pautoriza != None %}
 
                 <dl class="list-inline list-inline--md">
                     <dt class="card-request__dt-title">
                         AUTORIZA
                     </dt>
                     <dd class="card-request__dd">
-                        <span class="card-request__dd-content"> {{ request.pautoriza }} </span>
+                        <span class="card-request__dd-content dd-content-nobold"> {{ request.pautoriza }} </span>
                     </dd>
                 </dl>
             {% endif %}
