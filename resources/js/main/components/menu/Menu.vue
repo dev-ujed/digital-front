@@ -208,8 +208,6 @@
             setMatchMedia() {
                 const mq = window.matchMedia(`screen and (min-width:${this.breakpoint}px)`);
 
-                console.log(this.breakpoint);
-
                 mq.addListener(this.reset);
 
                 this.reset(mq);
