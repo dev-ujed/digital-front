@@ -74,6 +74,7 @@
                     </template>
                 </tabs-component>
         </div>
+        <transparent-overlay></transparent-overlay>
     </div>
 </template>
 
@@ -91,7 +92,6 @@
             return {
                 service: '',
                 focusTrap: null,
-                service: '',
                 procesess: [],
                 minHeight: 0
             };
