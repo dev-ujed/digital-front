@@ -5,7 +5,25 @@ def menu_processor(request):
         return {'menu': dataUrl}
     else:
         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/usuario-rol/', data={ 'user_id': request.session['user']['id'] })
-        return {'menu' : response.json()}
+        dbmenu   = response.json()
+
+        for key, section in dbmenu.items():
+            section.update({ 'active' : 0 })
+            for submenu in section['submenus']:
+                submenu.update({ 'active': 0 })
+
+                for link in submenu['links']:
+                    link.update({ 'active': 0 })
+
+                    if '/administracion/'+link['route'] == str(request.get_full_path()):
+                        link.update({ 'active': 1 })
+                        submenu.update({ 'active': 1 })
+                        section.update({ 'active': 1 })
+
+        if str(request.get_full_path()) == '/administracion/':
+            dbmenu['0'].update({ 'active' : 1 })
+
+        return {'menu' : dbmenu }
 
 def user_processor(request):
     userAuth = {}
