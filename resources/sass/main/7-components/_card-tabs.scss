@@ -15,11 +15,12 @@ Icon tabs responsive
         display: flex;
         font-size: 11px;
         text-align: center;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
     & .tabs__menu .tabs__li {
         color: $color-gray-50;
+        margin: 0 15px;
         padding-bottom: 3em;
     }
 
