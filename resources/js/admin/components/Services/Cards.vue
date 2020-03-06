@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div :class="'db-process-card db-process-card--'+(service.servicios_slug)" v-for="service in list">
-                <p class="db-process-card__title"> {{ service.servicio }} </p>
+                <p class="db-process-card__title"> {{ service.subservicio_name }} </p>
                 <p class="db-process-card__date">  {{ service.fec_subservicio }} </p>
 
                 <span class="badge badge--blue"> {{ service.estatus_name }}  </span>
