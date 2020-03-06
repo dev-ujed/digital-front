@@ -62,14 +62,9 @@
 <script>
 
     export default {
-
-        mounted() {
-            console.log('comments');
-        },
-
         methods: {
             tabChanged() {
-                    this.$parent.$parent.$parent.getMinHeight();
+                this.$parent.$parent.$parent.getMinHeight();
             }
         }
     };

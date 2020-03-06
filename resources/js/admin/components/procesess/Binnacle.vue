@@ -37,9 +37,5 @@
 
     export default {
 
-        mounted() {
-            console.log('Binnacle');
-        }
-
     };
 </script>

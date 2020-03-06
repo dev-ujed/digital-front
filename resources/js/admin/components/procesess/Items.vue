@@ -18,9 +18,6 @@
             showModal() {
                 this.$root.$emit('showModal');
             },
-        },
-        mounted() {
-            console.log('items');
         }
     };
 </script>
