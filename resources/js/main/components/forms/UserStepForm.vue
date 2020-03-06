@@ -131,7 +131,7 @@
         extends: BaseForm,
         props: {
             ureslist: {
-                type: Object,
+                type: Array,
                 required: true
             },
         },
