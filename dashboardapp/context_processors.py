@@ -20,8 +20,8 @@ def menu_processor(request):
                         submenu.update({ 'active': 1 })
                         section.update({ 'active': 1 })
 
-        if str(request.get_full_path()) == '/administracion/':
-            dbmenu['0'].update({ 'active' : 1 })
+                    if str(request.get_full_path()) != '/administracion/'+link['route']:
+                        dbmenu['0'].update({ 'active' : 1 })
 
         return {'menu' : dbmenu }
 
