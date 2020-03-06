@@ -5,7 +5,7 @@
                     ENVIADA POR
                 </dt>
                 <dd class="card-request__dd">
-                    <span class="card-request__dd-content">
+                    <span class="card-request__dd-content dd-content-nobold">
                         {{ request.nombre }}
                         {{ request.apellido_paterno }}
 
@@ -22,7 +22,7 @@
                     MATRÍCULA
                 </dt>
                 <dd class="card-request__dd">
-                    <span class="card-request__dd-content"> {{ request.matricula }}</span>
+                    <span class="card-request__dd-content dd-content-nobold"> {{ request.matricula }}</span>
                 </dd>
             </dl>
         </div>
@@ -32,7 +32,7 @@
                     CONTACTO
                 </dt>
                 <dd class="card-request__dd">
-                    <span class="card-request__dd-content">
+                    <span class="card-request__dd-content dd-content-nobold">
                         {{ request.correo }} <br>
 
                         {% if request.telefono != None %}
