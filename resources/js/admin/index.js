@@ -11,6 +11,7 @@ import ProcessModal from './components/procesess/ProcessModal.vue';
 import Participants from './components/procesess/Participants.vue';
 import Binnacle from './components/procesess/Binnacle.vue';
 import Comments from './components/procesess/Comments.vue';
+import TransparentOverlay from '../main/components/TransparentOverlay.vue';
 
 
 (function() {
@@ -27,6 +28,7 @@ import Comments from './components/procesess/Comments.vue';
     /* App components
     ------------------------------------------------------------------------- */
     Vue.component('site-overlay', SiteOverlay);
+    Vue.component('transparent-overlay', TransparentOverlay);
     Vue.component('modal', Modal);
     Vue.component('cards-services', CardsServices);
     Vue.component('service-modal', ServiceModal);
