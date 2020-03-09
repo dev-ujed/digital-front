@@ -34,6 +34,26 @@ $main-menu-link-padding-y: 1.5em;
         opacity: 1;
     }
 }
+.main-logo__dtd--flex {
+    align-items: center;
+    display: flex;
+}
+
+.main-logo__dtd--flex .main-logo__icon {
+    height: 65px;
+    margin-right: 10px;
+    @include media(300px, 759px) {
+        height: 42px;
+        margin-right: 10px;
+    }
+}
+
+.main-logo__dtd--flex .main-logo__text {
+    height: 50px;
+    @include media(300px, 759px) {
+        height: 35px;
+    }
+}
 
 .main-menu__container--sm {
     opacity: 0;
@@ -59,7 +79,6 @@ $main-menu-link-padding-y: 1.5em;
 }
 
 .main-logo__dtd {
-    display: inline-block;
     margin-top: 20px;
     margin-bottom: 20px;
     transform-origin: left top;

@@ -1,12 +1,13 @@
 <template>
     <nav id="main-menu" class="main-menu" role="navigation">
         <div class="container main-menu__container">
-           <a class="main-logo__dtd" :href="$root.path+'/digitalapp/'" title="Inicio"
+           <a class="main-logo__dtd main-logo__dtd--flex" :href="$root.path+'/digitalapp/'" title="Inicio"
                 :class="{
                     'main-logo__dtd--open': menuIsOpen,
                     'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
                 }">
-                <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
+                <img :src="$root.path + '/static/img/header/logo-header-icon.png'"  class="main-logo__icon" alt="Dirección de transformación Digital">
+                <img ref="image_title" :src="$root.path + '/static/img/header/logo-header-texto.png'" class="main-logo__text"alt="Dirección de transformación Digital">
             </a>
 
             <div class="main-logo__ujed float-right">
@@ -47,7 +48,7 @@
                         'main-logo__dtd--open': menuIsOpen,
                         'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
                     }">
-                    <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
+                    <!-- <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital"> -->
                 </a>
             </div>
 
@@ -151,6 +152,7 @@
                 if (value) {
                     // Wait for the element to be visible (nextTick is not enough)
                     setTimeout(this.focusTrap.activate, 50);
+                    this.$refs.image_title.classList.add('visually-hidden');
                 }
                 else {
                     this.focusTrap.deactivate();
@@ -238,6 +240,7 @@
                 this.buttonClicked = false;
 
                 this.$emit('resetSubmenus', e.matches);
+                this.$refs.image_title.classList.remove('visually-hidden')
             },
 
             /**
@@ -255,6 +258,7 @@
 
                 const app = document.getElementById('app');
                 app.classList.remove('overflow-hidden');
+                this.$refs.image_title.classList.remove('visually-hidden');
             },
 
             /*
