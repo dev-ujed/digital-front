@@ -1,5 +1,5 @@
 <template>
-    <nav id="main-menu" class="main-menu" role="navigation">
+    <nav id="main-menu" class="main-menu" ref="menu_container" role="navigation">
         <div class="container main-menu__container">
            <a class="main-logo__dtd main-logo__dtd--flex" :href="$root.path+'/digitalapp/'" title="Inicio"
                 :class="{
@@ -29,14 +29,12 @@
                 <span v-else class="visually-hidden">Mostrar menú</span>
             </button>
         </div>
-
         <div class="main-menu__background"
              :class="{
                     'main-menu__background--open': menuIsOpen,
                     'main-menu__background--closed': ! menuIsOpen && buttonClicked
                 }">
         </div>
-
         <div class="main-menu__list--container"
             :class="{
                     'main-menu__list--container--open': menuIsOpen,
@@ -111,7 +109,6 @@
                     }">
                 Dirección de Transformación Digital <br> Universidad Juárez del Estado de Durango
             </p>
-
         </div>
     </nav>
 </template>
@@ -303,7 +300,7 @@
              * Return a new instance of FocusTrap on the menu list.
              */
             setFocusTrap() {
-                return window.FocusTrap(this.$refs.list, {
+                return window.FocusTrap(this.$refs.menu_container, {
                     escapeDeactivates: false,
                     clickOutsideDeactivates: true
                 });
