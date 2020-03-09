@@ -27,10 +27,14 @@ def save(request):
         if responseFiles.status_code == 422:
             errors.update({i: ['Asegúrese de que este campo no tenga más de 80 caracteres.'] })
 
+    response = validateUpdateRequest(data_request, data)
+
+    if response.status_code == 422:
+        errors.update(response.json())
+
     if bool(errors):
         return JsonResponse({'errors':errors}, status = 422)
 
-    response = validateUpdateRequest(data_request, data)
     sendEmail(response.json())
 
     return displayResponse(response)
