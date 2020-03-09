@@ -51,6 +51,7 @@
                             name="comentario"
                             cols="30"
                             rows="5"
+                            maxlength="150"
                             v-model="fields.comentario">
                         </text-area>
                         <small class="color-gray-60">Máximo 150 caracteres.</small>
