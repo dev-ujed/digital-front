@@ -127,6 +127,9 @@ def displayResponse(response, customMessage={}):
     if bool(customMessage):
         errors.update(ChangeMessage(customMessage, errors))
 
+    if response.status_code == 422:
+        errors.update(response.json())
+
     if bool(errors):
         return JsonResponse({'errors':errors}, status = 422)
     else:
