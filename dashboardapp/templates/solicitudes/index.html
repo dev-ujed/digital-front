@@ -66,7 +66,7 @@
                                                 Descripción
                                             </dt>
                                             <dd class="card-request__dd-description">
-                                                {{ element.descripcion }}
+                                                {{ element.descripcion |truncatewords:25 }}
                                             </dd>
                                             {% if element.count_archivos != 0 %}
                                                 <div class="card-request__attach">
