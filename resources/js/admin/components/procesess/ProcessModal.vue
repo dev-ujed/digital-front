@@ -64,7 +64,7 @@
                                         </div>
 
                                         <div class="process-comment__btns">
-                                            <button class="btn btn--sm modal__success-btn mr-2">
+                                            <button class="btn btn--sm btn--light mr-6 sm:mr-2">
                                                 <span>Cancelar</span>
                                             </button>
 
