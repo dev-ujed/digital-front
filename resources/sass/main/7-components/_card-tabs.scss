@@ -95,7 +95,7 @@ Initial tabs
     & .tabs__menu {
         background-color: inherit;
         border-radius: inherit;
-        display: inherit;
+        display: flex;
         font-size: inherit;
         text-align: center;
         justify-content: inherit;
@@ -106,7 +106,9 @@ Initial tabs
 
     & .tabs__menu .tabs__li {
         color: inherit;
-        padding-bottom: inherit;
+        padding: 0 15px;
+        margin: 0px;
+        padding-bottom: 10px;
     }
 
     & .tabs__menu .tabs__li:first-child {
