@@ -22,6 +22,10 @@
         <h1 class="db-heading__title">
             Solicitudes en proceso
         </h1>
+
+        <item-process>
+
+        </item-process>
     </div>
 
     <div class="fluid-container mt-12 overflow-x-auto">
@@ -37,6 +41,8 @@
             {% endfor %}
         </div>
         {% for request in solicitudes %}
+
+
             <div class="requests-process__row">
                 <div class="requests-process__body requests-process__body--services">
                     <div class="row relative">
@@ -122,6 +128,20 @@
         {% endfor%}
     </div>
 
+    <process-modal>
+        <template slot="check">
+            {% load svg %}
+            {% svg 'check' %}
+        </template>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="plus">
+            {% load svg %}
+            {% svg 'plus' %}
+        </template>
+    </process-modal>
 
 
 {% endblock %}
