@@ -6,6 +6,12 @@ import Modal from '../main/components/Modal.vue';
 import CardsServices from './components/Services/Cards.vue';
 import ServiceModal from './components/Services/ServiceModal.vue';
 import TitleRequest from './components/TitleRequest.vue';
+import Items from './components/procesess/Items.vue';
+import ProcessModal from './components/procesess/ProcessModal.vue';
+import Participants from './components/procesess/Participants.vue';
+import Binnacle from './components/procesess/Binnacle.vue';
+import Comments from './components/procesess/Comments.vue';
+import TransparentOverlay from '../main/components/TransparentOverlay.vue';
 
 
 (function() {
@@ -22,10 +28,18 @@ import TitleRequest from './components/TitleRequest.vue';
     /* App components
     ------------------------------------------------------------------------- */
     Vue.component('site-overlay', SiteOverlay);
+    Vue.component('transparent-overlay', TransparentOverlay);
     Vue.component('modal', Modal);
     Vue.component('cards-services', CardsServices);
     Vue.component('service-modal', ServiceModal);
     Vue.component('title-request', TitleRequest);
+    Vue.component('item-process', Items);
+    Vue.component('process-modal', ProcessModal);
+    Vue.component('participants', Participants);
+    Vue.component('binnacle', Binnacle);
+    Vue.component('comments', Comments);
+
+
 
     /*
     |------------------------------------------------------------------------

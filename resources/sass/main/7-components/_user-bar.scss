@@ -118,13 +118,43 @@ User bar
         border: 1px solid #ccc;
         box-shadow: none;
     }
+
+    &--add {
+        background-color: #f9fafa;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        text-align: center;
+        overflow: hidden;
+        vertical-align: top;
+
+        &:hover {
+            border: 1px solid #8a96a1;
+        }
+    }
 }
 
 .user-bar__count {
     color: $color-gray-60;
+    display: block;
     font-size: 12px;
     line-height: 2.1;
-    display: block;
+}
+
+.user-bar__plus {
+    background-color: #f9fafa;
+    color: #8a96a1;
+    display: flex;
+    font-size: 12px;
+    height: 100%;
+    line-height: 2.1;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        color: $color-dashboard-green;
+        cursor: pointer;
+    }
 }
 
 .user-bar__user-name {
