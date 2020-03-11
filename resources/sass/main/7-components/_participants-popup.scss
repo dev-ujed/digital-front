@@ -7,8 +7,6 @@
     z-index: 1;
     padding: 10px 11px 35px 15px;
     width: 270px;
-    margin-top: 10px;
-    margin-left: 10px;
 }
 
 .participants-popup__search {
@@ -57,4 +55,23 @@
     padding: 0px;
     margin-bottom: 15px;
     cursor: pointer;
+}
+
+.process-comment {
+    align-items: center;
+    display: block;
+
+    @include media(sm) {
+        display: flex;
+    }
+}
+
+.process-comment__btns  {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.3rem;
+
+    @include media(sm) {
+        justify-content: left;
+    }
 }

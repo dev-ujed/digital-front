@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-if="isActive" @click.self="closeModal">
+    <div class="modal" v-if="isActive" @click.self="closeModal" @scroll="ScrollTop">
         <div class="modal__card" ref="modal"
                 :style="{
                     'min-height': `${minHeight}px`
@@ -46,6 +46,33 @@
                                         >
                                         </select-field>
                                     </div>
+
+                                    <div class="process-comment">
+                                        <div class="form-control mr-2">
+                                            <label for="comentario">
+                                                Comentario
+                                                <small class="color-gray-60">Opcional</small>
+                                            </label>
+                                            <text-field
+                                                name="comentario"
+                                                cols="30"
+                                                rows="3"
+                                                v-model="fields.comentario">
+                                            </text-field>
+                                            <small class="color-gray-60">Máximo 150 caracteres.</small>
+                                            <field-errors name="comentario"></field-errors>
+                                        </div>
+
+                                        <div class="process-comment__btns">
+                                            <button class="btn btn--sm modal__success-btn mr-2">
+                                                <span>Cancelar</span>
+                                            </button>
+
+                                            <form-button class="btn btn--sm modal__success-btn" type="submit">
+                                                <span>Enviar</span>
+                                            </form-button>
+                                        </div>
+                                    </div>
                                 </form>
                             </change-status-form>
 
@@ -74,7 +101,11 @@
                     </template>
                 </tabs-component>
         </div>
-        <transparent-overlay></transparent-overlay>
+        <transparent-overlay
+            :style="{
+                'top': `${ top }px`
+            }" >
+        </transparent-overlay>
     </div>
 </template>
 
@@ -92,8 +123,10 @@
             return {
                 service: '',
                 focusTrap: null,
+                participantsModalVisible: false,
                 procesess: [],
-                minHeight: 0
+                minHeight: 0,
+                top: 0
             };
         },
         watch: {
@@ -111,6 +144,14 @@
             },
 
         },
+
+        mounted() {
+            this.$root.$on('addParticipant', (el) => {
+                this.participantsModalVisible = el;
+                console.log(el)
+            });
+        },
+
         methods: {
             changeService(e) {
                 this.service = e.currentTarget.value;
@@ -142,8 +183,6 @@
                     escapeDeactivates: false,
                     clickOutsideDeactivates: true
                 });
-
-
                 this.focusTrap.activate();
             },
 
@@ -157,6 +196,12 @@
                 this.service = '';
                 this.focusTrap = null;
                 this.$root.$emit('closeOverlay');
+            },
+
+            ScrollTop(e) {
+                if (this.participantsModalVisible) {
+                    this.top = e.currentTarget.scrollTop;
+                }
             }
         }
     };
