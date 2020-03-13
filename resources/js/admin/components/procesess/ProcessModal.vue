@@ -35,6 +35,7 @@
                             <change-status-form
                                 action='/ok/'
                                 class="mt-12"
+                                :statuses="statuses"
                                 inline-template>
                                 <form>
                                     <button class="btn btn--sm btn--light mb-4" v-if="status" @click="status = false">
@@ -50,6 +51,7 @@
                                             id="ures"
                                             v-model="fields.ures"
                                             :options="statuses"
+                                            @change="changeStatus"
                                         >
                                         </select-field>
                                     </div>
@@ -142,7 +144,6 @@
                 procesess: [],
                 minHeight: 0,
                 top: 0,
-                status: false
             };
         },
         watch: {
