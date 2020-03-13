@@ -30,7 +30,7 @@
             <p class="requests-process__head requests-process__head--services">
                 SOLICITUDES
             </p>
-            {% for status in statuses%}
+            {% for status in statustitle %}
                 <p class="requests-process__head requests-process__col">
                     {{ status.estatus_descrip|upper }}
                 </p>
@@ -49,7 +49,11 @@
                                     {% for key, subservices_group in request.subservices.items %}
                                         {% if request.countsubservices != 0 %}
                                             {% for subservice in subservices_group %}
-                                                <span class="card-request__service card-request__service--{{ subservice.servicio |slugify }}"></span>
+                                                {% if subservice.estatus_key_name == 'concluido' %}
+                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}-active"></span>
+                                                {% else %}
+                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}"></span>
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     {% endfor %}

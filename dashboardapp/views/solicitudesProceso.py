@@ -16,6 +16,12 @@ def solicitudesProceso(request):
         statuses = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_proceso/')
         statuses = statuses.json()
 
+        statusSubservices = []
+        statusResponse = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
+        for status in statusResponse.json():
+            if status['desc_tipo_estatus'] == 'SUBSERVICIOS':
+                statusSubservices.append(status)
+
         response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')
         jsonData = json.loads(response.content.decode())
         solicitudes = response.json()
@@ -27,7 +33,7 @@ def solicitudesProceso(request):
                 solicitud.update({'formated_date' : formatedDate})
 
             if int(solicitud['countsubservices']) != 0 and int(solicitud['count_concluido']) != 0:
-                division = int(solicitud['countsubservices']) / int(solicitud['count_concluido'])
+                division =  (int(solicitud['count_concluido']) / int(solicitud['countsubservices'])) * 100
             else:
                 division = 0
 
@@ -38,6 +44,11 @@ def solicitudesProceso(request):
                     date = datetime.strptime(subservice['fec_subservicio'], "%d/%m/%Y %H:%M")
                     formatedDate = date.strftime("%d %h %Y, %I:%M %p")
                     subservice.update({'formated_date' : formatedDate})
+
+                    if subservice['estatus_update'] != None:
+                        dateupdate = datetime.strptime(subservice['fec_subservicio'], "%d/%m/%Y %H:%M")
+                        formatedDateupdate = dateupdate.strftime("%d %h %Y, %I:%M %p")
+                        subservice.update({'formated_date_update' : formatedDateupdate})
 
                     for public in subservice['comentarios_publicos']:
                         date = datetime.strptime(public['fecha_comment'], "%d/%m/%Y %H:%M")
@@ -55,7 +66,7 @@ def solicitudesProceso(request):
                         bitacora.update({'fecha_bitacora' : bitacoraDate.capitalize()})
                         bitacora.update({'comentario' : decapitalize(bitacora['comentario']) })
 
-        return render(request, "solicitudes/process.html", { 'solicitudes': solicitudes, 'statuses': statuses })
+        return render(request, "solicitudes/process.html", { 'solicitudes': solicitudes, 'statuses': statuses, 'statustitle': statusSubservices })
 
 def decapitalize(s):
     if not s:  # check that s is not empty string
