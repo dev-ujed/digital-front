@@ -129,9 +129,6 @@
                         console.log(error)
                     })
             }
-        },
-        mounted() {
-            console.log(this.public);
         }
     };
 </script>
