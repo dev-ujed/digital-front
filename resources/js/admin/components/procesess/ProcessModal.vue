@@ -15,39 +15,46 @@
                     <template slot="panel-details">
                         <div class="container">
 
-                            <span class="size-xs color-gray-50 d-flex items-center">
-                                <span class="panel-details__service panel-details__service--desarrollo-de-software"></span>
-                                DESARROLLO
+                            <span class="size-xs color-gray-50 d-flex items-center uppercase">
+                                <span :class="'panel-details__service panel-details__service--'+subservice.servicios_slug"></span>
+                                {{ subservice.servicio }}
                             </span>
 
-                            <p class="size-xl color-gray-90">
-                                <b>Creación de sitios web</b>
+                            <p class="size-xl color-gray-90 mb-0">
+                                <b>{{ subservice.subservicio_name }}</b>
                             </p>
 
                             <span class="size-sm color-gray-70">
-                                16 de enero 2020, 14:43 p.m.
+                                {{ subservice.formated_date }}
                             </span>
 
-                            <p class="mt-6 mb-12 color-gray-80">
-                                Los servicios pueden tener una anotación corta para describir la tarea.
-                                Ésta es opcional y tienen un máximo de 150 caracteres.
+                            <p class="mt-6 color-gray-80" v-if="subservice.comentario">
+                                {{ subservice.comentario }}
                             </p>
 
-                            <change-status-form action='/ok/' inline-template>
+                            <change-status-form
+                                action='/ok/'
+                                class="mt-12"
+                                inline-template>
                                 <form>
-                                    <div class="form-control">
-                                        <label for="ures">Proceso</label>
+                                    <button class="btn btn--sm btn--light mb-4" v-if="status" @click="status = false">
+                                        <slot name="rotate-ccw" slot="rotate-ccw"></slot>
+                                        <span class=""> <b>Deshacer</b> </span>
+                                    </button>
+
+                                    <div class="form-control" v-if="!status">
+                                        <label for="ures">Estado</label>
                                         <select-field
                                             class="form-field"
                                             name="ures"
                                             id="ures"
                                             v-model="fields.ures"
-                                            :options=" {} "
+                                            :options="statuses"
                                         >
                                         </select-field>
                                     </div>
 
-                                    <div class="process-comment">
+                                    <div class="process-comment" v-if="status">
                                         <div class="form-control mr-2">
                                             <label for="comentario">
                                                 Comentario
@@ -64,12 +71,8 @@
                                         </div>
 
                                         <div class="process-comment__btns">
-                                            <button class="btn btn--sm btn--light mr-6 sm:mr-2">
-                                                <span>Cancelar</span>
-                                            </button>
-
                                             <form-button class="btn btn--sm modal__success-btn" type="submit">
-                                                <span>Enviar</span>
+                                                <slot name="save" slot="save"></slot>
                                             </form-button>
                                         </div>
                                     </div>
@@ -80,7 +83,9 @@
                                 PARTICIPANTES
                             </p>
 
-                            <participants>
+                            <participants
+                                :participants="subservice.sub_servicioParticipantes"
+                            >
                                 <slot name="check" slot="check"></slot>
                                 <slot name="close" slot="close"></slot>
                                 <slot name="plus" slot="plus"></slot>
@@ -91,13 +96,19 @@
                             <p class="subtitle">
                                 COMENTARIOS
                             </p>
-                            <comments></comments>
+                            <comments
+                                :publiccomments="subservice.comentarios_publicos"
+                                :teamcomments="subservice.comentarios_privados"
+                                :subservice="subservice.id"
+                            ></comments>
 
                         </div>
 
                     </template>
                     <template slot="panel-bitacora">
-                        <binnacle></binnacle>
+                        <binnacle
+                            :binnacle="subservice.bitacora"
+                        ></binnacle>
                     </template>
                 </tabs-component>
         </div>
@@ -119,14 +130,19 @@
     export default {
         extends: Modal,
         components: { Comments, ChangeStatusForm, Binnacle, Participants },
+        props: {
+            statuses: Array
+        },
         data() {
             return {
+                subservice: {},
                 service: '',
                 focusTrap: null,
                 participantsModalVisible: false,
                 procesess: [],
                 minHeight: 0,
-                top: 0
+                top: 0,
+                status: false
             };
         },
         watch: {
@@ -148,10 +164,12 @@
         mounted() {
             this.$root.$on('addParticipant', (el) => {
                 this.participantsModalVisible = el;
-                console.log(el)
+            });
+
+            this.$root.$on('subservice', (el) => {
+                this.subservice = el;
             });
         },
-
         methods: {
             changeService(e) {
                 this.service = e.currentTarget.value;

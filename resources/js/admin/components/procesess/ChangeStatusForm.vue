@@ -8,13 +8,15 @@
 
     export default {
         extends: BaseForm,
+        props: {
+            statuses: Array
+        },
         components: {
             FormButton,
             SelectField,
             TextField,
             TextArea
         },
-
         methods: {
             submitSucceeded(response) {
                 //this.$root.$emit('cardServices', response.data);

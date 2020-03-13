@@ -1,40 +1,12 @@
 <template>
     <div>
         <div class="process-modal__participants">
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-            </div>
-
-            <div class="user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
+            <div class="user-bar__avatar-container" v-for="participant in participants">
+                <img
+                    lass="user-bar__avatar"
+                    src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
+                    :alt="participant.participante_name+' '+participant.participante_last_name"
+                    :title="participant.participante_name+' '+participant.participante_last_name">
             </div>
             <button class="user-bar__avatar-container user-bar__avatar-container--add" refs="buttonAdd" @click="show">
                 <span class="user-bar__plus">
@@ -109,7 +81,9 @@
 <script>
 
     export default {
-
+        props: {
+            participants: Array
+        },
         data() {
             return {
                 addParticipant : false
