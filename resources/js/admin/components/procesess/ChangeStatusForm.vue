@@ -1,3 +1,4 @@
+
 <script>
     import BaseForm from '../../../main/components/forms/base/BaseForm.vue';
     import FormButton from '../../../main/components/forms/base/FormButton.vue';
@@ -11,6 +12,11 @@
         props: {
             statuses: Array
         },
+        data() {
+            return {
+                status: false
+            };
+        },
         components: {
             FormButton,
             SelectField,
@@ -21,6 +27,11 @@
             submitSucceeded(response) {
                 //this.$root.$emit('cardServices', response.data);
                 this.$parent.closeModal();
+            },
+            changeStatus() {
+
+                console.log(this.status);
+                this.status = true;
             },
         }
     };
