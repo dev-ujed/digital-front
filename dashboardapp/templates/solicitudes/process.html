@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
     <div class="db-heading">
 
         <div class="breadcrums db-breadcrums">
@@ -23,20 +24,21 @@
         </h1>
     </div>
 
-
     <div class="fluid-container mt-12 overflow-x-auto">
 
         <div class="d-inline-flex">
             <p class="requests-process__head requests-process__head--services">
                 SOLICITUDES
             </p>
-            {% for status in statuses%}
+            {% for status in statustitle %}
                 <p class="requests-process__head requests-process__col">
                     {{ status.estatus_descrip|upper }}
                 </p>
             {% endfor %}
         </div>
         {% for request in solicitudes %}
+
+
             <div class="requests-process__row">
                 <div class="requests-process__body requests-process__body--services">
                     <div class="row relative">
@@ -47,7 +49,11 @@
                                     {% for key, subservices_group in request.subservices.items %}
                                         {% if request.countsubservices != 0 %}
                                             {% for subservice in subservices_group %}
-                                                <span class="card-request__service card-request__service--{{ subservice.servicio |slugify }}"></span>
+                                                {% if subservice.estatus_key_name == 'concluido' %}
+                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}-active"></span>
+                                                {% else %}
+                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}"></span>
+                                                {% endif %}
                                             {% endfor %}
                                         {% endif %}
                                     {% endfor %}
@@ -96,23 +102,17 @@
                         </a>
                     </div>
                 </div>
+
                 {% for key, subservices_group in request.subservices.items %}
+
                     <div class="requests-process__body requests-process__col">
                         {% if request.countsubservices != 0 %}
                             {% for subservice in subservices_group %}
-                                <div class="db-process-card mr-0 db-process-card--{{ subservice.servicio |slugify }}">
-                                    <p class="db-process-card__title">
-                                        {{ subservice.subservicio_name }}
-                                    </p>
-                                    <p class="db-process-card__date mb-1"> {{ subservice.formated_date }}</p>
-                                    <div class="db-process-card__users mt-0">
-                                        {% for participante in subservice.sub_servicioParticipantes %}
-                                            <div class="user-bar__avatar-container">
-                                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="{{ participante.participante_name }} {{ participante.participante_last_name }}" class="user-bar__avatar">
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+                                <cards-process
+                                    :subservice="{{ subservice }}"
+                                >
+                                </cards-process>
+
                             {% endfor %}
                         {% endif %}
 
@@ -121,5 +121,30 @@
             </div>
         {% endfor%}
     </div>
+
+    <process-modal
+        :statuses="{{ statuses }}"
+    >
+        <template slot="check">
+            {% load svg %}
+            {% svg 'check' %}
+        </template>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="plus">
+            {% load svg %}
+            {% svg 'plus' %}
+        </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+        <template slot="rotate-ccw">
+            {% load svg %}
+            {% svg 'rotate-ccw' %}
+        </template>
+    </process-modal>
 
 {% endblock %}

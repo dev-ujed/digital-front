@@ -5,4 +5,5 @@ from .descargarZip import *
 from .guardarServicio import *
 from .solicitudesProceso import *
 from .actualizarTitulo import *
+from .comentario import *
 
