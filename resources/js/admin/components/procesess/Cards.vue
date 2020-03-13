@@ -3,7 +3,7 @@
         <p class="db-process-card__title">
             {{ subservice.subservicio_name }}
         </p>
-        <p class="db-process-card__date mb-1">{{ subservice.formated_date }}</p>
+        <p class="db-process-card__date mb-1">{{ subservice.formated_date }} <br>{{ subservice.formated_date_update }}</p>
         <div class="db-process-card__users mt-0">
             <div class="user-bar__avatar-container" v-for="participant in subservice.sub_servicioParticipantes">
                 <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
@@ -25,6 +25,9 @@
                 this.$root.$emit('subservice', this.subservice);
                 this.$root.$emit('showModal');
             }
+        },
+        mounted(){
+            console.log(this.subservice);
         }
     };
 </script>
