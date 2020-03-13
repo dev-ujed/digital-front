@@ -22,10 +22,6 @@
         <h1 class="db-heading__title">
             Solicitudes en proceso
         </h1>
-
-        <item-process>
-
-        </item-process>
     </div>
 
     <div class="fluid-container mt-12 overflow-x-auto">
@@ -102,23 +98,17 @@
                         </a>
                     </div>
                 </div>
+
                 {% for key, subservices_group in request.subservices.items %}
+
                     <div class="requests-process__body requests-process__col">
                         {% if request.countsubservices != 0 %}
                             {% for subservice in subservices_group %}
-                                <div class="db-process-card mr-0 db-process-card--{{ subservice.servicio |slugify }}">
-                                    <p class="db-process-card__title">
-                                        {{ subservice.subservicio_name }}
-                                    </p>
-                                    <p class="db-process-card__date mb-1"> {{ subservice.formated_date }}</p>
-                                    <div class="db-process-card__users mt-0">
-                                        {% for participante in subservice.sub_servicioParticipantes %}
-                                            <div class="user-bar__avatar-container">
-                                                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="{{ participante.participante_name }} {{ participante.participante_last_name }}" class="user-bar__avatar">
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
+                                <cards-process
+                                    :subservice="{{ subservice }}"
+                                >
+                                </cards-process>
+
                             {% endfor %}
                         {% endif %}
 
@@ -128,7 +118,9 @@
         {% endfor%}
     </div>
 
-    <process-modal>
+    <process-modal
+        :statuses="{{ statuses }}"
+    >
         <template slot="check">
             {% load svg %}
             {% svg 'check' %}
@@ -141,7 +133,14 @@
             {% load svg %}
             {% svg 'plus' %}
         </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+        <template slot="rotate-ccw">
+            {% load svg %}
+            {% svg 'rotate-ccw' %}
+        </template>
     </process-modal>
-
 
 {% endblock %}
