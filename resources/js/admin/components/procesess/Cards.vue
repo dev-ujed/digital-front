@@ -25,9 +25,6 @@
                 this.$root.$emit('subservice', this.subservice);
                 this.$root.$emit('showModal');
             }
-        },
-        mounted(){
-            console.log(this.subservice);
         }
     };
 </script>

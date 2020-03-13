@@ -25,9 +25,6 @@
     export default {
         props: {
             binnacle: Array
-        },
-        mounted() {
-            console.log(this.binnacle);
         }
     };
 </script>

@@ -30,8 +30,6 @@
             onBlur() {
                 const value = this.$refs.title.value;
 
-                console.log(value);
-
                 if(value === '' || this.title === value) {
                     return;
                 }
