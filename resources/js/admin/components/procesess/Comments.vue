@@ -1,16 +1,16 @@
 <template>
     <tabs-component class="initial-tabs"
         :breakpoint="0"
-        :tabs="{'team': 'Equipo ('+this.teamcomments.length+')', 'public': 'Públicos ('+this.publiccomments.length+')'}"
-        :options="{'team': 'Equipo ('+this.teamcomments.length+')', 'public': 'Públicos ('+this.publiccomments.length+')'}"
+        :tabs="{'team': 'Equipo ('+this.private.length+')', 'public': 'Públicos ('+this.public.length+')'}"
+        :options="{'team': 'Equipo ('+this.private.length+')', 'public': 'Públicos ('+this.public.length+')'}"
         :accepts-html="true"
         :emit-change-event="true"
         @tabchange="tabChanged"
     >
         <template slot="panel-team">
-            <div class="media" v-for="comment in this.teamcomments">
+            <div class="media" v-for="comment in this.private">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" :alt="item.user_name+' '+item.user_last_name">
+                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
                 </div>
                 <div class="media__body">
                     <p class="mb-0">
@@ -25,7 +25,7 @@
 
             <div class="media">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
+                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
                 </div>
                 <div class="media__body">
                     <div class="form-control">
@@ -42,9 +42,9 @@
             </div>
         </template>
         <template slot="panel-public">
-            <div class="media" v-for="comment in this.publiccomments">
+            <div class="media" v-for="comment in this.public">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
+                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
                 </div>
                 <div class="media__body">
                     <p class="mb-0">
@@ -87,6 +87,12 @@
             teamcomments: Array,
             subservice: Number
         },
+        data() {
+            return {
+                public: this.publiccomments,
+                private: this.teamcomments,
+            };
+        },
         methods: {
             tabChanged() {
                 this.$parent.$parent.$parent.getMinHeight();
@@ -101,13 +107,22 @@
                 var formData = new FormData();
                 formData.append("descripcion", el.value);
                 formData.append("subservicio", this.subservice);
-                formData.append("tipo", type);
+                formData.append("tipo", type == 'public' ? 'publico' : 'privado');
 
                 window.axios
                     .post('comentar-proceso', formData)
                     .then(response => {
 
-                        console.log(response);
+                        if(response.status === 200) {
+
+                            if(type === 'public') {
+                                this.public.unshift(response.data);
+                            } else {
+                                this.private.unshift(response.data);
+                            }
+
+                            el.value = '';
+                        }
                     })
                     .catch(error => {
 
@@ -116,7 +131,7 @@
             }
         },
         mounted() {
-            console.log(this.subservice);
+            console.log(this.public);
         }
     };
 </script>
