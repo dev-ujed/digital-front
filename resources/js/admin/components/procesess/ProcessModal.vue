@@ -33,52 +33,10 @@
                             </p>
 
                             <change-status-form
-                                action='/ok/'
-                                class="mt-12"
-                                :statuses="statuses"
-                                inline-template>
-                                <form>
-                                    <button class="btn btn--sm btn--light mb-4" v-if="status" @click="status = false">
-                                        <slot name="rotate-ccw" slot="rotate-ccw"></slot>
-                                        <span class=""> <b>Deshacer</b> </span>
-                                    </button>
-
-                                    <div class="form-control" v-if="!status">
-                                        <label for="ures">Estado</label>
-                                        <select-field
-                                            class="form-field"
-                                            name="ures"
-                                            id="ures"
-                                            v-model="fields.ures"
-                                            :options="statuses"
-                                            @change="changeStatus"
-                                        >
-                                        </select-field>
-                                    </div>
-
-                                    <div class="process-comment" v-if="status">
-                                        <div class="form-control mr-2">
-                                            <label for="comentario">
-                                                Comentario
-                                                <small class="color-gray-60">Opcional</small>
-                                            </label>
-                                            <text-field
-                                                name="comentario"
-                                                cols="30"
-                                                rows="3"
-                                                v-model="fields.comentario">
-                                            </text-field>
-                                            <small class="color-gray-60">Máximo 150 caracteres.</small>
-                                            <field-errors name="comentario"></field-errors>
-                                        </div>
-
-                                        <div class="process-comment__btns">
-                                            <form-button class="btn btn--sm modal__success-btn" type="submit">
-                                                <slot name="save" slot="save"></slot>
-                                            </form-button>
-                                        </div>
-                                    </div>
-                                </form>
+                                :action="'/administracion/solicitudes/estado-proceso/'+subservice.id+'/'"
+                                :statuses="statuses">
+                                <slot name="save" slot="save"></slot>
+                                <slot name="rotate-ccw" slot="rotate-ccw"></slot>
                             </change-status-form>
 
                             <p class="subtitle">
@@ -144,6 +102,7 @@
                 procesess: [],
                 minHeight: 0,
                 top: 0,
+                status: false
             };
         },
         watch: {
