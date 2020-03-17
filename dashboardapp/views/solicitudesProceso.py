@@ -66,7 +66,12 @@ def solicitudesProceso(request):
                         bitacora.update({'fecha_bitacora' : bitacoraDate.capitalize()})
                         bitacora.update({'comentario' : decapitalize(bitacora['comentario']) })
 
-        return render(request, "solicitudes/process.html", { 'solicitudes': solicitudes, 'statuses': statuses, 'statustitle': statusSubservices })
+        return render(request, "solicitudes/process.html",
+            {
+                'solicitudes': solicitudes,
+                'statuses': statuses,
+                'statustitle': statusSubservices
+            })
 
 def decapitalize(s):
     if not s:  # check that s is not empty string
