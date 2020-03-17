@@ -35,4 +35,30 @@
             {% svg 'x' %}
         </template>
     </service-modal>
+
+    <process-modal
+        :statuses="{{ statuses }}"
+    >
+        <template slot="check">
+            {% load svg %}
+            {% svg 'check' %}
+        </template>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="plus">
+            {% load svg %}
+            {% svg 'plus' %}
+        </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+        <template slot="rotate-ccw">
+            {% load svg %}
+            {% svg 'rotate-ccw' %}
+        </template>
+    </process-modal>
+
 {% endblock %}
