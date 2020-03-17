@@ -17,6 +17,10 @@ def solicitud(request, folio):
 
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio)
         solicitud  = response.json()
+
+        statuses = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_proceso/')
+        statuses = statuses.json()
+
         if solicitud[0]['fecha_sol'] != None:
             locale.setlocale(locale.LC_TIME, '')
             date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
@@ -35,5 +39,6 @@ def solicitud(request, folio):
         return render(request, "solicitudes/show.html", {
             'request': solicitud[0],
             'subservices': json.dumps(solicitud[0]['subservices']),
-            'services': services
+            'services': services,
+            'statuses': statuses
         })
