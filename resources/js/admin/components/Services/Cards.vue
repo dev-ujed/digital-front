@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div :class="'db-process-card db-process-card--'+(service.servicios_slug)" v-for="service in list">
+            <div :class="'db-process-card db-process-card--'+(service.servicios_slug)" v-for="service in list"  @click="serviceModal(service)">
                 <p class="db-process-card__title"> {{ service.subservicio_name }} </p>
                 <p class="db-process-card__date">  {{ service.fec_subservicio }} </p>
 
@@ -20,7 +20,7 @@
         </div>
 
         <div class="text-center mt-6 w-full">
-            <button class="btn btn--light w-full" @click="showModal">
+            <button class="btn btn--light w-full" @click="createModal">
                 <span class="icon-plus-circle">
                     <slot name="plus-circle"></slot>
                 </span>
@@ -45,8 +45,12 @@
             };
         },
         methods: {
-            showModal() {
-                this.$root.$emit('showModal');
+            serviceModal(service) {
+                this.$root.$emit('subservice', service);
+                this.$root.$emit('detailServiceModal');
+            },
+            createModal() {
+                this.$root.$emit('showServiceModal');
             },
             addItems(data) {
                 if(data !== undefined) {

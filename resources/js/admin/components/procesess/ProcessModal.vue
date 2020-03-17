@@ -129,6 +129,8 @@
             this.$root.$on('subservice', (el) => {
                 this.subservice = el;
             });
+
+            this.$root.$on('detailServiceModal', this.showModal);
         },
         methods: {
             changeService(e) {
@@ -146,6 +148,11 @@
 
                 Vue.nextTick(() => this.minHeight = this.$refs.modal.clientHeight);
             },
+            showModal() {
+                this.isActive = true;
+                this.$root.$emit('showOverlay');
+            },
+
 
             /*
             |------------------------------------------------------------------------

@@ -93,6 +93,9 @@
                 procesess: []
             };
         },
+        mounted() {
+            this.$root.$on('showServiceModal', this.showModal);
+        },
         watch: {
             isActive: function(value) {
 
@@ -114,6 +117,10 @@
                 });
 
                 this.procesess = current[0].subservicios;
+            },
+            showModal() {
+                this.isActive = true;
+                this.$root.$emit('showOverlay');
             },
             /*
             |------------------------------------------------------------------------
