@@ -106,16 +106,12 @@
                 {% for key, subservices_group in request.subservices.items %}
 
                     <div class="requests-process__body requests-process__col">
-                        {% if request.countsubservices != 0 %}
-                            {% for subservice in subservices_group %}
-                                <cards-process
-                                    :subservice="{{ subservice }}"
-                                >
-                                </cards-process>
-
-                            {% endfor %}
-                        {% endif %}
-
+                        <cards-process
+                            status="{{ key }}"
+                            :request="{{ subservices_group }}"
+                            :countsubservices="{{ request.countsubservices }}"
+                            >
+                        </cards-process>
                     </div>
                 {% endfor %}
             </div>
