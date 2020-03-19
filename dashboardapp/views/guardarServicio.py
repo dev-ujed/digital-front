@@ -18,11 +18,11 @@ def guardarServicio(request, folio):
 
     response = requests.post('http://192.168.10.46:8000/solicitudes/sol/guardar-subservicio/', data=data)
 
+    #return JsonResponse({'errors':response.json()})
+
     if response.status_code == 201:
 
         process = response.json()
-
-        #Regresar toda la info del servicio
 
         date = datetime.strptime(process['fec_subservicio'], "%d/%m/%Y %H:%M")
         fec_subservicio = date.strftime("%A %d %h %Y, %I:%M %p")
