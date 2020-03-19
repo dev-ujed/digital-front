@@ -23,7 +23,6 @@ def solicitudesProceso(request):
                 statusSubservices.append(status)
 
         response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')
-        jsonData = json.loads(response.content.decode())
         solicitudes = response.json()
 
         for solicitud in solicitudes:
@@ -68,7 +67,7 @@ def solicitudesProceso(request):
 
         return render(request, "solicitudes/process.html",
             {
-                'solicitudes': solicitudes,
+                'solicitudes':  solicitudes,
                 'statuses': statuses,
                 'statustitle': statusSubservices
             })
