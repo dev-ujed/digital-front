@@ -37,7 +37,11 @@
                                             <span>{{ element.folio }}</span>
                                             <div class="card-request__service-container">
                                                 {% for subservicio in element.subservices %}
-                                                    <span class="card-request__service card-request__service--{{ subservicio.servicio |slugify }}"></span>
+                                                    {% if subservicio.estatus_key_name == 'concluido' %}
+                                                        <span class="card-request__service card-request__service--{{ subservicio.servicio | slugify }}-active"></span>
+                                                    {% else %}
+                                                        <span class="card-request__service card-request__service--{{ subservicio.servicio | slugify }}"></span>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                         </div>
