@@ -36,6 +36,10 @@
                 </p>
             {% endfor %}
         </div>
+
+
+
+
         {% for request in solicitudes %}
 
 
@@ -102,13 +106,13 @@
                         </a>
                     </div>
                 </div>
-
+                {% load jsonify %}
                 {% for key, subservices_group in request.subservices.items %}
 
                     <div class="requests-process__body requests-process__col">
                         <cards-process
                             status="{{ key }}"
-                            :request="{{ subservices_group }}"
+                            :request="{{ subservices_group|jsonify }}"
                             :requestid="{{ request.id }}"
                             :countsubservices="{{ request.countsubservices }}"
                             >
@@ -117,6 +121,8 @@
                 {% endfor %}
             </div>
         {% endfor%}
+
+
     </div>
 
     <process-modal
