@@ -24,12 +24,12 @@
         props: {
             request: Array,
             countsubservices: Number,
-            status: String
+            status: String,
+            requestid: Number
         },
         data() {
             return {
                 list: this.request,
-                request: this.solicitud,
             };
         },
         methods: {
@@ -39,16 +39,18 @@
             },
             addItem(data) {
                 if(data !== undefined) {
-                    for( var i = 0; i < this.list.length; i++){
 
-                        if( this.list[i].subservicio_name == data.subservicio //Cambiar a subservice id
-                            && this.list[i].id == data.id) { //Eliminar segunda condición
+                    for( var i = 0; i < this.list.length; i++){
+                        if( this.list[i].servicios_slug == data.servicios_slug
+                            && this.list[i].id == data.id) {
+
                             this.list.splice(i, 1);
                         }
+                    }
 
-                        console.log(this.estatus === data.estatus); //que me envien todos los status aunque vengan null
-                        //para agregar campos en esa lista a partir de elegir el status en el que se cambio el proceso, y el estatus de la lista
-
+                    if(this.status === data.estatus_key_name &&
+                        data.solicitud === this.requestid) { //&& == data.solicitud
+                        this.list.push(data);
                     }
                 }
             }
