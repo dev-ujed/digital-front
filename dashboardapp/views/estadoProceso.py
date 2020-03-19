@@ -5,6 +5,9 @@ from datetime import datetime
 
 from requests.auth import HTTPBasicAuth
 
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+
 def estadoProceso(request, subservice):
 
     data_request = json.loads(request.body.decode('utf-8'))
@@ -45,9 +48,42 @@ def estadoProceso(request, subservice):
             bitacora.update({'fecha_bitacora' : bitacoraDate.capitalize()})
             bitacora.update({'comentario' : decapitalize(bitacora['comentario']) })
 
+
+        if process['estatus_key_name'] == 'concluido':
+            subservicio  = process['subservicio_name']
+            servicio     = process['servicio']
+            folio        = process['solicitud_folio']
+            getrequest   = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallecoreo/'+folio)
+            request      = getrequest.json()[0]
+            subservicios = request['subservices']
+            correo       = request['correo']
+
+            sendEmail(subservicio, servicio, folio, subservicios, correo)
         return JsonResponse(process)
 
 def decapitalize(s):
     if not s:  # check that s is not empty string
         return s
     return s[0].lower() + s[1:]
+
+
+def sendEmail(subservicio, servicio, folio, subservicios, correo):
+    body = render_to_string('emails/concluded-subservice.html',
+        {
+        'subservicio': subservicio,
+        'folio': folio,
+        'servicio' : servicio,
+        'subservicios' : subservicios,
+        }
+    )
+    from_email = 'no-reply@ujed.mx'
+    to = correo
+
+    email = EmailMessage(
+        subject    = 'Servicio concluido',
+        body       = body,
+        from_email = from_email,
+        to         =[to]
+        )
+    email.content_subtype = 'html'
+    email.send()

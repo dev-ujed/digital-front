@@ -80,10 +80,10 @@
         </style>
         <![endif]-->
   <!--[if !mso]><!-->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
   <style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,700);
     @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
   </style>
   <!--<![endif]-->
@@ -183,7 +183,7 @@
                             <tr>
                               <td style="width:166px;">
                                 <a href="http://digital.ujed.mx/" target="_blank">
-                                  <img alt="Dirección de Transformación Digital" height="auto" src="/static/img/email/logo-correo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="166">
+                                  <img alt="Dirección de Transformación Digital" height="auto" src="http://digital.ujed.mx/static/img/email/logo-correo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="166">
                                 </a>
                               </td>
                             </tr>
@@ -207,10 +207,10 @@
                         <table cellpadding="0" cellspacing="0" width="80" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:80px;border:none;">
                           <tr align="right">
                             <td align="right"> <a href="mailto:digital@ujed.mx">
-                                <img width="22px" style="margin-top: 20px;" src="/static/img/email/mail.png">
+                                <img width="22px" style="margin-top: 20px;" src="http://digital.ujed.mx/static/img/email/mail.png">
                               </a></td>
                             <td align="right"><a href="https://www.facebook.com/ujeddigital">
-                                <img width="22px" style="margin-top: 20px; margin-left: 5px;" src="/static/img/email/twitter.png">
+                                <img width="22px" style="margin-top: 20px; margin-left: 5px;" src="http://digital.ujed.mx/static/img/email/twitter.png">
                               </a></td>
                           </tr>
                         </table>
@@ -299,9 +299,9 @@
                             <tr>
                               <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                 <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:14px;line-height:1;text-align:left;color:#3A4148;">
-                                  <p class="title" font-family="Open Sans" style="color: #CE4779; font-family: Open Sans; font-size: 22px; text-align: center; padding-bottom: 40px;">Hemos atendido un servicio</p>
-                                  <p class="paragraph" font-family="Open Sans" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;">¡Hola, {{ name }}! Te hacemos saber que hemos concluido el servicio <strong>{{ subservice }}</strong>, que forma parte de la solicitud <strong>{{ folio }}</strong></p>
-                                  <p class="paragraph" font-family="Open Sans" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;"> El estado actual de los servicios que estamos realizando para atender tu solicitud es el siguiente </p>
+                                  <p class="title" font-family="helvetica" style="color: #CE4779; font-family: Open Sans; font-size: 22px; text-align: center; padding-bottom: 40px;">Hemos atendido un servicio</p>
+                                  <p class="paragraph" font-family="helvetica" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;">¡Hola, {{ name }}! Te hacemos saber que hemos concluido el servicio <strong>{{ servicio }}:{{ subservicio }}</strong>, que forma parte de la solicitud <strong>{{ folio }}</strong></p>
+                                  <p class="paragraph" font-family="helvetica" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;"> El estado actual de los servicios que estamos realizando para atender tu solicitud es el siguiente: </p>
                                 </div>
                               </td>
                             </tr>
@@ -364,15 +364,10 @@
                                           <tr style="border-bottom: 2px solid #3A4148;text-align: left; color: #3A4148;">
                                             <th>Servicio</th>
                                             <th>Estado</th>
-                                          </tr>
-                                          <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
-                                            <td style="padding: 11px 0;">Infraestructura: Subdominio</td>
-                                            <td style="padding: 11px 0;">Concluido</td>
-                                          </tr>
-                                          <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
-                                            <td style="padding: 11px 0;">Desarrollo: Sitio</td>
-                                            <td style="padding: 11px 0;">En proceso</td>
-                                          </tr>
+                                          </tr> {% for subservice in subservicios %} <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
+                                            <td style="padding: 11px 0;">{{ subservice.subservicio_name }}</td>
+                                            <td style="padding: 11px 0;">{{ subservice.estatus_key_name }}</td>
+                                          </tr> {% endfor%}
                                         </table>
                                       </td>
                                     </tr>
@@ -432,7 +427,7 @@
                             <tr>
                               <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                 <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:14px;line-height:1;text-align:left;color:#3A4148;">
-                                  <p class="paragraph" font-family="Open Sans" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;"> Te pedimos que por favor nos ayudes calificando este servicio en especifico, lo cual nos ayudará a mejorar nuestra atención y cumplir con los requerimientos del Sistema Integral de Gestión de Calidad. </p>
+                                  <p class="paragraph" font-family="helvetica" style="font-size: 14px; line-height: 1.5; margin: 0px; margin-bottom: 20px;"> Te pedimos que por favor nos ayudes calificando este servicio en especifico, lo cual nos ayudará a mejorar nuestra atención y cumplir con los requerimientos del Sistema Integral de Gestión de Calidad. </p>
                                 </div>
                               </td>
                             </tr>
@@ -494,7 +489,7 @@
                                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                           <tr>
                                             <td align="center" bgcolor="#3399CC" role="presentation" style="border:none;border-radius:5px;cursor:auto;mso-padding-alt:15px 30px;background:#3399CC;" valign="middle">
-                                              <a href="#" style="display:inline-block;background:#3399CC;color:white;font-family:Open Sans;font-size:15px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;padding:15px 30px;mso-padding-alt:0px;border-radius:5px;" target="_blank"> Calificar servicio </a>
+                                              <a href="#" style="display:inline-block;background:#3399CC;color:white;font-family:helvetica;font-size:15px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;padding:15px 30px;mso-padding-alt:0px;border-radius:5px;" target="_blank"> Calificar servicio </a>
                                             </td>
                                           </tr>
                                         </table>
@@ -586,7 +581,7 @@
                         <tbody>
                           <tr>
                             <td style="width:100px;">
-                              <img alt="Universidad Juárez del Estado de Durango" height="auto" src="/static/img/email/logo-ujed.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="100">
+                              <img alt="Universidad Juárez del Estado de Durango" height="auto" src="http://digital.ujed.mx/static/img/email/logo-correo.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="100">
                             </td>
                           </tr>
                         </tbody>
