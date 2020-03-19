@@ -1,3 +1,4 @@
+{% load static %}
 <mj-section padding-bottom="30px" padding-top="30px">
     <mj-column width="66%">
         <mj-text font-size="14px" color="#3A4148" padding-right="0px" padding-left="0px" padding-top="0px" >
@@ -11,9 +12,9 @@
     </mj-column>
 
     <mj-column width="33%">
-        <mj-image src="/static/img/email/logo-correo.png"
+        <mj-image src="http://digital.ujed.mx/static/img/email/logo-correo.png"
             fluid-on-mobile="false"
-            alt="Dirección de Transformación Digital"
+            alt="Universidad Juárez del Estado de Durango"
             padding-bottom="0"
             padding-top="0"
             padding-right="0"
