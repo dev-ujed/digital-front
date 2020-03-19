@@ -50,7 +50,7 @@
 
                     if(this.status === data.estatus_key_name &&
                         data.solicitud === this.requestid) { //&& == data.solicitud
-                        this.list.push(data);
+                        this.list.unshift(data);
                     }
                 }
             }
