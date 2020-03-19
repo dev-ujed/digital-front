@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="media" v-for="item in this.binnacle">
+        <div class="media" v-for="item in this.list">
             <div class="media__figure user-bar__avatar-container">
                 <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" :alt="item.user_name+' '+item.user_last_name">
             </div>
@@ -25,6 +25,19 @@
     export default {
         props: {
             binnacle: Array
-        }
+        },
+        data() {
+            return {
+                list: this.binnacle
+            };
+        },
+        methods: {
+            addItem(data) {
+                this.list.unshift(data);
+            }
+        },
+        mounted() {
+            this.$root.$on('binacle',this.addItem);
+        },
     };
 </script>
