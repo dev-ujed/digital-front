@@ -1,19 +1,21 @@
 <template>
     <form class="mt-12">
-        <button class="btn btn--sm btn--light mb-4 btn--change-status" v-if="status" @click="status = false">
+        <button class="btn btn--sm btn--light mb-4 btn--change-status" v-if="status" @click="backValue">
             <slot name="rotate-ccw"></slot>
             <span class=""> <b>Deshacer</b> </span>
         </button>
 
         <div class="form-control" v-if="!status">
-            <label for="status">Estado</label>
+            <label for="status">Estado </label>
             <select-field
                 class="form-field"
                 name="status"
                 id="status"
+                ref="selectstatus"
                 v-model="fields.status"
                 :options="statuses"
-                @input="status = true"
+                :initial="statusid"
+                @input="selectOption"
             >
             </select-field>
         </div>
@@ -53,11 +55,14 @@
     export default {
         extends: BaseForm,
         props: {
-            statuses: Array
+            statuses: Array,
+            statusdata: Number
         },
         data() {
             return {
                 status: false,
+                statusid: this.statusdata.toString(),
+                selected: this.statusdata.toString()
             };
         },
         components: {
@@ -68,10 +73,23 @@
         },
         methods: {
             submitSucceeded(response) {
-
-                //console.log(response);
-
+                this.status = false;
+                this.isUpdated = true;
+                this.statusid = response.data.estatus.toString();
                 this.$root.$emit('process', response.data);
+                this.$root.$emit('binacle', response.data.bitacora[0]);
+            },
+            selectOption() {
+                this.status   = true;
+                this.selected = this.selected;
+
+            },
+            backValue() {
+                this.status = false;
+
+                this.statusid = this.isUpdated ?
+                                this.statusid :
+                                this.statusdata;
             }
         }
     };
