@@ -4,7 +4,16 @@
             <span class="color-gray-90 size-lg">Título</span>
             <small class="color-gray-60">Opcional</small>
         </label>
-        <input class="form-field" id="title" name="title" type="text" ref="title" :value="title" @focus="hasFocus = true" @blur="onBlur" v-on:keyup.enter="onBlur">
+        <input
+            class="form-field"
+            id="title"
+            name="title"
+            type="text"
+            ref="title"
+            :value="title"
+            @focus="hasFocus = true"
+            @blur="onBlur"
+            v-on:keyup.enter="onBlur">
     </div>
 </template>
 <script>
