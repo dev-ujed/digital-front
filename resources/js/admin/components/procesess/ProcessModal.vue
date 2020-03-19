@@ -34,6 +34,7 @@
 
                             <change-status-form
                                 :action="'/administracion/solicitudes/estado-proceso/'+subservice.id+'/'"
+                                :statusdata="subservice.estatus"
                                 :statuses="statuses">
                                 <slot name="save" slot="save"></slot>
                                 <slot name="rotate-ccw" slot="rotate-ccw"></slot>
