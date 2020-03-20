@@ -14,7 +14,7 @@
             <mj-section background-color="#E6446D" padding-top="8px" padding-bottom="0px" border-radius="5px">
                 <mj-column background-color="#fff" >
 
-                    <mj-image src="/static/img/email/icon-mail-completed.png"
+                    <mj-image src="http://digital.ujed.mx/static/img/email/icon-mail-completed.png"
                         fluid-on-mobile="false"
                         padding-bottom="0"
                         padding-top="40px"
