@@ -1,6 +1,6 @@
 <template>
     <form class="mt-12">
-        <button class="btn btn--sm btn--light mb-4 btn--change-status" v-if="status" @click="backValue">
+        <button class="btn btn--sm btn--light mb-4 btn--change-status" type="button" v-if="status" @click="backValue">
             <slot name="rotate-ccw"></slot>
             <span class=""> <b>Deshacer</b> </span>
         </button>
