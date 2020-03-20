@@ -14,7 +14,7 @@
                 ref="selectstatus"
                 v-model="fields.status"
                 :options="statuses"
-                :initial="statusid"
+                :initial="statusid.toString()"
                 @input="selectOption"
             >
             </select-field>
@@ -30,7 +30,8 @@
                         name="comentario"
                         cols="30"
                         rows="3"
-                        v-model="fields.comentario">
+                        v-model="fields.comentario"
+                        v-on:keyup.enter="submit">
                     </text-field>
                     <small class="color-gray-60">Máximo 150 caracteres.</small>
                 <field-errors name="comentario"></field-errors>
@@ -88,8 +89,8 @@
                 this.status = false;
 
                 this.statusid = this.isUpdated ?
-                                this.statusid :
-                                this.statusdata;
+                                this.statusid.toString() :
+                                this.statusdata.toString();
             }
         }
     };
