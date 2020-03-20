@@ -21,7 +21,14 @@
                             <slot name="close"></slot>
                         </span>
                     </button>
-                    <input class="form-field participants-popup__search" id="comment" name="comment" type="text" ref="search" placeholder="Buscar">
+                    <input 
+                        class="form-field participants-popup__search" 
+                        id="search" 
+                        name="search" 
+                        type="text" 
+                        v-model="search"
+                        ref="search" 
+                        placeholder="Buscar">
                     <p class="subtitle">
                         DESARROLLO
                     </p>
@@ -34,7 +41,7 @@
                             <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
                         </div>
 
-                        <div class="participants-popup__user">
+                        <div class="participants-popup__user" @click="add()">
                             <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
                         </div>
 
@@ -79,19 +86,35 @@
 </template>
 
 <script>
+    import { remove as removeDiacritics } from 'diacritics';
+
 
     export default {
         props: {
-            participants: Array
+            participantsdata: Array,
+            process: Number
         },
         data() {
             return {
-                addParticipant : false
+                search: '',
+                addParticipant : false,
+                participants: this.participantsdata
             };
+        },
+        watch: {
+            search: function() {
+                const query = removeDiacritics(this.search).toLowerCase().trim();
+                this.participants = this.participants.filter(el => {
+
+                    el.participante_name = "jaime uriel";
+                    return el.participante_name.includes(query); //searchable_name
+                });
+            }
         },
         methods: {
             show(e) {
                 this.addParticipant = true;
+
                 this.$root.$emit('addParticipant', this.addParticipant);
 
                 this.$root.$emit('showOverlayTrans');
@@ -108,6 +131,7 @@
                 });
             },
             close() {
+                this.search = '';
                 this.addParticipant = false;
                 this.$root.$emit('addParticipant', this.addParticipant);
                 this.$root.$emit('closeOverlayTrans');
@@ -123,6 +147,22 @@
                     w: rect.width
                 };
             },
+            add() {
+                var formData = new FormData();
+                formData.append("participante", "21");
+                formData.append("subservicio", this.process);
+
+                window.axios
+                    .post('agregar-participante/', formData)
+                    .then(response => {
+
+                        console.log(response);
+                    })
+                    .catch(error => {
+
+                        console.log(error)
+                    })
+            }
         },
         mounted() {
             this.$root.$on('closeParticipants', this.close);

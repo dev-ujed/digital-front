@@ -7,4 +7,5 @@ from .solicitudesProceso import *
 from .actualizarTitulo import *
 from .comentario import *
 from .estadoProceso import *
+from .agregarParticipante import *
 

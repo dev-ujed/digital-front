@@ -45,7 +45,8 @@
                             </p>
 
                             <participants
-                                :participants="subservice.sub_servicioParticipantes"
+                                :process="subservice.id"
+                                :participantsdata="subservice.sub_servicioParticipantes"
                             >
                                 <slot name="check" slot="check"></slot>
                                 <slot name="close" slot="close"></slot>
