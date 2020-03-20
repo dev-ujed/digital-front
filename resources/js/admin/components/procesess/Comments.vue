@@ -110,7 +110,7 @@
                 formData.append("tipo", type == 'public' ? 'publico' : 'privado');
 
                 window.axios
-                    .post('comentar-proceso', formData)
+                    .post(this.$root.path+'/administracion/solicitudes/comentar-proceso', formData)
                     .then(response => {
 
                         if(response.status === 200) {
