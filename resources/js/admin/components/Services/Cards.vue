@@ -54,9 +54,22 @@
             },
             addItems(data) {
                 if(data !== undefined) {
-                    this.list.push(data);
+
+                    const exists = this.list.find(element => {
+                        return element.id === data.id
+                    })
+
+                    const index = this.list.findIndex(element => {
+                        return element.id === data.id
+                    })
+
+                    if(!exists) {
+                        this.list.push(data)
+                    } else {
+                        this.list.splice(index, 1, data);
+                    }
                 }
-            }
+            },
         },
         mounted() {
             this.$root.$on('cardServices',this.addItems);

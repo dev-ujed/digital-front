@@ -31,6 +31,7 @@ def estadoProceso(request, subservice):
             dateupdate = datetime.strptime(process['fec_subservicio'], "%d/%m/%Y %H:%M")
             formatedDateupdate = dateupdate.strftime("%d %h %Y, %I:%M %p")
             process.update({'formated_date_update' : formatedDateupdate})
+            process.update({'fec_subservicio' : formatedDateupdate})
 
         for public in process['comentarios_publicos']:
             date = datetime.strptime(public['fecha_comment'], "%d/%m/%Y %H:%M")

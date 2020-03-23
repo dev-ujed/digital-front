@@ -78,6 +78,7 @@
                 this.isUpdated = true;
                 this.statusid = response.data.estatus.toString();
                 this.$root.$emit('process', response.data);
+                this.$root.$emit('cardServices', response.data);
                 this.$root.$emit('binacle', response.data.bitacora[0]);
             },
             selectOption() {
