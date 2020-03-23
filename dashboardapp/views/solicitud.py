@@ -24,17 +24,21 @@ def solicitud(request, folio):
         if solicitud[0]['fecha_sol'] != None:
             locale.setlocale(locale.LC_TIME, '')
             date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
-            solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M %p")
+            localDate = getLocaleDate(date);
+            solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M")+' '+localDate
+            
 
         for file in solicitud[0]['archivos_solicitud']:
 
             date = datetime.strptime(file['subido'], "%d/%m/%Y %H:%M")
-            file['subido'] = date.strftime("%d %h %Y, %I:%M %p")
+            localDate = getLocaleDate(date);
+            file['subido'] = date.strftime("%d %h %Y, %I:%M")+' '+localDate
 
         for service in solicitud[0]['subservices']:
 
             date = datetime.strptime(service['fec_subservicio'], "%d/%m/%Y %H:%M")
-            service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M %p")
+            localDate = getLocaleDate(date);
+            service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M")+' '+localDate
 
         return render(request, "solicitudes/show.html", {
             'request': solicitud[0],
@@ -42,3 +46,9 @@ def solicitud(request, folio):
             'services': services,
             'statuses': statuses
         })
+
+def getLocaleDate(date):
+    if(date.strftime("%p") == 'PM'):
+        return 'p.m.'
+    else:
+        return 'a.m.'

@@ -36,8 +36,15 @@ def inbox(request):
         for key, value in requestByStatus.items():
             for element in value:
                 date = datetime.strptime(element['fecha_sol'], "%d/%m/%Y %H:%M")
-                formatedDate = date.strftime("%d %h %Y, %I:%M %p")
-                element.update({'formated_date' : formatedDate})
+                formatedDate = date.strftime("%d %h %Y, %I:%M")
+                localedate =  date.strftime("%p")
+
+                if(localedate == 'PM'):
+                    localedate = 'p.m'
+                else:
+                    localedate = 'a.m'
+
+                element.update({'formated_date' : formatedDate + ' ' + localedate})
 
         return render(request, "solicitudes/index.html", {
             'statuses': statuses,

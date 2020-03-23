@@ -19,7 +19,14 @@ def agregarParticipante(request):
         comment = response.json()
 
         date = datetime.strptime(comment['fecha_comment'], "%d/%m/%Y %H:%M")
-        dateFormat = date.strftime("%A %d %h %Y, %I:%M %p")
-        comment.update({'fecha_comment' : dateFormat.capitalize()})
+        dateFormat = date.strftime("%A %d %h %Y, %I:%M")
+        localedate =  date.strftime("%p")
+
+        if(localedate == 'PM'):
+            localedate = 'p.m'
+        else:
+            localedate = 'a.m'
+
+        comment.update({'fecha_comment' : (dateFormat+' '+localedate).capitalize()})
 
         return JsonResponse(comment)

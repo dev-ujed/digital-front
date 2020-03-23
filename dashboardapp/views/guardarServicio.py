@@ -25,8 +25,15 @@ def guardarServicio(request, folio):
         process = response.json()
 
         date = datetime.strptime(process['fec_subservicio'], "%d/%m/%Y %H:%M")
-        fec_subservicio = date.strftime("%A %d %h %Y, %I:%M %p")
-        process.update({'fec_subservicio' : fec_subservicio.capitalize()})
+        fec_subservicio = date.strftime("%A %d %h %Y, %I:%M")
+        localedate =  date.strftime("%p")
+
+        if(localedate == 'PM'):
+            localedate = 'p.m'
+        else:
+            localedate = 'a.m'
+
+        process.update({'fec_subservicio' : (fec_subservicio+' '+localedate).capitalize()})
 
         return JsonResponse(process)
     else:
