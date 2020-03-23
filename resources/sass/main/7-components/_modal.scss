@@ -42,10 +42,14 @@ Modal
 }
 
 .modal__success-btn {
-    @include button((background-color: $color-dashboard-green));
-    color: #FFFFFF;
+    @include button((
+        background-color: $color-dashboard-green,
+        text-color: #fff,
+        text-color-hover: #fff
+    ));
+}
 
-    &:hover {
-        color: #FFFFFF;
-    }
+.modal__success-btn .btn--loading:after { 
+    border-right-color: #fff;
+    border-top-color: #fff;
 }
