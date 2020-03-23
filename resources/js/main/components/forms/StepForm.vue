@@ -20,10 +20,6 @@
 
                     <h4 class="text-center mb-6 color-gray-70">El folio de la solicitud es: <b>{{ requestfolio }}</b></h4>
 
-                    <p>Te hemos enviado un correo de confirmación con un enlace para que puedas revisar el estado y avance de tu solicitud en cualquier momento.</p>
-
-                    <p>Igualmente puedes consultar dicho avance ingresando el folio anterior en el apartado para <a href="#" class="request--link">consultar el estado</a> de esta misma página.</p>
-
                     <p>Cuando la solicitud sea concluida recibirás un correo de notificación.</p>
 
                     <p v-if="otherEmail== true" class="alert alert--info alert--has-icon mt-8 size-sm">
