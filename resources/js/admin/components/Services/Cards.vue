@@ -12,8 +12,8 @@
                         <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
                     </div>
 
-                    <div class="user-bar__avatar-container user-bar__avatar-container--count">
-                        <span class="user-bar__count">+3</span>
+                    <div class="user-bar__avatar-container user-bar__avatar-container--count" v-if="service.sub_servicioParticipantes.length > 5">
+                        <span class="user-bar__count"> {{ service.sub_servicioParticipantes.length - 5 }} </span>
                     </div>
                 </div>
             </div>
