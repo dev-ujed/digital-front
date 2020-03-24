@@ -13,7 +13,8 @@
             :value="title"
             @focus="hasFocus = true"
             @blur="onBlur"
-            v-on:keyup.enter="onBlur">
+            v-on:keyup.enter="onBlur"
+            v-on:keyup.esc="cancel">
     </div>
 </template>
 <script>
@@ -36,19 +37,25 @@
             };
         },
         methods: {
+            cancel() {
+                this.$refs.title.value = this.title;
+                return;
+            },
             onBlur() {
                 const value = this.$refs.title.value;
 
-                if(value === '' || this.title === value) {
+                if(this.title === value) {
                     return;
                 }
-
+            
                 var formData = new FormData();
-                formData.append("title", value);
+                formData.append("title", value === undefined ? '' : value);
 
                 window.axios
                 .post('/administracion/actualizar-titulo/'+this.folio+'/', formData)
                 .then(response => {
+
+                    console.log(response);
                     if(response.data === value) {
                         this.title = value;
                     }
