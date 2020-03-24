@@ -7,10 +7,10 @@
     padding: 20px;
     margin-bottom: 15px;
     margin-right: 15px;
-    min-width: 100%;
+    width: 100%;
 
     @include media(sm) {
-        min-width: 275px;
+        width: 275px;
     }
 
     &:hover {
