@@ -1,9 +1,15 @@
 <template>
     <div class="modal" v-if="isActive" @click.self="closeModal" @scroll="ScrollTop">
-        <div class="modal__card" ref="modal"
+        <div class="modal__card relative" ref="modal"
                 :style="{
                     'min-height': `${minHeight}px`
                 }">
+
+                <button class="modal__close-btn modal__close-btn--process" @click="closeModal">
+                    <span class="close">
+                        <slot name="close"></slot>
+                    </span>
+                </button>
 
                 <tabs-component class="icon-tabs icon-tabs--process"
                     :breakpoint="0"

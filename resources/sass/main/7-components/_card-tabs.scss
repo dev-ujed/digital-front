@@ -69,6 +69,10 @@ Icon tabs responsive
 
         & .tabs__menu .tabs__li:first-child {
             margin-right: 40px;
+
+            @media (max-width: 320px) {
+                margin-right: 0px;
+            }
         }
 
         & .tabs__menu .tabs__li:first-child::before  {

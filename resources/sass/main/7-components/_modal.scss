@@ -35,9 +35,20 @@ Modal
     border-color: transparent;
     color: $color-gray-70;
     float: right;
+    padding-top: 7px;
 
     & svg {
         height: 20px;
+    }
+
+    & .close {
+        vertical-align: bottom;
+    }
+
+    &--process {
+        position: absolute;
+        right: 0;
+        z-index: 1;
     }
 }
 
