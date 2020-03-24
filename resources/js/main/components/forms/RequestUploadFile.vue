@@ -1,6 +1,9 @@
 <template>
     <div>
-        <label for="file" class="btn btn--sm btn--light cursor--pointer">
+        <label for="file" 
+            class="btn btn--sm btn--light cursor--pointer" 
+            :class="{ 'btn--loading' : loading }"
+            >
             Adjuntar archivo
         </label>
 
@@ -29,12 +32,15 @@
 
         data() {
             return {
-                errors: []
+                errors: [],
+                loading: false
             };
         },
 
         methods: {
             addFile() {
+
+                this.loading = true;
 
                 const file = event.target.files[0];
 
@@ -56,6 +62,8 @@
                             this.$set(this.$parent.fields.files, key, '');
                             this.$set(this.$parent.thumbs, key, response.data.urlfile);
                             this.$set(this.$parent.names, key, file.name);
+
+                            this.loading = false;
 
                         }
 
