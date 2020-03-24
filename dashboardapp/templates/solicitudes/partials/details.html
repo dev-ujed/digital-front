@@ -46,7 +46,7 @@
             {% for value in request.archivos_solicitud %}
 
                 {% if value.nombre_archivo != None %}
-                    <a href="{{ value.urlfile }}" target="_blank" class="card-request__file">
+                    <a href="{% url 'dashboard:descargararchivo' value.urlfile %}" target="_blank" class="card-request__file">
 
                         <div class="card-request__file-thumb d-inline-block align-bottom">
                             {% load static %}
