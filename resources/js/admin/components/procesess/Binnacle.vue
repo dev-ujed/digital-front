@@ -34,6 +34,7 @@
         methods: {
             addItem(data) {
                 this.list.unshift(data);
+                return;
             }
         },
         mounted() {
