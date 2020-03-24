@@ -84,6 +84,7 @@
                 errors : {},
                 thumbs: [],
                 names: [],
+                hasThumb: [],
             };
         },
         watch: {

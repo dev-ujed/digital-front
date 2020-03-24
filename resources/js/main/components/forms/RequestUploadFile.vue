@@ -53,7 +53,15 @@
                     .then(response => {
 
                         if(response.data.id) {
+                            var ext = this.getThumb(response.data.file);
+                            var formats = ['doc','docx','documents','pdf','ppt','xls','zip'];
+                            var hasThumb = true;
 
+                            if(formats.includes(ext)) {
+                                hasThumb = false;
+                                response.data.urlfile = this.$root.path + '/static/img/files/'+ext+'.svg'
+                            }
+     
                             this.errors = [];
 
                             const id  = response.data.id;
@@ -62,9 +70,9 @@
                             this.$set(this.$parent.fields.files, key, '');
                             this.$set(this.$parent.thumbs, key, response.data.urlfile);
                             this.$set(this.$parent.names, key, file.name);
+                            this.$set(this.$parent.hasThumb, key, hasThumb);
 
                             this.loading = false;
-
                         }
 
                     })
@@ -72,6 +80,9 @@
                         this.errors = error.response.data.errors.file;
                     })
             },
+            getThumb(name) {
+                return name.split(".").pop();
+            }
         },
         mounted() {
         }

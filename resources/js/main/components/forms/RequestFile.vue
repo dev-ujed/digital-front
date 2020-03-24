@@ -11,7 +11,8 @@
                 </button>
             </div>
             <div class="card__body card--file">
-                <div class="card card--thumb mr-8 m-auto sm:d-block text-center">
+                <div class="card card__thumb mr-8 m-auto text-center"
+                    :class="{ 'card__thumb--image' : $parent.hasThumb[name] }">
                     <img :src="$parent.thumbs[name]" alt="">
                 </div>
                 <div class="form-control m-0">
@@ -94,6 +95,7 @@
                         this.$delete(this.$parent.fields.files, el);
                         this.$delete(this.$parent.thumbs, el);
                         this.$delete(this.$parent.names, el);
+                        this.$delete(this.$parent.hasThumb, el);
 
                     })
                     .catch(error => {
