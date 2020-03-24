@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-control" v-if="$parent.service">
-                        <label for="subservicio">Proceso</label>
+                        <label for="subservicio">Servicio</label>
                         <select-field
                             class="form-field"
                             name="subservicio"
