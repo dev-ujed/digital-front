@@ -85,6 +85,7 @@ $db-tile-size: 40px;
 
 .dashboard-menu__tile {
     display: block;
+    filter: invert(1);
     height: $db-tile-size;
     margin: 10px auto 0;
     width: $db-tile-size;
