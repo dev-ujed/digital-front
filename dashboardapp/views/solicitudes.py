@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.hashers import make_password
 
 def inbox(request):
-    locale.setlocale(locale.LC_TIME, 'es_ES')
+    locale.setlocale(locale.LC_TIME, '')
 
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
