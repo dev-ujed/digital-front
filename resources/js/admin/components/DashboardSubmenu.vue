@@ -8,7 +8,7 @@
                 }"
                 @click="toggle"
             >
-                <img class="dashboard-menu__links-icon" :src="$root.path + '/storage/dashboard/icons/' + submenu.icon" alt="">
+                <img class="dashboard-menu__links-icon" :src="$root.path + '/static/img/icons/dashboard/icons/' + submenu.icon" alt="">
                 {{ submenu.name }}
                 <span class="dashboard-menu__links-arrow" aria-hidden="true"></span>
             </p>
