@@ -4,7 +4,7 @@
             <div class="user-bar__avatar-container" v-for="participant in participants">
                 <img
                     lass="user-bar__avatar"
-                    src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
+                    :src="$root.path+'/static/img/default.png'"
                     :alt="participant.participante_name+' '+participant.participante_last_name"
                     :title="participant.participante_name+' '+participant.participante_last_name">
             </div>
@@ -16,70 +16,51 @@
 
 
             <div class="participants-popup" ref="popup" v-if="addParticipant" @click.self="close">
-                    <button class="modal__close-btn participants-popup__close" @click="close">
-                        <span class="close">
-                            <slot name="close"></slot>
-                        </span>
-                    </button>
-                    <input 
-                        class="form-field participants-popup__search" 
-                        id="search" 
-                        name="search" 
-                        type="text" 
-                        v-model="search"
-                        ref="search" 
-                        placeholder="Buscar">
-                    <p class="subtitle">
-                        DESARROLLO
-                    </p>
+                <button class="modal__close-btn participants-popup__close" @click="close">
+                    <span class="close">
+                        <slot name="close"></slot>
+                    </span>
+                </button>
+                <input 
+                    class="form-field participants-popup__search" 
+                    id="search" 
+                    name="search" 
+                    type="text" 
+                    v-model="search"
+                    ref="search" 
+                    placeholder="Buscar">
 
-                    <div class="participants-popup__team" >
-                        <div class="participants-popup__user">
-                            <span class="participants-popup__user-in">
-                                <slot name="check"></slot>
-                            </span>
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
 
-                        <div class="participants-popup__user" @click="add()">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
+                    <div v-for="(participants, key) in team" :key="key" >
 
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
+                        <p class="subtitle">
+                            {{ transform(key) }}
+                        </p>
 
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
+                        <div class="participants-popup__team">
+                            <div class="participants-popup__user" 
+                                :class="{'participants-popup__user--active' : inTeam(el.id)}"
+                                @click="add(el.id)" 
+                                v-for="el in participants" 
+                                :key="el.id">
 
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
+                                <span class="participants-popup__user-in" v-if="inTeam(el.id)">
+                                    <slot name="check"></slot>
+                                </span>
 
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
-
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
-
-                    </div>
-
-                    <p class="subtitle">
-                        INFRAESTRUCTURA
-                    </p>
-
-                    <div class="participants-popup__team">
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
-                        </div>
-
-                        <div class="participants-popup__user">
-                            <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="test" title="test">
+              <!--                   <small style="
+                                    font-size: 8px;
+                                    line-height: 1 !important;
+                                ">{{ el.name+' '+el.last_name }}</small> -->
+                                 <img 
+                                    class="user-bar__avatar" 
+                                    :src="$root.path+'/static/img/default.png'" 
+                                    :alt="el.name+' '+el.last_name"
+                                    :title="el.name+' '+el.last_name">
+                            </div>
                         </div>
                     </div>
+            
                 </div>
         </div>
     </div>
@@ -92,26 +73,49 @@
     export default {
         props: {
             participantsdata: Array,
-            process: Number
+            process: Number,
+            teamdata: Object
         },
         data() {
             return {
                 search: '',
                 addParticipant : false,
-                participants: this.participantsdata
+                participants: this.participantsdata,
+                team: this.teamdata
             };
         },
         watch: {
             search: function() {
-                const query = removeDiacritics(this.search).toLowerCase().trim();
-                this.participants = this.participants.filter(el => {
 
-                    el.participante_name = "jaime uriel";
-                    return el.participante_name.includes(query); //searchable_name
+                if(this.search == '') {
+                    this.team = this.teamdata;
+                    return;
+                }
+
+                const query = removeDiacritics(this.search).toLowerCase().trim();
+                const array = Object.values(this.team).flat();
+
+                let filter = array.filter(el => {
+                    return el.searchable_name.includes(query);
                 });
-            }
+
+                this.team = this.group(filter, 'area_slug');
+            },
         },
         methods: {
+            inTeam(id) {
+                for (var i=0; i < this.participants.length; i++) {
+                    if (this.participants[i].id == id) {
+                        return true; 
+                    } 
+                }
+            },
+            group(xs, key) {
+                return xs.reduce(function(rv, x) {
+                    (rv[x[key]] = rv[x[key]] || []).push(x);
+                    return rv;
+                }, {});
+            },
             show(e) {
                 this.addParticipant = true;
 
@@ -147,25 +151,33 @@
                     w: rect.width
                 };
             },
-            add() {
+            add(id) {
+
+                if(this.inTeam(id)) {
+                    return;
+                }
+
                 var formData = new FormData();
-                formData.append("participante", "21");
+                formData.append("participante", id);
                 formData.append("subservicio", this.process);
 
                 window.axios
                     .post('agregar-participante/', formData)
                     .then(response => {
-
-                        console.log(response);
+                        this.participants.push(response.data);
                     })
                     .catch(error => {
-
                         console.log(error)
                     })
+            },
+            transform(slug) {
+                return (slug.replace(/[-]/g,' ')).toUpperCase();
             }
         },
         mounted() {
             this.$root.$on('closeParticipants', this.close);
+
+            console.log(this.team);
         }
     };
 </script>
