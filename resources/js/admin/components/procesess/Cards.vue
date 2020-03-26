@@ -9,7 +9,7 @@
             <p class="db-process-card__date mb-1">{{ subservice.formated_date }} <br>{{ subservice.formated_date_update }}</p>
             <div class="db-process-card__users mt-0">
                 <div class="user-bar__avatar-container" v-for="participant in subservice.sub_servicioParticipantes">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png"
+                    <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'"
                     :alt="participant.participante_name+' '+participant.participante_last_name"
                     :title="participant.participante_name+' '+participant.participante_last_name">
                 </div>
@@ -25,7 +25,8 @@
             request: Array,
             countsubservices: Number,
             status: String,
-            requestid: Number
+            requestid: Number,
+            team: Object
         },
         data() {
             return {
