@@ -13,6 +13,9 @@ def solicitudesProceso(request):
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
     else:
+        team = requests.get('http://192.168.10.46:8000/solicitudes/sol/participante/')
+        team = team.json()
+
         statuses = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_proceso/')
         statuses = statuses.json()
 
@@ -74,7 +77,8 @@ def solicitudesProceso(request):
             {
                 'solicitudes':  solicitudes,
                 'statuses': statuses,
-                'statustitle': statusSubservices
+                'statustitle': statusSubservices,
+                'team': team
             })
 
 def decapitalize(s):
