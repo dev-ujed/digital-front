@@ -2,7 +2,7 @@
     <div class="container">
         <div class="media" v-for="item in this.list">
             <div class="media__figure user-bar__avatar-container">
-                <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" :alt="item.user_name+' '+item.user_last_name">
+                <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'" :alt="item.user_name+' '+item.user_last_name">
             </div>
             <div class="media__body">
                 <p class="mb-0">
