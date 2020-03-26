@@ -37,11 +37,7 @@
             {% endfor %}
         </div>
 
-
-
-
         {% for request in solicitudes %}
-
 
             <div class="requests-process__row">
                 <div class="requests-process__body requests-process__body--services">
@@ -127,6 +123,7 @@
 
     <process-modal
         :statuses="{{ statuses }}"
+        :team="{{ team }}"
     >
         <template slot="check">
             {% load svg %}
