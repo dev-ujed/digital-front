@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from datetime import datetime
 import requests
 import json
 
@@ -15,18 +16,4 @@ def agregarParticipante(request):
     if response.status_code == 422:
         return JsonResponse({'errors':response.json()}, status = 422)
     else:
-
-        comment = response.json()
-
-        date = datetime.strptime(comment['fecha_comment'], "%d/%m/%Y %H:%M")
-        dateFormat = date.strftime("%A %d %h %Y, %I:%M")
-        localedate =  date.strftime("%p")
-
-        if(localedate == 'PM'):
-            localedate = 'p.m'
-        else:
-            localedate = 'a.m'
-
-        comment.update({'fecha_comment' : (dateFormat+' '+localedate).capitalize()})
-
-        return JsonResponse(comment)
+        return JsonResponse(response.json())
