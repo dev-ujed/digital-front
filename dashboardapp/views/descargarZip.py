@@ -37,8 +37,8 @@ def downloadfile(request, file):
                     f.write(chunk)
                     # f.flush()
 
-    files = requests.get(file, stream=True)
     with open('temporal/'+local_filename, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="application/force-download")
         response['Content-Disposition'] = 'inline; filename=' + local_filename
+
         return response
