@@ -21,12 +21,17 @@
 }
 
 .participants-popup__user {
+    cursor: pointer;
     height: 40px;
     margin-left: 0px;
     margin-right: 10px;
     margin-bottom: 10px;
     width: 40px;
     position: relative;
+
+    &--active {
+        cursor: default;
+    }
 
     & .user-bar__avatar {
         border-radius: 50%;
@@ -37,6 +42,7 @@
 .participants-popup__user-in {
     background-color: #20c372;
     color: #fff;
+    cursor: default;
     height: 12px;
     width: 12px;
     position: absolute;
