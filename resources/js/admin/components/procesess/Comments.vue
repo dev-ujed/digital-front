@@ -10,7 +10,7 @@
         <template slot="panel-team">
             <div class="media" v-for="comment in this.private">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
+                    <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'">
                 </div>
                 <div class="media__body">
                     <p class="mb-0">
@@ -25,7 +25,7 @@
 
             <div class="media">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
+                    <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'">
                 </div>
                 <div class="media__body">
                     <div class="form-control">
@@ -44,7 +44,7 @@
         <template slot="panel-public">
             <div class="media" v-for="comment in this.public">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png">
+                    <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'">
                 </div>
                 <div class="media__body">
                     <p class="mb-0">
@@ -59,7 +59,7 @@
 
             <div class="media">
                 <div class="media__figure user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
+                    <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'">
                 </div>
                 <div class="media__body">
                     <div class="form-control">

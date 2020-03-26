@@ -28,7 +28,8 @@
 
             <div class="user-bar__profile" @mouseenter="profileMenuVisible = true" @mouseleave="profileMenuVisible = false">
                 <div class="user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
+                    {% load static %}
+                    <img class="user-bar__avatar" src="{% static 'img/default.png' %}" alt="">
                 </div>
 
                 <p class="user-bar__user-name">
@@ -43,7 +44,8 @@
                         <li class="user-bar__profile-menu-item user--info center-text">
 
                             <div class="user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
+                                {% load static %}
+                                <img class="user-bar__avatar" src="{% static 'img/default.png' %}" alt="">
                             </div>
 
                             <p class="name">{{ userAuth.name }} {{ userAuth.last_name }}</p>
