@@ -1,15 +1,17 @@
 <template>
     <div class="modal" v-if="isActive" @click.self="closeModal" @scroll="ScrollTop">
-        <div class="modal__card relative" ref="modal"
+        <div class="modal__card" ref="modal"
                 :style="{
                     'min-height': `${minHeight}px`
                 }">
 
-                <button class="modal__close-btn modal__close-btn--process" @click="closeModal">
-                    <span class="close">
-                        <slot name="close"></slot>
-                    </span>
-                </button>
+                <div class="relative">
+                    <button class="modal__close-btn modal__close-btn--process" @click="closeModal">
+                        <span class="close">
+                            <slot name="close"></slot>
+                        </span>
+                    </button>
+                </div>
 
                 <tabs-component class="icon-tabs icon-tabs--process"
                     :breakpoint="0"
@@ -53,6 +55,7 @@
                             <participants
                                 :process="subservice.id"
                                 :participantsdata="subservice.sub_servicioParticipantes"
+                                :teamdata="team"
                             >
                                 <slot name="check" slot="check"></slot>
                                 <slot name="close" slot="close"></slot>
@@ -99,7 +102,8 @@
         extends: Modal,
         components: { Comments, ChangeStatusForm, Binnacle, Participants },
         props: {
-            statuses: Array
+            statuses: Array,
+            team: Object
         },
         data() {
             return {
