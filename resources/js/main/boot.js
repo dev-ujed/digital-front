@@ -1,18 +1,9 @@
 import slugify from '../helpers/slugify.js';
-import hammer from '../vendor/hammer.js';
 
 
 (function() {
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
-
-
-    /*
-    |---------------------------------------------------------------------------
-    | Hammer
-    |---------------------------------------------------------------------------
-    */
-    window.hammer = hammer;
 
     /*
     |---------------------------------------------------------------------------
