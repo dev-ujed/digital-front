@@ -146,4 +146,15 @@
         </template>
     </process-modal>
 
+    <email-modal>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+    </email-modal>
+
 {% endblock %}
