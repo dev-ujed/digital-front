@@ -13,6 +13,7 @@ import Binnacle from './components/procesess/Binnacle.vue';
 import Comments from './components/procesess/Comments.vue';
 import TransparentOverlay from '../main/components/TransparentOverlay.vue';
 import DragPanel from './components/procesess/DragPanel.vue';
+import EmailModal from './components/procesess/EmailModal.vue';
 
 (function() {
     /* Base components
@@ -35,6 +36,7 @@ import DragPanel from './components/procesess/DragPanel.vue';
     Vue.component('title-request', TitleRequest);
     Vue.component('cards-process', Cards);
     Vue.component('drag-panel', DragPanel);
+    Vue.component('email-modal', EmailModal);
     Vue.component('process-modal', ProcessModal);
     Vue.component('participants', Participants);
     Vue.component('binnacle', Binnacle);
