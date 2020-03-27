@@ -9,7 +9,7 @@
 
                 <div class="db-process-card__users" >
                     <div class="user-bar__avatar-container" v-for="user in service.sub_servicioParticipantes">
-                        <img class="user-bar__avatar" src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="">
+                        <img class="user-bar__avatar" :src="$root.path+'/static/img/default.png'" alt="">
                     </div>
 
                     <div class="user-bar__avatar-container user-bar__avatar-container--count" v-if="service.sub_servicioParticipantes.length > 5">
