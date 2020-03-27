@@ -12,7 +12,7 @@ import Participants from './components/procesess/Participants.vue';
 import Binnacle from './components/procesess/Binnacle.vue';
 import Comments from './components/procesess/Comments.vue';
 import TransparentOverlay from '../main/components/TransparentOverlay.vue';
-
+import DragPanel from './components/procesess/DragPanel.vue';
 
 (function() {
     /* Base components
@@ -34,12 +34,11 @@ import TransparentOverlay from '../main/components/TransparentOverlay.vue';
     Vue.component('service-modal', ServiceModal);
     Vue.component('title-request', TitleRequest);
     Vue.component('cards-process', Cards);
+    Vue.component('drag-panel', DragPanel);
     Vue.component('process-modal', ProcessModal);
     Vue.component('participants', Participants);
     Vue.component('binnacle', Binnacle);
     Vue.component('comments', Comments);
-
-
 
     /*
     |------------------------------------------------------------------------
@@ -67,14 +66,15 @@ import TransparentOverlay from '../main/components/TransparentOverlay.vue';
 
             Vue.nextTick(() => this.isLoading = false);
         },
-
         methods: {
             /**
              * Show or hide dashboard menu.
              */
             toggleMenu() {
                 this.menuIsVisible = ! this.menuIsVisible;
-            },
+            }
         }
+
+        
     });
 })();
