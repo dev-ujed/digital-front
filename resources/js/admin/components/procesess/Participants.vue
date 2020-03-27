@@ -164,7 +164,8 @@
                 window.axios
                     .post('agregar-participante/', formData)
                     .then(response => {
-                        this.participants.push(response.data);
+                        this.participants.push(response.data.participante);
+                        this.$root.$emit('binacle', response.data.bitacora);
                     })
                     .catch(error => {
                         console.log(error)

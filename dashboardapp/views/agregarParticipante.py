@@ -16,4 +16,18 @@ def agregarParticipante(request):
     if response.status_code == 422:
         return JsonResponse({'errors':response.json()}, status = 422)
     else:
-        return JsonResponse(response.json())
+
+        res = response.json()
+
+        date = datetime.strptime(res['bitacora']['fecha_bitacora'], "%d/%m/%Y %H:%M")
+        bitacoraDate = date.strftime("%A %d %h %Y, %I:%M")
+        localedate =  date.strftime("%p")
+
+        if(localedate == 'PM'):
+            localedate = 'p.m'
+        else:
+            localedate = 'a.m'
+
+        res['bitacora'].update({'fecha_bitacora' : (bitacoraDate+' '+localedate).capitalize()})
+
+        return JsonResponse(res)
