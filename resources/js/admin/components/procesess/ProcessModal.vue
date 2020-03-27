@@ -143,6 +143,7 @@
             });
 
             this.$root.$on('detailServiceModal', this.showModal);
+            this.$root.$on('closeDetailServiceModal', this.closeModal);
         },
         methods: {
             changeService(e) {
