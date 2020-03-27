@@ -36,7 +36,7 @@
         methods: {
             showModal(subservice) {
                 this.$root.$emit('subservice', subservice);
-                this.$root.$emit('showModal');
+                this.$root.$emit('detailServiceModal');
             },
             addItem(data) {
                 if(data !== undefined) {
