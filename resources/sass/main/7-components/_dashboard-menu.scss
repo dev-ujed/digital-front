@@ -152,6 +152,7 @@ $db-tile-size: 40px;
 
 .dashboard-menu__links-icon {
     display: inline-block;
+    filter: invert(1);
     height: $db-icon-size;
     margin-right: 0.75em;
     vertical-align: top;
