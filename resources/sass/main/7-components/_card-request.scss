@@ -12,16 +12,17 @@ Card request
     margin-bottom: $gutter;
     overflow: auto;
     padding: $gutter/2;
+    width: 100%;
 
-    @include media(1200) {
+    @include media(1400) {
         @include column(1/4);
     }
 
-    @include media(721, 1199) {
+    @include media(801, 1399) {
         @include column(1/3);
     }
 
-    @include media(600, 720) {
+    @include media(600, 800) {
         @include column(1/2);
     }
 }
