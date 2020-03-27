@@ -23,7 +23,7 @@
             <div class="process-comment" v-if="status">
                 <div class="form-control w-full mr-2">
                     <label for="comentario">
-                        Comentario
+                        ¿Deseas incluir un comentario en el correo de notificación al usuario?
                         <small class="color-gray-60">Opcional</small>
                     </label>
                     <text-field
@@ -33,7 +33,7 @@
                         v-model="fields.comentario"
                         v-on:keyup.enter="submit">
                     </text-field>
-                    <small class="color-gray-60">Máximo 150 caracteres.</small>
+                    <small class="color-gray-60">Máximo 400 caracteres.</small>
                 <field-errors name="comentario"></field-errors>
             </div>
 
@@ -61,6 +61,7 @@
         },
         data() {
             return {
+                isFinished: false,
                 status: false,
                 statusid: this.statusdata.toString(),
                 selected: this.statusdata.toString()
@@ -77,14 +78,22 @@
                 this.status = false;
                 this.isUpdated = true;
                 this.statusid = response.data.estatus.toString();
+
                 this.$root.$emit('process', response.data);
                 this.$root.$emit('cardServices', response.data);
                 this.$root.$emit('binacle', response.data.bitacora[0]);
+
+                if(this.statusid === "7") {
+
+                    this.$root.$emit('closeDetailServiceModal');
+                    this.$root.$emit('showEmailModal');
+
+                    this.isFinished = true;
+                }
             },
             selectOption() {
                 this.status   = true;
                 this.selected = this.selected;
-
             },
             backValue() {
                 this.status = false;
