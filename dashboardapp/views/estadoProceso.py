@@ -63,7 +63,7 @@ def estadoProceso(request, subservice):
             subservicios = request['subservices']
             correo       = request['correo']
 
-            sendEmail(subservicio, servicio, folio, subservicios, correo)
+            #sendEmail(subservicio, servicio, folio, subservicios, correo)
         return JsonResponse(process)
 
 def decapitalize(s):
