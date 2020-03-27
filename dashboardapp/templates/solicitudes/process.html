@@ -24,102 +24,101 @@
         </h1>
     </div>
 
-    <div class="fluid-container mt-12 overflow-x-auto">
+    <drag-panel inline-template>
+        <div class="fluid-container mt-12 overflow-x-auto drag-container--grab">
 
-        <div class="d-inline-flex">
-            <p class="requests-process__head requests-process__head--services">
-                SOLICITUDES
-            </p>
-            {% for status in statustitle %}
-                <p class="requests-process__head requests-process__col">
-                    {{ status.estatus_descrip|upper }}
+            <div class="d-inline-flex">
+                <p class="requests-process__head requests-process__head--services">
+                    SOLICITUDES
                 </p>
-            {% endfor %}
-        </div>
-
-        {% for request in solicitudes %}
-
-            <div class="requests-process__row">
-                <div class="requests-process__body requests-process__body--services">
-                    <div class="row relative">
-                        <a class="card-request mb-0 w-full card-request__link" href="{% url 'dashboard:solicitud' request.folio %}">
-                            <div class="card-request__header card-request__header--folio">
-                                <span>#{{ request.folio }}</span>
-                                <div class="card-request__service-container">
-                                    {% for key, subservices_group in request.subservices.items %}
-                                        {% if request.countsubservices != 0 %}
-                                            {% for subservice in subservices_group %}
-                                                {% if subservice.estatus_key_name == 'concluido' %}
-                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}-active"></span>
-                                                {% else %}
-                                                    <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}"></span>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}
-                                    {% endfor %}
+                {% for status in statustitle %}
+                    <p class="requests-process__head requests-process__col">
+                        {{ status.estatus_descrip|upper }}
+                    </p>
+                {% endfor %}
+            </div>
+    
+            {% for request in solicitudes %}
+    
+                <div class="requests-process__row">
+                    <div class="requests-process__body requests-process__body--services">
+                        <div class="row relative">
+                            <a class="card-request mb-0 w-full card-request__link" href="{% url 'dashboard:solicitud' request.folio %}">
+                                <div class="card-request__header card-request__header--folio">
+                                    <span>#{{ request.folio }}</span>
+                                    <div class="card-request__service-container">
+                                        {% for key, subservices_group in request.subservices.items %}
+                                            {% if request.countsubservices != 0 %}
+                                                {% for subservice in subservices_group %}
+                                                    {% if subservice.estatus_key_name == 'concluido' %}
+                                                        <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}-active"></span>
+                                                    {% else %}
+                                                        <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                            </div>
-                            {% if request.titulo != None %}
+                                {% if request.titulo != None %}
                                 <p class="card-request__title">
                                     {{ request.titulo }}
                                 </p>
-                            {% endif %}
-                            <p class="card-request__date">
-                                {{ request.formated_date }}
-                            </p>
-                            <dl class="list-inline list-inline--md">
-                                <dt class="card-request__dt-title">
-                                    Enviada por
-                                </dt>
-                                <dd>
-                                    <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno}}
-                                                {% if request.apellido_materno != None %}
-                                                    {{ request.apellido_materno }}
-                                                {% endif %}
-                                    </span>
-                                    <br><span class="card-request__dd-ures">{{ request.ures_desc }}</span>
-                                </dd>
-                                <div class="card-request__footer">
-                                    {% if request.count_archivos != 0 %}
-                                        <div class="card-request__attach">
-                                            <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
-                                            <span class="card-request__attach-number">
-                                                {{ request.count_archivos }}
-                                            </span>
+                                {% endif %}
+                                <p class="card-request__date">
+                                    {{ request.formated_date }}
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="card-request__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno}}
+                                            {% if request.apellido_materno != None %}
+                                                {{ request.apellido_materno }}
+                                            {% endif %}
+                                        </span>
+                                        <br><span class="card-request__dd-ures">{{ request.ures_desc }}</span>
+                                    </dd>
+                                    <div class="card-request__footer">
+                                        {% if request.count_archivos != 0 %}
+                                            <div class="card-request__attach">
+                                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                                <span class="card-request__attach-number">
+                                                    {{ request.count_archivos }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+    
+                                        <div class="card-request__progress">
+                                            {% if request.countsubservices != 0 %}
+                                                <span class="card-request__progress card-request__progress--active"
+                                                    style="width:{{ request.porcentajeCompleted }}%"
+                                                ></span>
+                                            {% endif%}
                                         </div>
-                                    {% endif %}
-
-                                    <div class="card-request__progress">
-                                        {% if request.countsubservices != 0 %}
-                                            <span class="card-request__progress card-request__progress--active"
-                                                style="width:{{ request.porcentajeCompleted }}%"
-
-                                            ></span>
-                                        {% endif%}
                                     </div>
-                                </div>
-                            </dl>
-                        </a>
+                                </dl>
+                            </a>
+                        </div>
                     </div>
+                    {% load jsonify %}
+                    {% for key, subservices_group in request.subservices.items %}
+    
+                        <div class="requests-process__body requests-process__col">
+                            <cards-process
+                                status="{{ key }}"
+                                :request="{{ subservices_group|jsonify }}"
+                                :requestid="{{ request.id }}"
+                                :countsubservices="{{ request.countsubservices }}"
+                                >
+                            </cards-process>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% load jsonify %}
-                {% for key, subservices_group in request.subservices.items %}
-
-                    <div class="requests-process__body requests-process__col">
-                        <cards-process
-                            status="{{ key }}"
-                            :request="{{ subservices_group|jsonify }}"
-                            :requestid="{{ request.id }}"
-                            :countsubservices="{{ request.countsubservices }}"
-                            >
-                        </cards-process>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endfor%}
-
-
-    </div>
+            {% endfor%}
+        </div>
+    </drag-panel>
 
     <process-modal
         :statuses="{{ statuses }}"
