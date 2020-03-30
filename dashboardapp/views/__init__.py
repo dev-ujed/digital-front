@@ -8,4 +8,5 @@ from .actualizarTitulo import *
 from .comentario import *
 from .estadoProceso import *
 from .agregarParticipante import *
+from .modificarEmail import *
 
