@@ -53,17 +53,6 @@ def estadoProceso(request, subservice):
             bitacora.update({'fecha_bitacora' : (bitacoraDate+' '+localDate).capitalize()})
             bitacora.update({'comentario' : decapitalize(bitacora['comentario']) })
 
-
-        if process['estatus_key_name'] == 'concluido':
-            subservicio  = process['subservicio_name']
-            servicio     = process['servicio']
-            folio        = process['solicitud_folio']
-            getrequest   = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallecoreo/'+folio)
-            request      = getrequest.json()[0]
-            subservicios = request['subservices']
-            correo       = request['correo']
-
-            #sendEmail(subservicio, servicio, folio, subservicios, correo)
         return JsonResponse(process)
 
 def decapitalize(s):
@@ -76,25 +65,3 @@ def getLocaleDate(date):
         return 'p.m.'
     else:
         return 'a.m.'
-
-
-def sendEmail(subservicio, servicio, folio, subservicios, correo):
-    body = render_to_string('emails/concluded-subservice.html',
-        {
-        'subservicio': subservicio,
-        'folio': folio,
-        'servicio' : servicio,
-        'subservicios' : subservicios,
-        }
-    )
-    from_email = 'no-reply@ujed.mx'
-    to = correo
-
-    email = EmailMessage(
-        subject    = 'Servicio concluido',
-        body       = body,
-        from_email = from_email,
-        to         =[to]
-        )
-    email.content_subtype = 'html'
-    email.send()
