@@ -177,8 +177,6 @@
         },
         mounted() {
             this.$root.$on('closeParticipants', this.close);
-
-            console.log(this.team);
         }
     };
 </script>
