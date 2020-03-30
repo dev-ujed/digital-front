@@ -15,5 +15,6 @@ urlpatterns = [
     path('solicitudes/comentar-proceso', views.comentario, name='comentario'),
     path('solicitudes/estado-proceso/<slug:subservice>/', views.estadoProceso, name='estadoProceso'),
     path('solicitudes/agregar-participante/', views.agregarParticipante, name='agregarParticipante'),
+    path('solicitudes/modificar-email/', views.modificarEmail, name='modificarEmail'),
 ]
 
