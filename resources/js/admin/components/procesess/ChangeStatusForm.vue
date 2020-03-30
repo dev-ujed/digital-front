@@ -23,7 +23,7 @@
             <div class="process-comment" v-if="status">
                 <div class="form-control w-full mr-2">
                     <label for="comentario">
-                        ¿Deseas incluir un comentario en el correo de notificación al usuario?
+                        Comentario
                         <small class="color-gray-60">Opcional</small>
                     </label>
                     <text-field
@@ -33,7 +33,7 @@
                         v-model="fields.comentario"
                         v-on:keyup.enter="submit">
                     </text-field>
-                    <small class="color-gray-60">Máximo 400 caracteres.</small>
+                    <small class="color-gray-60">Máximo 150 caracteres.</small>
                 <field-errors name="comentario"></field-errors>
             </div>
 
@@ -87,6 +87,7 @@
 
                     this.$root.$emit('closeDetailServiceModal');
                     this.$root.$emit('showEmailModal');
+                    this.$root.$emit('currentProcess', response.data);
 
                     this.isFinished = true;
                 }
