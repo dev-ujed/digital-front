@@ -2,7 +2,7 @@
     <div class="modal" v-if="isActive" @click.self="closeModal">
         <div class="modal__card" ref="modal">
 
-            <div class="relative w-full container-btn">
+            <div class="relative w-full container-btn mb-6">
                 <button class="modal__close-btn" @click="closeModal">
                     <span class="close">
                         <slot name="close"></slot>
@@ -10,11 +10,11 @@
                 </button>
             </div>
 
-            <email-modal-form :action="this.$root.path + '/test'" inline-template>
+            <email-modal-form :action="this.$root.path + '/administracion/solicitudes/modificar-email/'" inline-template>
                 <form class="container">
                     <div class="form-control">
                         <label for="comentario">
-                            Comentario
+                            ¿Deseas incluir un comentario en el correo de notificación al usuario?
                             <small class="color-gray-60">Opcional</small>
                         </label>
                         <text-area
@@ -24,13 +24,19 @@
                             maxlength="150"
                             v-model="fields.comentario">
                         </text-area>
-                        <small class="color-gray-60">Máximo 150 caracteres.</small>
+                        <small class="color-gray-60">Máximo 400 caracteres.</small>
                         <field-errors name="comentario"></field-errors>
                     </div>
 
                     <div class="w-full d-inline-block text-center mb-12">
-                        <form-button class="btn btn--wide modal__success-btn" type="submit">
-                            <span class="mr-1">Crear</span>
+                        <button 
+                            class="btn btn--light mr-6" 
+                            type="button"
+                            @click="$parent.closeModal">
+                            <span class="mr-1">No incluir</span>
+                        </button>
+                        <form-button class="btn modal__success-btn" type="submit">
+                            <span class="mr-1">Incluir comentario</span>
                         </form-button>
                     </div>
                 </form>
@@ -49,11 +55,20 @@
         extends: Modal,
         components: { EmailModalForm },
         mounted() {
+
+            this.$root.$on('currentProcess', (el) => {
+                this.process = el;
+            });
+
             this.$root.$on('showEmailModal', this.showModal);
+        },
+        data() {
+            return {
+                process: {},
+            };
         },
         watch: {
             isActive: function(value) {
-
                if (value) {
                     setTimeout(this.setFocusTrap, 100);
                 }
@@ -61,7 +76,6 @@
                     this.destroyFocusTrap;
                 }
             },
-
         },
         methods: {
             showModal() {
