@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.hashers import make_password
 
 def inbox(request):
-    locale.setlocale(locale.LC_TIME, '')
+    #locale.setlocale(locale.LC_TIME, '')
 
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
@@ -18,6 +18,7 @@ def inbox(request):
         response = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
         statuses = {}
         requestByStatus = {}
+
 
         StatusArray = [
             'received',
@@ -38,7 +39,7 @@ def inbox(request):
                 date = datetime.strptime(element['fecha_sol'], "%d/%m/%Y %H:%M")
                 formatedDate = date.strftime("%d %h %Y, %I:%M")
                 localedate =  date.strftime("%p")
-
+                
                 if(localedate == 'PM'):
                     localedate = 'p.m'
                 else:

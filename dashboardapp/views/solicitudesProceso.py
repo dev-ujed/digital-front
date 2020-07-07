@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 
 
 def solicitudesProceso(request):
-    locale.setlocale(locale.LC_TIME, '')
+    #locale.setlocale(locale.LC_TIME, '')
 
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
