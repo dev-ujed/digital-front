@@ -24,13 +24,14 @@ def modificarEmail(request):
     return JsonResponse(True, safe=False)
 
 
-def sendEmail(subservicio, servicio, folio, subservicios, correo):
+def sendEmail(subservicio, servicio, folio, subservicios, correo, comentario):
     body = render_to_string('emails/concluded-subservice.html',
         {
         'subservicio': subservicio,
         'folio': folio,
         'servicio' : servicio,
         'subservicios' : subservicios,
+        'comentario' : comentario,
         }
     )
     from_email = 'no-reply@ujed.mx'
