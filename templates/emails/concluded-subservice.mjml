@@ -27,6 +27,12 @@
 
                         <p class="paragraph" font-family="helvetica">¡Hola, {{ name }}! Te hacemos saber que hemos concluido el servicio <strong>{{ servicio }}:{{ subservicio }}</strong>, que forma parte de la solicitud <strong>{{ folio }}</strong></p>
 
+                        {% if comentario !== '' %}
+                            <p class="alert alert--info" font-family="helvetica">
+                                {{ comentario }}
+                            </p>
+                        {% endif %}
+                        
                         <p class="paragraph" font-family="helvetica">
                             El estado actual de los servicios que estamos realizando para atender tu solicitud es el siguiente:
                         </p>
@@ -52,22 +58,6 @@
                 </mj-column>
             </mj-section>
 
-            <mj-section padding-top="0" padding-bottom="15px" background-color="#fff">
-                <mj-column>
-                    <mj-text font-size="14px" color="#3A4148">
-                        <p class="paragraph" font-family="helvetica">
-                            Te pedimos que por favor nos ayudes calificando este servicio en especifico, lo cual nos ayudará a mejorar nuestra atención y cumplir con los requerimientos del Sistema Integral de Gestión de Calidad.
-                        </p>
-                    </mj-text>
-                </mj-column>
-            </mj-section>
-            <mj-section padding-top="0" padding-bottom="15px" background-color="#fff">
-                <mj-column padding-bottom="30px">
-                    <mj-button font-family="helvetica" href="#" inner-padding='15px 30px' font-size="15px" background-color="#3399CC" color="white" border-radius='5px'>
-                        Calificar servicio
-                    </mj-button>
-                </mj-column>
-            </mj-section>
         </mj-wrapper>
 
         <mj-include path="./partials/_footer.mjml"/>
