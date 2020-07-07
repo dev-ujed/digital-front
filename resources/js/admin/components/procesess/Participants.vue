@@ -162,7 +162,7 @@
                 formData.append("subservicio", this.process);
 
                 window.axios
-                    .post('agregar-participante/', formData)
+                    .post(this.$root.path+'/administracion/solicitudes/agregar-participante/', formData)
                     .then(response => {
                         this.participants.push(response.data.participante);
                         this.$root.$emit('binacle', response.data.bitacora);
