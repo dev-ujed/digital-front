@@ -11,6 +11,8 @@ def solicitud(request, folio):
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
     else:
+        team = requests.get('http://192.168.10.46:8000/solicitudes/sol/participante/')
+        team = team.json()
 
         responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')
         services  = responseServices.json()
@@ -22,11 +24,10 @@ def solicitud(request, folio):
         statuses = statuses.json()
 
         if solicitud[0]['fecha_sol'] != None:
-            locale.setlocale(locale.LC_TIME, '')
+            #locale.setlocale(locale.LC_TIME, '')
             date = datetime.strptime(solicitud[0]['fecha_sol'], "%d/%m/%Y %H:%M")
             localDate = getLocaleDate(date);
             solicitud[0]['fecha_sol'] = date.strftime("%d %B %Y, %I:%M")+' '+localDate
-            
 
         for file in solicitud[0]['archivos_solicitud']:
 
@@ -41,10 +42,11 @@ def solicitud(request, folio):
             service['fec_subservicio'] = date.strftime("%d %h %Y, %I:%M")+' '+localDate
 
         return render(request, "solicitudes/show.html", {
-            'request': solicitud[0],
-            'subservices': json.dumps(solicitud[0]['subservices']),
-            'services': services,
-            'statuses': statuses
+            'request' : solicitud[0],
+            'subservices' : json.dumps(solicitud[0]['subservices']),
+            'services' : services,
+            'statuses' : statuses,
+            'team': team
         })
 
 def getLocaleDate(date):
