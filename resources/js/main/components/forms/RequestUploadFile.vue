@@ -52,6 +52,8 @@
                     .post('subir-archivo', formData)
                     .then(response => {
 
+                        console.log(response);
+
                         if(response.data.id) {
                             var ext = this.getThumb(response.data.file);
                             var formats = ['doc','docx','documents','pdf','ppt','xls','zip'];
@@ -73,11 +75,15 @@
                             this.$set(this.$parent.hasThumb, key, hasThumb);
 
                             this.loading = false;
+
+                        } else {
+                            this.loading = false;
                         }
 
                     })
                     .catch(error => {
                         this.errors = error.response.data.errors.file;
+                        this.loading = false;
                     })
             },
             getThumb(name) {
