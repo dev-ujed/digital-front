@@ -3,7 +3,7 @@
 <section class="section section-gray">
     <div class="container">
         <div class="login-form">
-            <login-form action="https://{{ request.get_host }}/digitalapp/iniciar-sesion"
+            <login-form action="{% url 'public:user_login' %}"
                 inline-template
                 v-cloak
             >
