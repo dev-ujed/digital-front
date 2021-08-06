@@ -117,3 +117,10 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+
+mix-manifest.json
+package-lock.json
+sessions_storage/*
+static/css/*
+static/js/*
