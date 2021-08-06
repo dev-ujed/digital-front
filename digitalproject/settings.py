@@ -23,8 +23,6 @@ env = environ.Env(
 # reading .env file
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -34,11 +32,9 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = ['digital.ujed.mx']
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -99,7 +95,6 @@ DATABASES = {
     }
 }
 
-
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
 EMAIL_HOST = env.str('EMAIL_HOST')
@@ -150,3 +145,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 SVG_DIRS=[
     os.path.join(BASE_DIR, 'static/img/icons')
 ]
+
+URL_API = env.str('URL_API')
