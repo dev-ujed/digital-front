@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.http import HttpResponse, JsonResponse
-import requests, json
-from datetime import datetime
+from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from requests.auth import HTTPBasicAuth
+from datetime import datetime
 
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+import requests, json
+
 
 def estadoProceso(request, subservice):
 
@@ -19,7 +21,7 @@ def estadoProceso(request, subservice):
         "user": request.session['user']['id']
     }
 
-    response = requests.put('http://192.168.10.46:8000/solicitudes/sol/actualizar-subservicio/', data=data)
+    response = requests.put(settings.URL_API + '/solicitudes/sol/actualizar-subservicio/', data=data)
 
     if response.status_code == 422:
         return JsonResponse({'errors':response.json()}, status = 422)

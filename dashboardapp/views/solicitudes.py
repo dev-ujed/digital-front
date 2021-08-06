@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-import requests
-from datetime import datetime
-from django.utils.dateparse import parse_date
-import locale
-from django.urls import reverse_lazy
-
+from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.utils.dateparse import parse_date
+
+from datetime import datetime
+import locale, requests
+
 
 def inbox(request):
     #locale.setlocale(locale.LC_TIME, '')
@@ -15,10 +16,10 @@ def inbox(request):
         return redirect(reverse_lazy('public:ingresar'))
 
     else:
-        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
+        response = requests.get(settings.URL_API + '/solicitudes/sol/cat_estatus/')
+        print(response)
         statuses = {}
         requestByStatus = {}
-
 
         StatusArray = [
             'received',
@@ -31,7 +32,7 @@ def inbox(request):
             if state['key_name'] in StatusArray:
 
                 statuses.update({ state['key_name']: state['estatus_descrip']})
-                responseSol = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_sol/' + str(state['id']))
+                responseSol = requests.get(settings.URL_API + '/solicitudes/sol/estatus_sol/' + str(state['id']))
                 requestByStatus.update({ state['key_name']: responseSol.json() })
 
         for key, value in requestByStatus.items():
@@ -176,5 +177,5 @@ def inbox(request):
 #             'token' : 1,
 #             'role': 1
 #         }
-#         response = requests.post('http://192.168.10.46:8000/solicitudes/sol/usuarios/', data=data)
+#         response = requests.post(settings.URL_API + '/solicitudes/sol/usuarios/', data=data)
 #     return HttpResponse('success')

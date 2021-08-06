@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests
-import json
+from django.shortcuts import render, redirect
+
+import json, requests
+
 
 def actualizarTitulo(request, folio):
     errors = {}
@@ -9,6 +11,6 @@ def actualizarTitulo(request, folio):
         "titulo": request.POST['title']
     }
 
-    response = requests.put('http://192.168.10.46:8000/solicitudes/sol/actualizar-titulo/'+folio, data=data)
+    response = requests.put(settings.URL_API + '/solicitudes/sol/actualizar-titulo/'+folio, data=data)
 
     return JsonResponse(response.json(), safe=False)

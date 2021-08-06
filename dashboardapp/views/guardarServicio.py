@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests
-import json
+from django.shortcuts import render, redirect
+
 from datetime import datetime
+import json, requests
+
 
 def guardarServicio(request, folio):
 
@@ -16,7 +18,7 @@ def guardarServicio(request, folio):
         "user" : request.session['user']['id']
     }
 
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/guardar-subservicio/', data=data)
+    response = requests.post(settings.URL_API + '/solicitudes/sol/guardar-subservicio/', data=data)
 
     #return JsonResponse({'errors':response.json()})
 

@@ -1,26 +1,26 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests
-import locale
-from datetime import datetime
-import json
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-def solicitud(request, folio):
+from datetime import datetime
+import json, locale, requests
 
+
+def solicitud(request, folio):
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
     else:
-        team = requests.get('http://192.168.10.46:8000/solicitudes/sol/participante/')
+        team = requests.get(settings.URL_API + '/solicitudes/sol/participante/')
         team = team.json()
 
-        responseServices = requests.get('http://192.168.10.46:8000/solicitudes/sol/servicios/')
+        responseServices = requests.get(settings.URL_API + '/solicitudes/sol/servicios/')
         services  = responseServices.json()
 
-        response = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio)
+        response = requests.get(settings.URL_API + '/solicitudes/sol/detallesol/'+folio)
         solicitud  = response.json()
 
-        statuses = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_proceso/')
+        statuses = requests.get(settings.URL_API + '/solicitudes/sol/estatus_proceso/')
         statuses = statuses.json()
 
         if solicitud[0]['fecha_sol'] != None:

@@ -1,11 +1,14 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, FileResponse
+
 import os, io, zipfile, requests
 
+
 def descargarZip(request, folio):
-    responseSol  = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallesol/'+folio)
+    responseSol  = requests.get(settings.URL_API + '/solicitudes/sol/detallesol/'+folio)
     solicitud_id = responseSol.json()[0]['id']
-    responseFile = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+str(solicitud_id)+'/detalle/')
+    responseFile = requests.get(settings.URL_API + '/solicitudes/sol/solicitudes/'+str(solicitud_id)+'/detalle/')
     Datafile     = responseFile.json()
 
     buffer   = io.BytesIO()

@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests, json
+from django.shortcuts import render
 
 from requests.auth import HTTPBasicAuth
+import requests, json
 
 
 def uploadfile(request):
@@ -19,7 +20,7 @@ def uploadfile(request):
         "solicitud": request.POST['request']
     }
 
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['request']+'/upload/', files=files, data=data)
+    response = requests.post(settings.URL_API + '/solicitudes/sol/solicitudes/'+request.POST['request']+'/upload/', files=files, data=data)
 
     if response.status_code == 400:
         return JsonResponse({'errors':response.json()}, status = 422)
@@ -28,8 +29,7 @@ def uploadfile(request):
 
 
 def deletefile(request):
-
-    response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+request.POST['file']+'/delete/')
+    response = requests.delete(settings.URL_API + '/solicitudes/sol/solicitudes/'+request.POST['file']+'/delete/')
 
     return displayResponse(response)
 

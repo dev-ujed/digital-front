@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-from datetime import datetime
-import requests
-import json
+from django.shortcuts import render, redirect
+
+from datetime import datetime 
+import json, requests
+
 
 def agregarParticipante(request):
     data = {
@@ -11,7 +13,7 @@ def agregarParticipante(request):
         "subservicio": request.POST['subservicio'],
     }
 
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/participantes/', data=data)
+    response = requests.post(settings.URL_API + '/solicitudes/sol/participantes/', data=data)
 
     if response.status_code == 422:
         return JsonResponse({'errors':response.json()}, status = 422)

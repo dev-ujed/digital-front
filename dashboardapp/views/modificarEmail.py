@@ -1,20 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-import requests, json
-from datetime import datetime
-from requests.auth import HTTPBasicAuth
+from django.conf import settings
 from django.core.mail import EmailMessage
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 
-def modificarEmail(request): 
+from requests.auth import HTTPBasicAuth
+from datetime import datetime
+import requests, json
 
+
+def modificarEmail(request): 
     data = json.loads(request.body.decode('utf-8'))
 
     comentario   = data['comentario']
     subservicio  = data['subservicio']
     servicio     = data['servicio']
     folio        = data['folio']
-    getrequest   = requests.get('http://192.168.10.46:8000/solicitudes/sol/detallecoreo/'+folio)
+    getrequest   = requests.get(settings.URL_API + '/solicitudes/sol/detallecoreo/'+folio)
     request      = getrequest.json()[0]
     subservicios = request['subservices']
     correo       = request['correo']

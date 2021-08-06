@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-import requests, json
+from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import logout
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+
+import requests, json
 
 
 def index_login(request):
@@ -27,7 +28,7 @@ def user_login(request):
             'email' : data_request['email'],
         }
 
-        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/login/', data=data)
+        response = requests.post(settings.URL_API + '/solicitudes/sol/login/', data=data)
         data     = response.json()
 
         if 'data' in data:

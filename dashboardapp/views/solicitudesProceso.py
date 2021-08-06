@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests
-from datetime import datetime
-from django.utils.dateparse import parse_date
-import locale, json
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.dateparse import parse_date
+
+from datetime import datetime
+import json, locale, requests
 
 
 def solicitudesProceso(request):
@@ -13,19 +14,19 @@ def solicitudesProceso(request):
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
     else:
-        team = requests.get('http://192.168.10.46:8000/solicitudes/sol/participante/')
+        team = requests.get(settings.URL_API + '/solicitudes/sol/participante/')
         team = team.json()
 
-        statuses = requests.get('http://192.168.10.46:8000/solicitudes/sol/estatus_proceso/')
+        statuses = requests.get(settings.URL_API + '/solicitudes/sol/estatus_proceso/')
         statuses = statuses.json()
 
         statusSubservices = []
-        statusResponse = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
+        statusResponse = requests.get(settings.URL_API + '/solicitudes/sol/cat_estatus/')
         for status in statusResponse.json():
             if status['desc_tipo_estatus'] == 'SUBSERVICIOS':
                 statusSubservices.append(status)
 
-        response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/proceso/')
+        response    = requests.get(settings.URL_API + '/solicitudes/sol/proceso/')
         solicitudes = response.json()
 
         for solicitud in solicitudes:

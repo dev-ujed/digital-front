@@ -1,10 +1,14 @@
+from django.conf import settings
+
 import requests
+
+
 def menu_processor(request):
     dataUrl = {}
     if request.session.is_empty():
         return {'menu': dataUrl}
     else:
-        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/usuario-rol/', data={ 'user_id': request.session['user']['id'] })
+        response = requests.post(settings.URL_API + '/solicitudes/sol/usuario-rol/', data={ 'user_id': request.session['user']['id'] })
         dbmenu   = response.json()
 
         for key, section in dbmenu.items():

@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.http import HttpResponse, JsonResponse
-import requests, json
+from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from requests.auth import HTTPBasicAuth
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+import requests, json
 
 
 def save(request):
@@ -19,10 +19,10 @@ def save(request):
         errors.update({'descripcion' : ['Este campo no puede estar en blanco.']})
 
     for i in data_request['files']:
-        index = i.split("_")[1];
+        index = i.split("_")[1]
         dataFile = { "descripcion": data_request['files'][i] }
 
-        responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
+        responseFiles = requests.put(settings.URL_API + '/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
 
         if responseFiles.status_code == 422:
             errors.update({i: ['Asegúrese de que este campo no tenga más de 80 caracteres.'] })
@@ -57,10 +57,10 @@ def saveuser(request):
 
 
     if data_request['id'] == '':
-        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+        response = requests.post(settings.URL_API + '/solicitudes/sol/solicitudes/', data=data)
     else:
         if not bool(customMessage):
-           response = requests.put('http://192.168.10.46:8000/solicitudes/sol/update-sol/'+data_request['id'], data=data)
+           response = requests.put(settings.URL_API + '/solicitudes/sol/update-sol/'+data_request['id'], data=data)
            return HttpResponse(response)
 
     return displayResponse(response, customMessage)
@@ -68,17 +68,17 @@ def saveuser(request):
 
 def deleteRequest(request):
     data_request = json.loads(request.body.decode('utf-8'))
-    response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+    response = requests.delete(settings.URL_API + '/solicitudes/sol/solicitudes/'+data_request['id'])
     return HttpResponse(response)
 
 
 def validateUpdateRequest(data_request, data):
-    getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+    getdata = requests.get(settings.URL_API + '/solicitudes/sol/solicitudes/'+data_request['id'])
 
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
             responseUpdate = requests.put(
-                'http://192.168.10.46:8000/solicitudes/sol/descripcion/'+data_request['id'],
+                settings.URL_API + '/solicitudes/sol/descripcion/'+data_request['id'],
                 data = data
             )
         else:

@@ -1,13 +1,13 @@
-from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests, json
-from datetime import datetime
+from django.shortcuts import render
 
 from requests.auth import HTTPBasicAuth
+from datetime import datetime
+import requests, json
 
 
 def comentario(request):
-
     data = {
         "user": request.session['user']['id'],
         "descripcion": request.POST['descripcion'],
@@ -15,7 +15,7 @@ def comentario(request):
         "subservicio": request.POST['subservicio']
     }
 
-    response = requests.post('http://192.168.10.46:8000/solicitudes/sol/comment/', data=data)
+    response = requests.post(settings.URL_API + '/solicitudes/sol/comment/', data=data)
 
     if response.status_code == 422:
         return JsonResponse({'errors':response.json()}, status = 422)
