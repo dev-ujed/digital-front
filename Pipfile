@@ -10,6 +10,7 @@ django = "*"
 django-environ = "*"
 django-inline-svg = "*"
 requests = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
