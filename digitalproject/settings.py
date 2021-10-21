@@ -90,9 +90,16 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=' + env.str('DB_SOL_SCHEMA')
+        },
+        'NAME': env.str('DB_SOL_NAME'),
+        'USER': env.str('DB_SOL_USER'),
+        'PASSWORD': env.str('DB_SOL_PASS'),
+        'HOST': env.str('DB_SOL_HOST'),
+        'PORT': env.str('DB_SOL_PORT'),
+    },
 }
 
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
