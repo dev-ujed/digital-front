@@ -1,23 +1,20 @@
 from django.conf import settings
-from django.contrib.auth.hashers import make_password
+# from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.utils.dateparse import parse_date
+
+from dashboardapp.models import Catalogo_Estatus, Solicitud
+from dashboardapp.serializers import CatalogoEstatusSerializer, SolicitudesSerializer
 
 from datetime import datetime
-import locale, requests
+import json
 
 
 def inbox(request):
-    #locale.setlocale(locale.LC_TIME, '')
-
     if request.session.is_empty():
         return redirect(reverse_lazy('public:ingresar'))
-
     else:
-        response = requests.get(settings.URL_API + '/solicitudes/sol/cat_estatus/')
-        print(response)
         statuses = {}
         requestByStatus = {}
 
@@ -27,31 +24,24 @@ def inbox(request):
             'canceled'
         ]
 
-        for state in response.json():
+        cat_status = Catalogo_Estatus.objects.all().order_by('id')
+        cat_status_serializer = CatalogoEstatusSerializer(cat_status, many=True).data
 
+        for state in cat_status_serializer:
             if state['key_name'] in StatusArray:
-
                 statuses.update({ state['key_name']: state['estatus_descrip']})
-                responseSol = requests.get(settings.URL_API + '/solicitudes/sol/estatus_sol/' + str(state['id']))
-                requestByStatus.update({ state['key_name']: responseSol.json() })
 
-        for key, value in requestByStatus.items():
-            for element in value:
-                date = datetime.strptime(element['fecha_sol'], "%d/%m/%Y %H:%M")
-                formatedDate = date.strftime("%d %h %Y, %I:%M")
-                localedate =  date.strftime("%p")
-                
-                if(localedate == 'PM'):
-                    localedate = 'p.m'
-                else:
-                    localedate = 'a.m'
-
-                element.update({'formated_date' : formatedDate + ' ' + localedate})
+                solicitudes = Solicitud.objects.filter(estatus__key_name=state['key_name']).order_by('-fecha_sol')
+                solicitudes_serializer = SolicitudesSerializer(solicitudes, many=True).data
+                print(solicitudes_serializer)
+                requestByStatus.update({state['key_name']: solicitudes_serializer})
 
         return render(request, "solicitudes/index.html", {
             'statuses': statuses,
             'requestByStatus': requestByStatus
         })
+
+
 
 # def createUsers(request):
 #     Users = [
