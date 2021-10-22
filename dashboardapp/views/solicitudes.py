@@ -33,7 +33,6 @@ def inbox(request):
 
                 solicitudes = Solicitud.objects.filter(estatus__key_name=state['key_name']).order_by('-fecha_sol')
                 solicitudes_serializer = SolicitudesSerializer(solicitudes, many=True).data
-                print(solicitudes_serializer)
                 requestByStatus.update({state['key_name']: solicitudes_serializer})
 
         return render(request, "solicitudes/index.html", {
