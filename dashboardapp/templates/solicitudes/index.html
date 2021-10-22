@@ -51,7 +51,7 @@
                                             </p>
                                         {% endif %}
                                         <p class="card-request__date">
-                                            {{ element.formated_date }}.
+                                            {{ element.formatted_date }}.
                                         </p>
                                         <dl class="list-inline list-inline--md">
                                             <dt class="card-request__dt-title">
@@ -72,11 +72,11 @@
                                             <dd class="card-request__dd-description">
                                                 {{ element.descripcion |truncatewords:25 }}
                                             </dd>
-                                            {% if element.count_archivos != 0 %}
+                                            {% if element.count_files != 0 %}
                                                 <div class="card-request__attach">
                                                     <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
                                                     <span class="card-request__attach-number">
-                                                        {{ element.count_archivos }}
+                                                        {{ element.count_files }}
                                                     </span>
                                                 </div>
                                             {% endif %}
