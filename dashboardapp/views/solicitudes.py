@@ -1,177 +1,170 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
+# from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, JsonResponse
-import requests
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
+from dashboardapp.models import Catalogo_Estatus, Solicitud
+from dashboardapp.serializers import CatalogoEstatusSerializer, SolicitudesSerializer
+
+from datetime import datetime
+import json
+
 
 def inbox(request):
     if request.session.is_empty():
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/digitalapp/ingresar')
+        return redirect(reverse_lazy('public:ingresar'))
     else:
-        dataUrl = {
-            0 : {
-                "id" : 1,
-                "name" : "Solicitudes",
-                "tile" : "request.png",
-                "order" : 1,
-                "created_at" : "2019-05-06 11:52:57",
-                "updated_at" : "2019-05-06 11:52:57",
-                "active" : 1,
-                "slug" : "acl",
-                "submenus" : {
-                    0 : {
-                        "id" : 1,
-                        "name" : "Solicitudes",
-                        "icon" : "users.png",
-                        "order" : 1,
-                        "section_id" : 1,
-                        "created_at" : "2019-05-06 11:52:57",
-                        "updated_at" : "2019-05-06 11:52:57",
-                        "active" : 1,
-                        "searchable_name" : "solicitudes",
-                        "links": {
-                            0 : {
-                                "id" : 1,
-                                "name" : "Bandeja",
-                                "route" : "bandeja",
-                                "permission" : "create.users",
-                                "order" : 1,
-                                "submenu_id" : 1,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 1
-                            },
-                            1 : {
-                                "id" : 2,
-                                "name" : "En proceso",
-                                "route" : "",
-                                "permission" : "update.users",
-                                "order" : 2,
-                                "submenu_id" : 1,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 0
-                            }
-                        }
-                    },
-                    1 : {
-                        "id" : 2,
-                        "name" : "Roles",
-                        "icon" : "roles.png",
-                        "order" : 2,
-                        "section_id" : 1,
-                        "created_at" : "2019-05-06 11:52:57",
-                        "updated_at" : "2019-05-06 11:52:57",
-                        "active" : 0,
-                        "searchable_name" : "roles",
-                        "links" : {
-                            0 : {
-                                "id" : 3,
-                                "name" : "Agregar",
-                                "route" : "",
-                                "permission" : "create.roles",
-                                "order" : 1,
-                                "submenu_id" : 2,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 0
-                            },
-                            1 : {
-                                "id" : 4,
-                                "name" : "Ver lista",
-                                "route" : "",
-                                "permission" : "update.roles",
-                                "order" : 2,
-                                "submenu_id" : 2,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 0
-                            }
-                        }
-                    },
-                    2  : {
-                        "id" : 3,
-                        "name" : "Permisos",
-                        "icon" : "permissions.png",
-                        "order" : 3,
-                        "section_id" : 1,
-                        "created_at" : "2019-05-06 11:52:57",
-                        "updated_at" : "2019-05-06 11:52:57",
-                        "active" : 0,
-                        "searchable_name" : "permisos",
-                        "links" : {
-                            0 : {
-                                "id" : 5,
-                                "name" : "Agregar",
-                                "route" : "",
-                                "permission" : "create.permissions",
-                                "order" : 1,
-                                "submenu_id" : 3,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 0
-                            },
-                            1 : {
-                                "id" : 6,
-                                "name" : "Ver lista",
-                                "route" : "",
-                                "permission" : "update.permissions",
-                                "order" : 2,
-                                "submenu_id" : 3,
-                                "created_at" : "2019-05-06 11:52:57",
-                                "updated_at" : "2019-05-06 11:52:57",
-                                "active" : 0
-                            }
-                        }
-                    }
-                }
-            },
-            1 : {
-                "id" : 2,
-                "name" : "Capacitadores",
-                "tile" : "trainers.png",
-                "order" : 2,
-                "created_at" : "2019-05-06 11:52:57",
-                "updated_at" : "2019-05-06 11:52:57",
-                "active" : 0,
-                "slug" : "capacitadores",
-                "submenus" : {
-                    0 : {
-                        "id" : 4,
-                        "name" : "Registros",
-                        "icon" : "registrations.png",
-                        "order" : 1,
-                        "section_id" : 2,
-                        "created_at" : "2019-05-06 11:52:57",
-                        "updated_at" : "2019-05-06 11:52:57",
-                        "active" : 0,
-                        "searchable_name" : "registros",
-                        "links" : {
-                            "id" : 7,
-                            "name" : "Ver lista",
-                            "route" : "",
-                            "permission" : "view.trainers",
-                            "order" : 1,
-                            "submenu_id" : 4,
-                            "created_at" : "2019-05-06 11:52:57",
-                            "updated_at" : "2019-05-06 11:52:57",
-                            "active" : 0
-                        }
-                    }
-                }
-            }
-        }
-        status   = requests.get('http://192.168.10.46:8000/solicitudes/sol/cat_estatus/')
         statuses = {}
+        requestByStatus = {}
 
-        for state in status.json():
-            statuses.update({ state['key_name']: state['Descripcion']})
+        StatusArray = [
+            'received',
+            'concluided',
+            'canceled'
+        ]
 
-        # response    = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/all/')
-        # solicitudes = response.json()
+        cat_status = Catalogo_Estatus.objects.all().order_by('id')
+        cat_status_serializer = CatalogoEstatusSerializer(cat_status, many=True).data
 
-        # return HttpResponse(solicitudes)
+        for state in cat_status_serializer:
+            if state['key_name'] in StatusArray:
+                statuses.update({ state['key_name']: state['estatus_descrip']})
+
+                solicitudes = Solicitud.objects.filter(estatus__key_name=state['key_name']).order_by('-fecha_sol')
+                solicitudes_serializer = SolicitudesSerializer(solicitudes, many=True).data
+                requestByStatus.update({state['key_name']: solicitudes_serializer})
 
         return render(request, "solicitudes/index.html", {
             'statuses': statuses,
-            'dataUrl': dataUrl
+            'requestByStatus': requestByStatus
         })
+
+
+
+# def createUsers(request):
+#     Users = [
+#         {
+#             'name' : 'Jaime Uriel',
+#             'last_name' : 'García Navarro',
+#             'email': 'jaime.garcia@ujed.mx',
+#         },
+#         {
+#             'name' : 'José Luis',
+#             'last_name' : 'Bautista Cabrera',
+#             'email': 'joseluis.bautista@ujed.mx',
+#         },
+#         {
+#             'name' : 'Jesús Álvaro',
+#             'last_name' : 'Martínez Hinojosa',
+#             'email': 'alvaro.martinez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ernesto',
+#             'last_name' : 'Cisneros Almeida',
+#             'email': 'ernesto.cisneros@ujed.mx',
+#         },
+#         {
+#             'name' : 'Adalberto Rafael',
+#             'last_name' : 'Sánchez Salazar',
+#             'email': 'rafael.sanchez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Sergio',
+#             'last_name' : 'Noris Peinado',
+#             'email': 'sergio.noris@ujed.mx',
+#         },
+#         {
+#             'name' : 'Felipe de Jesús',
+#             'last_name' : 'Fernández Aguirre',
+#             'email': 'felipe.fernandez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Gerardo Alberto',
+#             'last_name' : 'Rodríguez Figueroa',
+#             'email': 'gerardo.rodriguez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Manuel Rodrigo',
+#             'last_name' : 'Calderón Pérez',
+#             'email': 'manuel.calderon@ujed.mx',
+#         },
+#         {
+#             'name' : 'Adrián',
+#             'last_name' : 'Pérez Mascorro',
+#             'email': 'adrian.perez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Gloria Adriana',
+#             'last_name' : 'García Aquino',
+#             'email': 'gloria.garcia@ujed.mx',
+#         },
+#         {
+#             'name' : 'Oscar Hiram',
+#             'last_name' : 'Gutiérrez Gómez',
+#             'email': 'oscar.gutierrez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ariana',
+#             'last_name' : 'Fernández Aguirre',
+#             'email': 'ariana.fernandez@ujed.mx',
+#         },
+#         {
+#             'name' : 'Edith Natalia',
+#             'last_name' : 'Cisneros Mireles',
+#             'email': 'natalia.cisneros@ujed.mx',
+#         },
+#         {
+#             'name' : 'Ramón Arturo',
+#             'last_name' : 'Morales Sánchez',
+#             'email': 'arturo.morales@ujed.mx',
+#         },
+#         {
+#             'name' : 'Juan Carlos',
+#             'last_name' : 'Melero Hernández',
+#             'email': 'juancarlos.melero@ujed.mx',
+#         },
+#         {
+#             'name' : 'Jesús',
+#             'last_name' : 'Heredia Castañeda',
+#             'email': 'jesus.heredia@ujed.mx',
+#         },
+#         {
+#             'name' : 'Maria del Carmen',
+#             'last_name' : 'Romero Villaseñor',
+#             'email': 'carmen.romero@ujed.mx',
+#         },
+#         {
+#             'name' : 'Xochitl',
+#             'last_name' : 'Escamilla Arango',
+#             'email': 'xochitl.escamilla@ujed.mx',
+#         },
+#         {
+#             'name' : 'Hiram',
+#             'last_name' : 'Weyman Vela',
+#             'email': 'hiram.weyman@ujed.mx',
+#         },
+#         {
+#             'name' : 'Alejandro',
+#             'last_name' : 'Candelas Tirado',
+#             'email': 'alex.candelas@ujed.mx',
+#         },
+#         {
+#             'name' : 'Antonio Alberto',
+#             'last_name' : 'Lardizabal Silvaín',
+#             'email': 'antonio.lardizaval@ujed.mx',
+#         },
+#     ]
+#     for user in Users:
+#         data = {
+#             'name' : user['name'],
+#             'last_name': user['last_name'],
+#             'email' : user['email'],
+#             'active': 1,
+#             'password': make_password('testing1234'),
+#             'avatar' : 'foto.png',
+#             'token' : 1,
+#             'role': 1
+#         }
+#         response = requests.post(settings.URL_API + '/solicitudes/sol/usuarios/', data=data)
+#     return HttpResponse('success')

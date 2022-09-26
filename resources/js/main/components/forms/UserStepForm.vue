@@ -19,7 +19,7 @@
                 <text-field
                     name="matricula"
                     v-model="fields.matricula"
-                    maxlength="6"
+                    maxlength="7"
                     minlength="5"
                 >
                 </text-field>
@@ -131,7 +131,7 @@
         extends: BaseForm,
         props: {
             ureslist: {
-                type: Object,
+                type: Array,
                 required: true
             },
         },

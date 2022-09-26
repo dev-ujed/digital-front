@@ -1,21 +1,21 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-import requests, json
-from django.contrib.auth.hashers import make_password
+from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import logout
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
+import requests, json
 
 
 def index_login(request):
     if request.session.is_empty():
         return render(request, "principal/login.html")
     else:
-        domain = request.build_absolute_uri('/')[:-1]
-        return redirect(domain+'/administracion')
+        return redirect(reverse_lazy('dashboard:index'))
 
 
 def user_login(request):
-
     if request.method == 'POST':
         data_request = json.loads(request.body.decode('utf-8'))
         errors       = formRequestLogin(data_request)
@@ -24,25 +24,43 @@ def user_login(request):
             return JsonResponse({'errors':errors}, status = 422)
 
         domain = request.build_absolute_uri('/')[:-1]
-        user   = {
+        data   = {
             'email' : data_request['email'],
-            'password': make_password(data_request['password'])
         }
 
-        if user != {}:
-            request.session['user1'] = user
+        response = requests.post(settings.URL_API + '/solicitudes/sol/login/', data=data)
+        data     = response.json()
+
+        if 'data' in data:
+            user    = data['data']
+            user_id = user['id']
+            active  =  user['active']
+
+            if check_password(data_request['password'], user['password']):
+                pass
+            else:
+                return JsonResponse({'errors':{'password': ['La contraseña es incorrecta']}}, status = 422)
+
+            if active:
+                pass
+            else:
+                return JsonResponse({'errors':{'email': ['El usuario no está activo']}}, status = 422)
+
+            request.session['user'] = user
+            request.session.set_expiry(86400)
+            request.session.clear_expired()
             response = HttpResponse('')
             response["Redirect-To"] = domain+'/administracion'
             return response
         else:
             return JsonResponse({'errors':{'email': ['El usuario no está registrado']}}, status = 422)
     else:
-        return redirect(index_login)
+        return redirect(reverse_lazy('public:ingresar'))
 
 
 def user_logout(request):
     logout(request)
-    return redirect(index_login)
+    return redirect(reverse_lazy('public:ingresar'))
 
 
 def formRequestLogin(data_request):

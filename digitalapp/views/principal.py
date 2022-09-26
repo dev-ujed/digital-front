@@ -1,16 +1,13 @@
-from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-import requests
+from django.shortcuts import render
 
 from requests.auth import HTTPBasicAuth
+import requests
 
 
 def index(request):
-    response  = requests.get('http://192.168.10.46:8000/solicitudes/sol/ures/')
+    response  = requests.get(settings.URL_API + '/solicitudes/sol/ures/')
     ures      = response.json()
-    ureslist = {}
 
-    for k in ures:
-        ureslist.update({ k['id']: k['ures_descrip']})
-
-    return render(request, "principal/index.html" , { 'ureslist': ureslist })
+    return render(request, "principal/index.html" , { 'ureslist': ures })

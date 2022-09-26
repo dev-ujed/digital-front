@@ -9,7 +9,7 @@ Dashboard panel
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: $gutter;
     overflow: auto;
-    padding: $gutter;
+    padding: ($gutter/2) $gutter;
     position: relative;
 }
 

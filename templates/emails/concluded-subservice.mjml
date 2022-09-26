@@ -1,0 +1,66 @@
+{% load mjml %}
+<mjml>
+    <mj-head>
+        <mj-title>Hemos atendido un servicio</mj-title>
+        <mj-include path="./partials/_styles.mjml" />
+        <mj-breakpoint width="600px"/>
+    </mj-head>
+
+    <mj-body width="600px" background-color="#F0F2F3" >
+        <mj-include path="./partials/_header.mjml" />
+
+        <mj-wrapper css-class="box" padding="0px">
+
+            <mj-section background-color="#E6446D" padding-top="8px" padding-bottom="0px" border-radius="5px">
+                <mj-column background-color="#fff" >
+
+                    <mj-image src="https://digital.ujed.mx/static/img/email/icon-mail-completed.png"
+                        fluid-on-mobile="false"
+                        padding-bottom="0"
+                        padding-top="40px"
+                        width="75px"
+                        align="center"
+                    />
+
+                    <mj-text font-size="14px" color="#3A4148">
+                        <p class="title" font-family="helvetica">Hemos atendido un servicio</p>
+
+                        <p class="paragraph" font-family="helvetica">¡Hola, {{ name }}! Te hacemos saber que hemos concluido el servicio <strong>{{ servicio }}:{{ subservicio }}</strong>, que forma parte de la solicitud <strong>{{ folio }}</strong></p>
+
+                        {% if comentario !== '' %}
+                            <p class="alert alert--info" font-family="helvetica">
+                                {{ comentario }}
+                            </p>
+                        {% endif %}
+                        
+                        <p class="paragraph" font-family="helvetica">
+                            El estado actual de los servicios que estamos realizando para atender tu solicitud es el siguiente:
+                        </p>
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+
+            <mj-section padding="0" background-color="#fff">
+                <mj-column width="70%" padding-bottom="30px">
+                    <mj-table>
+                        <tr style="border-bottom: 2px solid #3A4148;text-align: left; color: #3A4148;">
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                        </tr>
+                        {% for subservice in subservicios %}
+                            <tr style="border-bottom: 1px solid #D6DADD; color:#3A4148;">
+                                <td style="padding: 11px 0;">{{ subservice.subservicio_name }}</td>
+                                <td style="padding: 11px 0;">{{ subservice.estatus_key_name }}</td>
+                            </tr>
+                        {% endfor%}
+                    </mj-table>
+                </mj-column>
+            </mj-section>
+
+        </mj-wrapper>
+
+        <mj-include path="./partials/_footer.mjml"/>
+    </mj-body>
+</mjml>
+{% endmjml %}

@@ -23,8 +23,6 @@ env = environ.Env(
 # reading .env file
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -34,11 +32,9 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,6 +70,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dashboardapp.context_processors.menu_processor',
+                'dashboardapp.context_processors.user_processor',
+                'dashboardapp.context_processors.root_url',
             ],
         },
     },
@@ -81,23 +80,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digitalproject.wsgi.application'
 
-LOGIN_URL = 'ingresar'
-LOGIN_REDIRECT_URL = '/admin'
-
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 SESSION_FILE_PATH = (os.path.join(BASE_DIR, 'sessions_storage'))
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=' + env.str('DB_SOL_SCHEMA')
+        },
+        'NAME': env.str('DB_SOL_NAME'),
+        'USER': env.str('DB_SOL_USER'),
+        'PASSWORD': env.str('DB_SOL_PASS'),
+        'HOST': env.str('DB_SOL_HOST'),
+        'PORT': env.str('DB_SOL_PORT'),
+    },
 }
-
 
 EMAIL_BACKEND= "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
@@ -149,3 +152,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 SVG_DIRS=[
     os.path.join(BASE_DIR, 'static/img/icons')
 ]
+
+URL_API = env.str('URL_API')

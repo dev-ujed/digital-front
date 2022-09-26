@@ -2,67 +2,67 @@
     <div class="main-footer__menu bg-blue-90">
         <div class="row container">
             <div class="text-center col lg:col-5/12">
-                {% load static %} 
-                <img src="{% static 'img/footer/logo-ujed.png' %}" alt="UJED" class="main-footer__logo">
+                {% load static %}
+                <img src="{% static 'img/footer/logo-dtd-footer.png' %}" alt="Dirección de Transformación Digital" class="main-footer__logo">
             </div>
 
             <div class="col col-7/12">
-                <ul class="main-footer__menu--list list-bare hidden lg:d-flex">
+                <ul class="main-footer__menu--list list-bare hidden lg:d-flex" style="width: 37%;">
                     <li>
-                        <a href="#" class="link--reverse color-white">Inicio</a>
+                        <a href="{% url 'public:index' %}" class="link--reverse color-white">Inicio</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#" class="link--reverse color-white">Políticas</a>
                     </li>
                     <li>
                         <a href="#" class="link--reverse color-white">Contacto</a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="#" class="link--reverse color-white">Administración</a>
+                        <a href="{% url 'dashboard:index' %}" class="link--reverse color-white">Administración</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="bg-blue-90 bt-1 border-blue-80">
         <div class="row container main-footer__info">
-                    
+
             <div class="col md:col-5/12 lg:col-1/4">
                 <p class="color-white"><b>Dirección</b></p>
-                <p class="color-gray-40">Bulevar Guadiana Km 5.5. s/n <br>
+                <p class="color-gray-50">Bulevar Guadiana Km 5.5. s/n <br>
                 C.P. 34120. Durango, Dgo. México.</p>
             </div>
             <div class="col md:col-5/12 lg:col-1/4">
                 <p class="color-white"><b>Contacto:</b></p>
-                <p class="color-gray-40">Tel: (618) 123 45 67. <br> 
-                    Correo electrónico: digital@ujed.mx <br> 
-                    <a href="" class="link color-gray-40">Envíanos un mensaje</a>
-                </p>  
+                <p class="color-gray-50">Tel: (618) 827 12 89.<br>
+                    Correo electrónico: digital@ujed.mx <br>
+                    <!-- <a href="" class="link color-gray-50">Envíanos un mensaje</a> -->
+                </p>
             </div>
             <div class="col md:col-5/12 lg:col-1/4">
                 <p class="color-white"><b>Síguenos:</b></p>
-                <p class="color-gray-40">
-                    <a href="#" class="link--reverse color-gray-40">Twitter</a>, 
-                    <a href="#" class="link--reverse color-gray-40">Gitlab</a>
+                <p class="color-gray-50">
+                    <a href="#" class="link--reverse color-gray-50">Twitter</a>,
+                    <a href="#" class="link--reverse color-gray-50">Gitlab</a>
                 </p>
             </div>
             <div class="col md:col-5/12 lg:col-1/4 mb-0">
                 <p class="color-white"><b>Información</b></p>
-                <p class="color-gray-40">
-                    <a href="#" class="link--reverse color-gray-40">Aviso de privacidad</a> <br>
-                    <a href="#" class="link--reverse color-gray-40">Términos y condiciones de uso</a>
+                <p class="color-gray-50">
+                    <a href="https://www.ujed.mx/aviso-de-privacidad" class="link--reverse color-gray-50">Aviso de privacidad</a> <br>
+                    <!-- <a href="#" class="link--reverse color-gray-50">Términos y condiciones de uso</a> -->
                 </p>
             </div>
         </div>
     </div>
 
-                        
+
     <div class="bg-ujed">
         <div class="container text-center">
             <a href="https://www.ujed.mx" class="d-inline-block main-footer__link-ujed">
-                {% load static %} 
+                {% load static %}
                 <img src="{% static 'img/footer/logo-ujed.png' %}" alt="UJED" class="main-footer__logo--ujed">
             </a>
         </div>
-    </div> 
+    </div>
 </footer>

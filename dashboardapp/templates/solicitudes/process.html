@@ -1,0 +1,160 @@
+{% extends 'dashboard/master.html' %}
+
+{% block content %}
+
+
+    <div class="db-heading">
+
+        <div class="breadcrums db-breadcrums">
+            <a href="/administracion" class="breadcrums__link">Dashboard</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a href="/administracion/solicitudes/bandeja" class="breadcrums__link">Solicitudes</a>
+            <span class="breadcrums__chevron">
+                {% load svg %}
+                {% svg 'chevron-right' %}
+            </span>
+            <a class="breadcrums__link breadcrums__link--active"> En proceso</a>
+       </div>
+
+        <h1 class="db-heading__title">
+            Solicitudes en proceso
+        </h1>
+    </div>
+
+    <drag-panel inline-template>
+        <div class="fluid-container mt-12 overflow-x-auto drag-container--grab">
+
+            <div class="d-inline-flex">
+                <p class="requests-process__head requests-process__head--services">
+                    SOLICITUDES
+                </p>
+                {% for status in statustitle %}
+                    <p class="requests-process__head requests-process__col">
+                        {{ status.estatus_descrip|upper }}
+                    </p>
+                {% endfor %}
+            </div>
+    
+            {% for request in solicitudes %}
+    
+                <div class="requests-process__row">
+                    <div class="requests-process__body requests-process__body--services">
+                        <div class="row relative">
+                            <a class="card-request mb-0 w-full card-request__link" href="{% url 'dashboard:solicitud' request.folio %}">
+                                <div class="card-request__header card-request__header--folio">
+                                    <span>#{{ request.folio }}</span>
+                                    <div class="card-request__service-container">
+                                        {% for key, subservices_group in request.subservices.items %}
+                                            {% if request.countsubservices != 0 %}
+                                                {% for subservice in subservices_group %}
+                                                    {% if subservice.estatus_key_name == 'concluido' %}
+                                                        <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}-active"></span>
+                                                    {% else %}
+                                                        <span class="card-request__service card-request__service--{{ subservice.servicio | slugify }}"></span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% if request.titulo != None %}
+                                <p class="card-request__title">
+                                    {{ request.titulo }}
+                                </p>
+                                {% endif %}
+                                <p class="card-request__date">
+                                    {{ request.formated_date }}
+                                </p>
+                                <dl class="list-inline list-inline--md">
+                                    <dt class="card-request__dt-title">
+                                        Enviada por
+                                    </dt>
+                                    <dd>
+                                        <span class="card-request__dd-user"> {{ request.nombre }} {{ request.apellido_paterno}}
+                                            {% if request.apellido_materno != None %}
+                                                {{ request.apellido_materno }}
+                                            {% endif %}
+                                        </span>
+                                        <br><span class="card-request__dd-ures">{{ request.ures_desc }}</span>
+                                    </dd>
+                                    <div class="card-request__footer">
+                                        {% if request.count_archivos != 0 %}
+                                            <div class="card-request__attach">
+                                                <span class="card-request__attach-icon">{% svg 'paperclip' %}</span>
+                                                <span class="card-request__attach-number">
+                                                    {{ request.count_archivos }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+    
+                                        <div class="card-request__progress">
+                                            {% if request.countsubservices != 0 %}
+                                                <span class="card-request__progress card-request__progress--active"
+                                                    style="width:{{ request.porcentajeCompleted }}%"
+                                                ></span>
+                                            {% endif%}
+                                        </div>
+                                    </div>
+                                </dl>
+                            </a>
+                        </div>
+                    </div>
+                    {% load jsonify %}
+                    {% for key, subservices_group in request.subservices.items %}
+    
+                        <div class="requests-process__body requests-process__col">
+                            <cards-process
+                                status="{{ key }}"
+                                :request="{{ subservices_group|jsonify }}"
+                                :requestid="{{ request.id }}"
+                                :countsubservices="{{ request.countsubservices }}"
+                                >
+                            </cards-process>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor%}
+        </div>
+    </drag-panel>
+
+    <process-modal
+        :statuses="{{ statuses }}"
+        :team="{{ team }}"
+    >
+        <template slot="check">
+            {% load svg %}
+            {% svg 'check' %}
+        </template>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="plus">
+            {% load svg %}
+            {% svg 'plus' %}
+        </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+        <template slot="rotate-ccw">
+            {% load svg %}
+            {% svg 'rotate-ccw' %}
+        </template>
+    </process-modal>
+
+    <email-modal>
+        <template slot="close">
+            {% load svg %}
+            {% svg 'x' %}
+        </template>
+        <template slot="save">
+            {% load svg %}
+            {% svg 'save' %}
+        </template>
+    </email-modal>
+
+{% endblock %}

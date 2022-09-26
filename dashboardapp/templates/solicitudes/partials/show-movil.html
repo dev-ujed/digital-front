@@ -1,0 +1,30 @@
+<section class="section mb-16 d-block lg:hidden">
+    <div class="row fluid-container">
+        {% load svg %}
+
+        <tabs-component class="icon-tabs icon-tabs--request"
+            :breakpoint="0"
+            :tabs="{'details': 'DETALLES', 'contact': 'CONTACTO', 'services': 'SERVICIOS'}"
+            :options="{'details': 'DETALLES', 'contact': 'CONTACTO', 'services': 'SERVICIOS'}"
+            :accepts-html="true"
+        >
+            <template slot="panel-details">
+
+                <p class="size-xl mb-8">
+                    <b>Exámenes CENEVAL</b>
+                    <span class="icon-pencil">
+                        {% svg 'edit' %}
+                    </span>
+                </p>
+
+                {% include "solicitudes/partials/details.html" %}
+            </template>
+            <template slot="panel-contact">
+                {% include "solicitudes/partials/contact.html" %}
+            </template>
+            <template slot="panel-services">
+                {% include "solicitudes/partials/services.html" %}
+            </template>
+        </tabs-component>
+    </div>
+</section>

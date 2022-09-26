@@ -1,0 +1,66 @@
+/*
+================================================================================
+Modal
+================================================================================
+*/
+
+.modal {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    overflow-y: auto;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 11;
+}
+
+.modal__card {
+    background-color: #fff;
+    border-radius: 4px;
+    display: block;
+    height: auto;
+    margin: auto;
+    max-height: auto;
+    max-width: 600px;
+    width: 90vw;
+}
+
+.modal__close-btn {
+    background-color: transparent;
+    border-color: transparent;
+    color: $color-gray-70;
+    float: right;
+    padding-top: 7px;
+
+    & svg {
+        height: 20px;
+    }
+
+    & .close {
+        vertical-align: bottom;
+    }
+
+    &--process {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+}
+
+.modal__success-btn {
+    @include button((
+        background-color: $color-dashboard-green,
+        text-color: #fff,
+        text-color-hover: #fff
+    ));
+}
+
+.modal__success-btn .btn--loading:after { 
+    border-right-color: #fff;
+    border-top-color: #fff;
+}

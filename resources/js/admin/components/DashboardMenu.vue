@@ -16,7 +16,7 @@
                     v-for="section in menu"
                     @click="openSubmenus(section.slug)"
                 >
-                    <img class="dashboard-menu__tile" :src="$root.path + '/storage/dashboard/tiles/' + section.tile" alt="">
+                    <img class="dashboard-menu__tile" :src="$root.path + '/static/img/icons/dashboard/tiles/'+section.title" alt="">
                     {{ section.name }}
                 </li>
             </ul>

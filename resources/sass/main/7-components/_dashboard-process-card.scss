@@ -1,16 +1,41 @@
 .db-process-card {
     background-color: $color-gray-10;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
     border-radius: 4px;
     padding: 20px;
     margin-bottom: 15px;
+    margin-right: 15px;
+    width: 100%;
+
+    @include media(sm) {
+        width: 275px;
+    }
+
+    &:hover {
+        background-color: #fff;
+        border-bottom: 1px solid $color-gray-30;
+        border-left: 1px solid $color-gray-30;
+        border-right: 1px solid $color-gray-30;
+        cursor: pointer;
+    }
 }
 
-.db-process-card--red {
-    border-top: 4px solid #DE1818;
+.db-process-card--desarrollo-de-software {
+    border-top: 4px solid $color-desarrollo-de-software;
 }
 
-.db-process-card--yellow {
-    border-top: 4px solid #FFCA34;
+.db-process-card--infraestructura {
+    border-top: 4px solid $color-infraestructura;
+}
+
+.db-process-card--cuentas-de-acceso {
+    border-top: 4px solid $color-cuentas-de-acceso;
+}
+
+.db-process-card--instalacion-de-software {
+    border-top: 4px solid $color-instalacion-de-software;
 }
 
 .db-process-card__title {
@@ -29,6 +54,10 @@
 .db-process-card__users {
     margin-top: 2em;
     text-align: right;
+
+    & .user-bar__avatar-container {
+        margin-left: 5px;
+    }
 }
 
 .db-process-card__footer {

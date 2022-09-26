@@ -41,6 +41,11 @@
         components: { TabsMenu, TabsPanel },
 
         props: {
+            acceptsHtml: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             /**
              * Define if tabs content is rendered as raw HTML.
              * Warning: never render raw HTML on user-provider-content,
@@ -100,6 +105,18 @@
                 type: Boolean,
                 required: false,
                 default: true
+            },
+
+            /**
+             * Define if Vue should emit an event
+             * when the active tab changes.
+             *
+             * @type {Object}
+             */
+            emitChangeEvent: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
 
@@ -135,6 +152,10 @@
              */
             setActive(slug='') {
                 this.active = slug || Object.keys(this.tabs)[0];
+
+                if (this.emitChangeEvent) {
+                    this.$emit('tabchange', this.active);
+                }
             }
         }
     };

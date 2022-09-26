@@ -1,0 +1,41 @@
+.subtitle {
+    color:$color-green;
+    font-size: rem(11);
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.process-modal__participants {
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    & .user-bar__avatar-container {
+        height: 40px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 40px;
+    }
+}
+
+.panel-details__service {
+    border-radius: 6px;
+    height: 8px;
+    margin-right: 5px;
+    width: 8px;
+
+    &--desarrollo-de-software {
+        background-color: $color-desarrollo-de-software;
+    }
+
+    &--infraestructura {
+        background-color: $color-infraestructura;
+    }
+
+    &--cuentas-de-acceso {
+        background-color: $color-cuentas-de-acceso;
+    }
+
+    &--instalacion-de-sofware {
+        background-color: $color-instalacion-de-software;
+    }
+}

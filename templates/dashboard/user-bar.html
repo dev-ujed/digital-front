@@ -28,11 +28,12 @@
 
             <div class="user-bar__profile" @mouseenter="profileMenuVisible = true" @mouseleave="profileMenuVisible = false">
                 <div class="user-bar__avatar-container">
-                    <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
+                    {% load static %}
+                    <img class="user-bar__avatar" src="{% static 'img/default.png' %}" alt="">
                 </div>
 
                 <p class="user-bar__user-name">
-                    Nombre
+                    {{ userAuth.name }}
                 </p>
 
                 <transition
@@ -43,13 +44,14 @@
                         <li class="user-bar__profile-menu-item user--info center-text">
 
                             <div class="user-bar__avatar-container">
-                                <img class="user-bar__avatar" src="https://image.shutterstock.com/image-vector/user-icon-trendy-flat-style-260nw-418179865.jpg" alt="">
+                                {% load static %}
+                                <img class="user-bar__avatar" src="{% static 'img/default.png' %}" alt="">
                             </div>
 
-                            <p class="name">David huerta Lozano</p>
+                            <p class="name">{{ userAuth.name }} {{ userAuth.last_name }}</p>
                             <p class="rol">Front End</p>
                         </li>
-                        <li class="user-bar__profile-menu-item">
+            <!--             <li class="user-bar__profile-menu-item">
                             <a class="user-bar__profile-menu-link" href="#">
                                 Modificar perfil
                             </a>
@@ -59,9 +61,9 @@
                                 Cambiar contraseña
                             </a>
                         </li>
-
+ -->
                         <li class="user-bar__profile-menu-item">
-                            <a class="user-bar__profile-menu-link user-bar__profile-menu-link--logout" href="http://{{ request.get_host }}/digitalapp/salir">
+                            <a class="user-bar__profile-menu-link user-bar__profile-menu-link--logout" href="{% url 'public:salir' %}">
                                 <svg class="user-bar__logout-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><path fill="none" stroke-width="1.885" stroke-linecap="round" stroke-miterlimit="10" d="M3.348 4.949a5.433 5.433 0 1 0 8.296 0"/><path fill="none" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M7.5 1v5"/></svg>
                                 Cerrar sesión
                             </a>

@@ -100,6 +100,7 @@ User bar
 }
 
 .user-bar__avatar {
+    vertical-align: initial;
     height: auto;
     width: 100%;
 }
@@ -108,9 +109,53 @@ User bar
     border-radius: 9999px;
     box-shadow: inset 0 2px 2px rgba(#000, 0.4);
     display: inline-block;
-    height: 40px;
+    height: 28px;
     overflow: hidden;
-    width: 40px;
+    width: 28px;
+
+    &--count {
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+
+    &--add {
+        background-color: #f9fafa;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        text-align: center;
+        overflow: hidden;
+        vertical-align: top;
+
+        &:hover {
+            border: 1px solid #8a96a1;
+        }
+    }
+}
+
+.user-bar__count {
+    color: $color-gray-60;
+    display: block;
+    font-size: 12px;
+    line-height: 2.1;
+}
+
+.user-bar__plus {
+    background-color: #f9fafa;
+    color: #8a96a1;
+    display: flex;
+    font-size: 12px;
+    height: 100%;
+    line-height: 2.1;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        color: $color-dashboard-green;
+        cursor: pointer;
+    }
 }
 
 .user-bar__user-name {

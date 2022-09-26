@@ -1,0 +1,37 @@
+<section class="section mb-16 hidden lg:d-block">
+
+        <div class="row fluid-container">
+            <div class="lg:col-7/12">
+                <div class="db-panel">
+                    <p class="card-request__header">
+                        CONTENIDO
+                    </p>
+
+                    <title-request
+                        folio="{{ request.folio }}"
+                        datatitle="{{ request.titulo }}">
+                    </title-request>
+
+                    {% include "solicitudes/partials/details.html" %}
+                </div>
+            </div>
+            <div class="lg:col-5/12">
+
+                <div class="db-panel">
+                    <p class="card-request__header">
+                        CONTACTO
+                    </p>
+
+                    {% include "solicitudes/partials/contact.html" %}
+                </div>
+
+                <div class="db-panel">
+                    <p class="card-request__header">
+                        SERVICIOS
+                    </p>
+
+                    {% include "solicitudes/partials/services.html" %}
+                </div>
+            </div>
+        </div>
+</section>

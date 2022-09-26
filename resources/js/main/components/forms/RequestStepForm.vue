@@ -6,6 +6,7 @@
                 name="descripcion"
                 cols="30"
                 rows="10"
+                maxlength="500"
                 v-model="fields.descripcion"
                 ref="description_field">
             </text-area>
@@ -83,6 +84,7 @@
                 errors : {},
                 thumbs: [],
                 names: [],
+                hasThumb: [],
             };
         },
         watch: {

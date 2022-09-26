@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.core.mail import EmailMessage
 from django.http import HttpResponse, JsonResponse
-import requests, json
+from django.shortcuts import render
+from django.template.loader import render_to_string
 
 from requests.auth import HTTPBasicAuth
-
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+import requests, json
 
 
 def save(request):
@@ -19,25 +19,31 @@ def save(request):
         errors.update({'descripcion' : ['Este campo no puede estar en blanco.']})
 
     for i in data_request['files']:
-        index = i.split("_")[1];
+        index = i.split("_")[1]
         dataFile = { "descripcion": data_request['files'][i] }
 
-        responseFiles = requests.put('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
+        responseFiles = requests.put(settings.URL_API + '/solicitudes/sol/solicitudes/'+index+'/update/',data = dataFile)
 
         if responseFiles.status_code == 422:
             errors.update({i: ['Asegúrese de que este campo no tenga más de 80 caracteres.'] })
 
+    response = validateUpdateRequest(data_request, data)
+
+    if response.status_code == 422:
+        errors.update(response.json())
+
     if bool(errors):
         return JsonResponse({'errors':errors}, status = 422)
 
-    response = validateUpdateRequest(data_request, data)
     sendEmail(response.json())
 
     return displayResponse(response)
 
 def saveuser(request):
+    response     = {}
+    customMsn    = {}
     data_request = json.loads(request.body.decode('utf-8'))
-    datanull     = ['apellido_materno', 'telefono', 'extension', 'telefono', 'pautoriza']
+    datanull     = ['id', 'apellido_materno', 'telefono', 'extension', 'telefono', 'pautoriza']
     datainitial  = {
         "matricula": data_request['matricula'],
         "ures": data_request['ures'],
@@ -45,40 +51,34 @@ def saveuser(request):
         "apellido_paterno": data_request['apellido_paterno'],
         "correo": data_request['correo'],
     }
-    customMessage = {}
 
-    if data_request['ures'] == '':
-        customMessage.update({'ures': 'Selecciona una opción.'})
+    data          = validatenulls(data_request, datainitial, datanull)
+    customMessage = validateRequired(data_request, customMsn, datanull)
 
-    if data_request['telefono'] == '' and data_request['extension'] == '':
-        customMessage.update({
-            'telefono': 'Ingresa un teléfono o una extension valida',
-            'extension': '',
-        })
-
-    data = validatenulls(data_request, datainitial, datanull)
 
     if data_request['id'] == '':
-        response = requests.post('http://192.168.10.46:8000/solicitudes/sol/solicitudes/', data=data)
+        response = requests.post(settings.URL_API + '/solicitudes/sol/solicitudes/', data=data)
     else:
-        response = validateUpdateRequest(data_request, data)
+        if not bool(customMessage):
+           response = requests.put(settings.URL_API + '/solicitudes/sol/update-sol/'+data_request['id'], data=data)
+           return HttpResponse(response)
 
     return displayResponse(response, customMessage)
 
 
 def deleteRequest(request):
     data_request = json.loads(request.body.decode('utf-8'))
-    response = requests.delete('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+    response = requests.delete(settings.URL_API + '/solicitudes/sol/solicitudes/'+data_request['id'])
     return HttpResponse(response)
 
 
 def validateUpdateRequest(data_request, data):
-    getdata = requests.get('http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'])
+    getdata = requests.get(settings.URL_API + '/solicitudes/sol/solicitudes/'+data_request['id'])
 
     if 'descripcion' in getdata.json():
         if getdata.json().get('descripcion') == None:
             responseUpdate = requests.put(
-                'http://192.168.10.46:8000/solicitudes/sol/solicitudes/'+data_request['id'],
+                settings.URL_API + '/solicitudes/sol/descripcion/'+data_request['id'],
                 data = data
             )
         else:
@@ -95,6 +95,22 @@ def validatenulls(data_request, datainitial, datanull):
             datainitial.update({i: data_request[i]})
     return datainitial
 
+def validateRequired(data_request, customMessage, datanull):
+    customMessage = {}
+    for i in data_request:
+        if data_request[i] == '' and  i not in datanull:
+            customMessage.update({i: 'Este campo no puede estar en blanco.'})
+
+    if data_request['ures'] == '':
+        customMessage.update({'ures': 'Selecciona una opción.'})
+
+    if data_request['telefono'] == '' and data_request['extension'] == '':
+        customMessage.update({
+            'telefono': 'Ingresa un teléfono o una extension valida',
+            'extension': '',
+        })
+
+    return customMessage
 
 def ChangeMessage(customMessage, errors):
     for key, value in customMessage.items():
@@ -104,9 +120,17 @@ def ChangeMessage(customMessage, errors):
 
 def displayResponse(response, customMessage={}):
     errors = {}
+    if bool(response):
+        if response.status_code == 422:
+            errors.update(response.json())
+
+    if bool(customMessage):
+        errors.update(ChangeMessage(customMessage, errors))
+
     if response.status_code == 422:
         errors.update(response.json())
-        errors = ChangeMessage(customMessage, errors)
+
+    if bool(errors):
         return JsonResponse({'errors':errors}, status = 422)
     else:
         return JsonResponse(response.json())

@@ -1,12 +1,13 @@
 <template>
-    <nav id="main-menu" class="main-menu" role="navigation">
+    <nav id="main-menu" class="main-menu" ref="menu_container" role="navigation">
         <div class="container main-menu__container">
-           <a class="main-logo__dtd" :href="$root.path" title="Inicio"
+           <a class="main-logo__dtd main-logo__dtd--flex" :href="$root.path+'/digitalapp/'" title="Inicio"
                 :class="{
                     'main-logo__dtd--open': menuIsOpen,
                     'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
                 }">
-                <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
+                <img :src="$root.path + '/static/img/header/logo-header-icon.png'"  class="main-logo__icon" alt="Dirección de transformación Digital">
+                <img ref="image_title" :src="$root.path + '/static/img/header/logo-header-texto.png'" class="main-logo__text"alt="Dirección de transformación Digital">
             </a>
 
             <div class="main-logo__ujed float-right">
@@ -28,14 +29,12 @@
                 <span v-else class="visually-hidden">Mostrar menú</span>
             </button>
         </div>
-
         <div class="main-menu__background"
              :class="{
                     'main-menu__background--open': menuIsOpen,
                     'main-menu__background--closed': ! menuIsOpen && buttonClicked
                 }">
         </div>
-
         <div class="main-menu__list--container"
             :class="{
                     'main-menu__list--container--open': menuIsOpen,
@@ -47,7 +46,7 @@
                         'main-logo__dtd--open': menuIsOpen,
                         'main-logo__dtd--closed': ! menuIsOpen && buttonClicked,
                     }">
-                    <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital">
+                    <!-- <img :src="$root.path + '/static/img/header/logo-dtd.png'" alt="Dirección de transformación Digital"> -->
                 </a>
             </div>
 
@@ -95,7 +94,7 @@
                         'main-menu__li--open': menuIsOpen,
                         'main-menu__li--closed': ! menuIsOpen && buttonClicked
                     }">
-                    <a class="js-item main-menu__link" :href="this.$root.path + 'ingresar'"
+                    <a class="js-item main-menu__link" :href="$root.path + '/administracion/'"
                         @keydown.left.right.up.down.prevent="arrowNavigation"
                     >
                         <span class="main-menu__login-icon" aria-hidden="true"></span>
@@ -110,7 +109,6 @@
                     }">
                 Dirección de Transformación Digital <br> Universidad Juárez del Estado de Durango
             </p>
-
         </div>
     </nav>
 </template>
@@ -151,6 +149,7 @@
                 if (value) {
                     // Wait for the element to be visible (nextTick is not enough)
                     setTimeout(this.focusTrap.activate, 50);
+                    this.$refs.image_title.classList.add('visually-hidden');
                 }
                 else {
                     this.focusTrap.deactivate();
@@ -159,7 +158,6 @@
         },
 
         mounted() {
-
             this.menuItems = this.$el.querySelectorAll('.js-item');
 
             this.setMatchMedia();
@@ -209,8 +207,6 @@
             setMatchMedia() {
                 const mq = window.matchMedia(`screen and (min-width:${this.breakpoint}px)`);
 
-                console.log(this.breakpoint);
-
                 mq.addListener(this.reset);
 
                 this.reset(mq);
@@ -241,6 +237,7 @@
                 this.buttonClicked = false;
 
                 this.$emit('resetSubmenus', e.matches);
+                this.$refs.image_title.classList.remove('visually-hidden')
             },
 
             /**
@@ -258,6 +255,7 @@
 
                 const app = document.getElementById('app');
                 app.classList.remove('overflow-hidden');
+                this.$refs.image_title.classList.remove('visually-hidden');
             },
 
             /*
@@ -302,7 +300,7 @@
              * Return a new instance of FocusTrap on the menu list.
              */
             setFocusTrap() {
-                return window.FocusTrap(this.$refs.list, {
+                return window.FocusTrap(this.$refs.menu_container, {
                     escapeDeactivates: false,
                     clickOutsideDeactivates: true
                 });

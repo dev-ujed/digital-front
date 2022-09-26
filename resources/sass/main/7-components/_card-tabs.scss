@@ -1,0 +1,135 @@
+/*
+===============================================================================
+Icon tabs responsive
+===============================================================================
+*/
+
+.icon-tabs {
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+
+    & .tabs__menu {
+        background-color: $color-gray-10;
+        border-radius: 4px 4px 0 0;
+        display: flex;
+        font-size: 11px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    & .tabs__menu .tabs__li {
+        color: $color-gray-50;
+        margin: 0 15px;
+        padding-bottom: 3em;
+    }
+
+    & .tabs__menu .tabs__li::before {
+        background-position: center;
+        background-repeat: no-repeat;
+        color: transparent;
+        content: '.';
+        display: block;
+        filter: invert(78%) sepia(13%) saturate(180%) hue-rotate(169deg) brightness(93%) contrast(86%);
+        height: 100%;
+    }
+
+    & .tabs__menu .tabs__li--active::before {
+        filter: invert(50%) sepia(20%) saturate(5801%) hue-rotate(129deg) brightness(107%) contrast(55%);
+    }
+
+    &--request {
+        & .tabs__menu .tabs__li:first-child::before  {
+            background-image: url('/static/img/icons/list.svg');
+        }
+
+        & .tabs__menu .tabs__li:nth-child(2)::before {
+            background-image: url('/static/img/icons/user.svg');
+        }
+
+        & .tabs__menu .tabs__li:nth-child(3)::before {
+            background-image: url('/static/img/icons/processes.svg');
+        }
+
+        & .tabs__panel {
+            padding: 0 1em 3em 1em;
+        }
+
+        & .icon-pencil svg {
+            color: $color-gray-50;
+            height: 12px;
+        }
+    }
+
+    &--process {
+
+        & .tabs__menu {
+            justify-content: center;
+        }
+
+        & .tabs__menu .tabs__li:first-child {
+            margin-right: 40px;
+
+            @media (max-width: 320px) {
+                margin-right: 0px;
+            }
+        }
+
+        & .tabs__menu .tabs__li:first-child::before  {
+            background-image: url('/static/img/icons/list.svg');
+        }
+
+        & .tabs__menu .tabs__li:nth-child(2)::before {
+            background-image: url('/static/img/icons/clock.svg');
+        }
+    }
+}
+
+/*
+===============================================================================
+Initial tabs
+===============================================================================
+*/
+
+.initial-tabs {
+
+    border-radius: inherit;
+    width: 100%;
+
+    & .tabs__menu {
+        background-color: inherit;
+        border-radius: inherit;
+        display: flex;
+        font-size: 14px;
+        text-align: center;
+        justify-content: inherit;
+        max-width: 200px;
+        margin: auto;
+        margin-bottom: 3rem;
+    }
+
+    & .tabs__menu .tabs__li {
+        color: inherit;
+        padding: 0 15px;
+        margin: 0px;
+        padding-bottom: 10px;
+    }
+
+    & .tabs__menu .tabs__li:first-child {
+        margin-right: inherit;
+    }
+
+    & .tabs__menu .tabs__li::before {
+        background-position: inherit;
+        background-repeat: inherit;
+        color: inherit;
+        content: '';
+        display: inherit;
+        filter: inherit;
+        height: inherit;
+    }
+
+    & .tabs__menu .tabs__li--active::before {
+        filter: invert(50%) sepia(20%) saturate(5801%) hue-rotate(129deg) brightness(107%) contrast(55%);
+    }
+}

@@ -166,3 +166,24 @@ default state. They can be created with the `button-outline` mixin.
 .cursor--pointer {
     cursor: pointer;
 }
+
+.btn--change-status {
+    & svg {
+        height: 13px;
+        vertical-align: bottom;
+        width: 13px;
+        font-weight: bold;
+        margin-right: 3px;
+    }
+}
+
+.btn--save {
+    & svg {
+        height: 18px;
+        width: 18px;
+    }
+}
+
+.container-btn {
+    height: 30px;
+}
