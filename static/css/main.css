@@ -4255,6 +4255,14 @@ Requires javascript for full functionality.
   margin-bottom: 40px;
 }
 
+.form-bitacora {
+  background-color: #ffffff;
+  border: 1px solid #e0e3e6;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
 /*
 ================================================================================
 Modal

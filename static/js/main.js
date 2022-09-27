@@ -7918,9 +7918,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/XochitlEscamilla/Documents/DTD/resources/js/main */"./resources/js/main.js");
-__webpack_require__(/*! /Users/XochitlEscamilla/Documents/DTD/resources/sass/main.scss */"./resources/sass/main.scss");
-module.exports = __webpack_require__(/*! /Users/XochitlEscamilla/Documents/DTD/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\js\main */"./resources/js/main.js");
+__webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\sass\main.scss */"./resources/sass/main.scss");
+module.exports = __webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 
 
 /***/ })

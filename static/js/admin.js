@@ -8802,7 +8802,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/XochitlEscamilla/Documents/DTD/resources/js/admin */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\js\admin */"./resources/js/admin.js");
 
 
 /***/ })

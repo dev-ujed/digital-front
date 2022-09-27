@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('digitalapp.urls')),
     path('administracion/', include('dashboardapp.urls')),
     path('admin/', admin.site.urls),
+    path('bitacora/', include('bitacora.urls'))
 ]
