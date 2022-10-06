@@ -374,16 +374,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     array: {
       type: Array,
       required: true
+    },
+    folio: {
+      type: Object,
+      required: true
     }
   },
   data: function data() {
     return {
-      list: this.array
+      list: this.array,
+      servicio: this.servicio
     };
   },
   methods: {
@@ -393,6 +411,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     createModal: function createModal() {
       this.$root.$emit('showServiceModal');
+    },
+    borrarServicio: function borrarServicio() {
+      // console.log('borrar servicio ' + servicio.value);
+      var formData = new FormData();
+      formData.append("servicio", this.folio);
+      console.log(this.folio);
+      window.axios.post(this.$root.path + '/solicitudes/delete/', this.folio).then(function (datos) {
+        console.log(datos);
+      });
     },
     addItems: function addItems(data) {
       if (data !== undefined) {
@@ -740,6 +767,145 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$root.$on('binacle', this.addItem);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    lista: Array,
+    titulo: String
+  },
+  // data() {
+  // }, 
+  // mounted() {
+  //     alert('Mensaje de prueba');
+  // },
+  methods: {
+    showAlert: function showAlert() {
+      alert('Mensaje 2');
+    },
+    save: function save(type) {
+      var _this = this;
+
+      var el = this.$refs[type + '_comment_field'];
+
+      if (el.value === '') {
+        return;
+      }
+
+      var formBitacora = new FormBitacora();
+      formBitacora.append("unidad", el.value);
+      formBitacora.append("folio_sistema", el.value);
+      formBitacora.append("solicitado_por", el.value);
+      formBitacora.append("folio_interno", el.value);
+      formBitacora.append("fecha", el.value);
+      formBitacora.append("solicitud", el.value);
+      formBitacora.append("diagnostico", el.value);
+      formBitacora.append("material_requerido", el.value);
+      window.axios.post(this.$root.path + '/administracion/solicitudes/comentar-proceso', formBitacora).then(function (response) {
+        if (response.status === 200) {
+          if (type === 'public') {
+            _this["public"].unshift(response.data);
+          } else {
+            _this["private"].unshift(response.data);
+          }
+
+          el.value = '';
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -3798,11 +3964,16 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "db-process-card__date" }, [
-              _vm._v("  " + _vm._s(service.fec_subservicio) + " ")
+              _vm._v("  " + _vm._s(service.fec_subservicio) + " ,odificacion ")
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "badge badge--blue" }, [
-              _vm._v(" " + _vm._s(service.estatus_name) + "  ")
+              _vm._v(
+                " " +
+                  _vm._s(service.estatus_name) +
+                  " " +
+                  _vm._s(service.servicios_slug)
+              )
             ]),
             _vm._v(" "),
             _c(
@@ -3853,6 +4024,30 @@ var render = function() {
       }),
       0
     ),
+    _vm._v(" "),
+    _c("div", { staticClass: "text-center mt-6 w-full" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn--light w-full",
+          on: { click: _vm.borrarServicio }
+        },
+        [
+          _c("input", {
+            attrs: { hidden: "", type: "text", id: "servicio" },
+            domProps: { value: _vm.folio }
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            { staticClass: "icon-plus-circle" },
+            [_vm._t("plus-circle")],
+            2
+          ),
+          _vm._v("\n            Borrar Servicio\n        ")
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "text-center mt-6 w-full" }, [
       _c(
@@ -4223,6 +4418,225 @@ var render = function() {
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "h1",
+        {
+          staticClass:
+            "h2 color-black text-center request--title mb-8 request--title"
+        },
+        [_vm._v("Bitacora")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "request__container" }, [
+        _c(
+          "form",
+          {
+            staticClass: "form-bitacora",
+            attrs: { action: "", id: "formBitacora" }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+                _c("p", [_vm._v("Unidad:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text", autofocus: "", maxlength: "80" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Folio sitema:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Solicitado por:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+                _c("p", [_vm._v("Folio interno:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Fecha:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "date" }
+                }),
+                _c("br"),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "form-control" }, [
+                _c("p", [_vm._v("Solicitud:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Diagnostico:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Material requerido para la reparacion:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "NOTA: EN CASO DE REQUERIR MATERIAL PARA SU REPARACION DEBERA SER TRAMITADO POR EL ÁREA A SU DIGNO CARGO."
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "form-control" }, [
+                _c("p", [_vm._v("Equipo revisado por:")]),
+                _vm._v(" "),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+                _c("p", [_vm._v("Nombre:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Área:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+                _c("p", [_vm._v("Nombre:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [_vm._v("Puesto:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "form-control" }, [
+                _c("p", [_vm._v("Recibido por:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-field",
+                  attrs: { type: "text" }
+                }),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn btn--form request--button",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("\n                    Guardar ⤍\n                ")]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -6593,6 +7007,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/procesess/BitacoraForm.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/admin/components/procesess/BitacoraForm.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BitacoraForm.vue?vue&type=template&id=f02447a8& */ "./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8&");
+/* harmony import */ var _BitacoraForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BitacoraForm.vue?vue&type=script&lang=js& */ "./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BitacoraForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/admin/components/procesess/BitacoraForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BitacoraForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BitacoraForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BitacoraForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./BitacoraForm.vue?vue&type=template&id=f02447a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/admin/components/procesess/BitacoraForm.vue?vue&type=template&id=f02447a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BitacoraForm_vue_vue_type_template_id_f02447a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/procesess/Cards.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/admin/components/procesess/Cards.vue ***!
@@ -7408,6 +7891,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_components_TransparentOverlay_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../main/components/TransparentOverlay.vue */ "./resources/js/main/components/TransparentOverlay.vue");
 /* harmony import */ var _components_procesess_DragPanel_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/procesess/DragPanel.vue */ "./resources/js/admin/components/procesess/DragPanel.vue");
 /* harmony import */ var _components_procesess_EmailModal_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/procesess/EmailModal.vue */ "./resources/js/admin/components/procesess/EmailModal.vue");
+/* harmony import */ var _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/procesess/BitacoraForm.vue */ "./resources/js/admin/components/procesess/BitacoraForm.vue");
+
 
 
 
@@ -7451,6 +7936,7 @@ __webpack_require__.r(__webpack_exports__);
   Vue.component('participants', _components_procesess_Participants_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
   Vue.component('binnacle', _components_procesess_Binnacle_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
   Vue.component('comments', _components_procesess_Comments_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+  Vue.component('bitacora-form', _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
   /*
   |------------------------------------------------------------------------
   | Vm
@@ -8802,7 +9288,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\js\admin */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /home/oscar/digital-front/resources/js/admin */"./resources/js/admin.js");
 
 
 /***/ })

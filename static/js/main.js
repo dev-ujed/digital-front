@@ -95,7 +95,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_Gallerymixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/Gallerymixin.js */ "./resources/js/main/mixins/Gallerymixin.js");
+/* harmony import */ var _mixins_GalleryMixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/GalleryMixin.js */ "./resources/js/main/mixins/GalleryMixin.js");
 //
 //
 //
@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_Gallerymixin_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_GalleryMixin_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     slug: {
       type: String,
@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _mixins_Gallerymixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/Gallerymixin.js */ "./resources/js/main/mixins/Gallerymixin.js");
+/* harmony import */ var _mixins_GalleryMixin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/GalleryMixin.js */ "./resources/js/main/mixins/GalleryMixin.js");
 //
 //
 //
@@ -208,7 +208,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_mixins_Gallerymixin_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_GalleryMixin_js__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     images: {
       type: Array,
@@ -7774,9 +7774,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/main/mixins/Gallerymixin.js":
+/***/ "./resources/js/main/mixins/GalleryMixin.js":
 /*!**************************************************!*\
-  !*** ./resources/js/main/mixins/Gallerymixin.js ***!
+  !*** ./resources/js/main/mixins/GalleryMixin.js ***!
   \**************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -7918,9 +7918,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\js\main */"./resources/js/main.js");
-__webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\sass\main.scss */"./resources/sass/main.scss");
-module.exports = __webpack_require__(/*! C:\Users\cesne\Desktop\digital-front\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! /home/oscar/digital-front/resources/js/main */"./resources/js/main.js");
+__webpack_require__(/*! /home/oscar/digital-front/resources/sass/main.scss */"./resources/sass/main.scss");
+module.exports = __webpack_require__(/*! /home/oscar/digital-front/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
 
 
 /***/ })

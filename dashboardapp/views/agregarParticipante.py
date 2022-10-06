@@ -33,3 +33,12 @@ def agregarParticipante(request):
         res['bitacora'].update({'fecha_bitacora' : (bitacoraDate+' '+localedate).capitalize()})
 
         return JsonResponse(res)
+
+def borrarSolicitud(request):
+    data = {
+        "user": request.session['user']['id'],
+        "folio": request.POST['folio'],
+    }
+
+    response = requests.post(settings.URL_API + 'sol/solicitudes/delete/<slug:folio>', data=data) 
+    return JsonResponse({'msg':response.json()}, status = 200)   

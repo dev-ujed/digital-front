@@ -14,6 +14,7 @@ import Comments from './components/procesess/Comments.vue';
 import TransparentOverlay from '../main/components/TransparentOverlay.vue';
 import DragPanel from './components/procesess/DragPanel.vue';
 import EmailModal from './components/procesess/EmailModal.vue';
+import BitacoraForm from './components/procesess/BitacoraForm.vue';
 
 (function() {
     /* Base components
@@ -41,6 +42,8 @@ import EmailModal from './components/procesess/EmailModal.vue';
     Vue.component('participants', Participants);
     Vue.component('binnacle', Binnacle);
     Vue.component('comments', Comments);
+    Vue.component('bitacora-form', BitacoraForm);
+    
 
     /*
     |------------------------------------------------------------------------

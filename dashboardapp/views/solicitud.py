@@ -46,7 +46,7 @@ def solicitud(request, folio):
             'subservices' : json.dumps(solicitud[0]['subservices']),
             'services' : services,
             'statuses' : statuses,
-            'team': team
+            'team': team,
         })
 
 def getLocaleDate(date):

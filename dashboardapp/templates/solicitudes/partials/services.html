@@ -1,6 +1,7 @@
 
 <cards-services
-    :array="{{ subservices }}">
+    :array="{{ subservices }}"
+    folio="{{ request.folio }}">
     <template slot="plus-circle">
         {% load svg %}
         {% svg 'plus-circle' %}

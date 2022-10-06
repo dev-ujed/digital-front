@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import GalleryMixin from '../mixins/Gallerymixin.js';
+    import GalleryMixin from '../mixins/GalleryMixin.js';
 
     export default {
         mixins: [GalleryMixin],
