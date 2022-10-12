@@ -857,26 +857,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    lista: Array,
-    titulo: String
+  data: function data() {
+    return {
+      nombre: ''
+    };
   },
-  // data() {
-  // }, 
-  // mounted() {
-  //     alert('Mensaje de prueba');
-  // },
   methods: {
-    showAlert: function showAlert() {
-      alert('Mensaje 2');
-    },
     save: function save(type) {
-      var _this = this;
-
       var el = this.$refs[type + '_comment_field'];
 
       if (el.value === '') {
@@ -891,16 +879,26 @@ __webpack_require__.r(__webpack_exports__);
       formBitacora.append("fecha", el.value);
       formBitacora.append("solicitud", el.value);
       formBitacora.append("diagnostico", el.value);
-      formBitacora.append("material_requerido", el.value);
-      window.axios.post(this.$root.path + '/administracion/solicitudes/comentar-proceso', formBitacora).then(function (response) {
+      formBitacora.append("material", el.value);
+      formBitacora.append("tecnico", el.value);
+      formBitacora.append("area", el.value);
+      formBitacora.append("supervisor", el.value);
+      formBitacora.append("puesto", el.value);
+      formBitacora.append("recibido_por", el.value);
+      axios.defaults.xsrfCookieName = 'csrftoken';
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+      window.axios({
+        method: 'post',
+        url: this.$root.path + '/bitacora/sol/bitacoraServicio/',
+        xstfCookieName: 'csrftoken',
+        xsrfHeaderName: 'X-CSRFToken',
+        data: updateIDs,
+        headers: {
+          'X-CSRFToken': 'csrftoken'
+        }
+      }).then(function (response) {
         if (response.status === 200) {
-          if (type === 'public') {
-            _this["public"].unshift(response.data);
-          } else {
-            _this["private"].unshift(response.data);
-          }
-
-          el.value = '';
+          console.log(response.data);
         }
       })["catch"](function (error) {
         console.log(error);
@@ -4439,200 +4437,216 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c(
+      "h1",
+      {
+        staticClass:
+          "h2 color-black text-center request--title mb-8 request--title"
+      },
+      [_vm._v("Bitacora")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "request__container" }, [
+      _c(
+        "form",
+        {
+          staticClass: "form-bitacora",
+          attrs: { action: "", id: "formBitacora", method: "post" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+              _c("p", [_vm._v("Nombre:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nombre,
+                    expression: "nombre"
+                  }
+                ],
+                staticClass: "form-field",
+                attrs: { type: "text" },
+                domProps: { value: _vm.nombre },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nombre = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("p", [_vm._v("Puesto:")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-field",
+                attrs: { type: "text" }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("br")
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-center" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn btn--form request--button",
+                attrs: { type: "submit" },
+                on: {
+                  click: function($event) {
+                    return _vm.save()
+                  }
+                }
+              },
+              [_vm._v("\n                    Guardar →\n                ")]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "h1",
-        {
-          staticClass:
-            "h2 color-black text-center request--title mb-8 request--title"
-        },
-        [_vm._v("Bitacora")]
-      ),
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+        _c("p", [_vm._v("Unidad:")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-field",
+          attrs: { type: "text", autofocus: "", maxlength: "80" }
+        }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [_vm._v("Folio sitema:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [_vm._v("Solicitado por:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br")
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "request__container" }, [
-        _c(
-          "form",
-          {
-            staticClass: "form-bitacora",
-            attrs: { action: "", id: "formBitacora" }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
-                _c("p", [_vm._v("Unidad:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text", autofocus: "", maxlength: "80" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Folio sitema:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Solicitado por:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
-                _c("p", [_vm._v("Folio interno:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Fecha:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "date" }
-                }),
-                _c("br"),
-                _c("br")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-control" }, [
-                _c("p", [_vm._v("Solicitud:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Diagnostico:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Material requerido para la reparacion:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "NOTA: EN CASO DE REQUERIR MATERIAL PARA SU REPARACION DEBERA SER TRAMITADO POR EL ÁREA A SU DIGNO CARGO."
-                  )
-                ]),
-                _vm._v(" "),
-                _c("br")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-control" }, [
-                _c("p", [_vm._v("Equipo revisado por:")]),
-                _vm._v(" "),
-                _c("br")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
-                _c("p", [_vm._v("Nombre:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _c("br"),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Área:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-control col sm:col-1/2" }, [
-                _c("p", [_vm._v("Nombre:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("p", [_vm._v("Puesto:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("br")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "form-control" }, [
-                _c("p", [_vm._v("Recibido por:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-field",
-                  attrs: { type: "text" }
-                }),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("br")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn btn--form request--button",
-                  attrs: { type: "submit" }
-                },
-                [_vm._v("\n                    Guardar ⤍\n                ")]
-              )
-            ])
-          ]
-        )
+      _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+        _c("p", [_vm._v("Folio interno:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [_vm._v("Fecha:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "date" } }),
+        _c("br"),
+        _c("br")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-control" }, [
+        _c("p", [_vm._v("Solicitud:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [_vm._v("Diagnostico:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [_vm._v("Material requerido para la reparacion:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "NOTA: EN CASO DE REQUERIR MATERIAL PARA SU REPARACION DEBERA SER TRAMITADO POR EL ÁREA A SU DIGNO CARGO."
+          )
+        ]),
+        _vm._v(" "),
+        _c("br")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-control" }, [
+        _c("p", [_vm._v("Equipo revisado por:")]),
+        _vm._v(" "),
+        _c("br")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control col sm:col-1/2" }, [
+      _c("p", [_vm._v("Nombre:")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _c("p", [_vm._v("Área:")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-field", attrs: { type: "text" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-control" }, [
+        _c("p", [_vm._v("Recibido por:")]),
+        _vm._v(" "),
+        _c("input", { staticClass: "form-field", attrs: { type: "text" } }),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br")
       ])
     ])
   }
@@ -7891,7 +7905,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_components_TransparentOverlay_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../main/components/TransparentOverlay.vue */ "./resources/js/main/components/TransparentOverlay.vue");
 /* harmony import */ var _components_procesess_DragPanel_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/procesess/DragPanel.vue */ "./resources/js/admin/components/procesess/DragPanel.vue");
 /* harmony import */ var _components_procesess_EmailModal_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/procesess/EmailModal.vue */ "./resources/js/admin/components/procesess/EmailModal.vue");
-/* harmony import */ var _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/procesess/BitacoraForm.vue */ "./resources/js/admin/components/procesess/BitacoraForm.vue");
+/* harmony import */ var _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/procesess/BitacoraForm.vue */ "./resources/js/admin/components/procesess/BitacoraForm.vue");
 
 
 
@@ -7936,7 +7950,7 @@ __webpack_require__.r(__webpack_exports__);
   Vue.component('participants', _components_procesess_Participants_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
   Vue.component('binnacle', _components_procesess_Binnacle_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
   Vue.component('comments', _components_procesess_Comments_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-  Vue.component('bitacora-form', _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+  Vue.component('bitacora-form', _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
   /*
   |------------------------------------------------------------------------
   | Vm

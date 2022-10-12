@@ -1,12 +1,8 @@
 <template>
     <div>
-        <!-- <p>{{ titulo }}</p>
-        <p v-for="item in lista" :key="item" @click="showAlert()">
-           {{ item }} 
-        </p> -->
         <h1 class="h2 color-black text-center request--title mb-8 request--title">Bitacora</h1>
         <div class="request__container">
-            <form class="form-bitacora"  action="" id="formBitacora">
+            <form class="form-bitacora"  action="" id="formBitacora" method="post">
                 <div class="row">
                     <div class="form-control col sm:col-1/2">
                         <p>Unidad:</p>
@@ -50,7 +46,7 @@
                     </div>
                     <div class="form-control col sm:col-1/2">
                         <p>Nombre:</p>
-                        <input class="form-field" type="text">
+                        <input v-model="nombre" class="form-field" type="text">
                         <br>
                         <br>
                         <p>Puesto:</p>
@@ -68,31 +64,25 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn btn--form request--button">
-                        Guardar ⤍
+                    <button type="submit" class="btn btn btn--form request--button" @click="save()">
+                        Guardar →
                     </button>
                 </div>
             </form>
         </div>
     </div>
+
 </template>
 
 <script>
 
     export default {
-        props:{
-            lista:Array,
-            titulo:String,
+        data() {
+            return {
+                nombre: '',
+            };
         }, 
-        // data() {
-        // }, 
-        // mounted() {
-        //     alert('Mensaje de prueba');
-        // },
         methods:{
-            showAlert(){
-                alert('Mensaje 2');
-            },
             save(type){
                 let el = this.$refs[type+'_comment_field'];
 
@@ -109,28 +99,36 @@
                 formBitacora.append("fecha", el.value);
                 formBitacora.append("solicitud", el.value);
                 formBitacora.append("diagnostico", el.value);
-                formBitacora.append("material_requerido", el.value);
+                formBitacora.append("material", el.value);
+                formBitacora.append("tecnico", el.value);
+                formBitacora.append("area", el.value);
+                formBitacora.append("supervisor", el.value);
+                formBitacora.append("puesto", el.value);
+                formBitacora.append("recibido_por", el.value);
 
-                window.axios
-                    .post(this.$root.path+'/administracion/solicitudes/comentar-proceso', formBitacora)
-                    .then(response => {
+                axios.defaults.xsrfCookieName = 'csrftoken';
+                axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-                        if(response.status === 200) {
+                window.axios({
+                    method: 'post',
+                    url: this.$root.path+'/bitacora/sol/bitacoraServicio/',
+                    xstfCookieName: 'csrftoken',
+                    xsrfHeaderName: 'X-CSRFToken',
+                    data: updateIDs,
+                    headers: {
+                        'X-CSRFToken': 'csrftoken',
+                    }
+                }).then(response => {
 
-                            if(type === 'public') {
-                                this.public.unshift(response.data);
-                            } else {
-                                this.private.unshift(response.data);
-                            }
+                    if(response.status === 200) {
 
-                            el.value = '';
-                        }
-                    })
-                    .catch(error => {
-
+                        console.log(response.data);
+                    }
+                }).catch(error => {
                         console.log(error)
                     })
-            }          
+                }
+            
         }
     };
 </script>

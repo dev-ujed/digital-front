@@ -1,28 +1,79 @@
 {% extends 'dashboard/master.html' %}
 {% load svg %}
 {% block content %}
-    <div class="db-heading">
-        <div class="breadcrums db-breadcrums">
-            <a href="/administracion" class="breadcrums__link">Dashboard</a>
-            <span class="breadcrums__chevron">
-                {% load svg %}
-                {% svg 'chevron-right' %}
-            </span>
-            <a href="/administracion" class="breadcrums__link">Solicitudes</a>
-            <span class="breadcrums__chevron">
-                {% load svg %}
-                {% svg 'chevron-right' %}
-            </span>
-            <a class="breadcrums__link breadcrums__link--active">Bandeja</a>
-       </div>
-        <h1 class="db-heading__title">
-            Bitacora de servicios
-        </h1>
-    </div>
-    <bitacora-form
-                :lista="{{ lista }}"
-                titulo="{{ titulo }}">    
-    </bitacora-form>
+    
+    <div>
+        <h1 class="h2 color-black text-center request--title mb-8 request--title">Bitacora</h1>
+        <div class="request__container">
+            <form class="form-bitacora"  action="" id="formBitacora" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-control col sm:col-1/2">
+                        <p>Unidad:</p>
+                        <input class="form-field" type="text" autofocus maxlength="80" ><br><br>
+                        <p>Folio sitema:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>Solicitado por:</p>
+                        <input class="form-field" type="text"><br><br>
+                    </div>
+                    <div class="form-control col sm:col-1/2">
+                        <p>Folio interno:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>Fecha:</p>
+                        <input class="form-field" type="date"><br><br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-control">
+                        <p>Solicitud:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>Diagnostico:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>Material requerido para la reparacion:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>NOTA: EN CASO DE REQUERIR MATERIAL PARA SU REPARACION DEBERA SER TRAMITADO POR EL ÁREA A SU DIGNO CARGO.</p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-control">
+                        <p>Equipo revisado por:</p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-control col sm:col-1/2">
+                        <p>Nombre:</p>
+                        <input class="form-field" type="text"><br><br>
+                        <p>Área:</p>
+                        <input class="form-field" type="text">
+                    </div>
+                    <div class="form-control col sm:col-1/2">
+                        <p>Nombre:</p>
+                        <input v-model="nombre" class="form-field" type="text">
+                        <br>
+                        <br>
+                        <p>Puesto:</p>
+                        <input class="form-field" type="text">
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-control">
+                        <p>Recibido por:</p>
+                        <input class="form-field" type="text">
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn btn--form request--button" >
+                        Guardar →
+                    </button>
+                </div>
+            </form>
+        </div>
 {% endblock %}
 
 

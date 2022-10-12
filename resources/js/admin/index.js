@@ -11,10 +11,10 @@ import ProcessModal from './components/procesess/ProcessModal.vue';
 import Participants from './components/procesess/Participants.vue';
 import Binnacle from './components/procesess/Binnacle.vue';
 import Comments from './components/procesess/Comments.vue';
-import TransparentOverlay from '../main/components/TransparentOverlay.vue';
-import DragPanel from './components/procesess/DragPanel.vue';
-import EmailModal from './components/procesess/EmailModal.vue';
-import BitacoraForm from './components/procesess/BitacoraForm.vue';
+import TransparentOverlay from  '../main/components/TransparentOverlay.vue';
+import DragPanel    from        './components/procesess/DragPanel.vue';
+import EmailModal   from        './components/procesess/EmailModal.vue';
+import BitacoraForm from        './components/procesess/BitacoraForm.vue';
 
 (function() {
     /* Base components
