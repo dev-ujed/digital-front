@@ -3884,6 +3884,107 @@ default state. They can be created with the `button-outline` mixin.
   height: 1em;
 }
 
+.container-card {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  gap: 20px;
+  padding: 20px 12%;
+}
+
+.card-area {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  text-align: center;
+  background: #fff;
+  margin: 0 0.5em;
+  border-radius: 10px;
+  box-shadow: 3px 3px 6px #00000029;
+  max-width: 600px;
+  overflow: hidden;
+  padding: 15px;
+  padding-bottom: 40px;
+  padding-top: 30px;
+  width: calc(100% - 10px);
+}
+
+@media screen and (max-width: 1300px) {
+  .container-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
+    -webkit-box-align: center;
+            align-items: center;
+    padding: 20px 15%;
+  }
+  .card-area {
+    margin: 20px 0;
+    width: 100%;
+  }
+}
+
+.card-area:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.icon-card {
+  max-width: 80px;
+  margin-bottom: 1.2em;
+}
+
+.title-card {
+  color: #3A4148;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1.2em;
+}
+
+.text-card {
+  padding: 0 5%;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+  margin-bottom: 1.2em;
+}
+
+.button-card {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #CB284D;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.button-card:hover {
+  background-color: #E6446D;
+  color: #fff;
+  text-decoration: none !important;
+}
+
+.ul-card {
+  text-align: start;
+}
+
+.ul-card li {
+  margin-bottom: 1em;
+  color: #3A4148;
+}
+
+.ul-card li::marker {
+  color: #E6446D;
+  font-size: 1em;
+}
+
 /*
 ================================================================================
 Checkbox
@@ -4366,8 +4467,8 @@ Main menu
 ================================================================================
 */
 .main-menu {
-  background: transparent -webkit-gradient(linear, left top, right top, from(#BD4A84), color-stop(25%, #E54469), color-stop(90%, #B11830)) 0% 0% no-repeat padding-box;
-  background: transparent linear-gradient(90deg, #BD4A84 0%, #E54469 25%, #B11830 90%) 0% 0% no-repeat padding-box;
+  background: transparent -webkit-gradient(linear, left top, right top, from(#BD4A84), color-stop(25%, #E54469), color-stop(90%, #BA0000)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(90deg, #BD4A84 0%, #E54469 25%, #BA0000 90%) 0% 0% no-repeat padding-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 0.9375rem;
   position: relative;
@@ -6069,7 +6170,7 @@ Background colors
 }
 
 .bg-ujed {
-  background-color: #B11830 !important;
+  background-color: #BA0000 !important;
 }
 
 .bg-link {
@@ -6323,7 +6424,7 @@ Border color
 }
 
 .border-ujed {
-  border-color: #B11830 !important;
+  border-color: #BA0000 !important;
 }
 
 .border-link {
@@ -9459,7 +9560,7 @@ Color
 }
 
 .color-ujed {
-  color: #B11830 !important;
+  color: #BA0000 !important;
 }
 
 .color-link {
