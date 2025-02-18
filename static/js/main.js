@@ -1040,55 +1040,50 @@ __webpack_require__.r(__webpack_exports__);
       this.PrevUser();
     },
     newRequest: function newRequest() {
-      var _this4 = this;
-
-      var documentOffset = Object(_helpers_getScrollTop_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-      var titleOffset = Object(_helpers_getScrollTop_js__WEBPACK_IMPORTED_MODULE_3__["default"])(this.title);
-      var duration = 600;
+      window.location.href = '/';
+      /* const documentOffset = getScrollTop();
+      const titleOffset = getScrollTop(this.title);
+      let duration = 600;
       this.step = 0;
       this.isRight = true;
-
-      if (documentOffset === titleOffset) {
-        this.reset();
-        this.successSteps = false;
-        return;
+       if (documentOffset === titleOffset) {
+          this.reset();
+          this.successSteps = false;
+          return;
       }
-
-      if (Math.abs(titleOffset - documentOffset) < 200) {
-        duration = 400;
+       if (Math.abs(titleOffset - documentOffset) < 200) {
+          duration = 400;
       }
-
-      Object(_helpers_scrollTo_js__WEBPACK_IMPORTED_MODULE_2__["default"])(this.title, 0, duration);
-      setTimeout(function () {
-        _this4.reset();
-
-        _this4.successSteps = false;
-      }, duration);
+       scrollTo(this.title, 0, duration);
+       setTimeout(() => {
+          this.reset();
+          this.successSteps = false;
+      }, duration); */
     },
     moveRight: function moveRight() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.$refs.request_form.classList.remove('slideleft');
       this.$refs.request_form.classList.add('slideright');
       setTimeout(function () {
-        _this5.$refs.user.classList.add('invisible');
+        _this4.$refs.user.classList.add('invisible');
       }, 400);
       this.$refs.request.classList.remove('invisible');
       setTimeout(function () {
-        _this5.$refs.requeststep.$refs.description_field.$el.focus();
+        _this4.$refs.requeststep.$refs.description_field.$el.focus();
       }, 400);
     },
     moveLeft: function moveLeft() {
-      var _this6 = this;
+      var _this5 = this;
 
       this.$refs.request_form.classList.remove('slideright');
       this.$refs.request_form.classList.add('slideleft');
       setTimeout(function () {
-        _this6.$refs.request.classList.add('invisible');
+        _this5.$refs.request.classList.add('invisible');
       }, 400);
       this.$refs.user.classList.remove('invisible');
       setTimeout(function () {
-        _this6.$refs.userstep.$refs.email_field.$el.focus();
+        _this5.$refs.userstep.$refs.email_field.$el.focus();
       }, 400);
     }
   }
@@ -4144,7 +4139,7 @@ var render = function() {
                         _c(
                           "p",
                           { staticClass: "text-center size-normal mb-8 mt-4" },
-                          [_vm._v("Tu solicitud ha sido creada")]
+                          [_vm._v("Tu ticket ha sido creado")]
                         )
                       ]
                     ),
@@ -4153,7 +4148,7 @@ var render = function() {
                       "h4",
                       { staticClass: "text-center mb-6 color-gray-70" },
                       [
-                        _vm._v("El folio de la solicitud es: "),
+                        _vm._v("El folio de tu ticket es: "),
                         _c("b", [_vm._v(_vm._s(_vm.requestfolio))])
                       ]
                     ),
@@ -4194,7 +4189,7 @@ var render = function() {
                         },
                         [
                           _c("span", { staticClass: "mr-1" }, [
-                            _vm._v("Crear nueva solicitud")
+                            _vm._v("Crear nuevo ticket")
                           ])
                         ]
                       )
