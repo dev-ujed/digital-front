@@ -6,6 +6,7 @@ from . import views
 app_name = 'public'
 urlpatterns = [
     path('',                    views.index,            name='index'),
+    path('forms/<str:area>/',   views.forms,            name='forms'),
     path('crear-solicitud',     views.save,             name='save'),
     path('cancelar-solicitud',  views.deleteRequest,    name='deleteRequest'),
     path('crear-usuario',       views.saveuser,         name='saveuser'),

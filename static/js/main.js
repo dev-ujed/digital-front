@@ -894,6 +894,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -917,6 +918,10 @@ __webpack_require__.r(__webpack_exports__);
       required: true
     },
     urldelete: {
+      type: String,
+      required: true
+    },
+    area: {
       type: String,
       required: true
     }
@@ -1311,12 +1316,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   "extends": _base_BaseForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
   props: {
     ureslist: {
       type: Array,
+      required: true
+    },
+    area: {
+      type: String,
       required: true
     }
   },
@@ -1330,6 +1351,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$parent.$on('deleterequest', this.reset);
+    this.fields.area = this.area;
   },
   methods: {
     /**
@@ -4197,7 +4219,8 @@ var render = function() {
                             ref: "userstep",
                             attrs: {
                               action: _vm.urluser,
-                              ureslist: _vm.ureslist
+                              ureslist: _vm.ureslist,
+                              area: _vm.area
                             },
                             on: {
                               successuser: _vm.SuccessUser,
@@ -4371,6 +4394,29 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", [
+    _c(
+      "div",
+      { staticClass: "form-control", staticStyle: { display: "none" } },
+      [
+        _c("label", { attrs: { for: "area" } }, [_vm._v("Área")]),
+        _vm._v(" "),
+        _c("text-field", {
+          ref: "area_field",
+          attrs: { name: "area", type: "text", disabled: "" },
+          model: {
+            value: _vm.fields.area,
+            callback: function($$v) {
+              _vm.$set(_vm.fields, "area", $$v)
+            },
+            expression: "fields.area"
+          }
+        }),
+        _vm._v(" "),
+        _c("field-errors", { attrs: { name: "area" } })
+      ],
+      1
+    ),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "form-control" },
@@ -7918,9 +7964,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/oscar/digital-front/resources/js/main */"./resources/js/main.js");
-__webpack_require__(/*! /home/oscar/digital-front/resources/sass/main.scss */"./resources/sass/main.scss");
-module.exports = __webpack_require__(/*! /home/oscar/digital-front/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\js\main */"./resources/js/main.js");
+__webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\sass\main.scss */"./resources/sass/main.scss");
+module.exports = __webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 
 
 /***/ })

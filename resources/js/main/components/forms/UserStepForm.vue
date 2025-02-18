@@ -1,5 +1,17 @@
 <template>
     <form>
+        <div class="form-control" style="display: none;">
+            <label for="area">Área</label>
+            <text-field
+                name="area"
+                type="text"
+                v-model="fields.area"
+                ref="area_field"
+                disabled
+            >
+            </text-field>
+            <field-errors name="area"></field-errors>
+        </div>
         <div class="form-control">
             <label for="correo">Correo electrónico</label>
             <text-field
@@ -134,6 +146,10 @@
                 type: Array,
                 required: true
             },
+            area: {
+                type: String,
+                required: true
+            },
         },
         data() {
             return {
@@ -146,6 +162,7 @@
 
         mounted() {
             this.$parent.$on('deleterequest', this.reset);
+            this.fields.area = this.area;
         },
 
         methods:{

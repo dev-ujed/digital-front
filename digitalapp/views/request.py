@@ -46,6 +46,7 @@ def saveuser(request):
     datanull     = ['id', 'apellido_materno', 'telefono', 'extension', 'telefono', 'pautoriza']
     datainitial  = {
         "matricula": data_request['matricula'],
+        "area": data_request['area'],
         "ures": data_request['ures'],
         "nombre": data_request['nombre'],
         "apellido_paterno": data_request['apellido_paterno'],

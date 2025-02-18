@@ -8,3 +8,4 @@ def index(request):
         return redirect(reverse_lazy('public:ingresar'))
     else:
         return render(request, "index.html")
+
