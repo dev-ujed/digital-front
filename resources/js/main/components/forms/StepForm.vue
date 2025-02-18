@@ -15,10 +15,10 @@
                         <span class="alert__figure">
                             <slot name="success"></slot>
                         </span>
-                        <p class="text-center size-normal mb-8 mt-4">Tu solicitud ha sido creada</p>
+                        <p class="text-center size-normal mb-8 mt-4">Tu ticket ha sido creado</p>
                     </div>
 
-                    <h4 class="text-center mb-6 color-gray-70">El folio de la solicitud es: <b>{{ requestfolio }}</b></h4>
+                    <h4 class="text-center mb-6 color-gray-70">El folio de tu ticket es: <b>{{ requestfolio }}</b></h4>
 
                     <p>Cuando la solicitud sea concluida recibirás un correo de notificación.</p>
 
@@ -28,7 +28,7 @@
 
                     <div class="text-center mt-12">
                         <button @click.prevent="newRequest()" class="btn btn--form" type="submit">
-                            <span class="mr-1">Crear nueva solicitud</span>
+                            <span class="mr-1">Crear nuevo ticket</span>
                         </button>
                     </div>
                 </div>
@@ -239,7 +239,8 @@
             },
 
             newRequest() {
-                const documentOffset = getScrollTop();
+                window.location.href = '/';
+                /* const documentOffset = getScrollTop();
                 const titleOffset = getScrollTop(this.title);
                 let duration = 600;
                 this.step = 0;
@@ -260,7 +261,7 @@
                 setTimeout(() => {
                     this.reset();
                     this.successSteps = false;
-                }, duration);
+                }, duration); */
             },
 
             moveRight() {
