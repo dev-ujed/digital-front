@@ -40,6 +40,7 @@
                             @successuser="SuccessUser"
                             @requestid="GetID"
                             ref="userstep"
+                            :area="area"
                         >
                             <template slot="continue">
                                 <slot name="continue"></slot>
@@ -102,6 +103,10 @@
                 required: true
             },
             urldelete: {
+                type: String,
+                required: true
+            },
+            area: {
                 type: String,
                 required: true
             },

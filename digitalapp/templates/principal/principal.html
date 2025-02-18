@@ -1,0 +1,60 @@
+{% load svg %}
+<div class="request__background">
+
+    <p class="h2 color-white text-center request--title mb-8 request--title" >
+        <b id="title-request">Selecciona el área para hacer tu solicitud.</b>
+    </p>
+
+    <div class="container-card">
+        <div class="card-area">
+            <div class="icon-card">
+                <img src="../../../static/img/areas/logo-sistemas.png" alt="logo-sistemas">
+            </div>
+            <div class="text-card">
+                <h4 class="title-card">Departamento de Sistemas</h4>
+                <ul class="ul-card">
+                    <li>Registro de nuevos usuarios</li>
+                    <li>Cancelar usuarios</li>
+                    <li>Asignación de accesos a módulos</li>
+                    <li>Desarrollo de Sistemas</li>
+                    <li>Modificaciones y/o adecuaciones a módulos</li>
+                </ul>
+            </div>
+            <a href="http://192.168.10.37:8080/SolicitudServicios/" class="button-card" >Continuar {% svg 'arrow-right' %}</a>
+        </div>
+
+        <div class="card-area">
+            <div class="icon-card">
+                <img src="../../../static/img/areas/logo-digital.png" alt="logo-digital">
+            </div>
+            <div class="text-card">
+                <h4 class="title-card">Innovación</h4>
+                <ul class="ul-card">
+                    <li>Creación de aplicaciones para las URES</li>
+                    <li>Desarrollo de sitios web para unidades académicas</li>
+                    <li>Soporte técnico con el proceso de Entrega Recepción</li>
+                    <li>Soporte técnico en procesos de Entrega Recepción, Declaraciones, Inscripciones, Tutorías y Trámites digitales.</li>
+                </ul>
+            </div>
+            <a href="{% url 'public:forms' 'Innovación' %}" class="button-card">Continuar {% svg 'arrow-right' %}</a>
+        </div>
+
+        <div class="card-area">
+            <div class="icon-card">
+                <img src="../../../static/img/areas/logo-mantenimiento.png" alt="logo-mantenimiento">
+            </div>
+            <div class="text-card">
+                <h4 class="title-card">Redes y Mantenimiento</h4>
+                <ul class="ul-card">
+                    <li>Soporte técnico de redes</li>
+                    <li>Soporte técnico de telefonía</li>
+                    <li>Correos institucionales</li>
+                    <li>Mantenimiento de equipo de cómputo</li>
+                    <li>Registro de subdominios</li>
+                    <li>Infraestructura digital</li>
+                </ul>
+            </div>
+            <a  href="{% url 'public:forms' 'Infraestructura' %}" class="button-card">Continuar {% svg 'arrow-right' %}</a>
+        </div>
+    </div>
+</div>

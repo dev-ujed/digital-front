@@ -1,13 +1,15 @@
 <div class="request__background">
 
     <p class="h2 color-white text-center request--title mb-8 request--title" >
-        <b id="title-request">Envíanos tu solicitud</b>
+        <b id="title-request">Estás enviando solicitud a {{area}}</b>
     </p>
+    
     <div class="request__container">
         <step-form
-            urluser="{{ request.build_absolute_uri }}crear-usuario"
-            urlrequest="{{ request.build_absolute_uri }}crear-solicitud"
-            urldelete="{{ request.build_absolute_uri }}cancelar-solicitud"
+            urluser="{{ url }}crear-usuario"
+            urlrequest="{{ url }}crear-solicitud"
+            urldelete="{{ url }}cancelar-solicitud"
+            area="{{area}}"
             :ureslist="{{ ureslist }}"
         >
             <template slot="doro">

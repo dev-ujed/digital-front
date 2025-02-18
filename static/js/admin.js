@@ -7905,7 +7905,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_components_TransparentOverlay_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../main/components/TransparentOverlay.vue */ "./resources/js/main/components/TransparentOverlay.vue");
 /* harmony import */ var _components_procesess_DragPanel_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/procesess/DragPanel.vue */ "./resources/js/admin/components/procesess/DragPanel.vue");
 /* harmony import */ var _components_procesess_EmailModal_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/procesess/EmailModal.vue */ "./resources/js/admin/components/procesess/EmailModal.vue");
-/* harmony import */ var _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/procesess/BitacoraForm.vue */ "./resources/js/admin/components/procesess/BitacoraForm.vue");
+/* harmony import */ var _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/procesess/BitacoraForm.vue */ "./resources/js/admin/components/procesess/BitacoraForm.vue");
 
 
 
@@ -7950,7 +7950,7 @@ __webpack_require__.r(__webpack_exports__);
   Vue.component('participants', _components_procesess_Participants_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
   Vue.component('binnacle', _components_procesess_Binnacle_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
   Vue.component('comments', _components_procesess_Comments_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-  Vue.component('bitacora-form', _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+  Vue.component('bitacora-form', _components_procesess_BitacoraForm_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
   /*
   |------------------------------------------------------------------------
   | Vm
@@ -9302,7 +9302,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/oscar/digital-front/resources/js/admin */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\js\admin */"./resources/js/admin.js");
 
 
 /***/ })
