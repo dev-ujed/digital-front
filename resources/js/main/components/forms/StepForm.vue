@@ -20,10 +20,10 @@
 
                     <h4 class="text-center mb-6 color-gray-70">El folio de tu ticket es: <b>{{ requestfolio }}</b></h4>
 
-                    <p>Cuando la solicitud sea concluida recibirás un correo de notificación.</p>
+                    <p>Cuando el ticket sea concluido recibirás un correo de notificación.</p>
 
                     <p v-if="otherEmail== true" class="alert alert--info alert--has-icon mt-8 size-sm">
-                        Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacernos una nueva solicitud para tramitarlo.
+                        Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacer un nuevo ticket para tramitarlo.
                     </p>
 
                     <div class="text-center mt-12">

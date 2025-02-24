@@ -50,7 +50,7 @@ def user_login(request):
             request.session.set_expiry(86400)
             request.session.clear_expired()
             response = HttpResponse('')
-            response["Redirect-To"] = domain+'/administracion'
+            response["Redirect-To"] = domain+'/administracion/solicitudes/bandeja'
             return response
         else:
             return JsonResponse({'errors':{'email': ['El usuario no está registrado']}}, status = 422)

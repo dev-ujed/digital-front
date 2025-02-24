@@ -2,7 +2,7 @@
 {% load static %}
 <mjml>
     <mj-head>
-        <mj-title>Tu solicitud se ha registrado</mj-title>
+        <mj-title>Tu ticket se ha registrado</mj-title>
         <mj-include path="./partials/_styles.mjml" />
         <mj-breakpoint width="600px"/>
     </mj-head>
@@ -24,9 +24,9 @@
                     />
 
                     <mj-text font-size="14px" color="#3A4148">
-                        <p class="title" font-family="helvetica">Tu solicitud se ha registrado</p>
+                        <p class="title" font-family="helvetica">Tu ticket se ha registrado</p>
 
-                        <p class="paragraph" font-family="helvetica">¡Hola, {{ name }}! Te informamos que tu solicitud ha sido creada con éxito y se le ha asignado el siguiente folio:</p>
+                        <p class="paragraph" font-family="helvetica">¡Hola, {{ name }}! Te informamos que tu ticket ha sido creado con éxito y se le ha asignado el siguiente folio:</p>
 
                         <p class="folio" font-family="helvetica">{{ folio }}</p>
                     </mj-text>
@@ -48,7 +48,7 @@
                 <mj-column >
 
                     <mj-text font-size="14px" color="#3A4148">
-                        <p class="paragraph" font-family="helvetica">Cuando hayamos concluido tu solicitud te enviaremos un correo electrónico para notificarte.
+                        <p class="paragraph" font-family="helvetica">Cuando hayamos concluido tu ticket te enviaremos un correo electrónico para notificarte.
                         Si tienes alguna duda puedes contactarnos a través de <a href="#" class="p-0 link" font-family="helvetica">nuestro sitio web</a>
                         o al teléfono que aparece al final de este correo.</p>
 

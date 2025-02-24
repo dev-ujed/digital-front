@@ -3961,13 +3961,6 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-control mb-18" },
-        [_c("request-upload-file", { attrs: { requestid: _vm.requestid } })],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
         { staticClass: "text-center" },
         [
           _c(
@@ -4155,7 +4148,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", [
                       _vm._v(
-                        "Cuando la solicitud sea concluida recibirás un correo de notificación."
+                        "Cuando el ticket sea concluido recibirás un correo de notificación."
                       )
                     ]),
                     _vm._v(" "),
@@ -4168,7 +4161,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacernos una nueva solicitud para tramitarlo.\n                "
+                              "\n                    Detectamos que tu correo electrónico no es un correo institucional (terminación en @ujed.mx). Si lo deseas, puedes hacer un nuevo ticket para tramitarlo.\n                "
                             )
                           ]
                         )
@@ -4361,7 +4354,7 @@ var render = function() {
           2
         ),
         _vm._v(" "),
-        _c("small", [_vm._v("Solicitud")])
+        _c("small", [_vm._v("Ticket")])
       ]
     )
   ])
@@ -7959,9 +7952,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\js\main */"./resources/js/main.js");
-__webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\sass\main.scss */"./resources/sass/main.scss");
-module.exports = __webpack_require__(/*! C:\Users\Adm\Desktop\DTD\digital-front\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+__webpack_require__(/*! C:\Users\Adm\Desktop\digital-front\resources\js\main */"./resources/js/main.js");
+__webpack_require__(/*! C:\Users\Adm\Desktop\digital-front\resources\sass\main.scss */"./resources/sass/main.scss");
+module.exports = __webpack_require__(/*! C:\Users\Adm\Desktop\digital-front\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
 
 
 /***/ })

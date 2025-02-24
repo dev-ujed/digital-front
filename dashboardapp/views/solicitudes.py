@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from dashboardapp.models import Catalogo_Estatus, Solicitud
+from django.core.paginator import Paginator
 from dashboardapp.serializers import CatalogoEstatusSerializer, SolicitudesSerializer
 
 from datetime import datetime
@@ -29,11 +30,20 @@ def inbox(request):
 
         for state in cat_status_serializer:
             if state['key_name'] in StatusArray:
-                statuses.update({ state['key_name']: state['estatus_descrip']})
+                statuses[state['key_name']] = state['estatus_descrip']
 
                 solicitudes = Solicitud.objects.filter(estatus__key_name=state['key_name']).order_by('-fecha_sol')
-                solicitudes_serializer = SolicitudesSerializer(solicitudes, many=True).data
-                requestByStatus.update({state['key_name']: solicitudes_serializer})
+                
+                
+                paginator = Paginator(solicitudes, 10) 
+                page_number = request.GET.get(f'page_{state["key_name"]}', 1)
+                solicitudes_paginadas = paginator.get_page(page_number)
+
+                solicitudes_serializer = SolicitudesSerializer(solicitudes_paginadas, many=True).data
+                requestByStatus[state['key_name']] = {
+                    'solicitudes': solicitudes_serializer,
+                    'paginator': solicitudes_paginadas
+                }
 
         return render(request, "solicitudes/index.html", {
             'statuses': statuses,
