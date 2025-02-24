@@ -34,11 +34,11 @@ def agregarParticipante(request):
 
         return JsonResponse(res)
 
-def borrarSolicitud(request):
+def borrarSolicitud(request, folio):
     data = {
         "user": request.session['user']['id'],
-        "folio": request.POST['folio'],
+        "folio": folio,
     }
 
-    response = requests.post(settings.URL_API + 'sol/solicitudes/delete/<slug:folio>', data=data) 
-    return JsonResponse({'msg':response.json()}, status = 200)   
+    response = requests.delete(settings.URL_API + '/solicitudes/sol/solicitudes/<slug:folio>/del/', data=data) 
+    return JsonResponse({'msg':'ok'}, status = 200)   

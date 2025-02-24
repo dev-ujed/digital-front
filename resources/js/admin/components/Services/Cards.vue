@@ -21,14 +21,13 @@
             </div>
         </div>
 
-
         <div class="text-center mt-6 w-full">
             <button class="btn btn--light w-full" @click="borrarServicio">
                 <input hidden :value="folio"  type="text" id="servicio">
                 <span class="icon-plus-circle">
                     <slot name="plus-circle"></slot>
                 </span>
-                Borrar Servicio
+                Borrar ticket
             </button>
         </div>
 
@@ -73,18 +72,17 @@
                 this.$root.$emit('showServiceModal');
             },
             borrarServicio() {
-
-                // console.log('borrar servicio ' + servicio.value);
+                console.log('borrar servicio ' + servicio.value);
                 var formData = new FormData();
                 formData.append("servicio", this.folio);
 
-                console.log(this.folio);
-                window.axios.post(this.$root.path+'/solicitudes/delete/', this.folio)
+                console.log(this.$root.path+'/administracion/solicitudes/delete/'+this.folio+'/');
+                window.axios.post(this.$root.path+'/administracion/solicitudes/delete/'+this.folio+'/')
                     .then( datos => {
-                       console.log(datos)
+                       window.location.href = this.$root.path+'/administracion/solicitudes/bandeja'
                     });
-
             },
+
             addItems(data) {
                 if(data !== undefined) {
 

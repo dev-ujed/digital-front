@@ -386,7 +386,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     array: {
@@ -413,12 +412,14 @@ __webpack_require__.r(__webpack_exports__);
       this.$root.$emit('showServiceModal');
     },
     borrarServicio: function borrarServicio() {
-      // console.log('borrar servicio ' + servicio.value);
+      var _this = this;
+
+      console.log('borrar servicio ' + servicio.value);
       var formData = new FormData();
       formData.append("servicio", this.folio);
-      console.log(this.folio);
-      window.axios.post(this.$root.path + '/solicitudes/delete/', this.folio).then(function (datos) {
-        console.log(datos);
+      console.log(this.$root.path + '/administracion/solicitudes/delete/' + this.folio + '/');
+      window.axios.post(this.$root.path + '/administracion/solicitudes/delete/' + this.folio + '/').then(function (datos) {
+        window.location.href = _this.$root.path + '/administracion/solicitudes/bandeja';
       });
     },
     addItems: function addItems(data) {
@@ -4042,7 +4043,7 @@ var render = function() {
             [_vm._t("plus-circle")],
             2
           ),
-          _vm._v("\n            Borrar Servicio\n        ")
+          _vm._v("\n            Borrar ticket\n        ")
         ]
       )
     ]),
