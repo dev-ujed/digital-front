@@ -28,7 +28,7 @@
                 :class="step === 2 ? 'content-check': 'content-2'">
                 <slot name="doro"></slot>
             </span>
-            <small>Solicitud</small>
+            <small>Ticket</small>
         </span>
     </div> 
 </template>

@@ -3909,8 +3909,8 @@ default state. They can be created with the `button-outline` mixin.
   max-width: 600px;
   overflow: hidden;
   padding: 15px;
-  padding-bottom: 40px;
-  padding-top: 30px;
+  padding-bottom: 2.7em;
+  padding-top: 2em;
   width: calc(100% - 10px);
 }
 
@@ -3950,7 +3950,7 @@ default state. They can be created with the `button-outline` mixin.
   padding: 0 5%;
   -webkit-box-flex: 1;
           flex-grow: 1;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.5em;
 }
 
 .button-card {
@@ -6071,6 +6071,48 @@ of a pure BEM approach to avoid unnecessary CSS classes.
     padding-bottom: 0.5em;
     padding-top: 0.5em;
   }
+}
+
+.pagination {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.pagination__button {
+  background-color: #5a8;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  -webkit-transition: background 0.3s, -webkit-transform 0.2s;
+  transition: background 0.3s, -webkit-transform 0.2s;
+  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s, transform 0.2s, -webkit-transform 0.2s;
+}
+
+.pagination__button:hover {
+  background-color: #0056b3;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.pagination__current-page {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f8f9fa;
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
 .text_reset-pass {
