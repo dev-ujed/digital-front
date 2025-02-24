@@ -49,7 +49,7 @@
                 formData.append("file", file);
 
                 window.axios
-                    .post('subir-archivo', formData)
+                    .post(this.$root.path+'/digitalapp/subir-archivo', formData)
                     .then(response => {
 
                         console.log(response);

@@ -33,12 +33,12 @@
         </div>
 
 
-        <!-- <div class="form-control mb-18">
+        <div class="form-control mb-18">
             <request-upload-file
                 :requestid="requestid"
             >
             </request-upload-file>
-        </div> -->
+        </div>
 
 
         <div class="text-center">
