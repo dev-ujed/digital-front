@@ -44,6 +44,31 @@ Card request
     }
 }
 
+.card-request__footer2 {
+    border-top: 1px solid #E7E9EC;
+    font-weight: bold;
+    font-size: rem(12);
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin: auto -15px 0 -30px;
+    padding: 1em $gutter 0.5em;
+}
+
+.card-request__badge{
+    border-radius: 1em;
+    width: max-content;
+    padding: 0.2em 1em;
+}
+
+.card-request__folio{
+    border-radius: 1em;
+    width: max-content;
+    padding: 0.2em 1em;
+    color: #2a2727;
+    background-color: #2a272738;
+    border: solid 1px #706a6a;
+}
+
 .card-request__link {
     &:focus,
     &:hover,
@@ -234,7 +259,7 @@ Card request
 .card-request__service-container{
     float: right;
     margin-right: -19px;
-    width: 85%;
+    width: max-content;
 }
 
 .card-request__service {

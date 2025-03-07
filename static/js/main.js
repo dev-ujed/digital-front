@@ -755,7 +755,7 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append("request", this.requestid);
       formData.append("file", file);
-      window.axios.post('subir-archivo', formData).then(function (response) {
+      window.axios.post(this.$root.path + '/digitalapp/subir-archivo', formData).then(function (response) {
         console.log(response);
 
         if (response.data.id) {
@@ -3958,6 +3958,13 @@ var render = function() {
           1
         )
       }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-control mb-18" },
+        [_c("request-upload-file", { attrs: { requestid: _vm.requestid } })],
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",
