@@ -9,8 +9,22 @@ Removes bullets from a list and displays its items in a single line.
 .list-inline {
     list-style: none;
     margin-left: 0;
+    height: max-content;
+    margin-bottom: 2em !important;
 
     > li {
         display: inline-block;
+    }
+
+    @include media(1400) {
+        height: 240px;
+    }
+
+    @include media(801, 1399) {
+        height: 250px;
+    }
+
+    @include media(600, 800) {
+        height: 235px;
     }
 }

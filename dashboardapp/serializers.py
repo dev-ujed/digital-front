@@ -19,7 +19,7 @@ class SolicitudesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Solicitud
         fields = ('folio','titulo','nombre','apellido_paterno','apellido_materno','descripcion',
-                    'ures_desc','formatted_date','count_files','subservices')
+                    'ures_desc','formatted_date','count_files','subservices', 'area')
     
     def get_ures_desc(self, obj):
         return obj.ures.ures_descrip

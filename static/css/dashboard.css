@@ -2373,10 +2373,32 @@ Removes bullets from a list and displays its items in a single line.
 .list-inline {
   list-style: none;
   margin-left: 0;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin-bottom: 2em !important;
 }
 
 .list-inline > li {
   display: inline-block;
+}
+
+@media (min-width: 87.5em) {
+  .list-inline {
+    height: 240px;
+  }
+}
+
+@media (min-width: 50.0625em) and (max-width: 87.375em) {
+  .list-inline {
+    height: 250px;
+  }
+}
+
+@media (min-width: 37.5em) and (max-width: 49.9375em) {
+  .list-inline {
+    height: 235px;
+  }
 }
 
 /*
@@ -9995,6 +10017,35 @@ Card request
   font-weight: normal;
 }
 
+.card-request__footer2 {
+  border-top: 1px solid #E7E9EC;
+  font-weight: bold;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: auto -15px 0 -30px;
+  padding: 1em 30px 0.5em;
+}
+
+.card-request__badge {
+  border-radius: 1em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.2em 1em;
+}
+
+.card-request__folio {
+  border-radius: 1em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.2em 1em;
+  color: #2a2727;
+  background-color: #2a272738;
+  border: solid 1px #706a6a;
+}
+
 .card-request__link:focus, .card-request__link:hover, .card-request__link:active {
   color: #5F6B78;
   text-decoration: none;
@@ -10247,7 +10298,9 @@ Card request
 .card-request__service-container {
   float: right;
   margin-right: -19px;
-  width: 85%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .card-request__service {
